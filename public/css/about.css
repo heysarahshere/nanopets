@@ -1,0 +1,24 @@
+
+.about-heading {
+    background-image: linear-gradient(to right top, #27dfff, #baf5ff);
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+.about-heading h2 {
+    font-size: 28px;
+    font-family: Readzone;
+}
+
+.about-featured-img {
+    width: 300px;
+    height: auto;
+}
+.about-body {
+    background-image: linear-gradient(to bottom, #96ecfd, #baf5ff);
+    height: 1000vh;
+}
+
+.about-body h1 {
+    color: #0a3c60;
+}
+

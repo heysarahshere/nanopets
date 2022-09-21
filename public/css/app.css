@@ -1,0 +1,408 @@
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+main {
+    background-image: linear-gradient(#8ee7f6, #00b7d2);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: 'Funhouse';
+    src: url('../fonts/Funhouse.woff2') format('woff2'),
+    url('../fonts/Funhouse.woff') format('woff'),
+    url('../fonts/Funhouse.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: Readzone;
+    src: url('../fonts/Readzone.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Milky;
+    src: url('../fonts/MilkyNice.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Cool;
+    src: url('../fonts/coolvetica rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Grobold;
+    src: url('../fonts/GROBOLD.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* End Fonts */
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(152, 36, 126, 0.83);
+    font-weight: bold;
+    font-family: Cool;
+    font-size: 19px;
+}
+
+/*a, a:visited, a:hover, a:active {*/
+/*    color: inherit;*/
+/*}*/
+a:visited {
+    color: #0a3c60;
+}
+
+#homeCarousel a {
+    color: white;
+}
+
+.dropdown-menu a:visited {
+    color: rgb(102, 102, 102);
+}
+
+h1,
+h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: bold;
+    color: #970c9b;
+}
+
+h1 {
+    font-size: 48px;
+    font-family: Funhouse;
+}
+
+h2 {
+    font-size: 32px;
+    font-family: Funhouse;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 28px;
+    font-family: Readzone;
+    color: #970c9b;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.button {
+    border: 1px solid #f1f1f1;
+    padding: 12px 40px;
+}
+
+.button:hover {
+    color: #060606;
+    background: #f1f0ef;
+}
+
+.button-white {
+    border: 1px solid #f1f1f1;
+    color: #f1f0ef !important;
+}
+
+.button-white:hover {
+    color: #f1f0ef !important;
+    background: #060606;
+}
+
+.section-description {
+    width: 80%;
+    margin: auto;
+}
+
+.button-container {
+    margin: 80px 0;
+}
+
+/* Misc pages */
+.home {
+    text-align: center;
+    padding: 5%;
+}
+
+.store-menu a {
+    color: #0b6b8c;
+}
+
+.nav-account {
+    color: #6de6fd;
+    font-family: Readzone;
+    font-size: large;
+    font-weight: lighter;
+}
+
+
+/* End */
+
+/* Buttons */
+.ombre-btn {
+    font-family: Funhouse;
+    background-color: rgb(255, 255, 255);
+    border-radius: 34px;
+    border-color: #0b6b8c;
+    border-width: medium;
+    color: #0b6b8c;
+}
+
+.rev-ombre-btn {
+    font-family: Funhouse;
+    background-color: #0b6b8c;
+    border-radius: 34px;
+    border-color: #0b6b8c;
+    border-width: medium;
+    color: #ffffff;
+}
+
+
+/* End */
+/*------------------ Nav -------------------*/
+.ombre-nav {
+    background-image: linear-gradient(to right, #0a849a, #434186, #ad084d);
+    /*height: 5vh;*/
+}
+
+.nav-logo {
+    width: 5vh;
+    height: 100%;
+}
+
+.navbar-toggler {
+    /*background-color: #ad084d;*/
+    /*border: #ad084d;*/
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(154, 8, 69, 0.5)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: #ad084d;
+    border-width: medium;
+}
+
+/*------------------ End Nav -------------------*/
+
+/*------------------ Footer -------------------*/
+footer {
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: auto;
+    z-index: 999;
+}
+
+.upper-footer {
+    background: url('../images/creature_footer.png') top;
+    font-size: 15px;
+    line-height: 24px;
+    color: #28bfe1;
+    top: 1px;
+    background-size: cover;
+    height: 30vh;
+}
+
+.lower-footer {
+    background-image: -webkit-linear-gradient(40deg, #03500c 50%, #03500c 50%);
+    height: 20vh;
+    left: 0px;
+    bottom: 0px;
+}
+
+
+
+.footer-img {
+    object-fit: fill;
+    max-width: 100%;
+}
+
+/* --------------------- End Footer ------------------------- */
+
+
+#button-addon1 {
+    color: #ffc371;
+}
+
+i {
+    color: #ffc371;
+}
+
+.form-control::placeholder {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-style: italic;
+}
+
+.form-control.shadow-0:focus {
+    box-shadow: none;
+}

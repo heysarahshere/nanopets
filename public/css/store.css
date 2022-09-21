@@ -1,0 +1,414 @@
+
+.featured-jumbo {
+    background-color: white;
+    border-radius: 10px;
+    border-color: rgb(102, 210, 16);
+    border-width: medium;
+}
+.featured-burger {
+
+    background-color: #FFB534;
+    border-radius: 10px;
+    border-color: #FFB534;
+    border-width: medium;
+}
+.featured-egg {
+
+    background-color: #C2005B;
+    border-radius: 10px;
+    border-color: #C2005B;
+    border-width: medium;
+}
+.store-card {
+    z-index: 1;
+}
+
+.potion-container-button {
+    background-image: linear-gradient(to right, #9157b6, #d59bf8);
+    color: #602056;
+}
+
+.egg-container-button {
+    background-image: linear-gradient(to right, #0060ce, #5a9fd3);
+    color: #0a3c60;
+}
+
+.food-container-button {
+    background-image: linear-gradient(to right, #be5e14, #ce955b);
+
+}
+
+[class*="container-button"] {
+    height: 30vh;
+    border-radius: 10px;
+    border-color: #C2005B;
+    border-width: medium;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.store-card:hover {
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    z-index: 999;
+}
+
+.store-card .reveal-stats {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 0;
+}
+
+.store-card:hover .reveal-stats {
+    height: auto;
+    visibility: visible;
+    opacity: 10;
+    transition: opacity .5s ease;
+}
+
+
+.store-body h1 {
+    color: #0a3c60;
+}
+
+.store-banner {
+    width: 100%;
+    background-color: #0b6b8c;
+    text-align: center;
+    color: white;
+}
+
+.store-nav-row {
+    justify-content: center;
+    align-content: center;
+}
+
+.store-heading {
+    background-image: linear-gradient(to right top, #27dfff, #baf5ff);
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+
+.store-heading h2 {
+    font-size: 28px;
+    font-family: Readzone;
+}
+
+.store-featured-img {
+    height: 200px;
+    width: auto;
+}
+
+.store-body {
+    /*background-image: linear-gradient(to bottom, #96ecfd, #baf5ff);*/
+    min-height: 100vh;
+}
+
+.store-body p {
+    font-size: medium;
+    color: #602056;
+}
+
+.store-img-container {
+    height: 200px;
+}
+
+.store-card img {
+    height: 100%;
+    width: auto;
+}
+
+.store-cost-banner {
+    height: 55px;
+    border-radius: 5%;
+}
+
+.purchase-btn {
+    font-family: Funhouse;
+    background-color: rgb(102, 210, 16);
+    border-radius: 10px;
+    border-color: rgb(102, 210, 16);
+    border-width: medium;
+    color: #ffffff;
+    margin: 0% 5% 5% 5%;
+}
+
+.purchase-btn:hover {
+    font-family: Funhouse;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: rgb(102, 210, 16);
+    border-width: medium;
+    color: rgb(102, 210, 16);
+}
+
+.store-card h1, h2 {
+    color: white;
+}
+
+.store-card p {
+    color: white;
+    font-size: large;
+}
+
+.store-card .card-body {
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.store-card .card-body::-webkit-scrollbar {
+    display: none;
+}
+
+.store-nav-btn {
+    font-family: Funhouse;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    border-color: #0b6b8c;
+    border-width: medium;
+    color: #0b6b8c;
+}
+
+.store-nav-btn:hover {
+    font-family: Funhouse;
+    background-color: #0b6b8c;
+    border-radius: 5px;
+    border-color: #0b6b8c;
+    border-width: medium;
+    color: #ffffff;
+}
+
+
+.store-nav-row .active {
+    font-family: Funhouse;
+    background-color: #0b6b8c;
+    border-radius: 5px;
+    border-color: #0b6b8c;
+    border-width: medium;
+    color: #ffffff;
+}
+
+.statModal .modal-body h2 {
+    color: #0a3c60;
+    font-size: medium;
+}
+
+.modal-title {
+    color: #000000;
+    text-align: center;
+    margin-left: auto;
+}
+
+.add-button {
+    margin: 0 auto;
+    align-self: center;
+}
+/* ------------- elements as class names for dynamic card background --------------- */
+.fire {
+    background-image: linear-gradient(#fcaa2f, rgb(208, 64, 9));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.fire-ombre-btn {
+    background-image: linear-gradient(to right, #fcaa2f, rgb(208, 64, 9));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.fire-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.star {
+    background-image: linear-gradient(#d62ffc, rgb(8, 78, 134));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.star-ombre-btn {
+    background-image: linear-gradient(to right, #d62ffc, rgb(8, 78, 134));
+    border-radius: 24px;
+    margin: 5%;
+    border-color:  rgb(8, 78, 134);
+    border-width: 0px;
+}
+.star-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.rock {
+    background-image: linear-gradient(rgb(255, 221, 91), #b60ac9);
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.rock-ombre-btn {
+    background-image: linear-gradient(to right, rgb(255, 221, 91), #b60ac9);
+    border-radius: 24px;
+    margin: 5%;
+    border-color:  #b60ac9;
+    border-width: 0px;
+}
+.rock-ombre-btn h1 {
+    color: white;
+}
+
+/* ------------- stat types as class names for dynamic card background --------------- */
+
+.health {
+    background-color: rgb(189, 0, 0);
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.health-ombre-btn {
+    background-color: rgb(189, 0, 0);
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(189, 0, 0);
+    border-width: 0px;
+}
+.health-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.magic {
+    background-color: #5B00BDFF;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.magic-ombre-btn {
+    background-color: #5B00BDFF;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #5B00BDFF;
+    border-width: 0px;
+}
+.magic-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.defense {
+    background-color: #277708;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.defense-ombre-btn {
+    background-color: #277708;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #277708;
+    border-width: 0px;
+}
+.defense-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.strength {
+    background-color: #bd5805;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.strength-ombre-btn {
+    background-color: #bd5805;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #bd5805;
+    border-width: 0px;
+}
+.strength-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.mojo {
+    background-color: #c71394;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.mojo-ombre-btn {
+    background-color: #c71394;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #c71394;
+    border-width: 0px;
+}
+.mojo-ombre-btn h1 {
+    color: white;
+}
+/* ________________________ */
+.stamina {
+    background-color: #1fc713;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.stamina-ombre-btn {
+    background-color: #1fc713;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #1fc713;
+    border-width: 0px;
+}
+.stamina-ombre-btn h1 {
+    color: white;
+}
+/* ________________________ */
+.statChance {
+    background-color: #1337c7;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.statChance-ombre-btn {
+    background-color: #1337c7;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #1337c7;
+    border-width: 0px;
+}
+.statChance-ombre-btn h1 {
+    color: white;
+}
+/* ________________________ */
+.hunger {
+    background-color: #dea106;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.hunger-ombre-btn {
+    background-color: #dea106;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #dea106;
+    border-width: 0px;
+}
+.hunger-ombre-btn h1 {
+    color: white;
+}
