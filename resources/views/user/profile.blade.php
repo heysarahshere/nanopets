@@ -18,12 +18,6 @@
                         <p class="card-text">{{ $pet->description }}</p>
                     </div>
 
-                    {{--                line_image--}}
-                    {{--                color_image--}}
-                    {{--                eye_image--}}
-                    {{--                tail_image--}}
-                    {{--                head_image--}}
-                    {{--                wing_image--}}
                     <div class="monster-parent col-12">
                         <img class="monster-child" src="{{ asset("/images/creatures/parts/tails/" . $pet->tail_image) }}"
                              alt="{{ $pet->name }} Image">

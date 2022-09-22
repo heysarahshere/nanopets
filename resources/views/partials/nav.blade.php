@@ -2,7 +2,7 @@
     <div class="row align-items-center py-2 justify-content-end">
         @if(Auth::check())
             <?PHP $user = Auth::user(); ?>
-            <a class="nav-link nav-account" href="{{route('profile')}}">
+            <a class="nav-link nav-account" href="{{ route('profile', ['user' => $user->username])}}">
                 <p class="nav-account">Welcome, {{$user->username}}!</p>
             </a>
             <a class="nav-link nav-account" href="#">settings</a>

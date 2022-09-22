@@ -94,4 +94,14 @@ class UserController extends Controller
         ]);
     }
 
+    public function getCreatures($user)
+    {
+        $user = User::where('username',$user) -> first();
+
+        $pets = Pet::where('owner_id', $user->id)->get();
+        return view('user/monsters', [
+            'pets' => $pets
+        ]);
+    }
+
 }

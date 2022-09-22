@@ -77,7 +77,7 @@ class PetTableSeeder extends Seeder
                 'tail_image'=>'fish.png',
                 'head_image'=>'horns_unicorn.png',
                 'wing_image'=>'fairy_teal.png',
-                'element'=>'fire',
+                'element'=>'water',
                 'description'=>'skritskrat',
                 'potential'=>rand(10, 50),
                 'health'=>rand(250, 3000),

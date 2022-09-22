@@ -27,41 +27,45 @@ Route::get('/about', [
 // ------------------------- User
 
 // for future user things, i.e. profile or pets list
-Route::group(['prefix' => 'user'], function () {
+//Route::group(['prefix' => 'user'], function () {
+//});
 
-    Route::get('/sign-in', [
-        'uses' => 'App\Http\Controllers\UserController@getSignIn',
-        'as' => 'get-sign-in'
-    ]);
+Route::get('/sign-in', [
+    'uses' => 'App\Http\Controllers\UserController@getSignIn',
+    'as' => 'get-sign-in'
+]);
 
-    Route::post('/sign-in', [
-        'uses' => 'App\Http\Controllers\UserController@postSignIn',
-        'as' => 'sign-in'
-    ]);
+Route::post('/sign-in', [
+    'uses' => 'App\Http\Controllers\UserController@postSignIn',
+    'as' => 'sign-in'
+]);
 
-    Route::get('/sign-up', [
-        'uses' => 'App\Http\Controllers\UserController@getSignUp',
-        'as' => 'get-sign-up'
-    ]);
+Route::get('/sign-up', [
+    'uses' => 'App\Http\Controllers\UserController@getSignUp',
+    'as' => 'get-sign-up'
+]);
 
-    Route::post('/sign-up', [
-        'uses' => 'App\Http\Controllers\UserController@postSignUp',
-        'as' => 'sign-up'
-    ]);
+Route::post('/sign-up', [
+    'uses' => 'App\Http\Controllers\UserController@postSignUp',
+    'as' => 'sign-up'
+]);
 
-    Route::post('/sign-out', [
-        'uses' => 'App\Http\Controllers\UserController@postSignOut',
-        'as' => 'sign-out'
-    ]);
+Route::post('/sign-out', [
+    'uses' => 'App\Http\Controllers\UserController@postSignOut',
+    'as' => 'sign-out'
+]);
 
 
-    Route::get('/profile', [
-        'uses' => 'App\Http\Controllers\UserController@getProfile',
-        'as' => 'profile'
-    ]);
+// probably get rid of this, or make it into a settings page
+Route::get('/me', [
+    'uses' => 'App\Http\Controllers\UserController@getProfile',
+    'as' => 'manage-profile'
+]);
 
-});
-
+Route::get('/{user}', [
+    'uses' => 'App\Http\Controllers\UserController@getCreatures',
+    'as' => 'profile'
+]);
 // ------------------------- End User
 
 
