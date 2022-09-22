@@ -67,7 +67,7 @@ class UserController extends Controller
 //            $request->session()->forget('sign-in-error');
 
             return redirect()
-                ->route('home')
+                ->route('manage-profile')
                 ->with('message', "You're signed in.");
         }
 
@@ -96,11 +96,12 @@ class UserController extends Controller
 
     public function getCreatures($user)
     {
-        $user = User::where('username',$user) -> first();
+        $owner = User::where('username',$user) -> first();
 
-        $pets = Pet::where('owner_id', $user->id)->get();
+        $pets = Pet::where('owner_id', $owner->id)->get();
         return view('user/monsters', [
-            'pets' => $pets
+            'pets' => $pets,
+            'owner' => $owner
         ]);
     }
 

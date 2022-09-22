@@ -61,7 +61,7 @@
 
 .monster-child {
     position: absolute;
-    top: -5%;
+    top: 0%;
     left: 10%;
     width: 100%;
 }
@@ -114,11 +114,83 @@
     color: #000;
 }
 
-.meter {
-    height: 20px;
+.animated-progress {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    overflow: hidden;
     position: relative;
-    background: #ffffff;
-    border-radius: 25px;
-    padding: 10px;
-    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+    background-color: #ffffff;
+    box-shadow: 3px 3px 3px #333333;
+}
+
+.animated-progress span {
+    height: 100%;
+    display: block;
+    width: 0;
+    color: rgb(255, 251, 251);
+    line-height: 30px;
+    position: absolute;
+    text-align: end;
+    padding-right: 5px;
+}
+
+.progress-green span {
+    background-color: #2fc217;
+    border-radius: 10px;
+}
+.progress-yellow span {
+    background-color: #f9d000;
+    border-radius: 10px;
+}
+.progress-orange span {
+    background-color: #ff4d00;
+    border-radius: 10px;
+}
+.progress-red span {
+    background-color: #e00000;
+    border-radius: 10px;
+}
+
+.monster-card {
+
+}
+
+.monster-card img {
+    height: 100%;
+    width: auto;
+}
+
+.monster-card .animated-progress:hover {
+    transition-timing-function: ease-in;
+    transition: 0.2s;
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    z-index: 999;
+}
+.monster-card .reveal-stats
+{
+    font-family: Funhouse;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 0;
+}
+
+.monster-card:hover .reveal-stats
+{
+    height: auto;
+    visibility: visible;
+    opacity: 10;
+    transition: opacity .5s ease;
+}
+
+.hiddenFace {
+    visibility: hidden;
+    display: none;
 }

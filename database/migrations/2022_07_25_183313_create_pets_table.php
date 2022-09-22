@@ -25,8 +25,11 @@ return new class extends Migration
             $table->string('element');
             $table->text('description');
             $table->integer('potential');
-            $table->integer('health');
-            $table->integer('stamina');
+            $table->integer('max_health');
+            $table->integer('current_health');
+            $table->integer('max_stamina');
+            $table->integer('current_stamina');
+            $table->integer('hunger')->default(100);
             $table->integer('mojo');
             $table->integer('magic');
             $table->integer('defense');

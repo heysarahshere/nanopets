@@ -7,7 +7,6 @@
 @section('content')
 
     <div class="home">
-        <h1>{{Auth::user()->username}}</h1>
     </div>
     <div class="container" style="padding-bottom: 20%;">
         <div class="row">
