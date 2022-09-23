@@ -47,7 +47,7 @@ class PetTableSeeder extends Seeder
             [
                 'name'=>'skritskrat',
                 'species'=>'dragon',
-                'color_image'=>'galaxy.png',
+                'body_image'=>'galaxy.png',
                 'eye_image'=>'blue.png',
                 'tail_image'=>'demon_green.png',
                 'head_image'=>'horns_long.png',
@@ -75,11 +75,10 @@ class PetTableSeeder extends Seeder
             [
                 'name'=>'Gadget',
                 'species'=>'lizard',
-                'color_image'=>'ghost.png',
+                'body_image'=>'ghost.png',
                 'eye_image'=>'red.png',
                 'tail_image'=>'fish.png',
                 'head_image'=>'horns_unicorn.png',
-                'wing_image'=>'fairy_teal.png',
                 'element'=>'water',
                 'description'=>'skritskrat',
                 'potential'=>rand(10, 50),

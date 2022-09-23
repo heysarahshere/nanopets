@@ -4,7 +4,7 @@
 
 /* The slider itself */
 .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
+    -webkit-appearance: none; /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
     height: 25px; /* Specified height */
@@ -38,7 +38,7 @@
 }
 
 [id$="InputLevel"] {
- /*#healthInputLevel */
+    /*#healthInputLevel */
     font-size: larger;
     font-family: Funhouse;
     margin-left: 2%;
@@ -98,7 +98,7 @@
     border-radius: 10px;
     border-color: rgb(1, 92, 166);
     border-width: medium;
-    color:  rgb(1, 92, 166);
+    color: rgb(1, 92, 166);
 }
 
 .monster-slider {
@@ -139,21 +139,26 @@
     background-color: #2fc217;
     border-radius: 10px;
 }
+
 .progress-yellow span {
     background-color: #f9d000;
     border-radius: 10px;
 }
+
 .progress-orange span {
     background-color: #ff4d00;
     border-radius: 10px;
 }
+
 .progress-red span {
     background-color: #e00000;
     border-radius: 10px;
 }
 
 .monster-card {
-
+    border-radius: 15px;
+    width: 98%;
+    /*height: 410px;*/
 }
 
 .monster-card img {
@@ -167,8 +172,8 @@
     transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     z-index: 999;
 }
-.monster-card .reveal-stats
-{
+
+.monster-card .reveal-stats {
     font-family: Funhouse;
     position: absolute;
     margin-left: auto;
@@ -182,8 +187,7 @@
     padding: 0;
 }
 
-.monster-card:hover .reveal-stats
-{
+.monster-card:hover .reveal-stats {
     height: auto;
     visibility: visible;
     opacity: 10;
@@ -219,7 +223,7 @@
 .card-sell-btn:hover {
     background-color: rgb(255, 255, 255);
     border-color: rgb(1, 166, 4);
-    color:  rgb(1, 166, 4);
+    color: rgb(1, 166, 4);
 }
 
 .card-feed-btn {
@@ -231,7 +235,7 @@
 .card-feed-btn:hover {
     background-color: white;
     border-color: rgb(222, 128, 19);
-    color:  rgb(222, 128, 19);
+    color: rgb(222, 128, 19);
 }
 
 .card-breed-btn {
@@ -243,7 +247,7 @@
 .card-breed-btn:hover {
     background-color: rgb(255, 255, 255);
     border-color: rgb(176, 0, 106);
-    color:  rgb(176, 0, 106);
+    color: rgb(176, 0, 106);
 }
 
 .large-breed-btn {

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->integer('owner_id');
             $table->string('name');
             $table->string('species', 500);
-            $table->string('color_image', 500);
-            $table->string('eye_image', 500);
-            $table->string('tail_image', 500);
-            $table->string('head_image', 500);
-            $table->string('wing_image', 500);
+            $table->string('body_image', 500);
+            $table->string('eye_image', 500)->nullable();
+            $table->string('tail_image', 500)->nullable();
+            $table->string('head_image', 500)->nullable();
+            $table->string('wing_image', 500)->nullable();
             $table->string('element');
             $table->text('description');
             $table->integer('potential');
