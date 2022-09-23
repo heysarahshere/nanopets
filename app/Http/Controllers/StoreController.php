@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Egg;
 use App\Models\Food;
+use App\Models\Market;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Session\Session;
@@ -18,8 +19,8 @@ class StoreController extends Controller
 {
     public function getStoreFeatured()
     {
-        $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
-        $potions = Food::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
+        $foods = Market::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
+        $potions = Market::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
         $eggs = Egg::orderBy('updated_at', 'desc')->paginate(8);
         return view('store/featured', [
             'foods' => $foods,
@@ -34,7 +35,7 @@ class StoreController extends Controller
 // --------------------------------------------------------------------------------------------- food
     public function getStoreFoods()
     {
-        $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
+        $foods = Market::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/food/all', ['foods' => $foods, 'category' => "FOODSTUFFS", 'current' => 'foods']);
     }
 

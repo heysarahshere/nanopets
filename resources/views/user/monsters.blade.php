@@ -6,7 +6,6 @@
 
     <div class="home p-4">
         <h1 class="m-0">{{$owner->username}}'s Creatures</h1>
-        <hr>
     </div>
     <div class="container-monsters" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row">
@@ -17,6 +16,7 @@
                 </div>
             @endforeach
         </div>
+        <button class="btn btn-danger w-100 mt-4 breed-btn">BREED ></button>
     </div>
 
 

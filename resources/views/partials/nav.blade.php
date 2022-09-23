@@ -2,12 +2,17 @@
     <div class="row align-items-center py-2 justify-content-end">
         @if(Auth::check())
             <?PHP $user = Auth::user(); ?>
+
+                <i class="fa-solid fa-coins pr-0" style="font-size: 20px"></i>
+                <a class="nav-link nav-account pl-2" href="{{route('featured')}}">
+                    <p style="font-family: Funhouse; font-size: large; color: #ffc072">{{number_format($user->balance,2)}}</p>
+                </a>
             <a class="nav-link nav-account" href="{{ route('profile', ['user' => $user->username])}}">
                 <p class="nav-account">Welcome, {{$user->username}}!</p>
             </a>
-            <a class="nav-link nav-account" href="#">settings</a>
+{{--            <a class="nav-link nav-account" href="#">settings</a>--}}
             <form method="POST" action="{{route('sign-out')}}">{{ csrf_field() }}
-                <button class="btn btn-sm rev-ombre-btn mr-2" type="submit">sign out</button>
+                <button class="btn btn-sm rev-ombre-btn m-2 mr-4" type="submit">sign out</button>
             </form>
         @else
             <div class="col-12 text-right">

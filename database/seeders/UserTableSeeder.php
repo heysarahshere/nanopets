@@ -23,7 +23,8 @@ class UserTableSeeder extends Seeder
             'lastname' => "Covey",
             'email' => "admin@nanopets.org",
             'password' => bcrypt('p@ss123'),
-            'admin' => true
+            'admin' => true,
+            'balance' => 923423
         ]);
     }
 }

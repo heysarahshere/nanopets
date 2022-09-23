@@ -194,3 +194,54 @@
     visibility: hidden;
     display: none;
 }
+
+.monster-stats p {
+    font-family: Funhouse;
+    color: white;
+    text-align: left;
+}
+
+.monster-card-btn {
+    font-family: Funhouse;
+    font-size: xx-large;
+    margin: 4px 0 0 0;
+    border-width: medium;
+    border-radius: 10px;
+    height: 30%;
+}
+
+.card-sell-btn {
+    background-color: rgb(1, 166, 4);
+    border-color: rgb(1, 166, 4);
+    color: #ffffff;
+}
+
+.card-sell-btn:hover {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(1, 166, 4);
+    color:  rgb(1, 166, 4);
+}
+
+.card-feed-btn {
+    background-color: rgb(222, 128, 19);
+    border-color: rgb(222, 128, 19);
+    color: #ffffff;
+}
+
+.card-feed-btn:hover {
+    background-color: white;
+    border-color: rgb(222, 128, 19);
+    color:  rgb(222, 128, 19);
+}
+
+.card-breed-btn {
+    background-color: rgb(176, 0, 106);
+    border-color: rgb(176, 0, 106);
+    color: #ffffff;
+}
+
+.card-breed-btn:hover {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(176, 0, 106);
+    color:  rgb(176, 0, 106);
+}
