@@ -245,3 +245,23 @@
     border-color: rgb(176, 0, 106);
     color:  rgb(176, 0, 106);
 }
+
+.large-breed-btn {
+    border-width: medium;
+    border-radius: 20px;
+    font-family: Funhouse;
+    font-size: xxx-large;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(to right, #af1f1f, #e72b2b);
+    border-color: rgba(105, 0, 0, 0);
+    height: 100px;
+    margin-top: 10%;
+}
+
+.large-breed-btn:hover {
+    background-color: white;
+    background-image: linear-gradient(to right, #ffffff, #ffffff);
+    border-color: rgb(183, 13, 13);
+    color: rgb(190, 10, 10);
+}
