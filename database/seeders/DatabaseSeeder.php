@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UserTableSeeder::class);
-        $this->call(EggTableSeeder::class);
         $this->call(FoodTableSeeder::class);
         $this->call(CreatureTableSeeder::class);
+        $this->call(HousingItemsTableSeeder::class);
     }
 }

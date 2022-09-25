@@ -120,4 +120,8 @@ Route::get('/store/potions', [
     'as' => 'potions'
 ]);
 
+Route::get('/store/housing', [
+    'uses' => 'App\Http\Controllers\StoreController@getHousingItems',
+    'as' => 'housing',
+]);
 // ------------------------- End Store

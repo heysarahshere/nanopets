@@ -12,7 +12,7 @@
         <a href="{{route('eggs')}}">
             <button class="btn btn-lg store-nav-btn m-4 {{$current == "eggs" ? "active" : ""}}">eggs</button>
         </a>
-        <a href="#">
+        <a href="{{route('housing')}}">
             <button class="btn btn-lg store-nav-btn m-4 {{$current == "housing" ? "active" : ""}}">housing</button>
         </a>
         @if(Auth::check())
