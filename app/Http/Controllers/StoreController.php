@@ -143,23 +143,20 @@ class StoreController extends Controller
 
     public function getStorePotions()
     {
-
         $foods = Food::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/food/all', ['foods' => $foods, 'category' => "POTIONS", 'current' => 'potions']);
     }
 
     public function getStoreEggs()
     {
-
         $eggs = Creature::where('dev_stage', 1)->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/eggs/all', ['eggs' => $eggs, 'category' => "CREATURE EGGS", 'current' => 'eggs']);
     }
 
     public function getHousingItems()
     {
-
         $items = HousingItem::orderBy('updated_at', 'desc')->paginate(8);
-        return view('store/eggs/all', ['items' => $items, 'category' => "HOUSING ITEMS", 'current' => 'housing']);
+        return view('store/housing/all', ['items' => $items, 'category' => "HOUSING ITEMS", 'current' => 'housing']);
     }
 
     public function getEggs()
