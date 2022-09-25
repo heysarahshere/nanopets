@@ -24,7 +24,7 @@
                                         DETAILS
                                     </button>
                                 </div>
-                                <img class="card-img-top" src="{{ Storage::disk('s3')->url($egg->image) }}"
+                                <img class="card-img-top" src="{{ Storage::disk('s3')->url($egg->body_image) }}"
                                      alt="{{ $egg->name }} Image">
                             </div>
                             <div class="card-body pb-2 {{ $egg->element }}">

@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('markets', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->integer('owner_id');
+            $table->integer('item_id');
+            $table->integer('qty');
+            $table->string('item_type'); // food or potion
             $table->timestamps();
-            $table->bigInteger('cost')->default(1000);
-            $table->string('name');
-            $table->string('image');
-            $table->string('type')->default("food"); // alternative would be potion - allows easy sorting
-            $table->text('description');
-            $table->string('mainStat')->default("hunger");
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('markets');
+        Schema::dropIfExists('purchases');
     }
 };

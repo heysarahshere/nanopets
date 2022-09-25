@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pet extends Model
+class Creature extends Model
 {
     use HasFactory;
 
@@ -29,8 +29,11 @@ class Pet extends Model
         'strength',
         'defense',
         'level',
-        'dev_stage',
+        'dev_stage', // 1 = egg, 2 = baby, 3 = adult
         'owner_id',
+        'for_sale',
+        'cost',
+        'available'
     ];
 
 

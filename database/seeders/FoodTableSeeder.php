@@ -21,10 +21,9 @@ class FoodTableSeeder extends Seeder
                 'image' => "/images/foods/limetwin.png",
                 'description' => "Bitter treat that boosts magic.",
                 'mainStat' => "magic",
-                'magic' => rand(100, 260),
+                'effectAmount' => rand(100, 260),
                 'cost' => 2500,
                 'type' => "food",
-                'owner_id' => 1
             ]
         );
 
@@ -34,10 +33,9 @@ class FoodTableSeeder extends Seeder
                 'image' => "/images/foods/caramel.png",
                 'description' => "Creamy treat to raise physical strength.",
                 'mainStat' => "strength",
-                'strength' => rand(100, 260),
+                'effectAmount' => rand(100, 260),
                 'cost' => 2500,
                 'type' => "food",
-                'owner_id' => 1
             ]
         );
 
@@ -47,11 +45,9 @@ class FoodTableSeeder extends Seeder
                 'image' => "/images/foods/vanillasandwich.png",
                 'description' => "Delicious frozen treat that increases health.",
                 'mainStat' => "health",
-                'defense' => rand(10, 20),
-                'health' => rand(100, 155),
+                'effectAmount' => rand(10, 20),
                 'cost' => 2000,
                 'type' => "food",
-                'owner_id' => 1
             ]
         );
         Food::create(
@@ -60,37 +56,30 @@ class FoodTableSeeder extends Seeder
                 'image' => "/images/foods/burger.png",
                 'description' => "High-calorie meal to restore stamina and defenses.",
                 'mainStat' => "magic",
-                'defense' => rand(65, 160),
-                'stamina' => rand(25, 50),
+                'effectAmount' => rand(65, 160),
                 'cost' => 3000,
                 'type' => "food",
-                'owner_id' => 1
             ]
         );
         Food::create(
             [
                 'name' => "Mojo Pop",
-                'image' => "/images/foods/mojopot.png",
+                'image' => "/images/foods/mojo.png",
                 'description' => "Date night juice pop - made to share!",
                 'mainStat' => "mojo",
-                'mojo' => rand(50, 145),
-                'breedableStatChance' => rand(50, 90),
-                'breedableStat' => "health",
+                'effectAmount' => rand(50, 145),
                 'cost' => 6000,
                 'type' => "food",
-                'owner_id' => 1
             ]
         );
 
         Food::create(
             [
                 'name' => "Mojo Potion",
-                'image' => "/images/potions/mojopot.png",
+                'image' => "/images/potions/mojo.png",
                 'description' => "Date night juice - small serving!",
                 'mainStat' => "mojo",
-                'mojo' => rand(99, 145),
-                'breedableStatChance' => rand(300, 900),
-                'breedableStat' => "magic",
+                'effectAmount' => rand(99, 145),
                 'cost' => 9000,
                 'type' => "potion",
             ]

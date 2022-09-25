@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pet;
+use App\Models\Creature;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,7 +88,7 @@ class UserController extends Controller
     {
         $id = Auth::id();
 
-        $pets = Pet::where('owner_id', $id)->get();
+        $pets = Creature::where('owner_id', $id)->get();
         return view('user/profile', [
             'pets' => $pets
         ]);
@@ -98,7 +98,7 @@ class UserController extends Controller
     {
         $owner = User::where('username',$user) -> first();
 
-        $pets = Pet::where('owner_id', $owner->id)->get();
+        $pets = Creature::where('owner_id', $owner->id)->get();
         return view('user/monsters', [
             'pets' => $pets,
             'owner' => $owner

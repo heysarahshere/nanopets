@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Pet;
+use App\Models\Creature;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,6 +53,10 @@ class User extends Authenticatable
     }
 
     public function pets() {
-        return $this->hasMany('App\Models\Pet');
+        return $this->hasMany('App\Models\Creature', 'owner_id');
+    }
+
+    public function purchases() {
+        return $this->hasManyThrough('App\Models\Food', 'App\Models\Purchase', 'owner_id', 'item_id');
     }
 }

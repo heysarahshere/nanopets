@@ -12,19 +12,12 @@ class Food extends Model
     protected $fillable = [
         'name',
         'image',
-        'type',
+        'type', // potion or food
         'description',
-        'mainStat', // main stat effected by the food
-        'hunger', // bar that must stay full stamina & health won't recharge
-        'magic', // magical damage
-        'stamina', // energy used to cast or attack
-        'strength', // physical damage
-        'defense', // damage resistance
-        'health', // life points
-        'mojo', // breeding success chance
-        'breedableStat', // STRING: stat this food will effect when breeding
-        'breedableStatChance', // INT: % chance of the breedableStat being closer to the higher parent's stat
+        'mainStat', // hunger, magic, stamina, strength, defense, health, mojo
+        'bonusStat', // hunger, magic, stamina, strength, defense, health, mojo
+        'effectAmount', // amount effected by
+        'bonusEffectAmount', // amount effected by
         'cost',
-        'owner_id',
     ];
 }

@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="store-img-container">
-                                <img class="card-img-top" src="{{ Storage::disk('public')->url($food->image) }}"
+                                <img class="card-img-top" src="{{ Storage::disk('s3')->url($food->image) }}"
                                      alt="{{ $food->name }} Image">
                             </div>
                             <div class="card-body pb-2 {{ $food->mainStat }}">

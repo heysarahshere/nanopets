@@ -24,5 +24,6 @@ class Egg extends Model
         'hatchSpeed',
         'cost',
         'owner_id',
+        'for_sale',
     ];
 }

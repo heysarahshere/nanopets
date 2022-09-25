@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(EggTableSeeder::class);
         $this->call(FoodTableSeeder::class);
-        $this->call(PetTableSeeder::class);
+        $this->call(CreatureTableSeeder::class);
     }
 }

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Egg;
+use App\Models\Creature;
 use App\Models\Food;
-use App\Models\Market;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Session\Session;
@@ -19,9 +18,9 @@ class StoreController extends Controller
 {
     public function getStoreFeatured()
     {
-        $foods = Market::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
-        $potions = Market::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
-        $eggs = Egg::orderBy('updated_at', 'desc')->paginate(8);
+        $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
+        $potions = Food::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Creature::where('dev_stage', 1)->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/featured', [
             'foods' => $foods,
             'potions' => $potions,
@@ -35,7 +34,7 @@ class StoreController extends Controller
 // --------------------------------------------------------------------------------------------- food
     public function getStoreFoods()
     {
-        $foods = Market::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
+        $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/food/all', ['foods' => $foods, 'category' => "FOODSTUFFS", 'current' => 'foods']);
     }
 
@@ -101,7 +100,7 @@ class StoreController extends Controller
             'cost' => 'required',
         ]);
 
-        // find and update old pet instead
+        // find and update old instead
         $food = Food::find($id);
         $food->update([
             'name' => $request->input('name'),
@@ -151,13 +150,13 @@ class StoreController extends Controller
     public function getStoreEggs()
     {
 
-        $eggs = Egg::orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Creature::where('dev_stage', 1)->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/eggs/all', ['eggs' => $eggs, 'category' => "CREATURE EGGS", 'current' => 'eggs']);
     }
 
     public function getEggs()
     {
-        $eggs = Egg::orderby('id', 'asc')->paginate(8);
+        $eggs = Creature::where('dev_stage', 1)->orderby('id', 'asc')->paginate(8);
 
         $userData['eggs'] = $eggs;
 
