@@ -57,10 +57,13 @@ Route::post('/sign-out', [
 
 
 // probably get rid of this, or make it into a settings page
-Route::get('/me', [
-    'uses' => 'App\Http\Controllers\UserController@getProfile',
-    'as' => 'manage-profile'
+
+
+Route::get('/mycreatures', [
+    'uses' => 'App\Http\Controllers\UserController@getMyCreatures',
+    'as' => 'my-creatures'
 ]);
+
 
 Route::get('/{user}', [
     'uses' => 'App\Http\Controllers\UserController@getCreatures',
