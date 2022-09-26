@@ -45,7 +45,7 @@ class UserController extends Controller
 //            return redirect()->route('home')->with('message', "You're signed in.");
 //        }
         return redirect()
-            ->route('home')
+            ->route('my-creatures')
             ->with('message', "You're signed in.");
     }
 
@@ -67,7 +67,7 @@ class UserController extends Controller
 //            $request->session()->forget('sign-in-error');
 
             return redirect()
-                ->route('manage-profile')
+                ->route('my-creatures')
                 ->with('message', "You're signed in.");
         }
 
@@ -94,9 +94,26 @@ class UserController extends Controller
         ]);
     }
 
+    public function getMyCreatures()
+    {
+        if (Auth::check()) {
+            $id = Auth::id();
+
+            $pets = Creature::where('owner_id', $id)->get();
+            return view('user/monsters', [
+                'pets' => $pets
+            ]);
+        } else {
+            return redirect()
+                ->route('home')
+                ->with('message', "You must sign in to see this page.");
+        }
+
+    }
+
     public function getCreatures($user)
     {
-        $owner = User::where('username',$user) -> first();
+        $owner = User::where('username', $user)->first();
 
         $pets = Creature::where('owner_id', $owner->id)->get();
         return view('user/monsters', [

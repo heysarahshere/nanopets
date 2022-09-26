@@ -1,6 +1,8 @@
 @extends('layout.master')
 @section('title')
-        {{$owner->username}}'s Creatures
+    @unless(Auth::check())
+        {{Auth::user()->username}}
+    @endunless
 @endsection
 @section('content')
     @include('partials.profile-nav')

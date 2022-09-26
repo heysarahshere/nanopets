@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row store-nav-row">
         <a href="#">
-            <h1 class="m-4 pr-5">{{$owner->username}}'S CREATURES</h1>
+            <h1 class="m-4 pr-5">MY CREATURES</h1>
         </a>
         <a href="#">
             <button class="btn btn-lg store-nav-btn m-4">all</button>

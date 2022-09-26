@@ -7,7 +7,7 @@
                 <a class="nav-link nav-account pl-2" href="{{route('featured')}}">
                     <p style="font-family: Funhouse; font-size: large; color: #ffc072">{{number_format($user->balance,2)}}</p>
                 </a>
-            <a class="nav-link nav-account" href="{{ route('profile', ['user' => $user->username])}}">
+            <a class="nav-link nav-account" href="{{ route('my-creatures')}}">
                 <p class="nav-account">Welcome, {{$user->username}}!</p>
             </a>
 {{--            <a class="nav-link nav-account" href="#">settings</a>--}}
@@ -33,20 +33,23 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('home')}}">home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('about')}}">about</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('featured')}}">store</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">creatures</a>
+                <a class="nav-link" style="color: #ab38a1" href="{{route('my-creatures')}}">creatures</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">support</a>
+                <a class="nav-link" style="color: #ab38a1" href="#">games</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" style="color: #ab38a1" href="#">support</a>
             </li>
         </ul>
     </div>
