@@ -101,6 +101,25 @@
     color: rgb(1, 92, 166);
 }
 
+.cancel-actions-btn {
+    font-family: Funhouse;
+    background-color: rgb(166, 1, 1);
+    border-radius: 10px;
+    border-color: rgb(166, 1, 1);
+    border-width: medium;
+    color: #ffffff;
+    margin: 0% 5% 5% 5%;
+}
+
+.cancel-actions-btn:hover {
+    font-family: Funhouse;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: rgb(166, 1, 1);
+    border-width: medium;
+    color: rgb(166, 1, 1);
+}
+
 .monster-slider {
     text-align: center;
     background-color: #c2ae79;

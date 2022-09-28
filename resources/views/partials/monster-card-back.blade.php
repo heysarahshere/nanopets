@@ -23,15 +23,15 @@
         </div>
         <div class="col-5 my-3">
 
-            <button type="button" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3"  onclick="toggleMonsterCardFaceFeed('{{$pet->id}}')">
+            <button type="button" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3" onclick="toggleMonsterCardFaceFeed('{{$pet->id}}')">
                 <i class="fa-solid fa-drumstick-bite"></i>
                 FEED
             </button>
-            <button type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3">
+            <button type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3" onclick="toggleMonsterCardFaceBreed('{{$pet->id}}')">
                 <i class="fa-solid fa-baby-carriage"></i>
                 BREED
             </button>
-            <button type="button" class="btn btn-primary monster-card-btn card-sell-btn w-100 mb-3">
+            <button type="button" class="btn btn-primary monster-card-btn card-sell-btn w-100 mb-3" onclick="toggleMonsterCardFaceSell('{{$pet->id}}')">
                 <i class="fa-solid fa-sack-dollar"></i>
                 SELL
             </button>
