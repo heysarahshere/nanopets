@@ -8,6 +8,7 @@ use App\Models\HousingItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -158,15 +159,4 @@ class StoreController extends Controller
         $items = HousingItem::orderBy('updated_at', 'desc')->paginate(8);
         return view('store/housing/all', ['items' => $items, 'category' => "HOUSING ITEMS", 'current' => 'housing']);
     }
-
-    public function getEggs()
-    {
-        $eggs = Creature::where('dev_stage', 1)->orderby('id', 'asc')->paginate(8);
-
-        $userData['eggs'] = $eggs;
-
-        echo json_encode($userData);
-        exit;
-    }
-
 }

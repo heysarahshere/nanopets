@@ -4,26 +4,17 @@
         <div class="row mb-3 mt-0 " style="overflow-x: scroll; max-width: 95%; margin-left: 5%; margin-right: 5%">
             <div class="container-fluid pb-3">
                 <div class="d-flex flex-row flex-nowrap">
+                    @foreach ($todo as $data)
+                        <tr id="breedable-{{$data->id}}">
+                            <td>{{$data->id}}</td>
+                            <td>{{$data->name}}</td>
+                            <td>{{$data->description}}</td>
                     <div class="card card-body">
                         <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url('/images/eggs/desert.png') }}">
+                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('public')->url($data->body_image) }}">
                         </div>
                     </div>
-                    <div class="card card-body">
-                        <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url('/images/eggs/desert.png') }}">
-                        </div>
-                    </div>
-                    <div class="card card-body">
-                        <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url('/images/eggs/desert.png') }}">
-                        </div>
-                    </div>
-                    <div class="card card-body">
-                        <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url('/images/eggs/desert.png') }}">
-                        </div>
-                    </div>
+                        @endforeach
                 </div>
             </div>
 

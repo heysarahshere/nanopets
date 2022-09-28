@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CreatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,14 +65,18 @@ Route::get('/mycreatures', [
     'as' => 'my-creatures'
 ]);
 
-
 Route::get('/{user}', [
     'uses' => 'App\Http\Controllers\UserController@getCreatures',
     'as' => 'profile'
 ]);
 // ------------------------- End User
+// ------------------------- Creatures
 
+// ajax routes
+Route::get('/getCompatibleCreatures', [CreatureController::class, 'getCompatibleCreatures']);
+Route::resource('breedable', CreatureController::class);
 
+// ------------------------- End Creatures
 // ------------------------- Store
 
 Route::get('/eggs', 'StoreController@getEggs'); // for ajax request

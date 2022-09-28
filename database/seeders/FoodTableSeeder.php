@@ -15,6 +15,31 @@ class FoodTableSeeder extends Seeder
      */
     public function run()
     {
+
+        // ---------------------- food
+        Food::create(
+            [
+                'name' => "Stripey Icey",
+                'image' => "/images/foods/stripeice.png",
+                'description' => "Sour then sweet, refreshes a small amount of stamina.",
+                'mainStat' => "stamina",
+                'effectAmount' => rand(100, 200),
+                'cost' => 200,
+                'type' => "food",
+            ]
+        );
+        Food::create(
+            [
+                'name' => "Spilled Vanilla Ice Cream",
+                'image' => "/images/foods/spilled_icecream.png",
+                'description' => "Oops! Well, it's sweet and creamy.",
+                'mainStat' => "hunger",
+                'effectAmount' => rand(100, 260),
+                'cost' => 175,
+                'type' => "food",
+            ]
+        );
+
         Food::create(
             [
                 'name' => "Limey Twin Pop",
@@ -22,7 +47,7 @@ class FoodTableSeeder extends Seeder
                 'description' => "Bitter treat that boosts magic.",
                 'mainStat' => "magic",
                 'effectAmount' => rand(100, 260),
-                'cost' => 2500,
+                'cost' => 250,
                 'type' => "food",
             ]
         );
@@ -34,7 +59,7 @@ class FoodTableSeeder extends Seeder
                 'description' => "Creamy treat to raise physical strength.",
                 'mainStat' => "strength",
                 'effectAmount' => rand(100, 260),
-                'cost' => 2500,
+                'cost' => 250,
                 'type' => "food",
             ]
         );
@@ -46,7 +71,7 @@ class FoodTableSeeder extends Seeder
                 'description' => "Delicious frozen treat that increases health.",
                 'mainStat' => "health",
                 'effectAmount' => rand(10, 20),
-                'cost' => 2000,
+                'cost' => 200,
                 'type' => "food",
             ]
         );
@@ -57,10 +82,11 @@ class FoodTableSeeder extends Seeder
                 'description' => "High-calorie meal to restore stamina and defenses.",
                 'mainStat' => "magic",
                 'effectAmount' => rand(65, 160),
-                'cost' => 3000,
+                'cost' => 300,
                 'type' => "food",
             ]
         );
+
         Food::create(
             [
                 'name' => "Mojo Pop",
@@ -68,8 +94,48 @@ class FoodTableSeeder extends Seeder
                 'description' => "Date night juice pop - made to share!",
                 'mainStat' => "mojo",
                 'effectAmount' => rand(50, 145),
-                'cost' => 6000,
+                'cost' => 600,
                 'type' => "food",
+            ]
+        );
+
+        // ---------------------- potions
+
+        Food::create(
+            [
+                'name' => "Defense Potion",
+                'image' => "/images/potions/defense.png",
+                'description' => "Tough as nails - tastes metallic!",
+                'mainStat' => "defense",
+                'effectAmount' => rand(300, 500),
+                'bonusStat' => "strength",
+                'bonusEffectAmount' => rand(200, 300),
+                'cost' => 1000,
+                'type' => "potion",
+            ]
+        );
+
+        Food::create(
+            [
+                'name' => "Health Potion",
+                'image' => "/images/potions/stamina.png",
+                'description' => "A nap in a bottle!",
+                'mainStat' => "stamina",
+                'effectAmount' => rand(300, 500),
+                'cost' => 500,
+                'type' => "potion",
+            ]
+        );
+
+        Food::create(
+            [
+                'name' => "Stamina Potion",
+                'image' => "/images/potions/stamina.png",
+                'description' => "A nap in a bottle!",
+                'mainStat' => "stamina",
+                'effectAmount' => rand(300, 500),
+                'cost' => 500,
+                'type' => "potion",
             ]
         );
 
@@ -80,7 +146,7 @@ class FoodTableSeeder extends Seeder
                 'description' => "Date night juice - small serving!",
                 'mainStat' => "mojo",
                 'effectAmount' => rand(99, 145),
-                'cost' => 9000,
+                'cost' => 900,
                 'type' => "potion",
             ]
         );
