@@ -13,6 +13,7 @@
                 <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
                 @include('partials.monster-card-front')
                 @include('partials.monster-card-back')
+                @include('partials.monster-card-feed')
                 </div>
             @endforeach
         </div>
@@ -29,6 +30,19 @@
         let back = document.getElementById("back-" + id);
         front.classList.toggle('hiddenFace');
         back.classList.toggle('hiddenFace');
+    }
+
+    function toggleMonsterCardFaceFeed(id) {
+        let front = document.getElementById("front-" + id);
+        let back = document.getElementById("back-" + id);
+        let feed = document.getElementById("feed-" + id);
+        if (back.classList.contains('hiddenFace')) {
+            feed.classList.add('hiddenFace');
+            back.classList.remove('hiddenFace');
+        } else {
+            back.classList.add('hiddenFace');
+            feed.classList.remove('hiddenFace');
+        }
     }
 
 </script>

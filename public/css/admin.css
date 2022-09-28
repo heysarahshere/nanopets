@@ -158,7 +158,27 @@
 .monster-card {
     border-radius: 15px;
     width: 98%;
-    /*height: 410px;*/
+    /*height: 555px;*/
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ff5420;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #e73e0a;
 }
 
 .monster-card img {
@@ -197,6 +217,12 @@
 .hiddenFace {
     visibility: hidden;
     display: none;
+}
+
+.feed-card .card-body {
+    min-height: 300px;
+    min-width: 300px;
+    margin-right: 5px;
 }
 
 .monster-stats p {
