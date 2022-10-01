@@ -12,7 +12,7 @@
             <div class="store-img-container mb-3">
                 <div class="monster-parent col-12">
                     <img class="monster-child"
-                        src="{{ Storage::disk('s3')->url("/images/creatures/" . $creature->species . "/" . $creature->dev_stage . "/" . $creature->element . ".png") }}"
+                        src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
                          alt="{{ $pet->name }} Image">
                 </div>
             </div>

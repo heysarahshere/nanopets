@@ -28,6 +28,5 @@
             CANCEL
         </button>
     </div>
-
 </div>
 
