@@ -150,7 +150,7 @@ class StoreController extends Controller
 
     public function getStoreEggs()
     {
-        $eggs = Creature::where('dev_stage', 1)->orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Creature::where('dev_stage', "egg")->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/eggs/all', ['eggs' => $eggs, 'category' => "CREATURE EGGS", 'current' => 'eggs']);
     }
 
