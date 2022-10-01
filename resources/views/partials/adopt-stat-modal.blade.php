@@ -39,10 +39,10 @@
            <div class="modal-footer">
                 {{-- should first open 'are you sure' and double check that there is enough money in account, then submit form --}}
                 {{-- form only needs to send creature id in hidden input, the rest can be handled in controller --}}
-               <form name="adopt" method="POST" action="{{route('adopt-creature')}}">
                <a href="#" class="btn btn-primary purchase-btn w-100">Adopt {{ $creature->name }}</a>
-               {{ csrf_token() }}
-               </form>
+{{--               <form name="adopt" method="POST" action="{{route('adopt-creature')}}">--}}
+{{--               {{ csrf_token() }}--}}
+{{--               </form>--}}
            </div>
        </div>
    </div>
