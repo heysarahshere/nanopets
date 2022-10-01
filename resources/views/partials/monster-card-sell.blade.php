@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-6 m-auto">
             <img style="width: 100%; height: auto"
-                 src="{{ asset("/images/creatures/" . $pet->species . "/color/" . $pet->body_image) }}"
+            src="{{ Storage::disk('s3')->url("/images/creatures/" . {{$pet->species}} . "/" . {{$pet->dev_stage}} . "/" . {{$pet->element}} . ".png") }}"
                  alt="{{ $pet->name }} Image">
         </div>
         <button type="button" class="btn btn-primary actions-btn w-100 mb-1">

@@ -12,11 +12,6 @@ class Creature extends Model
     protected $fillable = [
         'name',
         'species',
-        'color_image',
-        'eye_image',
-        'tail_image',
-        'head_image',
-        'wing_image',
         'element',
         'description',
         'max_health',

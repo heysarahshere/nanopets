@@ -47,11 +47,6 @@ class CreatureTableSeeder extends Seeder
             [
                 'name'=>'skritskrat',
                 'species'=>'dragon',
-                'body_image'=>'1.png',
-                'eye_image'=>'2.png',
-                'tail_image'=>'demon_green.png',
-                'head_image'=>'horns_long.png',
-                'wing_image'=>'dragonfly_blue.png',
                 'element'=>'fire',
                 'description'=>'skritskrat',
                 'potential'=>rand(10, 50),
@@ -73,10 +68,8 @@ class CreatureTableSeeder extends Seeder
         Creature::create(
             [
                 'name'=>'Chicken',
-                'species'=>'bird',
-                'body_image'=>'5.png',
-                'tail_image'=>'demon_green.png',
-                'element'=>'fire',
+                'species'=>'horse',
+                'element'=>'dark',
                 'description'=>'skritskrat',
                 'potential'=>rand(10, 50),
                 'max_health'=> 3000,
@@ -98,9 +91,6 @@ class CreatureTableSeeder extends Seeder
             [
                 'name'=>'Gadget',
                 'species'=>'lizard',
-                'body_image'=>'2.png',
-                'tail_image'=>'fish.png',
-                'head_image'=>'horns_unicorn.png',
                 'element'=>'water',
                 'description'=>'skritskrat',
                 'potential'=>rand(10, 50),
@@ -121,7 +111,6 @@ class CreatureTableSeeder extends Seeder
 
         Creature::create([
             'name' => "Desert Egg",
-            'body_image' => "/images/eggs/desert.png",
             'element' => "fire",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -142,7 +131,6 @@ class CreatureTableSeeder extends Seeder
 
         Creature::create([
             'name' => "Galaxy Egg",
-            'body_image' => "/images/eggs/galaxy.png",
             'element' => "star",
             'description' => "Radioactive egg found on an asteroid. Very mysterious.",
             'species'=>'lizard',
@@ -163,7 +151,6 @@ class CreatureTableSeeder extends Seeder
 
         Creature::create([
             'name' => "Gem Egg",
-            'body_image' => "/images/eggs/gem.png",
             'element' => "rock",
             'description' => "Is it really an egg, or is it just a cool gem? Who knows.",
             'species'=>'lizard',
