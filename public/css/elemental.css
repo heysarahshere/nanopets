@@ -1,0 +1,214 @@
+/* ------------- elements as class names for dynamic card background --------------- */
+.fire {
+    background-image: linear-gradient(#fcaa2f, rgb(208, 64, 9));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.fire-ombre-btn {
+    background-image: linear-gradient(to right, #fcaa2f, rgb(208, 64, 9));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.fire-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.star {
+    background-image: linear-gradient(#d62ffc, rgb(8, 78, 134));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.star-ombre-btn {
+    background-image: linear-gradient(to right, #d62ffc, rgb(8, 78, 134));
+    border-radius: 24px;
+    margin: 5%;
+    border-color:  rgb(8, 78, 134);
+    border-width: 0px;
+}
+.star-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.rock {
+    background-image: linear-gradient(rgb(255, 221, 91), #b60ac9);
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.rock-ombre-btn {
+    background-image: linear-gradient(to right, rgb(255, 221, 91), #b60ac9);
+    border-radius: 24px;
+    margin: 5%;
+    border-color:  #b60ac9;
+    border-width: 0px;
+}
+.rock-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.water {
+    background-image: linear-gradient(rgb(91, 198, 255), #085fc4);
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.water-ombre-btn {
+    background-image: linear-gradient(rgb(91, 198, 255), #085fc4);
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #085fc4;
+    border-width: 0px;
+}
+.water-ombre-btn h1 {
+    color: white;
+}
+
+
+/* ------------- stat types as class names for dynamic card background --------------- */
+
+.health {
+    background-color: rgb(189, 0, 0);
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.health-ombre-btn {
+    background-color: rgb(189, 0, 0);
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(189, 0, 0);
+    border-width: 0px;
+}
+.health-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.magic {
+    background-color: #5B00BDFF;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.magic-ombre-btn {
+    background-color: #5B00BDFF;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #5B00BDFF;
+    border-width: 0px;
+}
+.magic-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.defense {
+    background-color: #277708;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.defense-ombre-btn {
+    background-color: #277708;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #277708;
+    border-width: 0px;
+}
+.defense-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.strength {
+    background-color: #bd5805;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.strength-ombre-btn {
+    background-color: #bd5805;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #bd5805;
+    border-width: 0px;
+}
+.strength-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+.mojo {
+    background-color: #c71394;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.mojo-ombre-btn {
+    background-color: #c71394;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #c71394;
+    border-width: 0px;
+}
+.mojo-ombre-btn h1 {
+    color: white;
+}
+/* ________________________ */
+.stamina {
+    background-color: #1fc713;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.stamina-ombre-btn {
+    background-color: #1fc713;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #1fc713;
+    border-width: 0px;
+}
+.stamina-ombre-btn h1 {
+    color: white;
+}
+/* ________________________ */
+.statChance {
+    background-color: #1337c7;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.statChance-ombre-btn {
+    background-color: #1337c7;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #1337c7;
+    border-width: 0px;
+}
+.statChance-ombre-btn h1 {
+    color: white;
+}
+/* ________________________ */
+.hunger {
+    background-color: #dea106;
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.hunger-ombre-btn {
+    background-color: #dea106;
+    border-radius: 24px;
+    margin: 5%;
+    border-color: #dea106;
+    border-width: 0px;
+}
+.hunger-ombre-btn h1 {
+    color: white;
+}
