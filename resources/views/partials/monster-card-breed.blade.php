@@ -6,17 +6,17 @@
                 <div class="d-flex flex-row flex-nowrap">
                     <div class="card card-body">
                         <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('public')->url("/images/eggs/gem.png") }}">
+                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url("/images/creatures/cat/adult/dark.png") }}">
                         </div>
                     </div>
                     <div class="card card-body">
                         <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('public')->url("/images/eggs/galaxy.png") }}">
+                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url("/images/creatures/lizard/adult/gem.png") }}">
                         </div>
                     </div>
                     <div class="card card-body">
                         <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('public')->url("/images/eggs/shadow.png") }}">
+                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url("/images/creatures/horse/adult/water.png") }}">
                         </div>
                     </div>
                 </div>

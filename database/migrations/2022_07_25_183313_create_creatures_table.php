@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('creatures', function (Blueprint $table) {
             $table->integer('owner_id')->nullable();
             $table->string('name');
-            $table->string('species', 500);
+            $table->string('species');
+            $table->string('gender')->default("female");
             $table->string('element');
             $table->text('description');
             $table->integer('potential')->default(1);
@@ -30,7 +31,7 @@ return new class extends Migration
             $table->integer('defense')->default(1);
             $table->integer('strength')->default(1);
             $table->integer('level')->default(1);
-            $table->integer('dev_stage'); // 1 = egg, 2 = baby, 3 = adult
+            $table->string('dev_stage')->default("egg"); // 1 = egg, 2 = baby, 3 = adult
             $table->bigInteger('cost')->nullable();
             $table->boolean('for_sale')->default(false);
             $table->boolean('available')->default(true);

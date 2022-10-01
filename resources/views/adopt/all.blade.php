@@ -8,7 +8,7 @@
         <div class="container store-body text-center pt-4">
             <div class="row justify-content-center align-items-center m-auto">
                 @foreach($creatures as $creature)
-                    <div class="col-lg-3 col-sm-4 pb-5">
+                    <div class="col-4 pb-5">
                         <div class="card store-card" style="width: 100%;">
                             <div class="{{ $creature->element }}-ombre-btn">
                                 <div class="row justify-content-center align-items-center mt-auto pt-2">
@@ -23,14 +23,14 @@
                                         DETAILS
                                     </button>
                                 </div>
-                                <img class="card-img-top" src="{{ Storage::disk('s3')->url($egg->body_image) }}"
-                                     alt="{{ $egg->name }} Image">
+                                <img class="card-img-top" style="width: 100%; height: auto;"
+                                     src="{{ Storage::disk('s3')->url("images/creatures/" . $creature->species . "/" . $creature->dev_stage . "/" . $creature->element . ".png" )}}"
+                                     alt="{{ $creature->name }} Image">
                             </div>
                             <div class="card-body pb-2">
                                 <h2 class="card-title">{{ $creature->name }}</h2>
                                 <p class="card-text"></p>
                             </div>
-                            <a href="#" class="btn btn-primary purchase-btn">Purchase</a>
                         </div>
                     </div>
                     @include('partials.adopt-stat-modal')

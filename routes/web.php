@@ -56,10 +56,6 @@ Route::post('/sign-out', [
     'as' => 'sign-out'
 ]);
 
-
-// probably get rid of this, or make it into a settings page
-
-
 Route::get('/mycreatures', [
     'uses' => 'App\Http\Controllers\UserController@getMyCreatures',
     'as' => 'my-creatures'
@@ -132,3 +128,11 @@ Route::get('/store/housing', [
     'as' => 'housing',
 ]);
 // ------------------------- End Store
+
+// --------------------------------------------------------------------------------------------- adopt
+Route::get('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
+    'as' => 'adoptable',
+]);
+
+// ---------------------------------------- end adopt

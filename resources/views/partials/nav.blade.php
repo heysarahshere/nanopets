@@ -48,7 +48,7 @@
                 <a class="nav-link" href="{{route('featured')}}">store</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" style="color: #ab38a1" href="{{route('my-creatures')}}">adopt</a>
+                <a class="nav-link" style="color: #ab38a1" href="{{route('adoptable')}}">adopt</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" style="color: #ab38a1" href="#">games</a>

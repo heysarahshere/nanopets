@@ -40,4 +40,10 @@ class CreatureController extends Controller
 //        return response()->json($response);
 //    }
 
+    public function getAdoptable()
+    {
+        $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+        return view('adopt/all', ['creatures' => $creatures, 'current' => 'all']);
+    }
+
 }
