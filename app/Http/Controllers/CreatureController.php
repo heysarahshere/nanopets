@@ -13,16 +13,25 @@ class CreatureController extends Controller
     {
         $request->validate([
             'creature_id' => 'required',
-            'item_id' => 'required'
+            'item_id' => 'required',
+            'qty' => 'required'
         ]);
 
         // find item
+        $creature = Creature::find($request->creature_id);
 
         // find creature
+        $creature = Creature::find($request->creature_id);
 
-        // increment creature values & save
+        // increment creature values
+        // factor in qty
 
-        // send updated creature
+        $creature->level += 2;
+
+        // save
+        $creature->save();
+
+        // send updated creature back to view
         $user = Auth::user();
         $creatures = Creature::where('owner_id', $user->id)->where('dev_stage', 2)->orderby('id', 'asc');
 

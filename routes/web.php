@@ -66,15 +66,14 @@ Route::get('/mycreatures', [
 ]);
 
 Route::get('/{user}', [
-    'uses' => 'App\Http\Controllers\UserController@getCreatures',
+    'uses' => 'App\Http\Controllers\UserController@getProfile',
     'as' => 'profile'
 ]);
 // ------------------------- End User
 // ------------------------- Creatures
 
 // ajax routes
-Route::get('/getCompatibleCreatures', [CreatureController::class, 'getCompatibleCreatures']);
-Route::resource('breedable', CreatureController::class);
+Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
 
 // ------------------------- End Creatures
 // ------------------------- Store
