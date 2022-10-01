@@ -12,12 +12,8 @@ class Creature extends Model
     protected $fillable = [
         'name',
         'species',
-        'color_image',
-        'eye_image',
-        'tail_image',
-        'head_image',
-        'wing_image',
         'element',
+        'gender',
         'description',
         'max_health',
         'current_health',
@@ -29,7 +25,7 @@ class Creature extends Model
         'strength',
         'defense',
         'level',
-        'dev_stage', // 1 = egg, 2 = baby, 3 = adult
+        'dev_stage', // egg, hatchling, baby, or adult
         'owner_id',
         'for_sale',
         'cost',

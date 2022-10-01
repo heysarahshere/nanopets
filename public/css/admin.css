@@ -101,6 +101,25 @@
     color: rgb(1, 92, 166);
 }
 
+.cancel-actions-btn {
+    font-family: Funhouse;
+    background-color: rgb(166, 1, 1);
+    border-radius: 10px;
+    border-color: rgb(166, 1, 1);
+    border-width: medium;
+    color: #ffffff;
+    margin: 0% 5% 5% 5%;
+}
+
+.cancel-actions-btn:hover {
+    font-family: Funhouse;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border-color: rgb(166, 1, 1);
+    border-width: medium;
+    color: rgb(166, 1, 1);
+}
+
 .monster-slider {
     text-align: center;
     background-color: #c2ae79;
@@ -158,7 +177,27 @@
 .monster-card {
     border-radius: 15px;
     width: 98%;
-    /*height: 410px;*/
+    /*height: 555px;*/
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ff5420;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #e73e0a;
 }
 
 .monster-card img {
@@ -197,6 +236,12 @@
 .hiddenFace {
     visibility: hidden;
     display: none;
+}
+
+.feed-card .card-body {
+    min-height: 300px;
+    min-width: 300px;
+    margin-right: 5px;
 }
 
 .monster-stats p {

@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6 store-img-container">
-                        <img class="card-img-top pt-4 pb-0" src="{{ Storage::disk('s3')->url($egg->body_image) }}"
+                        <img class="card-img-top pt-4 pb-0" src="{{ Storage::disk('s3')->url("images/eggs/" . $egg->element . ".png") }}"
                              alt="{{ $egg->name }} Image">
                     </div>
                     <div class="col-6 m-0 text-left">

@@ -11,30 +11,8 @@
             </div>
             <div class="store-img-container mb-3">
                 <div class="monster-parent col-12">
-                    @unless (is_null($pet->tail_image))
-                        <img class="monster-child"
-                             src="{{ asset("/images/creatures/parts/tails/" . $pet->tail_image) }}"
-                             alt="{{ $pet->name }} Image">
-                    @endunless
-
-                    @unless (is_null($pet->wing_image))
-                        <img class="monster-child"
-                             src="{{ asset("/images/creatures/parts/wings/" . $pet->wing_image) }}"
-                             alt="{{ $pet->name }} Image">
-                    @endunless
-
-                    @unless (is_null($pet->head_image))
-                        <img class="monster-child"
-                             src="{{ asset("/images/creatures/parts/head/" . $pet->head_image) }}"
-                             alt="{{ $pet->name }} Image">
-                    @endunless
-                    @unless (is_null($pet->eye_image))
-                        <img class="monster-child"
-                             src="{{ asset("/images/creatures/" . $pet->species . "/eyes/" . $pet->eye_image) }}"
-                             alt="{{ $pet->name }} Image">
-                    @endunless
                     <img class="monster-child"
-                         src="{{ asset("/images/creatures/" . $pet->species . "/color/" . $pet->body_image) }}"
+                        src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
                          alt="{{ $pet->name }} Image">
                 </div>
             </div>

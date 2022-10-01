@@ -3,21 +3,26 @@
         @if(Auth::check())
             <?PHP $user = Auth::user(); ?>
 
-                <i class="fa-solid fa-coins pr-0" style="font-size: 20px"></i>
-                <a class="nav-link nav-account pl-2" href="{{route('featured')}}">
-                    <p style="font-family: Funhouse; font-size: large; color: #ffc072">{{number_format($user->balance,2)}}</p>
-                </a>
-            <a class="nav-link nav-account" href="{{ route('my-creatures')}}">
-                <p class="nav-account">Welcome, {{$user->username}}!</p>
+            <p class="mr-auto ml-3 pb-0" style="font-family: Funhouse; color: white">Welcome, {{$user->username}}!</p>
+            <i class="fa-solid fa-coins pr-0" style="font-size: 20px"></i>
+            <a class="nav-link nav-account pl-2" href="{{route('featured')}}">
+                <p style="font-family: Funhouse; font-size: large; color: #ffc072">{{number_format($user->balance,2)}}</p>
             </a>
-{{--            <a class="nav-link nav-account" href="#">settings</a>--}}
+            <a class="nav-link nav-account" href="{{ route('my-creatures')}}">
+                <p class="nav-account">My Creatures</p>
+            </a>
+            {{--            <a class="nav-link nav-account" href="#">settings</a>--}}
             <form method="POST" action="{{route('sign-out')}}">{{ csrf_field() }}
                 <button class="btn btn-sm rev-ombre-btn m-2 mr-4" type="submit">sign out</button>
             </form>
         @else
             <div class="col-12 text-right">
-                <a  href="{{route('get-sign-in')}}"><button class="btn btn-sm rev-ombre-btn">sign in</button></a>
-                <a href="{{route('get-sign-up')}}"><button class="btn btn-sm ombre-btn">sign up</button></a>
+                <a href="{{route('get-sign-in')}}">
+                    <button class="btn btn-sm rev-ombre-btn">sign in</button>
+                </a>
+                <a href="{{route('get-sign-up')}}">
+                    <button class="btn btn-sm ombre-btn">sign up</button>
+                </a>
             </div>
         @endif
     </div>
@@ -43,7 +48,7 @@
                 <a class="nav-link" href="{{route('featured')}}">store</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" style="color: #ab38a1" href="{{route('my-creatures')}}">creatures</a>
+                <a class="nav-link" style="color: #ab38a1" href="{{route('adoptable')}}">adopt</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" style="color: #ab38a1" href="#">games</a>

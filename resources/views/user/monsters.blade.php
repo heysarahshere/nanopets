@@ -13,6 +13,9 @@
                 <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
                 @include('partials.monster-card-front')
                 @include('partials.monster-card-back')
+                @include('partials.monster-card-feed')
+                @include('partials.monster-card-breed')
+                @include('partials.monster-card-sell')
                 </div>
             @endforeach
         </div>
@@ -29,6 +32,42 @@
         let back = document.getElementById("back-" + id);
         front.classList.toggle('hiddenFace');
         back.classList.toggle('hiddenFace');
+    }
+
+    function toggleMonsterCardFaceFeed(id) {
+        let back = document.getElementById("back-" + id);
+        let feed = document.getElementById("feed-" + id);
+        if (back.classList.contains('hiddenFace')) {
+            feed.classList.add('hiddenFace');
+            back.classList.remove('hiddenFace');
+        } else {
+            back.classList.add('hiddenFace');
+            feed.classList.remove('hiddenFace');
+        }
+    }
+
+    function toggleMonsterCardFaceBreed(id) {
+        let back = document.getElementById("back-" + id);
+        let breed = document.getElementById("breed-" + id);
+        if (back.classList.contains('hiddenFace')) {
+            breed.classList.add('hiddenFace');
+            back.classList.remove('hiddenFace');
+        } else {
+            back.classList.add('hiddenFace');
+            breed.classList.remove('hiddenFace');
+        }
+    }
+
+    function toggleMonsterCardFaceSell(id) {
+        let back = document.getElementById("back-" + id);
+        let sell = document.getElementById("sell-" + id);
+        if (back.classList.contains('hiddenFace')) {
+            sell.classList.add('hiddenFace');
+            back.classList.remove('hiddenFace');
+        } else {
+            back.classList.add('hiddenFace');
+            sell.classList.remove('hiddenFace');
+        }
     }
 
 </script>

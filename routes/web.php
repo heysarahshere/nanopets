@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CreatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,23 +56,22 @@ Route::post('/sign-out', [
     'as' => 'sign-out'
 ]);
 
-
-// probably get rid of this, or make it into a settings page
-
-
 Route::get('/mycreatures', [
     'uses' => 'App\Http\Controllers\UserController@getMyCreatures',
     'as' => 'my-creatures'
 ]);
 
-
 Route::get('/{user}', [
-    'uses' => 'App\Http\Controllers\UserController@getCreatures',
+    'uses' => 'App\Http\Controllers\UserController@getProfile',
     'as' => 'profile'
 ]);
 // ------------------------- End User
+// ------------------------- Creatures
 
+// ajax routes
+Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
 
+// ------------------------- End Creatures
 // ------------------------- Store
 
 Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
@@ -128,3 +128,16 @@ Route::get('/store/housing', [
     'as' => 'housing',
 ]);
 // ------------------------- End Store
+
+// --------------------------------------------------------------------------------------------- adopt
+Route::get('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
+    'as' => 'adoptable',
+]);
+
+Route::post('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
+    'as' => 'adopt-creature',
+]);
+
+// ---------------------------------------- end adopt
