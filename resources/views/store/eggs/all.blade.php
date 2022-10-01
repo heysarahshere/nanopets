@@ -19,12 +19,13 @@
                                 </div>
                             </div>
                             <div class="store-img-container">
-                                <div class="reveal-stats">
+                                <div class="reveal-stats" style="z-index: 9">
                                     <button class="ombre-btn" data-toggle="modal" data-target="#eggModal{{$egg->id}}">
                                         DETAILS
                                     </button>
                                 </div>
-                                <img class="card-img-top" src="{{ Storage::disk('s3')->url("images/eggs/" . $egg->element . ".png") }}"
+                                <img class="card-img-top"  style="width: 100%; height: auto; position:absolute; left: 0%; top: 10%"
+                                     src="{{ Storage::disk('s3')->url("images/eggs/" . $egg->element . ".png") }}"
                                      alt="{{ $egg->name }} Image">
                             </div>
                             <div class="card-body pb-2 {{ $egg->element }}">
