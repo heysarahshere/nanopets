@@ -135,4 +135,9 @@ Route::get('/adopt/all', [
     'as' => 'adoptable',
 ]);
 
+Route::post('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
+    'as' => 'adopt-creature',
+]);
+
 // ---------------------------------------- end adopt
