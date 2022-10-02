@@ -4,9 +4,10 @@
             <div class="">
                 <div class="row justify-content-center align-items-center mt-auto pt-2">
                     <i class="fa-solid fa-khanda pr-2 pb-2" style="font-size: 30px; color: rgba(0,0,0,0.51)"></i>
-                    <h2 class="text-center" style="color: black">
-                        {{Str::limit($pet->name, 12)}}
-                    </h2>
+                        <h2 class="text-center hover-name" style="color: black" onclick="changeName('{{$pet->id}}')" id="nameLabel{{$pet->id}}">
+                            {{Str::limit($pet->name, 12)}}
+                        </h2>
+                    <input  id="nameInput{{$pet->id}}" name="nameInput{{$pet->id}}" type="text" class="mb-2 hiddenFace" placeholder="{{$pet->name}}">
                 </div>
             </div>
             <div class="store-img-container mb-3">
@@ -17,7 +18,6 @@
                 </div>
             </div>
             <div class="p-3 pt-5 text-center">
-                {{--                                    <h1  style="font-size: larger">{{ $pet->name }}</h1>--}}
                 <h1 style="font-size: xx-large; color: black">{{$pet->dev_stage}} {{$pet->gender}}</h1>
                 <h1 style="font-size:  xx-large; color: black">
                     {{Str::upper($pet->element)}} TYPE</h1>
