@@ -72,8 +72,8 @@
     }
 
     function changeName(id) {
-        let label = document.getElementById("nameLabel-" + id);
-        let input = document.getElementById("nameInput-" + id);
+        let label = document.getElementById("nameLabel" + id);
+        let input = document.getElementById("nameInput" + id);
         if (label.classList.contains('hiddenFace')) {
             input.classList.add('hiddenFace');
             label.classList.remove('hiddenFace');
