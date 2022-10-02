@@ -3,7 +3,11 @@
     <h2 class="font-weight-light mx-3 mt-3 mb-1 text-center" style="color: #0a3c60">What do you want to feed <span
             style="color: #840e8d">{{$pet->name}}</span>?</h2>
     <div class="row">
-        <div class="row mb-3 mt-0 " style="overflow-x: scroll; max-width: 95%; margin-left: 28%; margin-right: 5%">
+        <div class="row mb-3 mt-0 " style="
+             @if (count($purchases) > 0)
+                overflow-x: scroll;
+             @endif
+             max-width: 95%; margin-left: 5%; margin-right: 5%">
             <div class="container-fluid pb-3">
                 <div class="d-flex flex-row flex-nowrap">
                     <?php $user = Auth::user(); ?>
@@ -22,12 +26,12 @@
                             </div>
                         @endforeach
                     @else
-                                <img class="card-img-top m-auto my-0"
-                                     style="width: auto; max-height: 300px; max-width: 280px"
-                                     src="{{ Storage::disk('s3')->url('images/foods/plate.png') }}">
-                                <div style="position: absolute; bottom: 14%; left: 40%">
-                                    <button class="w-100 btn purchase-btn"><a href="{{route('foods')}}"> Buy Food </a></button>
-                                </div>
+                        <img class="card-img-top m-auto my-0"
+                             style="width: auto; max-height: 300px; max-width: 280px"
+                             src="{{ Storage::disk('s3')->url('images/foods/plate.png') }}">
+                        <div style="position: absolute; bottom: 40%; left: 40%">
+                            <button class="w-100 btn purchase-btn"><a href="{{route('foods')}}"> Buy Food </a></button>
+                        </div>
 
                     @endif
                 </div>
