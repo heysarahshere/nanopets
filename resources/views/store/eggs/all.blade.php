@@ -6,6 +6,7 @@
     @include('partials.store-nav')
     <div>
         <div class="container store-body text-center pt-4">
+
             <div class="row justify-content-center align-items-center m-auto">
                 @foreach($eggs as $egg)
                     <div class="col-lg-3 col-sm-4 pb-5">
@@ -19,12 +20,13 @@
                                 </div>
                             </div>
                             <div class="store-img-container">
-                                <div class="reveal-stats" style="z-index: 9">
-                                    <button class="ombre-btn" data-toggle="modal" data-target="#eggModal{{$egg->id}}">
-                                        DETAILS
-                                    </button>
-                                </div>
-                                <img class="card-img-top"  style="width: 100%; height: auto; position:absolute; left: 0%; top: 10%"
+{{--                                <div class="reveal-stats" style="z-index: 9">--}}
+{{--                                    <button class="ombre-btn" data-toggle="modal" data-target="#eggModal{{$egg->id}}">--}}
+{{--                                        DETAILS--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
+                                <img class="card-img-top"
+                                     style="width: 100%; height: auto; position:absolute; left: 0%; top: 10%"
                                      src="{{ Storage::disk('s3')->url("images/eggs/" . $egg->element . ".png") }}"
                                      alt="{{ $egg->name }} Image">
                             </div>
@@ -35,9 +37,15 @@
                             <a href="#" class="btn btn-primary purchase-btn">Purchase</a>
                         </div>
                     </div>
-                    @include('partials.egg-stat-modal')
+{{--                    @include('partials.modals.egg-stat-modal')--}}
                 @endforeach
+                <div class="container">
+                    <div class="row m-auto">
+                        {{ $eggs->links("pagination::bootstrap-4") }}
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 

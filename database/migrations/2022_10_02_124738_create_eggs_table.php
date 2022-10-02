@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-        // 'name',
-        // 'species',
-        // 'image',
-        // 'description',
-        // 'cost'
     /**
      * Run the migrations.
      *
@@ -18,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('housing_items', function (Blueprint $table) {
+        Schema::create('eggs', function (Blueprint $table) {
             $table->id();
+            $table->integer('cost');
             $table->string('name');
+            $table->string('element');
             $table->text('description');
-            $table->integer('cost')->default(1000);
-            $table->string('image');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('housing_items');
+        Schema::dropIfExists('eggs');
     }
 };

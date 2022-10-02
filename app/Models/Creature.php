@@ -11,6 +11,7 @@ class Creature extends Model
 
     protected $fillable = [
         'name',
+        'tier',
         'species',
         'element',
         'gender',

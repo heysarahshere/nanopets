@@ -5,6 +5,7 @@
     @endunless
 @endsection
 @section('content')
+    @include('partials.banner-message')
     @include('partials.profile-nav')
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">

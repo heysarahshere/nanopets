@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
             'email' => "admin@nanopets.org",
             'password' => bcrypt('p@ss123'),
             'admin' => true,
-            'balance' => 500
+            'balance' => 1000
         ]);
 
         User::create([
@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder
             'lastname' => "Covey",
             'email' => "jarseph@aol.com",
             'password' => bcrypt('p@ss123'),
-            'admin' => true,
+            'admin' => false,
             'balance' => 7500
         ]);
 
@@ -43,7 +43,7 @@ class UserTableSeeder extends Seeder
             'lastname' => "Covey",
             'email' => "ncovey8@gmail.com",
             'password' => bcrypt('p@ss123'),
-            'admin' => true,
+            'admin' => false,
             'balance' => 7500
         ]);
     }

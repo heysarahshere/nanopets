@@ -18,6 +18,7 @@ class CreatureTableSeeder extends Seeder
         //
         // 'name',
         // 'species',
+        // 'tier',
         // 'color_image',
         // 'eye_image',
         // 'tail_image',
@@ -36,14 +37,8 @@ class CreatureTableSeeder extends Seeder
         // dev_stage -- egg, hatchling, baby, or adult
         // 'owner_id',
 
-//        $table->integer('potential');
-//        $table->integer('health');
-//        $table->integer('stamina');
-//        $table->integer('mojo');
-//        $table->integer('magic');
-//        $table->integer('defense');
-//        $table->integer('strength');
-//        $table->integer('level');
+// tiers:
+//        bronze, silver, gold, platinum, diamond
 
         // --------------------- owned by admin
         Creature::create(
@@ -113,9 +108,167 @@ class CreatureTableSeeder extends Seeder
             ]
         );
 
-        // --------------------- eggs
+        // --------------------- for sale on adopt page
+
+        // dark
         Creature::create([
-            'name' => "Desert Egg",
+            'name' => "Shadow",
+            'element' => "dark",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'horse',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "baby",
+            'for_sale' => true
+        ]);
+
+        // water
+        Creature::create([
+            'name' => "Oceanic",
+            'element' => "water",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'horse',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "adult",
+            'for_sale' => true
+        ]);
+
+        // lava
+        Creature::create([
+            'name' => "Molten",
+            'element' => "lava",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'cat',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "baby",
+            'for_sale' => true
+        ]);
+
+        // lightning
+        Creature::create([
+            'name' => "Charged",
+            'element' => "lightning",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "adult",
+            'for_sale' => true
+        ]);
+
+        // ice
+        Creature::create([
+            'name' => "Tundra",
+            'element' => "ice",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'cat',
+            'gender'=>'male',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "baby",
+            'for_sale' => true
+        ]);
+
+        // air
+        Creature::create([
+            'name' => "Temple",
+            'element' => "air",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "baby",
+            'for_sale' => true
+        ]);
+
+        // earth
+        Creature::create([
+            'name' => "Mountain",
+            'element' => "earth",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'gender'=>'male',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "baby",
+            'for_sale' => true
+        ]);
+
+        // fire
+        Creature::create([
+            'name' => "Desert",
             'element' => "fire",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -131,35 +284,40 @@ class CreatureTableSeeder extends Seeder
             'defense'=>rand(250, 1000),
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
-            'dev_stage' => "egg",
+            'dev_stage' => "adult",
+            'for_sale' => true
         ]);
 
+        // celestial
         Creature::create([
-            'name' => "Galaxy Egg",
+            'name' => "Galactic",
+            'tier' => "Gold",
             'element' => "celestial",
             'gender' => "male",
-            'description' => "Radioactive egg found on an asteroid. Very mysterious.",
-            'species'=>'lizard',
-            'potential'=>rand(10, 50),
-            'max_health'=> 2000,
-            'current_health'=>rand(250, 2000),
+            'description' => "Radioactive creature found on an asteroid. Very mysterious.",
+            'species'=>'cat',
+            'potential'=>rand(40, 70),
+            'max_health'=> 4000,
+            'current_health'=>rand(2500, 4000),
             'max_stamina'=> 1700,
             'current_stamina'=>rand(250, 1700),
             'hunger'=>rand(25, 100),
             'mojo'=>rand(10, 50),
-            'magic'=>rand(250, 2000),
-            'strength'=>rand(250, 2000),
-            'defense'=>rand(250, 1000),
-            'level'=>rand(1, 30),
-            'cost' => rand(2500, 10000),
-            'dev_stage' => "egg",
+            'magic'=>rand(1000, 3000),
+            'strength'=>rand(1000, 3000),
+            'defense'=>rand(1000, 3000),
+            'level'=>rand(20, 30),
+            'cost' => rand(9000, 13000),
+            'dev_stage' => "adult",
+            'for_sale' => true
         ]);
 
+        //gem
         Creature::create([
-            'name' => "Gem Egg",
+            'name' => "Crystal",
             'element' => "gem",
             'gender' => "male",
-            'description' => "Is it really an egg, or is it just a cool gem? Who knows.",
+            'description' => "Shiny.",
             'species'=>'lizard',
             'potential'=>rand(10, 50),
             'max_health'=> 2000,
@@ -173,13 +331,14 @@ class CreatureTableSeeder extends Seeder
             'defense'=>rand(250, 1000),
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
-            'dev_stage' => "egg",
+            'dev_stage' => "baby",
+            'for_sale' => true
         ]);
 
-        // --------------------- for sale on adopt page
         Creature::create(
             [
                 'name'=>'Gizmo',
+                'tier'=>'Gold',
                 'species'=>'dragon',
                 'element'=>'lava',
                 'gender'=>'male',
@@ -197,11 +356,13 @@ class CreatureTableSeeder extends Seeder
                 'level'=>rand(1, 30),
                 'dev_stage' => "adult",
                 'for_sale' => true,
+                'cost' => 1000
             ]
         );
         Creature::create(
             [
                 'name'=>'Oppa',
+                'tier'=>'Gold',
                 'species'=>'lizard',
                 'element'=>'lightning',
                 'description'=>'zap zap',
@@ -218,6 +379,7 @@ class CreatureTableSeeder extends Seeder
                 'level'=>rand(1, 30),
                 'dev_stage' => "adult",
                 'for_sale' => true,
+                'cost' => 2000
             ]
         );
 

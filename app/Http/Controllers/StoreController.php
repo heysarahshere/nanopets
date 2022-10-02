@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Creature;
 use App\Models\Food;
+use App\Models\Egg;
 use App\Models\HousingItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -150,7 +151,7 @@ class StoreController extends Controller
 
     public function getStoreEggs()
     {
-        $eggs = Creature::where('dev_stage', "egg")->orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Egg::orderBy('updated_at', 'desc')->paginate(8);
         return view('store/eggs/all', ['eggs' => $eggs, 'category' => "CREATURE EGGS", 'current' => 'eggs']);
     }
 
