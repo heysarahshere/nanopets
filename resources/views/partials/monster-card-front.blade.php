@@ -18,7 +18,7 @@
             </div>
             <div class="p-3 pt-5 text-center">
                 {{--                                    <h1  style="font-size: larger">{{ $pet->name }}</h1>--}}
-                <h1 style="font-size: xx-large; color: black">ADULT</h1>
+                <h1 style="font-size: xx-large; color: black">{{$pet->dev_stage}} {{$pet->gender}}</h1>
                 <h1 style="font-size:  xx-large; color: black">
                     {{Str::upper($pet->element)}} TYPE</h1>
             </div>
