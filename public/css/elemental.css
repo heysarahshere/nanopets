@@ -1,15 +1,133 @@
 /* ------------- elements as class names for dynamic card background --------------- */
 
 /*fire - done*/
-/*water*/
-/*air*/
-/*earth*/
-/*ice*/
-/*lava*/
-/*lightning*/
+/*water - done*/
+/*air - done*/
+/*earth - done*/
+/*ice - done*/
+/*lava - done*/
+/*lightning - done*/
 /*celstial - done*/
-/*dark*/
-/*gem*/
+/*dark - done*/
+/*gem - done*/
+
+
+
+/* ________________________ */
+
+.air {
+    background-image: linear-gradient(#70a9df, rgb(167, 248, 244));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.air-ombre-btn {
+    background-image: linear-gradient(to right, #70a9df, rgb(167, 248, 244));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.air-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+
+.earth {
+    background-image: linear-gradient(#616161, rgb(99, 68, 42));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.earth-ombre-btn {
+    background-image: linear-gradient(to right, #616161, rgb(99, 68, 42));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.earth-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+
+.ice {
+    background-image: linear-gradient(#01e3f3, rgb(2, 54, 114));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.ice-ombre-btn {
+    background-image: linear-gradient(to right, #01e3f3, rgb(2, 54, 114));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.ice-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+
+.lava {
+    background-image: linear-gradient(#363636, rgb(230, 73, 0));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.lava-ombre-btn {
+    background-image: linear-gradient(to right, #363636, rgb(230, 73, 0));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.lava-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+
+.dark {
+    background-image: linear-gradient(#363636, rgb(170, 170, 170));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.dark-ombre-btn {
+    background-image: linear-gradient(to right, #363636, rgb(170, 170, 170));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.dark-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
+
+.gem {
+    background-image: linear-gradient(#1be3fd, rgb(18, 212, 0));
+    border-radius: 10%;
+    margin: 5%;
+}
+
+.gem-ombre-btn {
+    background-image: linear-gradient(to right, #1be3fd, rgb(18, 212, 0));
+    border-radius: 24px;
+    margin: 5%;
+    border-color: rgb(208, 64, 9);
+    border-width: 0px;
+}
+.gem-ombre-btn h1 {
+    color: white;
+}
+
+/* ________________________ */
 
 
 .fire {
