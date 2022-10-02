@@ -37,7 +37,7 @@ return new class extends Migration
             $table->integer('effectAmount')->default(rand(0,55));
             $table->integer('bonusEffectAmount')->default(rand(0,25));
 
-            $table->bigInteger('cost')->default(1000);
+            $table->integer('cost')->default(1000);
             $table->id();
             $table->timestamps();
         });

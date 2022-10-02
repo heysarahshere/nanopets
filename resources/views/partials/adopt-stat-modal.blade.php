@@ -61,8 +61,12 @@
                 </div>
                 <div class="modal-footer">
                     @if(Auth::check())
-                        @if (\Illuminate\Support\Facades\Auth::user()->currency >= $creature->cost)
-                            <a href="#" class="btn btn-primary purchase-btn w-100">Adopt</a>
+                        <?php $user = Auth::user()?>
+                        @if ( $user->balance >= $creature->cost )
+                            <form name="adopt" method="POST" action="{{route('adopt-creature')}}" style="width: 90%; margin-right: 10%">
+                                <button type="submit" class="btn btn-primary purchase-btn w-100">Adopt</button>
+                                {{ csrf_field() }}
+                            </form>
                         @else
                             <h2>Sorry, you don't have enough gold to adopt {{$creature->name}}. </h2>
                         @endif
@@ -73,9 +77,7 @@
                             class="btn btn-danger cancel-actions-btn w-100">
                         Cancel
                     </button>
-                    {{--               <form name="adopt" method="POST" action="{{route('adopt-creature')}}">--}}
-                    {{--               {{ csrf_token() }}--}}
-                    {{--               </form>--}}
+
                 </div>
 
             </div>

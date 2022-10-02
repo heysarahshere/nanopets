@@ -22,10 +22,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->bigInteger('cost')->default(1000);
+            $table->integer('cost')->default(1000);
             $table->string('image');
             $table->timestamps();
-
         });
     }
 

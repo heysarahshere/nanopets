@@ -348,6 +348,7 @@ class CreatureTableSeeder extends Seeder
                 'level'=>rand(1, 30),
                 'dev_stage' => "adult",
                 'for_sale' => true,
+                'cost' => 1000
             ]
         );
         Creature::create(
@@ -369,6 +370,7 @@ class CreatureTableSeeder extends Seeder
                 'level'=>rand(1, 30),
                 'dev_stage' => "adult",
                 'for_sale' => true,
+                'cost' => 2000
             ]
         );
 

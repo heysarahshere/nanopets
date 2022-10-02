@@ -32,7 +32,7 @@ return new class extends Migration
             $table->integer('strength')->default(1);
             $table->integer('level')->default(1);
             $table->string('dev_stage')->default("egg"); // 1 = egg, 2 = baby, 3 = adult
-            $table->bigInteger('cost')->nullable();
+            $table->integer('cost')->nullable();
             $table->boolean('for_sale')->default(false);
             $table->boolean('available')->default(true);
             $table->id();
