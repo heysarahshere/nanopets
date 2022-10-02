@@ -360,3 +360,9 @@
 .hunger-ombre-btn h1 {
     color: white;
 }
+
+
+.banner-ombre {
+    background-image: linear-gradient(to right, #b20c66, rgb(5, 88, 152));
+    width: 100%;
+}

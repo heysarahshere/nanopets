@@ -73,10 +73,13 @@ class CreatureController extends Controller
 
             $creature->save();
 
-            $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-            return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
+
+            $pets = Creature::where('owner_id', $user_id)->get();
+            return redirect()->route('my-creatures', [
+                'pets' => $pets
+            ])->with('banner-message', 'Congrats on the adoption!');
         } else {
-            return redirect()->back()->with('message', 'Uh oh, you must sign in to do that.');
+            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
     }
 
@@ -96,7 +99,7 @@ class CreatureController extends Controller
                 $user->balance -= $creature->cost;
                 $user->save();
             } else {
-                return redirect()->back()->with('message', 'Uh oh, you do not have enough funds for that.');
+                return redirect()->back()->with('error', 'Uh oh, you do not have enough funds for that.');
             }
 
             $creature->update([
@@ -110,7 +113,7 @@ class CreatureController extends Controller
             $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
             return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
         } else {
-            return redirect()->back()->with('message', 'Uh oh, you must sign in to do that.');
+            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
     }
 
