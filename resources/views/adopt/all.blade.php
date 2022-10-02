@@ -24,7 +24,7 @@
                                         DETAILS
                                     </button>
                                 </div>
-                                <img class="card-img-top" style="width: 100%; height: auto;"
+                                <img class="card-img-top" style="width: auto; height: 224px;"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $creature->species . "/" . $creature->dev_stage . "/" . $creature->element . ".png" )}}"
                                      alt="{{ $creature->name }} Image">
                             </div>
