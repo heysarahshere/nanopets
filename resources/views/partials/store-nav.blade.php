@@ -31,3 +31,57 @@
 </div>
 
 <div class="store-banner mt-2"><h2>{{ $category ?? ""}}</h2></div>
+
+<div class="container store-search-bar">
+    <div class="row">
+        <div class="col-4 m-auto p-2">
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tier:
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Bronze</a></li>
+                    <li><a class="dropdown-item" href="#">Silver</a></li>
+                    <li><a class="dropdown-item" href="#">Gold</a></li>
+                    <li><a class="dropdown-item" href="#">Platinum</a></li>
+                    <li><a class="dropdown-item" href="#">Diamond</a></li>
+                </ul>
+            </div>
+{{--            <div class="btn-group m-auto">--}}
+{{--                <button class="btn btn-light btn-sm dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown"--}}
+{{--                        aria-expanded="false">--}}
+{{--                    Tier:--}}
+{{--                </button>--}}
+{{--                <ul class="dropdown-menu">--}}
+{{--                    <li>Bronze</li>--}}
+{{--                    <li>Silver</li>--}}
+{{--                    <li>Gold</li>--}}
+{{--                    <li>Platinum</li>--}}
+{{--                    <li>Diamond</li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+        </div>
+        <div class="col-4 m-auto p-2">
+            <div class="btn-group m-auto">
+                <button class="btn btn-light btn-sm dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Element:
+                </button>
+                <ul class="dropdown-menu">
+                    <li>Fire</li>
+                    <li>Water</li>
+                    <li>Earth</li>
+                    <li>Air</li>
+                    <li>Other</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-4 m-auto p-2">
+            <form class="d-flex">
+                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+</div>

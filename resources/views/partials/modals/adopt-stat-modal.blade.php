@@ -21,6 +21,8 @@
                     <div class="col-6 m-0 text-left">
                         <div class="row"><h2 style="color: black">Type:&nbsp; </h2>
                             <h2 style="color: #da3a09">{{ $creature->element }}</h2></div>
+                        <div class="row"><h2 style="color: black">Tier:&nbsp; </h2>
+                            <h2 style="color: #b4da09">{{ $creature->tier }}</h2></div>
                         <div class="row"><h2 style="color: black">Health:&nbsp; </h2>
                             <h2 style="color: #b90404">{{ $creature->max_health }}</h2></div>
                         <div class="row"><h2 style="color: black">Stamina:&nbsp; </h2>
@@ -34,7 +36,7 @@
                         <div class="row"><h2 style="color: black">Mojo:&nbsp; </h2>
                             <h2 style="color: #ff24a6">{{ $creature->mojo }}</h2></div>
                         <div class="row"><h2 style="color: black">High Tier Potential:&nbsp; </h2>
-                            <h2 style="color: #cb8e0a">{{ $creature->potential }}</h2></div>
+                            <h2 style="color: #cb8e0a">{{ $creature->potential }}%</h2></div>
                     </div>
                 </div>
 
@@ -65,6 +67,7 @@
                         @if ( $user->balance >= $creature->cost )
                             <form name="adopt" method="POST" action="{{route('adopt-creature')}}" style="width: 90%; margin-right: 10%">
                                 <button type="submit" class="btn btn-primary purchase-btn w-100">Adopt</button>
+                                <input type="hidden" value="{{$creature->id}}" id="creature_id" name="creature_id">
                                 {{ csrf_field() }}
                             </form>
                         @else

@@ -202,6 +202,14 @@
     color: #ffffff;
 }
 
+.store-search-bar {
+    background-color: #2fc217;
+    /*padding: 2%;*/
+    border-width: 1px;
+    border-color: #2fc217;
+    border-radius: 5px;
+}
+
 .statModal .modal-body h2 {
     color: #0a3c60;
     font-size: medium;

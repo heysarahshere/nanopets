@@ -68,6 +68,11 @@ Route::get('/{user}', [
 // ------------------------- End User
 // ------------------------- Creatures
 
+Route::post('/mycreatures', [
+    'uses' => 'App\Http\Controllers\CreatureController@postSellCreature',
+    'as' => 'sell-creature',
+]);
+
 // ajax routes
 Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
 

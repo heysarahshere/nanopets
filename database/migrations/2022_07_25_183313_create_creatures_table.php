@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('creatures', function (Blueprint $table) {
             $table->integer('owner_id')->nullable();
             $table->string('name');
+            $table->string('tier')->default("Bronze");
             $table->string('species');
             $table->string('gender')->default("female");
             $table->string('element');

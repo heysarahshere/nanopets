@@ -14,16 +14,16 @@
 /* ________________________ */
 
 .air {
-    background-image: linear-gradient(#70a9df, rgb(167, 248, 244));
+    background-image: linear-gradient(#70c5df, rgb(124, 50, 73));
     border-radius: 10%;
     margin: 5%;
 }
 
 .air-ombre-btn {
-    background-image: linear-gradient(to right, #70a9df, rgb(167, 248, 244));
+    background-image: linear-gradient(to right, #70c5df, rgb(124, 50, 73));
     border-radius: 24px;
     margin: 5%;
-    border-color: rgb(208, 64, 9);
+    border-color: rgb(124, 50, 73);
     border-width: 0px;
 }
 .air-ombre-btn h1 {
@@ -33,16 +33,16 @@
 /* ________________________ */
 
 .earth {
-    background-image: linear-gradient(#616161, rgb(99, 68, 42));
+    background-image: linear-gradient(#616161, rgb(133, 75, 27));
     border-radius: 10%;
     margin: 5%;
 }
 
 .earth-ombre-btn {
-    background-image: linear-gradient(to right, #616161, rgb(99, 68, 42));
+    background-image: linear-gradient(to right, #616161, rgb(133, 75, 27));
     border-radius: 24px;
     margin: 5%;
-    border-color: rgb(208, 64, 9);
+    border-color: rgb(133, 75, 27);
     border-width: 0px;
 }
 .earth-ombre-btn h1 {
@@ -61,7 +61,7 @@
     background-image: linear-gradient(to right, #01e3f3, rgb(2, 54, 114));
     border-radius: 24px;
     margin: 5%;
-    border-color: rgb(208, 64, 9);
+    border-color: rgb(2, 54, 114);
     border-width: 0px;
 }
 .ice-ombre-btn h1 {
@@ -99,7 +99,7 @@
     background-image: linear-gradient(to right, #363636, rgb(170, 170, 170));
     border-radius: 24px;
     margin: 5%;
-    border-color: rgb(208, 64, 9);
+    border-color: rgb(170, 170, 170);
     border-width: 0px;
 }
 .dark-ombre-btn h1 {
@@ -118,7 +118,7 @@
     background-image: linear-gradient(to right, #1be3fd, rgb(18, 212, 0));
     border-radius: 24px;
     margin: 5%;
-    border-color: rgb(208, 64, 9);
+    border-color: rgb(18, 212, 0);
     border-width: 0px;
 }
 .gem-ombre-btn h1 {
@@ -191,7 +191,7 @@
 }
 
 .water-ombre-btn {
-    background-image: linear-gradient(rgb(91, 198, 255), #085fc4);
+    background-image: linear-gradient(to right, rgb(91, 198, 255), #085fc4);
     border-radius: 24px;
     margin: 5%;
     border-color: #085fc4;
@@ -202,16 +202,16 @@
 }
 /* ________________________ */
 .lightning {
-    background-image: linear-gradient(rgb(91, 198, 255), #eacd00);
+    background-image: linear-gradient(rgb(36, 152, 215), #c2aa00);
     border-radius: 10%;
     margin: 5%;
 }
 
 .lightning-ombre-btn {
-    background-image: linear-gradient(rgb(91, 198, 255), #eacd00);
+    background-image: linear-gradient(to right, rgb(36, 152, 215), #c2aa00);
     border-radius: 24px;
     margin: 5%;
-    border-color: #eacd00;
+    border-color: #c2aa00;
     border-width: 0px;
 }
 .lightning-ombre-btn h1 {

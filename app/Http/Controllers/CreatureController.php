@@ -43,7 +43,76 @@ class CreatureController extends Controller
     public function getAdoptable()
     {
         $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-        return view('adopt/all', ['creatures' => $creatures, 'current' => 'all']);
+        return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
     }
+
+    public function postAdoptCreature(Request $request)
+    {
+        if (Auth::check()) {
+            $this->validate($request, [
+                'creature_id' => 'required',
+            ]);
+
+            $user = Auth::user();
+            $user_id = $user->id;
+
+            $creature = Creature::find($request['creature_id']);
+
+            if ($user->balance >= $creature->cost) {
+                $user->balance -= $creature->cost;
+                $user->save();
+            } else {
+                return redirect()->back()->with('message', 'Uh oh, you do not have enough funds for that.');
+            }
+
+            $creature->update([
+                'owner_id' => $user_id,
+                'for_sale' => false,
+                'cost' => null,
+            ]);
+
+            $creature->save();
+
+            $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+            return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
+        } else {
+            return redirect()->back()->with('message', 'Uh oh, you must sign in to do that.');
+        }
+    }
+
+    public function postSellCreature(Request $request)
+    {
+        if (Auth::check()) {
+            $this->validate($request, [
+                'creature_id' => 'required',
+            ]);
+
+            $user = Auth::user();
+            $user_id = $user->id;
+
+            $creature = Creature::find($request['creature_id']);
+
+            if ($user->balance >= $creature->cost) {
+                $user->balance -= $creature->cost;
+                $user->save();
+            } else {
+                return redirect()->back()->with('message', 'Uh oh, you do not have enough funds for that.');
+            }
+
+            $creature->update([
+                'owner_id' => $user_id,
+                'for_sale' => false,
+                'cost' => null,
+            ]);
+
+            $creature->save();
+
+            $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+            return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
+        } else {
+            return redirect()->back()->with('message', 'Uh oh, you must sign in to do that.');
+        }
+    }
+
 
 }

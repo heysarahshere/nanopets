@@ -20,11 +20,11 @@
                                 </div>
                             </div>
                             <div class="store-img-container">
-                                <div class="reveal-stats" style="z-index: 9">
-                                    <button class="ombre-btn" data-toggle="modal" data-target="#eggModal{{$egg->id}}">
-                                        DETAILS
-                                    </button>
-                                </div>
+{{--                                <div class="reveal-stats" style="z-index: 9">--}}
+{{--                                    <button class="ombre-btn" data-toggle="modal" data-target="#eggModal{{$egg->id}}">--}}
+{{--                                        DETAILS--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
                                 <img class="card-img-top"
                                      style="width: 100%; height: auto; position:absolute; left: 0%; top: 10%"
                                      src="{{ Storage::disk('s3')->url("images/eggs/" . $egg->element . ".png") }}"
@@ -37,7 +37,7 @@
                             <a href="#" class="btn btn-primary purchase-btn">Purchase</a>
                         </div>
                     </div>
-                    @include('partials.egg-stat-modal')
+{{--                    @include('partials.modals.egg-stat-modal')--}}
                 @endforeach
                 <div class="container">
                     <div class="row m-auto">
