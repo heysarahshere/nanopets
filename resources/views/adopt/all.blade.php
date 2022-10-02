@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-    Eggs
+    Adopt a Creature
 @endsection
 @section('content')
     @include('partials.store-nav')
@@ -13,8 +13,7 @@
                             <div class="{{ $creature->element }}-ombre-btn">
                                 <div class="row justify-content-center align-items-center mt-auto pt-2">
                                     <i class="fa-solid fa-coins pr-2 pb-2" style="color: #4d3c06;font-size: 30px"></i>
-                                    <h2 class="text-center">
-                                    </h2>
+                                    <h2 class="text-center"> {{$creature->cost}}</h2>
                                 </div>
                             </div>
                             <div class="store-img-container">
@@ -39,4 +38,19 @@
         </div>
     </div>
 
+    <script>
+        function toggleAdoptCard(id) {
+            let back = document.getElementById("creature-detail-" + id);
+            let feed = document.getElementById("creature-confirm-" + id);
+            if (back.classList.contains('hiddenFace')) {
+                feed.classList.add('hiddenFace');
+                back.classList.remove('hiddenFace');
+            } else {
+                back.classList.add('hiddenFace');
+                feed.classList.remove('hiddenFace');
+            }
+        }
+    </script>
+
 @endsection
+

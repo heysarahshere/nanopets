@@ -117,7 +117,7 @@ class CreatureTableSeeder extends Seeder
 
         // dark
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Shadow Egg",
             'element' => "dark",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -138,7 +138,7 @@ class CreatureTableSeeder extends Seeder
 
         // water
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Oceanic Egg",
             'element' => "water",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -159,7 +159,7 @@ class CreatureTableSeeder extends Seeder
 
         // lava
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Molten Egg",
             'element' => "lava",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -180,7 +180,7 @@ class CreatureTableSeeder extends Seeder
 
         // lightning
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Charged Egg",
             'element' => "lightning",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -201,7 +201,7 @@ class CreatureTableSeeder extends Seeder
 
         // ice
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Tundra Egg",
             'element' => "ice",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -222,7 +222,7 @@ class CreatureTableSeeder extends Seeder
 
         // air
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Temple Egg",
             'element' => "air",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -243,7 +243,7 @@ class CreatureTableSeeder extends Seeder
 
         // earth
         Creature::create([
-            'name' => "Dark Egg",
+            'name' => "Mountain Egg",
             'element' => "earth",
             'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
             'species'=>'lizard',
@@ -285,7 +285,7 @@ class CreatureTableSeeder extends Seeder
 
         // celestial
         Creature::create([
-            'name' => "Galaxy Egg",
+            'name' => "Galactic Egg",
             'element' => "celestial",
             'gender' => "male",
             'description' => "Radioactive egg found on an asteroid. Very mysterious.",
@@ -307,7 +307,7 @@ class CreatureTableSeeder extends Seeder
 
         //gem
         Creature::create([
-            'name' => "Gem Egg",
+            'name' => "Crystal Egg",
             'element' => "gem",
             'gender' => "male",
             'description' => "Is it really an egg, or is it just a cool gem? Who knows.",
