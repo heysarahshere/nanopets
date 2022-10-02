@@ -6,6 +6,7 @@ use App\Models\Creature;
 use App\Models\Food;
 use App\Models\Egg;
 use App\Models\HousingItem;
+use App\Models\Purchase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Session\Session;
@@ -74,19 +75,20 @@ class StoreController extends Controller
             'cost' => $request->input('cost')
         ]);
 
-            $file = $request->file('image');
-            $filename = trim("/images/foods/" . $request->input('name') . time()) . "." . $file->getClientOriginalExtension();  // multiple extension types
-            if($request->hasFile('image')){
+        $file = $request->file('image');
+        $filename = trim("/images/foods/" . $request->input('name') . time()) . "." . $file->getClientOriginalExtension();  // multiple extension types
+        if ($request->hasFile('image')) {
 
-                Storage::disk('public')->put($filename, File::get($file));
-                $food->image = $filename;
-            }
+            Storage::disk('public')->put($filename, File::get($file));
+            $food->image = $filename;
+        }
 
         $food->save();
         return redirect()->route('foods');
     }
 
-    public function postDeleteFood($id) {
+    public function postDeleteFood($id)
+    {
         $food = Food::find($id);
         $food->delete();
         return redirect('store/food/all');
@@ -122,10 +124,10 @@ class StoreController extends Controller
             'cost' => $request->input('cost')
         ]);
 
-        if($request->has('image')) {
+        if ($request->has('image')) {
             $file = $request->file('image');
             $filename = trim("/images/foods/" . $request->input('name') . time()) . $file->getClientOriginalExtension();  // multiple extension types
-            if($request->hasFile('image')){
+            if ($request->hasFile('image')) {
                 Storage::disk('public')->put($filename, File::get($file));
                 $food->image = $filename;
             }
@@ -141,6 +143,50 @@ class StoreController extends Controller
         $food = Food::find($id);
         return view('store/food/edit-food', ['food' => $food]);
     }
+
+
+    public function postPurchaseFood(Request $request)
+    {
+        $request->validate([
+            'food_id' => 'required',
+            'qty' => 'required|numeric|min:1'
+        ]);
+
+        if (Auth::check()) {
+            // get user
+            $user = Auth::user();
+            $user_id = $user->id;
+
+            // get the item & qty
+            $food_id = $request->input('food_id');
+            $qty = $request->input('qty');
+            $food = Food::find($food_id);
+            $cost = $food->cost * $qty;
+
+            // create record of purchase
+            $purchaseRecord = new Purchase([
+                'owner_id' =>  $user_id,
+                'item_id' =>  $food_id,
+                'qty' =>  $request->input('qty'),
+                'item_type' =>  'food',
+            ]);
+
+            $purchaseRecord->save();
+
+            //charge user
+            $user->balance -= $cost;
+            $user->save();
+
+            // redirect back to store
+            $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
+            return redirect()->route('foods', ['foods' => $foods, 'category' => "FOODSTUFFS", 'current' => 'foods'])
+                ->with('banner-message', 'Your purchase was successful.');
+        } else {
+            return redirect()->back()->with('error', 'You must be signed in to do that');
+        }
+
+    }
+
 // --------------------------------------------------------------------------------------------- end food
 
     public function getStorePotions()

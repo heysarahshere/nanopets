@@ -16,9 +16,14 @@ class Purchase extends Model
         'item_type',
     ];
 
+//    public function item()
+//    {
+//        return $this->belongsTo('App\User', 'owner_id', 'id');
+//    }
+
     public function item()
     {
-        return $this->belongsTo('App\User', 'owner_id', 'id');
+        return $this->belongsTo('App\Models\Food', 'item_id', 'id');
     }
 
 }

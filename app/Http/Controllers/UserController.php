@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creature;
+use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,8 +101,10 @@ class UserController extends Controller
             $id = Auth::id();
 
             $pets = Creature::where('owner_id', $id)->get();
+            $purchases = Purchase::where('owner_id', $id)->get();
             return view('user/monsters', [
-                'pets' => $pets
+                'pets' => $pets,
+                'purchases' => $purchases
             ]);
         } else {
             return redirect()

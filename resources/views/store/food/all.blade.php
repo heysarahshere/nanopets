@@ -33,7 +33,7 @@
                                     <div class="row m-auto pb-2">
                                         <a href="{{route('update-food', ['id' => $food->id])}}"
                                            class="btn ombre-btn mb-1">Edit</a>
-                                        <form action="{{ route('delete-food', ['id' => $food->id]) }}" method="POST">
+                                        <form id="deleteFood" action="{{ route('delete-food', ['id' => $food->id]) }}" method="POST">
                                             <td class="right">
                                                 <input type="hidden" value="{{$food->id}}">
                                                 <button type="submit"
@@ -45,8 +45,13 @@
                                         </form>
                                     </div>
                                 @endif
-                            @else
-                                <a href="#" class="btn btn-primary purchase-btn">Purchase</a>
+                                <form id="purchaseFood" name="purchaseFood" method="POST" action="{{route('purchase-food')}}"
+                                      style="width: 90%; margin-right: 10%">
+                                    <input class="col-3 text-center m-auto" type="number" step="1" id="qty" name="qty" value="1">
+                                    <input type="hidden" value="{{$food->id}}" id="food_id" name="food_id">
+                                    <button type="submit" class="btn purchase-btn w-100">Purchase</button>
+                                    {{ csrf_field() }}
+                                </form>
                             @endif
                         </div>
                     </div>

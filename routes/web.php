@@ -113,6 +113,14 @@ Route::get('/store/add-food', [
     'as' => 'add-food'
 ]);
 
+Route::post('/store/foods/all', [
+    'uses' => 'App\Http\Controllers\StoreController@postPurchaseFood',
+    'as' => 'purchase-food'
+]);
+
+
+// ---------------------- admin stuff
+
 Route::post('/store/foods', [
     'uses' => 'App\Http\Controllers\StoreController@postAddFood',
     'as' => 'add-food-post'
