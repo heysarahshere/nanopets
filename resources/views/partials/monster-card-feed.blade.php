@@ -7,15 +7,29 @@
             <div class="container-fluid pb-3">
                 <div class="d-flex flex-row flex-nowrap">
                     <?php $user = Auth::user(); ?>
-                    @foreach ($purchases as $purchase)
-                        <div class="card card-body p-0">
-                            <h2>{{$purchase->item->name}}</h2>
-                            <div class="w-100 m-auto">
-                                <img class="card-img-top m-auto" style="width: auto; max-height: 300px;"
-                                     src="{{ Storage::disk('s3')->url($purchase->item->image) }}">
+                    @if (count($purchases) > 0)
+                        @foreach ($purchases as $purchase)
+                            <div class="card card-body p-0">
+                                <div class="w-100 m-auto">
+                                    <img class="card-img-top mx-auto my-0"
+                                         style="width: auto; max-height: 300px; max-width: 280px"
+                                         src="{{ Storage::disk('s3')->url($purchase->item->image) }}">
+                                    <div style="position: absolute; top: 10%; left: 50%">
+                                        <p style="font-family: Funhouse;">{{$purchase->qty}}</p>
+                                    </div>
+                                </div>
+                                <h2 style="color: black; text-align: center">{{$purchase->item->name}}</h2>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                                <img class="card-img-top m-auto my-0"
+                                     style="width: auto; max-height: 300px; max-width: 280px"
+                                     src="{{ Storage::disk('s3')->url('images/foods/plate.png') }}">
+                                <div style="position: absolute; bottom: 40%; left: 40%">
+                                    <button class="w-100 btn purchase-btn"><a href="{{route('foods')}}"> Buy Food </a></button>
+                                </div>
+
+                    @endif
                 </div>
             </div>
 

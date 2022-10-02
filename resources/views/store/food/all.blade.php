@@ -3,6 +3,7 @@
     Food Stuffs
 @endsection
 @section('content')
+    @include('partials.banner-message')
     @include('partials.store-nav')
 
     <div>

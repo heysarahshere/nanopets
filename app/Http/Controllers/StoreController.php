@@ -153,6 +153,7 @@ class StoreController extends Controller
         ]);
 
         if (Auth::check()) {
+
             // get user
             $user = Auth::user();
             $user_id = $user->id;
@@ -163,24 +164,36 @@ class StoreController extends Controller
             $food = Food::find($food_id);
             $cost = $food->cost * $qty;
 
-            // create record of purchase
-            $purchaseRecord = new Purchase([
-                'owner_id' =>  $user_id,
-                'item_id' =>  $food_id,
-                'qty' =>  $request->input('qty'),
-                'item_type' =>  'food',
-            ]);
+            if ($user->balance >= $cost) {
 
-            $purchaseRecord->save();
+                // create record of purchase
+                if (Purchase::where('owner_id', $user_id)->where('item_id', $food_id)->exists()) {
+                    $purchaseRecord = Purchase::where('owner_id', $user_id)->where('item_id', $food_id)->first();
+                    $purchaseRecord->qty += $qty;
+                } else {
+                    $purchaseRecord = new Purchase([
+                        'owner_id' =>  $user_id,
+                        'item_id' =>  $food_id,
+                        'qty' =>  $request->input('qty'),
+                        'item_type' =>  'food',
+                    ]);
+                }
 
-            //charge user
-            $user->balance -= $cost;
-            $user->save();
+                $purchaseRecord->save();
 
-            // redirect back to store
-            $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
-            return redirect()->route('foods', ['foods' => $foods, 'category' => "FOODSTUFFS", 'current' => 'foods'])
-                ->with('banner-message', 'Your purchase was successful.');
+                //charge user
+                $user->balance -= $cost;
+                $user->save();
+
+                // redirect back to store
+                $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
+                return redirect()->route('foods', ['foods' => $foods, 'category' => "FOODSTUFFS", 'current' => 'foods'])
+                    ->with('banner-message', 'Your purchase was successful.');
+            } else  {
+
+                return redirect()->back()->with('error', 'Oops, you do not have enough funds to buy that.');
+            }
+
         } else {
             return redirect()->back()->with('error', 'You must be signed in to do that');
         }
