@@ -43,7 +43,7 @@ class CreatureController extends Controller
     public function getAdoptable()
     {
         $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-        return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
+        return view('adopt/all', ['creatures' => $creatures, 'current' => 'all']);
     }
 
     public function postAdoptCreature(Request $request)
@@ -71,7 +71,7 @@ class CreatureController extends Controller
                 }
 
             } else {
-                return redirect()->back()->with('message', 'Uh oh, you do not have enough funds for that.');
+                return redirect()->back()->with('error', 'Uh oh, you do not have enough funds for that.');
             }
 
             $creature->update([
@@ -84,9 +84,7 @@ class CreatureController extends Controller
 
 
             $pets = Creature::where('owner_id', $user_id)->get();
-            return redirect()->route('my-creatures', [
-                'pets' => $pets
-            ])->with('banner-message', 'Congrats on the adoption!');
+            return redirect()->route('my-creatures', ['pets' => $pets])->with('banner-message', 'Congrats on the adoption!');
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
@@ -117,7 +115,7 @@ class CreatureController extends Controller
                 $creature->save();
 
                 $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-                return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'banner-message', 'Success! You listed a creature for adoption.']);
+                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', 'You successfully listed a creature for adoption.');
             } else {
                 return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
             }
@@ -150,7 +148,7 @@ class CreatureController extends Controller
                 $creature->save();
 
                 $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-                return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'banner-message', 'An adoption has been successfully cancelled.']);
+                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', 'An adoption has been successfully cancelled.');
             } else {
                 return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
             }

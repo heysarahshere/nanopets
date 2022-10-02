@@ -3,6 +3,7 @@
     Adopt a Creature
 @endsection
 @section('content')
+    @include('partials.banner-message')
     @include('partials.store-nav')
     <div>
         <div class="container store-body text-center pt-4">
