@@ -114,6 +114,155 @@ class CreatureTableSeeder extends Seeder
         );
 
         // --------------------- eggs
+
+        // dark
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "dark",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // water
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "water",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // lava
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "lava",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // lightning
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "lightning",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // ice
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "ice",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // air
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "air",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // earth
+        Creature::create([
+            'name' => "Dark Egg",
+            'element' => "earth",
+            'description' => "Durable egg found on the surfaces of scorching deserts, guarded by dragon-like creatures.",
+            'species'=>'lizard',
+            'potential'=>rand(10, 50),
+            'max_health'=> 2000,
+            'current_health'=>rand(250, 2000),
+            'max_stamina'=> 1700,
+            'current_stamina'=>rand(250, 1700),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'cost' => rand(2500, 10000),
+            'dev_stage' => "egg",
+        ]);
+
+        // fire
         Creature::create([
             'name' => "Desert Egg",
             'element' => "fire",
@@ -134,6 +283,7 @@ class CreatureTableSeeder extends Seeder
             'dev_stage' => "egg",
         ]);
 
+        // celestial
         Creature::create([
             'name' => "Galaxy Egg",
             'element' => "celestial",
@@ -155,6 +305,7 @@ class CreatureTableSeeder extends Seeder
             'dev_stage' => "egg",
         ]);
 
+        //gem
         Creature::create([
             'name' => "Gem Egg",
             'element' => "gem",
