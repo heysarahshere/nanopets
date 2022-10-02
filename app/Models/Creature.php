@@ -37,11 +37,11 @@ class Creature extends Model
 
     public function owner()
     {
-        return $this->belongsTo('App\User', 'owner_id', 'id');
+        return $this->belongsTo('App\Models\User', 'owner_id', 'id');
     }
 
     public function seller()
     {
-        return $this->belongsTo('App\User', 'seller_id', 'id');
+        return $this->belongsTo('App\Models\User', 'seller_id', 'id');
     }
 }

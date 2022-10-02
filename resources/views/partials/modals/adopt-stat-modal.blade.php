@@ -9,6 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <p style="font-weight: bold; text-align: center"> Seller: {{$creature->seller->username}}</p>
             {{--  modal body--}}
             {{--     bosy one (buying info)        --}}
             <div class="modal-body" id="creature-detail-{{$creature->id}}">
