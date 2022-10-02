@@ -36,6 +36,7 @@ class CreatureTableSeeder extends Seeder
         // 'level',
         // dev_stage -- egg, hatchling, baby, or adult
         // 'owner_id',
+        // 'seller_id',
 
 // tiers:
 //        bronze, silver, gold, platinum, diamond
@@ -129,7 +130,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "baby",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 2
         ]);
 
         // water
@@ -151,7 +153,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "adult",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 2
         ]);
 
         // lava
@@ -173,7 +176,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "baby",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 2
         ]);
 
         // lightning
@@ -195,7 +199,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "adult",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 2
         ]);
 
         // ice
@@ -218,7 +223,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "baby",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 3
         ]);
 
         // air
@@ -240,7 +246,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "baby",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 3
         ]);
 
         // earth
@@ -263,7 +270,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "baby",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 3
         ]);
 
         // fire
@@ -285,7 +293,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "adult",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 3
         ]);
 
         // celestial
@@ -309,7 +318,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(20, 30),
             'cost' => rand(9000, 13000),
             'dev_stage' => "adult",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 3
         ]);
 
         //gem
@@ -332,7 +342,8 @@ class CreatureTableSeeder extends Seeder
             'level'=>rand(1, 30),
             'cost' => rand(2500, 10000),
             'dev_stage' => "baby",
-            'for_sale' => true
+            'for_sale' => true,
+            'seller_id' => 3
         ]);
 
         Creature::create(
@@ -356,7 +367,8 @@ class CreatureTableSeeder extends Seeder
                 'level'=>rand(1, 30),
                 'dev_stage' => "adult",
                 'for_sale' => true,
-                'cost' => 1000
+                'cost' => 1000,
+                'seller_id' => 1
             ]
         );
         Creature::create(
@@ -379,7 +391,8 @@ class CreatureTableSeeder extends Seeder
                 'level'=>rand(1, 30),
                 'dev_stage' => "adult",
                 'for_sale' => true,
-                'cost' => 2000
+                'cost' => 2000,
+                'seller_id' => 1
             ]
         );
 

@@ -58,9 +58,18 @@ class CreatureController extends Controller
 
             $creature = Creature::find($request['creature_id']);
 
+            // take amount from buyer
             if ($user->balance >= $creature->cost) {
                 $user->balance -= $creature->cost;
                 $user->save();
+
+                // give cash to seller (if not sold by bot)
+                if (!is_null($creature->seller_id)) {
+                    $seller = Auth::user()->find($creature->seller_id);
+                    $seller->balance += $creature->cost;
+                    $seller->save();
+                }
+
             } else {
                 return redirect()->back()->with('message', 'Uh oh, you do not have enough funds for that.');
             }
@@ -88,6 +97,7 @@ class CreatureController extends Controller
         if (Auth::check()) {
             $this->validate($request, [
                 'creature_id' => 'required',
+                'cost' => 'required|numeric|min:1',
             ]);
 
             $user = Auth::user();
@@ -95,27 +105,59 @@ class CreatureController extends Controller
 
             $creature = Creature::find($request['creature_id']);
 
-            if ($user->balance >= $creature->cost) {
-                $user->balance -= $creature->cost;
-                $user->save();
+            // make sure creature belongs to potential seller
+            if ($creature->owner_id == $user_id) {
+                $creature->update([
+                    'for_sale' => true,
+                    'cost' => $request['cost'],
+                    'owner_id' => null,
+                    'seller_id' => $user_id
+                ]);
+
+                $creature->save();
+
+                $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+                return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'banner-message', 'Success! You listed a creature for adoption.']);
             } else {
-                return redirect()->back()->with('error', 'Uh oh, you do not have enough funds for that.');
+                return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
             }
 
-            $creature->update([
-                'owner_id' => $user_id,
-                'for_sale' => false,
-                'cost' => null,
-            ]);
-
-            $creature->save();
-
-            $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-            return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'message', 'Congrats on the adoption!']);
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
     }
+    public function postCancelSellCreature(Request $request)
+    {
+        if (Auth::check()) {
+            $this->validate($request, [
+                'creature_id' => 'required'
+            ]);
 
+            $user = Auth::user();
+            $user_id = $user->id;
+
+            $creature = Creature::find($request['creature_id']);
+
+            // make sure creature belongs to seller
+            if ($creature->seller_id == $user_id) {
+                $creature->update([
+                    'for_sale' => false,
+                    'cost' => null,
+                    'owner_id' => $user_id,
+                    'seller_id' => null
+                ]);
+
+                $creature->save();
+
+                $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+                return view('adopt/all', ['creatures' => $creatures, 'current' => 'all', 'banner-message', 'An adoption has been successfully cancelled.']);
+            } else {
+                return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
+            }
+
+        } else {
+            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
+        }
+    }
 
 }

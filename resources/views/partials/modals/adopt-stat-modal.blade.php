@@ -43,11 +43,28 @@
                 <div class="modal-footer">
                     {{-- should first open 'are you sure' and double check that there is enough money in account, then submit form --}}
                     {{-- form only needs to send creature id in hidden input, the rest can be handled in controller --}}
-                    <button onclick="toggleAdoptCard('{{ $creature->id }}')" class="btn btn-primary purchase-btn w-100">
-                        Adopt {{ $creature->name }}</button>
-                    {{--               <form name="adopt" method="POST" action="{{route('adopt-creature')}}">--}}
-                    {{--               {{ csrf_token() }}--}}
-                    {{--               </form>--}}
+
+                    @if(Auth::check())
+                        <?php $user = Auth::user()?>
+                        @if ( $user->id == $creature->seller_id )
+                                <h2 class="text-center mr-5">You listed this creature for adoption.</h2>
+                            <form id="cancelSale" name="cancelAdopt" method="POST"
+                                  action="{{route('cancel-sell-creature')}}" style="width: 90%; margin-right: 10%">
+                                <button type="submit" class="btn btn-danger cancel-actions-btn w-100">Cancel Sale
+                                </button>
+                                <input type="hidden" value="{{$creature->id}}" id="creature_id" name="creature_id">
+                                {{ csrf_field() }}
+                            </form>
+                        @else
+                            <button onclick="toggleAdoptCard('{{ $creature->id }}')"
+                                    class="btn btn-primary purchase-btn w-100">
+                                Adopt {{ $creature->name }}</button>
+                        @endif
+                    @else
+                        <a href="{{route('get-sign-in')}}">
+                            <button class="btn btn-sm rev-ombre-btn">sign in to adopt {{$creature->name}}</button>
+                        </a>
+                    @endif
                 </div>
             </div>
             {{--end one--}}
@@ -64,8 +81,9 @@
                 <div class="modal-footer">
                     @if(Auth::check())
                         <?php $user = Auth::user()?>
-                        @if ( $user->balance >= $creature->cost )
-                            <form name="adopt" method="POST" action="{{route('adopt-creature')}}" style="width: 90%; margin-right: 10%">
+                        @if( $user->balance >= $creature->cost )
+                            <form id="adoptCreature" name="adopt" method="POST" action="{{route('adopt-creature')}}"
+                                  style="width: 90%; margin-right: 10%">
                                 <button type="submit" class="btn btn-primary purchase-btn w-100">Adopt</button>
                                 <input type="hidden" value="{{$creature->id}}" id="creature_id" name="creature_id">
                                 {{ csrf_field() }}

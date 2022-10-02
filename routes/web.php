@@ -66,25 +66,42 @@ Route::get('/{user}', [
     'as' => 'profile'
 ]);
 // ------------------------- End User
-// ------------------------- Creatures
+// --------------------------------------------------------------------------- Creatures
+
+Route::get('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
+    'as' => 'adoptable',
+]);
+
+Route::post('/mycreatures/new', [
+    'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
+    'as' => 'adopt-creature',
+]);
+
+Route::post('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@postCancelSellCreature',
+    'as' => 'cancel-sell-creature',
+]);
 
 Route::post('/mycreatures', [
     'uses' => 'App\Http\Controllers\CreatureController@postSellCreature',
     'as' => 'sell-creature',
 ]);
 
+
+
 // ajax routes
-Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
+//Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
 
-// ------------------------- End Creatures
-// ------------------------- Store
+// --------------------- End Creatures
 
-Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
+// -------------------------------------------------------------------------------------------------------------- Store
 
 Route::get('/store/featured', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFeatured',
     'as' => 'featured'
 ]);
+
 // --------------------------------------------------------------------------------------------- food
 Route::get('/store/foods', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFoods',
@@ -115,13 +132,16 @@ Route::post('/store/update/{id}', [
     'uses' => 'App\Http\Controllers\StoreController@postUpdateFood',
     'as' => 'post-update-food'
 ]);
-// ---------------------------------------- end food
-// --------------------------------------------------------------------------------------------- store
+// --------------------------------------------------------------------------------------------- eggs
 
 Route::get('/store/eggs', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreEggs',
     'as' => 'eggs'
 ]);
+
+//Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
+
+// --------------------------------------------------------------------------------------------- potions
 
 Route::get('/store/potions', [
     'uses' => 'App\Http\Controllers\StoreController@getStorePotions',
@@ -134,15 +154,3 @@ Route::get('/store/housing', [
 ]);
 // ------------------------- End Store
 
-// --------------------------------------------------------------------------------------------- adopt
-Route::get('/adopt/all', [
-    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
-    'as' => 'adoptable',
-]);
-
-Route::post('/adopt/all', [
-    'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
-    'as' => 'adopt-creature',
-]);
-
-// ---------------------------------------- end adopt
