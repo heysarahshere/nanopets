@@ -7,7 +7,6 @@
 @section('content')
     @include('partials.banner-message')
     @include('partials.profile-nav')
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row">
@@ -87,23 +86,43 @@
 <script>
     function submitNameChangeAjax(event, id) {
         event.preventDefault();
-
-        name = $('#nameInput' + id).val();
-        // $("#success-message").text(id);
-
-        $.ajax({
+        let name = document.getElementById("nameInput" + id).value;
+        // name = $('#nameInput' + id).val();
+        // id = $(this)
+        // var id = $(this).attr('id');
+        // $("#success-message").text(id + " " + name);
+        // var formData = $('#ajaxNameChangeForm' + id).serialize();
+        jQuery.ajax({
             type: 'POST',
             url: "{{ route('name-change-ajax') }}",
             data: {
-                "name": name, "id": id, "_token": "{{ csrf_token() }}",
-                success: function (data) {
-                    if ($.isEmptyObject(data.error)) {
-                        // alert(data.success);
-                        $("#success-message").text('Succeed.');
-                        location.reload();
-                    } else {
-                        $("#success-message").text('Oops, something went wrong. Please try again later.');
-                    }
+                "_token": "{{ csrf_token() }}",
+                name: name,
+                id: id
+            },
+            beforeSend: function(xhr, type) {
+                // $('#val-error').hide();
+                $("#success-message").text('');
+            },
+            success: function (response) {
+                if (response) {
+                    // alert(data.success);
+                    $("#success-message").text('Succeed.');
+                    location.reload();
+                } else {
+                    $("#success-message").text('Oops, something went wrong. Please try again later.');
+                }
+            },
+            complete:function(data){
+                // $(".ajax-loader").hide();
+            },
+            error: function (response) {
+                if (response.error) {
+                    // alert(data.success);
+                    $("#success-message").text('Fail.');
+                    location.reload();
+                } else {
+                    $("#success-message").text('Oops, something went wrong. Error bracket.');
                 }
             }
         });

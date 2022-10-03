@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Creature;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -162,23 +163,23 @@ class CreatureController extends Controller
 
     public function postNameChangeAjax(Request $request) {
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => $validator->errors()->all()
-            ]);
-        }
+//        $validator = Validator::make($request->all(), [
+//            'name' => 'required|max:255',
+//            'id' => 'required'
+//        ]);
+//
+//        if ($validator->fails()) {
+//            return response()->json([
+//                'error' => $validator->errors()->all()
+//            ]);
+//        }
 
         $creature = Creature::find($request->input('id'));
         $name = $request->input('name');
         $creature->name = $name;
         $creature->save();
 
-        return response()->json(['success' => 'Product created successfully.']);
+        return response()->json(['success' => 'Message sent!']);
 
 //        return response()->json(['success' => 'Post created successfully.', 'name' => $name], 200);
     }

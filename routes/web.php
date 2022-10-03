@@ -89,7 +89,7 @@ Route::post('/mycreatures', [
 ]);
 
 Route::post('/name-change-ajax', [
-    'uses' => 'CreatureController@postNameChangeAjax',
+    'uses' => 'App\Http\Controllers\CreatureController@postNameChangeAjax',
     'as' => 'name-change-ajax'
 ]);
 

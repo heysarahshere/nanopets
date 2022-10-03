@@ -17,8 +17,10 @@
                             <p class="success" id="success-message" style="font-weight: bold; color:#00d496;"></p>
                             <p class="val-error" id="val-error" style="font-weight: bold; color:#cb0000;"></p>
                             <div class="input-group-append" id="name-change-div">
+                                <input type="hidden" value="{{$pet->id}}" id="creature_id" name="creature_id">
                                 <input type="text" class="form-control" placeholder="{{$pet->name}}"
                                        id="nameInput{{$pet->id}}" name="nameInput{{$pet->id}}">
+                                {{ csrf_field() }}
                                 <button type="button" class="btn btn-outline-secondary name-change-button" id="name-change-confirm_{{$pet->id}}" onclick="submitNameChangeAjax(event, '{{$pet->id}}')">
                                     <i class="fa-solid fa-check"></i>
                                 </button>
