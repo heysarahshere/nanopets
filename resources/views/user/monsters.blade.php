@@ -7,22 +7,22 @@
 @section('content')
     @include('partials.banner-message')
     @include('partials.profile-nav')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row">
             @foreach($pets as $pet)
                 <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
-                @include('partials.monster-card-front')
-                @include('partials.monster-card-back')
-                @include('partials.monster-card-feed')
-                @include('partials.monster-card-breed')
-                @include('partials.monster-card-sell')
+                    @include('partials.monster-card-front')
+                    @include('partials.monster-card-back')
+                    @include('partials.monster-card-feed')
+                    @include('partials.monster-card-breed')
+                    @include('partials.monster-card-sell')
                 </div>
             @endforeach
         </div>
         <button class="btn btn-danger w-100 mt-4 large-breed-btn">BREED ></button>
     </div>
-
 
 @endsection
 
@@ -73,7 +73,7 @@
 
     function changeName(id) {
         let label = document.getElementById("nameLabel" + id);
-        let input = document.getElementById("nameInput" + id);
+        let input = document.getElementById("nameInputDiv" + id);
         if (label.classList.contains('hiddenFace')) {
             input.classList.add('hiddenFace');
             label.classList.remove('hiddenFace');
@@ -84,3 +84,74 @@
     }
 
 </script>
+<script>
+    function submitNameChangeAjax(event, id) {
+        event.preventDefault();
+
+        name = $('#nameInput' + id).val();
+        // $("#success-message").text(id);
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('name-change-ajax') }}",
+            data: {
+                "name": name, "id": id, "_token": "{{ csrf_token() }}",
+                success: function (data) {
+                    if ($.isEmptyObject(data.error)) {
+                        // alert(data.success);
+                        $("#success-message").text('Succeed.');
+                        location.reload();
+                    } else {
+                        $("#success-message").text('Oops, something went wrong. Please try again later.');
+                    }
+                }
+            }
+        });
+
+        // if (name === '') {
+        //     $('#val-error').text('Please enter a valid name.');
+        // } else {
+        {{--    $.ajax({--}}
+        {{--        url: "/name-change-ajax",--}}
+        {{--        type: "post",--}}
+        {{--        data: {--}}
+        {{--            "_token": "{{ csrf_token() }}",--}}
+        {{--            name: name,--}}
+        {{--            id: id--}}
+        {{--        },--}}
+        {{--        beforeSend: function (xhr, type) {--}}
+        {{--            $('#val-error').hide();--}}
+        {{--        },--}}
+        {{--        success: function (response) {--}}
+        {{--            if (response) {--}}
+        {{--                $('#name-change-form' + id)[0].reset();--}}
+        {{--                $("#success-message").text(response.success);--}}
+        {{--                // $("#success-message").text('success');--}}
+        {{--                $("#nameLabel" + id).text(response.name);--}}
+        {{--            }--}}
+        {{--        },--}}
+        {{--        complete: function (data) {--}}
+        {{--            $("#nameInputDiv" + id).addClass('hiddenFace');--}}
+        {{--            $("#nameLabel" + id).removeClass('hiddenFace');--}}
+        {{--            $("#nameLabel" + id).text(data[0]);--}}
+        {{--        },--}}
+        {{--        error: function (data, textStatus, errorThrown) {--}}
+        {{--            console.log(data);--}}
+        {{--            $('#val-error').hide();--}}
+        {{--            $("#success-message").text('Oops, something went wrong. Please try again later.');--}}
+        {{--            // $(".ajax-loader").hide();--}}
+        {{--        }--}}
+        {{--    });--}}
+        // }
+    }
+
+    function printErrorMsg(msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display', 'block');
+        $.each(msg, function (key, value) {
+            $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+        });
+    }
+
+</script>
+

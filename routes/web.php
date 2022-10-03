@@ -88,6 +88,11 @@ Route::post('/mycreatures', [
     'as' => 'sell-creature',
 ]);
 
+Route::post('/name-change-ajax', [
+    'uses' => 'CreatureController@postNameChangeAjax',
+    'as' => 'name-change-ajax'
+]);
+
 
 
 // ajax routes

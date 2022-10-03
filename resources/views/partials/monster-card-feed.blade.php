@@ -26,10 +26,10 @@
                             </div>
                         @endforeach
                     @else
-                        <img class="card-img-top m-auto my-0"
-                             style="width: auto; max-height: 300px; max-width: 280px"
+                        <img class="card-img-top my-0"
+                             style="width: auto; max-height: 300px; margin-left: 65%"
                              src="{{ Storage::disk('s3')->url('images/foods/plate.png') }}">
-                        <div style="position: absolute; bottom: 40%; left: 40%">
+                        <div style="position: absolute; bottom: 40%; left: 41%">
                             <button class="w-100 btn purchase-btn"><a href="{{route('foods')}}"> Buy Food </a></button>
                         </div>
 

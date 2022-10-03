@@ -4,16 +4,33 @@
             <div class="">
                 <div class="row justify-content-center align-items-center mt-auto pt-2">
                     <i class="fa-solid fa-khanda pr-2 pb-2" style="font-size: 30px; color: rgba(0,0,0,0.51)"></i>
-                        <h2 class="text-center hover-name" style="color: black" onclick="changeName('{{$pet->id}}')" id="nameLabel{{$pet->id}}">
-                            {{Str::limit($pet->name, 12)}}
-                        </h2>
-                    <input  id="nameInput{{$pet->id}}" name="nameInput{{$pet->id}}" type="text" class="mb-2 hiddenFace" placeholder="{{$pet->name}}">
+                    <h2 class="text-center hover-name" style="color: black" onclick="changeName('{{$pet->id}}')"
+                        id="nameLabel{{$pet->id}}">
+                        {{Str::limit($pet->name, 12)}}
+                    </h2>
+                    <div class="input-group mb-3 mx-3 hiddenFace" id="nameInputDiv{{$pet->id}}"
+                         name="nameInputDiv{{$pet->id}}">
+                        <form id="ajaxNameChangeForm{{$pet->id}}" class="name-change-form">
+                            <div class="alert alert-danger print-error-msg" style="display:none">
+                                <ul></ul>
+                            </div>
+                            <p class="success" id="success-message" style="font-weight: bold; color:#00d496;"></p>
+                            <p class="val-error" id="val-error" style="font-weight: bold; color:#cb0000;"></p>
+                            <div class="input-group-append" id="name-change-div">
+                                <input type="text" class="form-control" placeholder="{{$pet->name}}"
+                                       id="nameInput{{$pet->id}}" name="nameInput{{$pet->id}}">
+                                <button type="button" class="btn btn-outline-secondary name-change-button" id="name-change-confirm_{{$pet->id}}" onclick="submitNameChangeAjax(event, '{{$pet->id}}')">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="store-img-container mb-3">
                 <div class="monster-parent col-12">
                     <img class="monster-child"
-                        src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
+                         src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
                          alt="{{ $pet->name }} Image">
                 </div>
             </div>
