@@ -24,17 +24,32 @@
                                 <img class="card-img-top" src="{{ Storage::disk('s3')->url($food->image) }}"
                                      alt="{{ $food->name }} Image">
                             </div>
-                            <div class="card-body pb-2 {{ $food->mainStat }}">
-                                <h2 class="card-title" style="font-size: larger">{{ $food->name }}</h2>
-                                <p class="card-text">{{ $food->description }}</p>
-                            </div>
+                            <form id="purchaseFood" name="purchaseFood" method="POST"
+                                  action="{{route('purchase-food')}}">
+                                <div class="{{ $food->mainStat }}">
+
+                                    <div class="card-body pb-0">
+                                        <h2 class="card-title" style="font-size: larger">{{ $food->name }}</h2>
+                                        <p class="card-text">{{ $food->description }}</p>
+                                    </div>
+                                    <div class="row ml-2">
+                                        <i class="fa-solid fa-circle-minus left-span" onclick="incInput('-', {{$food->id}})"></i>
+                                        <h1 class="text-center mt-auto mb-3"  id="qty{{$food->id}}">1</h1>
+                                        <i class="fa-solid fa-circle-plus right-span" onclick="incInput('+', {{$food->id}})"></i>
+                                    </div>
+                                    <input type="hidden" value="{{$food->id}}" id="food_id" name="food_id">
+                                </div>
+                                <button type="submit" class="btn purchase-btn" style="width: 90%">Purchase</button>
+                                {{ csrf_field() }}
+                            </form>
                             @if(Auth::check())
-                            <?PHP $user = Auth::user(); ?>
+                                <?PHP $user = Auth::user(); ?>
                                 @if($user->isAdmin())
                                     <div class="row m-auto pb-2">
                                         <a href="{{route('update-food', ['id' => $food->id])}}"
                                            class="btn ombre-btn mb-1">Edit</a>
-                                        <form id="deleteFood" action="{{ route('delete-food', ['id' => $food->id]) }}" method="POST">
+                                        <form id="deleteFood" action="{{ route('delete-food', ['id' => $food->id]) }}"
+                                              method="POST">
                                             <td class="right">
                                                 <input type="hidden" value="{{$food->id}}">
                                                 <button type="submit"
@@ -46,17 +61,9 @@
                                         </form>
                                     </div>
                                 @endif
-                                <form id="purchaseFood" name="purchaseFood" method="POST" action="{{route('purchase-food')}}"
-                                      style="width: 90%; margin-right: 10%">
-                                    <input class="col-3 text-center m-auto" type="number" step="1" id="qty" name="qty" value="1">
-                                    <input type="hidden" value="{{$food->id}}" id="food_id" name="food_id">
-                                    <button type="submit" class="btn purchase-btn w-100">Purchase</button>
-                                    {{ csrf_field() }}
-                                </form>
                             @endif
                         </div>
                     </div>
-
 
                 @endforeach
             </div>
@@ -69,3 +76,21 @@
 
     </div>
 @endsection
+
+<script>
+    function incInput(operator, id) {
+        let qtyLabel = document.getElementById("qty" + id);
+        let qty = qtyLabel.innerHTML;
+        if (operator === '-') {
+            if (qty > 1) {
+                qty--;
+                qtyLabel.innerHTML = qty;
+            }
+        } else if (operator === '+') {
+            if (qty < 100) {
+                qty++;
+                qtyLabel.innerHTML = qty;
+            }
+        }
+    }
+</script>

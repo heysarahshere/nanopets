@@ -82,16 +82,9 @@
         }
     }
 
-</script>
-<script>
     function submitNameChangeAjax(event, id) {
         event.preventDefault();
         let name = document.getElementById("nameInput" + id).value;
-        // name = $('#nameInput' + id).val();
-        // id = $(this)
-        // var id = $(this).attr('id');
-        // $("#success-message").text(id + " " + name);
-        // var formData = $('#ajaxNameChangeForm' + id).serialize();
         jQuery.ajax({
             type: 'POST',
             url: "{{ route('name-change-ajax') }}",
@@ -107,10 +100,10 @@
             success: function (response) {
                 if (response) {
                     // alert(data.success);
-                    $("#success-message").text('Succeed.');
+                    $("#success-message").text('Name changed!');
                     location.reload();
                 } else {
-                    $("#success-message").text('Oops, something went wrong. Please try again later.');
+                    $("#success-message").text('Oops, something went wrong.');
                 }
             },
             complete:function(data){
@@ -125,50 +118,6 @@
                     $("#success-message").text('Oops, something went wrong. Error bracket.');
                 }
             }
-        });
-
-        // if (name === '') {
-        //     $('#val-error').text('Please enter a valid name.');
-        // } else {
-        {{--    $.ajax({--}}
-        {{--        url: "/name-change-ajax",--}}
-        {{--        type: "post",--}}
-        {{--        data: {--}}
-        {{--            "_token": "{{ csrf_token() }}",--}}
-        {{--            name: name,--}}
-        {{--            id: id--}}
-        {{--        },--}}
-        {{--        beforeSend: function (xhr, type) {--}}
-        {{--            $('#val-error').hide();--}}
-        {{--        },--}}
-        {{--        success: function (response) {--}}
-        {{--            if (response) {--}}
-        {{--                $('#name-change-form' + id)[0].reset();--}}
-        {{--                $("#success-message").text(response.success);--}}
-        {{--                // $("#success-message").text('success');--}}
-        {{--                $("#nameLabel" + id).text(response.name);--}}
-        {{--            }--}}
-        {{--        },--}}
-        {{--        complete: function (data) {--}}
-        {{--            $("#nameInputDiv" + id).addClass('hiddenFace');--}}
-        {{--            $("#nameLabel" + id).removeClass('hiddenFace');--}}
-        {{--            $("#nameLabel" + id).text(data[0]);--}}
-        {{--        },--}}
-        {{--        error: function (data, textStatus, errorThrown) {--}}
-        {{--            console.log(data);--}}
-        {{--            $('#val-error').hide();--}}
-        {{--            $("#success-message").text('Oops, something went wrong. Please try again later.');--}}
-        {{--            // $(".ajax-loader").hide();--}}
-        {{--        }--}}
-        {{--    });--}}
-        // }
-    }
-
-    function printErrorMsg(msg) {
-        $(".print-error-msg").find("ul").html('');
-        $(".print-error-msg").css('display', 'block');
-        $.each(msg, function (key, value) {
-            $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
         });
     }
 
