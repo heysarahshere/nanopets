@@ -34,9 +34,10 @@
                                     </div>
                                     <div class="row ml-2">
                                         <i class="fa-solid fa-circle-minus left-span" onclick="incInput('-', {{$food->id}})"></i>
-                                        <h1 class="text-center mt-auto mb-3"  id="qty{{$food->id}}">1</h1>
+                                        <h1 class="text-center mt-auto mb-3"  id="qtyLabel{{$food->id}}">1</h1>
                                         <i class="fa-solid fa-circle-plus right-span" onclick="incInput('+', {{$food->id}})"></i>
                                     </div>
+                                    <input type="hidden" value="1" id="qty{{$food->id}}" name="qty">
                                     <input type="hidden" value="{{$food->id}}" id="food_id" name="food_id">
                                 </div>
                                 <button type="submit" class="btn purchase-btn" style="width: 90%">Purchase</button>
@@ -79,18 +80,19 @@
 
 <script>
     function incInput(operator, id) {
-        let qtyLabel = document.getElementById("qty" + id);
+        let qtyLabel = document.getElementById("qtyLabel" + id);
+        let qtyInput = document.getElementById("qty" + id);
         let qty = qtyLabel.innerHTML;
         if (operator === '-') {
             if (qty > 1) {
                 qty--;
-                qtyLabel.innerHTML = qty;
             }
         } else if (operator === '+') {
             if (qty < 100) {
                 qty++;
-                qtyLabel.innerHTML = qty;
             }
         }
+        qtyLabel.innerHTML = qty;
+        qtyInput.value = qty;
     }
 </script>

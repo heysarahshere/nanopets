@@ -15,7 +15,7 @@
 
 .air {
     background-image: linear-gradient(#70c5df, rgb(124, 50, 73));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -34,7 +34,7 @@
 
 .earth {
     background-image: linear-gradient(#616161, rgb(133, 75, 27));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -53,7 +53,7 @@
 
 .ice {
     background-image: linear-gradient(#01e3f3, rgb(2, 54, 114));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -72,7 +72,7 @@
 
 .lava {
     background-image: linear-gradient(#363636, rgb(230, 73, 0));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -91,7 +91,7 @@
 
 .dark {
     background-image: linear-gradient(#363636, rgb(170, 170, 170));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -110,7 +110,7 @@
 
 .gem {
     background-image: linear-gradient(#1be3fd, rgb(18, 212, 0));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -130,7 +130,7 @@
 
 .fire {
     background-image: linear-gradient(#fcaa2f, rgb(208, 64, 9));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -149,7 +149,7 @@
 
 .celestial {
     background-image: linear-gradient(#b20c66, rgb(5, 88, 152));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -168,7 +168,7 @@
 /* change this cause there's no star */
 .star {
     background-image: linear-gradient(#d62ffc, rgb(8, 78, 134));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -186,7 +186,7 @@
 /* ________________________ */
 .water {
     background-image: linear-gradient(rgb(91, 198, 255), #085fc4);
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -203,7 +203,7 @@
 /* ________________________ */
 .lightning {
     background-image: linear-gradient(rgb(36, 152, 215), #c2aa00);
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 

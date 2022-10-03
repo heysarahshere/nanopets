@@ -85,40 +85,43 @@
     function submitNameChangeAjax(event, id) {
         event.preventDefault();
         let name = document.getElementById("nameInput" + id).value;
-        jQuery.ajax({
-            type: 'POST',
-            url: "{{ route('name-change-ajax') }}",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                name: name,
-                id: id
-            },
-            beforeSend: function(xhr, type) {
-                // $('#val-error').hide();
-                $("#success-message").text('');
-            },
-            success: function (response) {
-                if (response) {
-                    // alert(data.success);
-                    $("#success-message").text('Name changed!');
-                    location.reload();
-                } else {
-                    $("#success-message").text('Oops, something went wrong.');
+        if (name === '') {
+            $("#val-error" + id).text('Please enter a name!');
+        } else {
+            jQuery.ajax({
+                type: 'POST',
+                url: "{{ route('name-change-ajax') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    name: name,
+                    id: id
+                },
+                beforeSend: function (xhr, type) {
+                    $('#val-error' + id).hide();
+                    $("#success-message" + id).hide();
+                },
+                success: function (response) {
+                    if (response) {
+                        // alert(data.success);
+                        $("#success-message" + id).text('Name changed!');
+                        location.reload();
+                    } else {
+                        $("#val-error" + id).text('Oops, something went wrong.');
+                    }
+                },
+                complete: function (data) {
+                    // $(".ajax-loader").hide();
+                },
+                error: function (response) {
+                    if (response.error) {
+                        $("#val-error" + id).text('Fail.');
+                        location.reload();
+                    } else {
+                        $("#val-error" + id).text('Oops, something went wrong. Error bracket.');
+                    }
                 }
-            },
-            complete:function(data){
-                // $(".ajax-loader").hide();
-            },
-            error: function (response) {
-                if (response.error) {
-                    // alert(data.success);
-                    $("#success-message").text('Fail.');
-                    location.reload();
-                } else {
-                    $("#success-message").text('Oops, something went wrong. Error bracket.');
-                }
-            }
-        });
+            });
+        }
     }
 
 </script>

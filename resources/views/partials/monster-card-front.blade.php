@@ -3,25 +3,25 @@
         <div class="col-6 {{ $pet->element }}-ombre-btn my-3 mr-0">
             <div class="">
                 <div class="row justify-content-center align-items-center mt-auto pt-2">
-                    <i class="fa-solid fa-khanda pr-2 pb-2" style="font-size: 30px; color: rgba(0,0,0,0.51)"></i>
+                    <i class="fa-solid fa-khanda pr-2 pb-2" style="font-size: 30px; color: rgba(0,0,0,0.51)" onclick="changeName('{{$pet->id}}')"></i>
                     <h2 class="text-center hover-name" style="color: black" onclick="changeName('{{$pet->id}}')"
                         id="nameLabel{{$pet->id}}">
                         {{Str::limit($pet->name, 12)}}
                     </h2>
                     <div class="input-group mb-3 mx-3 hiddenFace" id="nameInputDiv{{$pet->id}}"
                          name="nameInputDiv{{$pet->id}}">
-                        <form id="ajaxNameChangeForm{{$pet->id}}" class="name-change-form">
+                        <form id="ajaxNameChangeForm{{$pet->id}}" class="name-change-form m-auto">
                             <div class="alert alert-danger print-error-msg" style="display:none">
                                 <ul></ul>
                             </div>
-                            <p class="success" id="success-message" style="font-weight: bold; color:#00d496;"></p>
-                            <p class="val-error" id="val-error" style="font-weight: bold; color:#cb0000;"></p>
+                            <p class="success" id="success-message{{$pet->id}}" style="font-weight: bold; color:#00add4;"></p>
+                            <p class="val-error" id="val-error{{$pet->id}}" style="font-weight: bold; color:#ff1818;"></p>
                             <div class="input-group-append" id="name-change-div">
                                 <input type="hidden" value="{{$pet->id}}" id="creature_id" name="creature_id">
-                                <input type="text" class="form-control" placeholder="{{$pet->name}}"
+                                <input type="text" class="form-control m-auto" placeholder="{{$pet->name}}"
                                        id="nameInput{{$pet->id}}" name="nameInput{{$pet->id}}">
                                 {{ csrf_field() }}
-                                <button type="button" class="btn btn-outline-secondary name-change-button" id="name-change-confirm_{{$pet->id}}" onclick="submitNameChangeAjax(event, '{{$pet->id}}')">
+                                <button type="button" class="btn btn-info name-change-button" id="name-change-confirm_{{$pet->id}}" onclick="submitNameChangeAjax(event, '{{$pet->id}}')">
                                     <i class="fa-solid fa-check"></i>
                                 </button>
                             </div>
