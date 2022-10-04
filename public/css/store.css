@@ -254,8 +254,7 @@
     color: #cec296;
     display: block;
     float:left;
-    width: 100px;
-    margin-top: 15px;
+    margin-top: 2%;
     cursor: pointer;
 }
 
@@ -264,8 +263,7 @@
     color: #cec296;
     display: block;
     float:right;
-    width: 100px;
-    margin-top: 15px;
+    margin-top: 2%;
     cursor: pointer;
 }
 

@@ -103,8 +103,10 @@
                 success: function (response) {
                     if (response) {
                         // alert(data.success);
+                        changeName(id);
                         $("#success-message" + id).text('Name changed!');
-                        location.reload();
+                        $("#nameLabel" + id).text(name);
+                        // location.reload();
                     } else {
                         $("#val-error" + id).text('Oops, something went wrong.');
                     }
@@ -115,7 +117,7 @@
                 error: function (response) {
                     if (response.error) {
                         $("#val-error" + id).text('Fail.');
-                        location.reload();
+                        // location.reload();
                     } else {
                         $("#val-error" + id).text('Oops, something went wrong. Error bracket.');
                     }

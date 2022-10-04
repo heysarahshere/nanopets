@@ -14,15 +14,15 @@
                     @if (count($purchases) > 0)
                         @foreach ($purchases as $purchase)
                             <div class="card card-body p-0">
-                                <div class="w-100 m-auto">
-                                    <img class="card-img-top mx-auto my-0"
-                                         style="width: auto; max-height: 300px; max-width: 280px"
+                                <div class="col-12">
+                                    <img class="m-auto pt-5"
+                                         style="width: auto; height: 200px; max-width: 280px;display:block"
                                          src="{{ Storage::disk('s3')->url($purchase->item->image) }}">
-                                    <div style="position: absolute; top: 10%; left: 50%">
-                                        <p style="font-family: Funhouse;">{{$purchase->qty}}</p>
+                                    <div class="circle" style="position: absolute; top: 5%; left: 10%; background-color: #840e8d">
+                                        <p class="ml-3" style="font-family: Funhouse; color: white;">{{$purchase->qty}}</p>
                                     </div>
+                                    <p style="color: black; text-align: center; vertical-align: bottom">{{$purchase->item->name}}</p>
                                 </div>
-                                <h2 style="color: black; text-align: center">{{$purchase->item->name}}</h2>
                             </div>
                         @endforeach
                     @else

@@ -32,9 +32,9 @@
                                         <h2 class="card-title" style="font-size: larger">{{ $food->name }}</h2>
                                         <p class="card-text">{{ $food->description }}</p>
                                     </div>
-                                    <div class="row ml-2">
+                                    <div class="row justify-content-center">
                                         <i class="fa-solid fa-circle-minus left-span" onclick="incInput('-', {{$food->id}})"></i>
-                                        <h1 class="text-center mt-auto mb-3"  id="qtyLabel{{$food->id}}">1</h1>
+                                        <div style="width: 65px"><h2 class="text-center mt-auto mb-3" style="font-size: xx-large"  id="qtyLabel{{$food->id}}">1</h2></div>
                                         <i class="fa-solid fa-circle-plus right-span" onclick="incInput('+', {{$food->id}})"></i>
                                     </div>
                                     <input type="hidden" value="1" id="qty{{$food->id}}" name="qty">
@@ -88,7 +88,7 @@
                 qty--;
             }
         } else if (operator === '+') {
-            if (qty < 100) {
+            if (qty < 99) {
                 qty++;
             }
         }
