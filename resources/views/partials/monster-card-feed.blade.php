@@ -13,7 +13,7 @@
                     <?php $user = Auth::user(); ?>
                     @if (count($purchases) > 0)
                         @foreach ($purchases as $purchase)
-                            <div class="card card-body p-0 monster-card-feed-option"
+                            <div class="card card-body p-0 monster-card-feed-option food{{$purchase->item->id}}"
                                  id="food_{{$pet->id}}_{{$purchase->item->id}}"
                                  onclick="foodQtyWindowSwitch({{$pet->id}}, {{$purchase->item->id}})">
                                 <div class="col-12">
@@ -22,7 +22,7 @@
                                          src="{{ Storage::disk('s3')->url($purchase->item->image) }}">
                                     <div class="circle"
                                          style="position: absolute; top: 5%; left: 10%; background-color: #840e8d">
-                                        <p class="ml-3"
+                                        <p class="invQty{{$purchase->item->id}} ml-3"
                                            style="font-family: Funhouse; color: white;">{{$purchase->qty}}</p>
                                     </div>
                                     <p style="color: black; text-align: center;">{{$purchase->item->name}}</p>
@@ -46,17 +46,17 @@
                                          src="{{ Storage::disk('s3')->url($purchase->item->image) }}">
                                     <div class="circle"
                                          style="position: absolute; top: 5%; left: 10%; background-color: #840e8d">
-                                        <p class="ml-3"
-                                           style="font-family: Funhouse; color: white;">{{$purchase->qty}}</p>
+                                        <p class="invQty{{$purchase->item->id}} ml-3" style="font-family: Funhouse; color: white;">
+                                            {{$purchase->qty}}</p>
                                     </div>
                                     <p style="color: black; text-align: center; font-size: large">How many {{$purchase->item->name}}s?</p>
 
                                     <form id="feedCreatureForm">
                                     <div>
                                         <div class="row justify-content-center">
-                                            <i class="fa-solid fa-circle-minus left-span-food" onclick="incInput('-', {{$pet->id}}, {{$purchase->item->id}})"></i>
+                                            <i class="fa-solid fa-circle-minus left-span-food" onclick="incInput('-', {{$pet->id}}, {{$purchase->item->id}},{{$purchase->qty}})"></i>
                                             <div style="width: 50px"><h2 class="text-center mt-auto mb-3" style="font-size: large; color: black"  id="qtyLabel{{$pet->id}}{{$purchase->item->id}}">1</h2></div>
-                                            <i class="fa-solid fa-circle-plus right-span-food" onclick="incInput('+', {{$pet->id}}, {{$purchase->item->id}})"></i>
+                                            <i class="fa-solid fa-circle-plus right-span-food" onclick="incInput('+', {{$pet->id}}, {{$purchase->item->id}},{{$purchase->qty}})"></i>
                                         </div>
                                         <p class="success" id="success-message{{$pet->id}}{{$purchase->item->id}}" style="font-weight: bold; color:#00add4;"></p>
                                         <p class="val-error" id="val-error{{$pet->id}}{{$purchase->item->id}}" style="font-weight: bold; color:#ff1818;"></p>
@@ -106,16 +106,17 @@
         }
     }
 
-    function incInput(operator, pet_id, item_id) {
+    function incInput(operator, pet_id, item_id, qtyOwned) {
         let qtyLabel = document.getElementById("qtyLabel" + pet_id + item_id);
         let qtyInput = document.getElementById("qty" + pet_id + item_id);
         let qty = qtyLabel.innerHTML;
+        // let qty = document.getElementsByClassName("invQty" + item_id)[0].value();
         if (operator === '-') {
             if (qty > 1) {
                 qty--;
             }
         } else if (operator === '+') {
-            if (qty < 99) {
+            if (qty < qtyOwned) {
                 qty++;
             }
         }
@@ -146,6 +147,19 @@
                     if (response) {
                         // alert(data.success);
                         $("#success-message" + pet_id + item_id).text('Fed!');
+
+                        // if still some of that item left, show enw amount
+                        // if (respose.newQty === '0') {
+                        $('.invQty' + item_id).each(function() {
+                            $(this).text(response.newQty);
+                        });
+                            // otherwise, hide the item
+                        // } else {
+                        //     $('.food' + item_id).each(function(i, obj) {
+                        //         $('.food' + item_id).addClass('hiddenFace');
+                        //     });
+                        // }
+
                         foodQtyWindowSwitch(pet_id, item_id);
                         toggleMonsterCardFaceFeed(pet_id);
                         switchMonsterCardFace(pet_id);

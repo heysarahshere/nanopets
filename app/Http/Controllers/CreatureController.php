@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Creature;
 use App\Models\Food;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -207,8 +208,22 @@ class CreatureController extends Controller
         $creature = Creature::find($request->input('pet_id'));
         $item = Food::find($request->input('item_id'));
 
-        // set effect amounts
+        // get user
+        $user = Auth::user();
+        // take away items from inventory
         $qty = $request->input('qty');
+        $purchase = Purchase::where('owner_id', $user->id)->where('item_id', $request->input('item_id'))->first();
+
+        $newQty = 0;
+        if ($purchase->qty <= $qty) {
+            $purchase->delete();
+        } else {
+            $purchase->qty -= $qty;
+            $purchase->save();
+            $newQty = $purchase->qty;
+        }
+
+        // set effect amounts
         $mainStatEffect = $item->mainStat;
         $mainStatEffectAmount = $item->effectAmount * $qty;
         // hunger needs to be handled differently because it is a percentage with a max of 100%
@@ -245,14 +260,15 @@ class CreatureController extends Controller
             'health' => $health,
             'mainStat' => $mainStatEffect,
             'secondStat' => $secondaryStatEffect,
+            'newQty' => $newQty
         ]);
 
     }
 
     /**
-     * @param $secondaryStatEffect
+     * @param $statEffect
      * @param $creature
-     * @param float|int $secondaryStatEffectAmount
+     * @param float|int $statEffectAmount
      * @return void
      */
     public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
