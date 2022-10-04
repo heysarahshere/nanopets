@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CreatureController extends Controller
 {
@@ -162,7 +163,8 @@ class CreatureController extends Controller
         }
     }
 
-    public function postNameChangeAjax(Request $request) {
+    public function postNameChangeAjax(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'id' => 'required'
@@ -182,34 +184,93 @@ class CreatureController extends Controller
         return response()->json(['success' => 'Name changed!']);
     }
 
-    public function postFeedAjax(Request $request) {
-//        $validator = Validator::make($request->all(), [
-//            'pet_id' => 'required',
-//            'item_id' => 'required',
-//            'qty' => 'required|min:1'
-//        ]);
-//
-//        if ($validator->fails()) {
-//            return response()->json([
-//                'error' => $validator->errors()->all()
-//            ]);
-//        }
+    public function postFeedAjax(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pet_id' => 'required',
+            'item_id' => 'required',
+            'qty' => 'required|min:1'
+        ]);
 
-//        $item = Food::find($request->input('item_id'));
-//        $hunger_inc = $item->effectAmount * $request->input('qty');
-//        $old_hunger = $creature->hunger;
-//        if ($old_hunger + $hunger_inc >= $creature->hunger) {
-//            $creature->hunger = 100;
-//        } else {
-//            $creature->hunger += $hunger_inc;
-//        }
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all()
+            ]);
+        }
 
+        //mainStat
+        //effectAmount
+        //bonusStat
+        //bonusEffectAmount
+
+        // find fed creature and consumed item
         $creature = Creature::find($request->input('pet_id'));
-        $creature->hunger = 100;
+        $item = Food::find($request->input('item_id'));
+
+        // set effect amounts
+        $qty = $request->input('qty');
+        $mainStatEffect = $item->mainStat;
+        $mainStatEffectAmount = $item->effectAmount * $qty;
+        // hunger needs to be handled differently because it is a percentage with a max of 100%
+        if ($mainStatEffect == 'hunger') {
+            // make sure we don't go over 100%
+            if ($creature->hunger + $mainStatEffectAmount >= 100) {
+                $creature->hunger = 100;
+            } else {
+                $creature->hunger += $mainStatEffectAmount;
+            }
+            // this stat is one with a max_stat variation, we can set it back to its own max stat to avoid overflow
+        } else $this->setStatEffect($mainStatEffect, $creature, $mainStatEffectAmount);
+
+//         set bonus effect amounts
+        if (!is_null($item->bonusStat)) {
+            $secondaryStatEffect = $item->bonusStat;
+            $secondaryStatEffectAmount = $item->bonusEffectAmount * $qty;
+            $this->setStatEffect($secondaryStatEffect, $creature, $secondaryStatEffectAmount);
+        } else {
+            $secondaryStatEffect = 'none';
+        }
+
+        $hunger = $creature->hunger;
+        $stamina = $creature->current_stamina;
+        $health = $creature->current_health;
+
+
         $creature->save();
 
-        return response()->json(['success' => 'Creature fed!', 'hunger' => '99']);
+        return response()->json([
+            'success' => 'Creature fed!',
+            'hunger' => $hunger,
+            'stamina' => $stamina,
+            'health' => $health,
+            'mainStat' => $mainStatEffect,
+            'secondStat' => $secondaryStatEffect,
+        ]);
 
-//        return response()->json(['success' => 'Post created successfully.', 'name' => $name], 200);
+    }
+
+    /**
+     * @param $secondaryStatEffect
+     * @param $creature
+     * @param float|int $secondaryStatEffectAmount
+     * @return void
+     */
+    public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
+    {
+        if (Str::contains($creature->{$statEffect}, 'current_')) {
+            // take second part of stat name,
+            // for example: if stat effect is current_health
+            // take 'health' and prefix with 'max_'
+            $stat = explode("_", $creature->{$statEffect});
+            // if current health plus health from food is greater than max, set to max instead
+            if ($creature->{$statEffect} + $statEffectAmount >= $creature->{"max_" . $stat[1]}) {
+                $creature->{$statEffect} = $creature->{"max_" . $stat[1]};
+            } else {
+                $creature->{$statEffect} += $statEffectAmount;
+            }
+            // otherwise, assume this is a stat like magic where there is no ceiling
+        } else {
+            $creature->{$statEffect} += $statEffectAmount;
+        }
     }
 }

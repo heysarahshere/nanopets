@@ -66,7 +66,7 @@
                                     <div class="row justify-content-center food-effect-amount">
                                         {{ csrf_field() }}
                                         <button class="btn btn-sm purchase-btn" type="button" onclick="foodConfirmAjax(event, {{$pet->id}}, {{$purchase->item->id}})">FEED</button>
-                                        <button class="btn btn-sm cancel-actions-btn" onclick="foodQtyWindowSwitch({{$pet->id}}, {{$purchase->item->id}})">BACK</button>
+                                        <button class="btn btn-sm cancel-actions-btn" type="button" onclick="foodQtyWindowSwitch({{$pet->id}}, {{$purchase->item->id}})">BACK</button>
                                     </div>
                                     </form>
                                 </div>
@@ -150,9 +150,20 @@
                         toggleMonsterCardFaceFeed(pet_id);
                         switchMonsterCardFace(pet_id);
 
+                        // adjust hunger
+                        var hungerStartWidth = $("#hunger-meter-span-" + pet_id).css("width");
                         $("#hunger-meter-" + pet_id).text(response.hunger + '/100').fadeIn();
-                        $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217');
-                        $("#hunger-meter-span-" + pet_id).css("width", "0px").animate({width: response.hunger+"%"}, 4500);
+                        $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
+                        // $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
+                        $("#hunger-meter-span-" + pet_id).css("width", hungerStartWidth).animate({width: response.hunger+"%"}, 4500);
+
+                        // adjust stamina
+                        // var staminaStartWidth = $("#stamina-meter-span-" + pet_id).css("width");
+                        // $("#stamina-meter-" + pet_id).text(response.stamina + '/100').fadeIn();
+                        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
+                        // // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
+                        // $("#stamina-meter-span-" + pet_id).css("width", staminaStartWidth).animate({width: response.stamina+"%"}, 4500);
+
 
                         // $("#hunger-meter-bar-" + pet_id).animate({
                         //     color: "#2fc217"

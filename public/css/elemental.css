@@ -221,7 +221,7 @@
 
 /* ------------- stat types as class names for dynamic card background --------------- */
 
-.health {
+.health, .current_health {
     background-color: rgb(189, 0, 0);
     border-radius: 10%;
     margin: 5%;
@@ -310,7 +310,7 @@
     color: white;
 }
 /* ________________________ */
-.stamina {
+.stamina, .current_stamina {
     background-color: #1fc713;
     border-radius: 10%;
     margin: 5%;

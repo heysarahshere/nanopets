@@ -17,13 +17,16 @@ class FoodTableSeeder extends Seeder
     {
 
         // ---------------------- food
+        // foods only effect hunger, stamina, or health. most should at least effect hunger
         Food::create(
             [
                 'name' => "Stripey Icey",
                 'image' => "/images/foods/stripeice.png",
                 'description' => "Sour then sweet, refreshes a small amount of stamina.",
-                'mainStat' => "stamina",
-                'effectAmount' => rand(100, 200),
+                'mainStat' => "hunger",
+                'effectAmount' => 10,
+                'bonusStat' => "current_stamina",
+                'bonusEffectAmount' => 100,
                 'cost' => 200,
                 'type' => "food",
             ]
@@ -34,7 +37,7 @@ class FoodTableSeeder extends Seeder
                 'image' => "/images/foods/spilled_icecream.png",
                 'description' => "Oops! Well, it's sweet and creamy.",
                 'mainStat' => "hunger",
-                'effectAmount' => rand(100, 260),
+                'effectAmount' => 10,
                 'cost' => 175,
                 'type' => "food",
             ]
@@ -44,9 +47,11 @@ class FoodTableSeeder extends Seeder
             [
                 'name' => "Limey Twin Pop",
                 'image' => "/images/foods/limetwin.png",
-                'description' => "Bitter treat that boosts magic.",
-                'mainStat' => "magic",
-                'effectAmount' => rand(100, 260),
+                'description' => "Bitter treat that boosts health.",
+                'mainStat' => "hunger",
+                'effectAmount' => 10,
+                'bonusStat' => "current_health",
+                'bonusEffectAmount' => 100,
                 'cost' => 250,
                 'type' => "food",
             ]
@@ -56,9 +61,11 @@ class FoodTableSeeder extends Seeder
             [
                 'name' => "Caramel Bar",
                 'image' => "/images/foods/caramel.png",
-                'description' => "Creamy treat to raise physical strength.",
-                'mainStat' => "strength",
-                'effectAmount' => rand(100, 260),
+                'description' => "Creamy caffeinated treat.",
+                'mainStat' => "hunger",
+                'effectAmount' => 10,
+                'bonusStat' => "current_stamina",
+                'bonusEffectAmount' => 100,
                 'cost' => 250,
                 'type' => "food",
             ]
@@ -69,8 +76,10 @@ class FoodTableSeeder extends Seeder
                 'name' => "Ice Cream Sandwich",
                 'image' => "/images/foods/vanillasandwich.png",
                 'description' => "Delicious frozen treat that increases health.",
-                'mainStat' => "health",
-                'effectAmount' => rand(10, 20),
+                'mainStat' => "hunger",
+                'effectAmount' => 15,
+                'bonusStat' => "current_health",
+                'bonusEffectAmount' => 100,
                 'cost' => 200,
                 'type' => "food",
             ]
@@ -79,10 +88,12 @@ class FoodTableSeeder extends Seeder
             [
                 'name' => "Meat-of-your-enemy Burger",
                 'image' => "/images/foods/burger.png",
-                'description' => "High-calorie meal to restore stamina and defenses.",
-                'mainStat' => "magic",
-                'effectAmount' => rand(65, 160),
-                'cost' => 300,
+                'description' => "High-calorie meal to restore stamina.",
+                'mainStat' => "hunger",
+                'effectAmount' => 50,
+                'bonusStat' => "current_stamina",
+                'bonusEffectAmount' => 250,
+                'cost' => 500,
                 'type' => "food",
             ]
         );
@@ -92,9 +103,11 @@ class FoodTableSeeder extends Seeder
                 'name' => "Mojo Pop",
                 'image' => "/images/foods/mojo.png",
                 'description' => "Date night juice pop - made to share!",
-                'mainStat' => "mojo",
-                'effectAmount' => rand(50, 145),
-                'cost' => 600,
+                'mainStat' => "hunger",
+                'effectAmount' => 10,
+                'bonusStat' => "mojo",
+                'bonusEffectAmount' => 100,
+                'cost' => 400,
                 'type' => "food",
             ]
         );
