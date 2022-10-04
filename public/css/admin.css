@@ -174,14 +174,14 @@
     border-radius: 10px;
 }
 
-.progress-red span,
-.progress-orange span,
-.progress-yellow span,
-.progress-green span {
-    -webkit-transition: color 0.6s ease, background-color 1s ease;
-    -moz-transition: color 0.6s ease, background-color 1s ease;
-    -o-transition: color 0.6s ease, background-color 1s ease;
-    transition: color 0.6s ease, background-color 1s ease;
+.progress-red ,
+.progress-orange ,
+.progress-yellow,
+.progress-green {
+    -webkit-transition: color 5s ease, background-color 5s ease;
+    -moz-transition: color 5s ease, background-color 5s ease;
+    -o-transition: color 5s ease, background-color 5s ease;
+    transition: color 5s ease, background-color 5s ease;
 }
 
 .animated-progress {

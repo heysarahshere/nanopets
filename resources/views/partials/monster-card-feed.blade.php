@@ -151,16 +151,16 @@
                         switchMonsterCardFace(pet_id);
 
                         $("#hunger-meter-" + pet_id).text(response.hunger + '/100').fadeIn();
-                        // $("#hunger-meter-bar-" + pet_id).removeClass (function (index, className) {
-                        //     return (className.match (/(^|\s)progress-\S+/g) || []).join(' ');
-                        // }).addClass('progress-green');
-                        $("#hunger-meter-bar-" + pet_id).animate({
-                            color: "#2fc217"
-                        }, 3500);
+                        $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217');
+                        $("#hunger-meter-span-" + pet_id).css("width", "0px").animate({width: response.hunger+"%"}, 4500);
+
+                        // $("#hunger-meter-bar-" + pet_id).animate({
+                        //     color: "#2fc217"
+                        // }, 3500);
 
 
                         // $("#hunger-meter-bar-" + pet_id)
-                        $("#hunger-meter-span-" + pet_id).css("width", response.hunger + '%');
+                        // $("#hunger-meter-span-" + pet_id).css("width", response.hunger + '%');
                     } else {
                         $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');
                     }
