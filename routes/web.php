@@ -93,6 +93,11 @@ Route::post('/name-change-ajax', [
     'as' => 'name-change-ajax'
 ]);
 
+Route::post('/feed-ajax', [
+    'uses' => 'App\Http\Controllers\CreatureController@postFeedAjax',
+    'as' => 'feed-ajax'
+]);
+
 
 
 // ajax routes

@@ -119,7 +119,7 @@
                         $("#val-error" + id).text('Fail.');
                         // location.reload();
                     } else {
-                        $("#val-error" + id).text('Oops, something went wrong. Error bracket.');
+                        $("#val-error" + id).text('Uh oh, something went wrong.');
                     }
                 }
             });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creature;
+use App\Models\Food;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -162,10 +163,30 @@ class CreatureController extends Controller
     }
 
     public function postNameChangeAjax(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'id' => 'required'
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all()
+            ]);
+        }
+
+        $creature = Creature::find($request->input('id'));
+        $name = $request->input('name');
+        $creature->name = $name;
+        $creature->save();
+
+        return response()->json(['success' => 'Name changed!']);
+    }
+
+    public function postFeedAjax(Request $request) {
 //        $validator = Validator::make($request->all(), [
-//            'name' => 'required|max:255',
-//            'id' => 'required'
+//            'pet_id' => 'required',
+//            'item_id' => 'required',
+//            'qty' => 'required|min:1'
 //        ]);
 //
 //        if ($validator->fails()) {
@@ -174,15 +195,21 @@ class CreatureController extends Controller
 //            ]);
 //        }
 
-        $creature = Creature::find($request->input('id'));
-        $name = $request->input('name');
-        $creature->name = $name;
+//        $item = Food::find($request->input('item_id'));
+//        $hunger_inc = $item->effectAmount * $request->input('qty');
+//        $old_hunger = $creature->hunger;
+//        if ($old_hunger + $hunger_inc >= $creature->hunger) {
+//            $creature->hunger = 100;
+//        } else {
+//            $creature->hunger += $hunger_inc;
+//        }
+
+        $creature = Creature::find($request->input('pet_id'));
+        $creature->hunger = 100;
         $creature->save();
 
-        return response()->json(['success' => 'Message sent!']);
+        return response()->json(['success' => 'Creature fed!', 'hunger' => '99']);
 
 //        return response()->json(['success' => 'Post created successfully.', 'name' => $name], 200);
     }
-
-
 }

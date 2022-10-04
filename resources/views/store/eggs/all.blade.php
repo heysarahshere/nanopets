@@ -13,7 +13,7 @@
                         <div class="card store-card" style="width: 100%;">
                             <div class="{{ $egg->element }}-ombre-btn">
                                 <div class="row justify-content-center align-items-center mt-auto pt-2">
-                                    <i class="fa-solid fa-coins pr-2 pb-2" style="color: #4d3c06;font-size: 30px"></i>
+                                    <i class="fa-solid fa-coins pr-2 pb-2" style="color: #ffc619;font-size: 30px"></i>
                                     <h2 class="text-center">
                                         {{ $egg->cost }}
                                     </h2>
