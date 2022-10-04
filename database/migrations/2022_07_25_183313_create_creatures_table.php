@@ -23,9 +23,9 @@ return new class extends Migration
             $table->text('description');
             $table->integer('potential')->default(1);
             $table->integer('max_health')->default(1);
-            $table->integer('health')->default(1);
+            $table->integer('current_health')->default(1);
             $table->integer('max_stamina')->default(1);
-            $table->integer('stamina')->default(1);
+            $table->integer('current_stamina')->default(1);
             $table->integer('hunger')->default(100);
             $table->integer('mojo')->default(1);
             $table->integer('magic')->default(1);

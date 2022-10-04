@@ -277,9 +277,9 @@ class CreatureController extends Controller
      */
     public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
     {
-        if (isset($creature->{'max_' + $statEffect})) {
+        if (Str::contains($creature->{$statEffect}, 'current_')) {
             // take second part of stat name,
-            // for example: if stat effect is health
+            // for example: if stat effect is current_health
             // take 'health' and prefix with 'max_'
             $stat = explode("_", $creature->{$statEffect});
             // if current health plus health from food is greater than max, set to max instead

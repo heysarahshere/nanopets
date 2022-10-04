@@ -31,7 +31,7 @@
                                             +{{$purchase->item->effectAmount}} {{$purchase->item->mainStat}}</p> &nbsp;
                                         @if (!empty($purchase->item->bonusStat))
                                             <p style="color: black;">
-                                                +{{$purchase->item->bonusEffectAmount}} {{$purchase->item->bonusStat  ? 'current_stamina' : 'stamina' ?? $purchase->item->bonusStat}}</p>
+                                                +{{$purchase->item->bonusEffectAmount}} {{$purchase->item->bonusStat}}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -167,23 +167,17 @@
                         // adjust hunger
                         var hungerStartWidth = $("#hunger-meter-span-" + pet_id).css("width");
                         $("#hunger-meter-" + pet_id).text(response.hunger + '/100').fadeIn();
-                        $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#1dc217');
+                        $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
                         // $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
                         $("#hunger-meter-span-" + pet_id).css("width", hungerStartWidth).animate({width: response.hunger+"%"}, 4500);
 
                         // adjust stamina
-                        var staminaStartWidth = $("#stamina-meter-span-" + pet_id).css("width");
-                        $("#stamina-meter-" + pet_id).text(response.stamina + '/100').fadeIn();
-                        $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#56c217');
-                        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        $("#stamina-meter-span-" + pet_id).css("width", staminaStartWidth).animate({width: response.stamina+"%"}, 4500);
+                        // var staminaStartWidth = $("#stamina-meter-span-" + pet_id).css("width");
+                        // $("#stamina-meter-" + pet_id).text(response.stamina + '/100').fadeIn();
+                        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
+                        // // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
+                        // $("#stamina-meter-span-" + pet_id).css("width", staminaStartWidth).animate({width: response.stamina+"%"}, 4500);
 
-                        // adjust health
-                        var healthStartWidth = $("#health-meter-span-" + pet_id).css("width");
-                        $("#health-meter-" + pet_id).text(response.health + '/100').fadeIn();
-                        $("#health-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#42c217');
-                        // $("#health-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        $("#health-meter-span-" + pet_id).css("width", healthStartWidth).animate({width: response.health+"%"}, 4500);
 
                         // $("#hunger-meter-bar-" + pet_id).animate({
                         //     color: "#2fc217"
