@@ -60,7 +60,7 @@
                                     @else
                                     progress-red
                                     @endif
-                                    ">
+                                    " id="hunger-health-bar-{{$pet->id}}">
                     <span style="width: {{$pet->current_health / $pet->max_health * 100}}%"></span>
                     <div class="reveal-stats">{{$pet->current_health}}/{{ $pet->max_health}}</div>
                 </div>
@@ -94,10 +94,9 @@
                                     @else
                                     progress-red
                                     @endif
-                                    ">
-                                        <span
-                                            style="width: {{$pet->current_stamina / $pet->max_stamina * 100}}%"></span>
-                    <div class="reveal-stats">{{$pet->current_stamina}}/{{ $pet->max_stamina}}</div>
+                                    " id="stamina-meter-bar-{{$pet->id}}">
+                                        <span style="width: {{$pet->current_stamina / $pet->max_stamina * 100}}%" id="stamina-meter-span-{{$pet->id}}"></span>
+                    <div class="reveal-stats" id="stamina-meter-{{$pet->id}}">{{$pet->current_stamina}}/{{ $pet->max_stamina}}</div>
                 </div>
             </div>
 

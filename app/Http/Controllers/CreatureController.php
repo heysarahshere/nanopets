@@ -246,9 +246,11 @@ class CreatureController extends Controller
             $secondaryStatEffect = 'none';
         }
 
-        $hunger = $creature->hunger;
-        $stamina = $creature->current_stamina;
-        $health = $creature->current_health;
+        $hunger = $creature->hunger;                                           // max is 100 so no need to adjust for percentage
+        $stamina = $creature->stamina / $creature->max_stamina * 100;  // need percentage for bar
+        $max_stamina = $creature->max_stamina;                                 // for display purposes only
+        $health = $creature->health / $creature->max_health * 100;     // need percentage for bar
+        $max_health = $creature->max_health;                                   // for display purposes only
 
 
         $creature->save();
@@ -257,7 +259,9 @@ class CreatureController extends Controller
             'success' => 'Creature fed!',
             'hunger' => $hunger,
             'stamina' => $stamina,
+            'max_stamina' => $max_stamina,
             'health' => $health,
+            'max_health' => $max_health,
             'mainStat' => $mainStatEffect,
             'secondStat' => $secondaryStatEffect,
             'newQty' => $newQty
@@ -273,9 +277,9 @@ class CreatureController extends Controller
      */
     public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
     {
-        if (Str::contains($creature->{$statEffect}, 'current_')) {
+        if (isset($creature->{'max_' + $statEffect})) {
             // take second part of stat name,
-            // for example: if stat effect is current_health
+            // for example: if stat effect is health
             // take 'health' and prefix with 'max_'
             $stat = explode("_", $creature->{$statEffect});
             // if current health plus health from food is greater than max, set to max instead
