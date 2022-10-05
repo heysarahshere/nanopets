@@ -174,7 +174,7 @@
 
         $(meterIdentifier).text(amount + '/' + max).fadeIn();
         $(spanIdentifier).removeClass('progress-red progress-orange progress-yellow progress-green');
-        
+
         var color = "#e00000";
         if (percentage > 80) {
             color = "#2fc217"

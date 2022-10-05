@@ -114,6 +114,7 @@ class UserController extends Controller
 
     }
 
+    // for future public profile use
     public function getCreatures($user)
     {
         $owner = User::where('username', $user)->first();
