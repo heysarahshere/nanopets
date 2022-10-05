@@ -20,6 +20,7 @@
                     @else
                         @include('partials.creature.egg-card-front')
                         @include('partials.creature.egg-card-back')
+                        @include('partials.creature.monster-card-sell')
                     @endif
                 </div>
             @endforeach

@@ -153,8 +153,10 @@ class CreatureController extends Controller
 
                 $creature->save();
 
+                $banner_message = $creature->dev_stage == 'egg' ? 'You have successfully listed an egg for sale.' : 'An adoption has been successfully cancelled.';
+
                 $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', 'An adoption has been successfully cancelled.');
+                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', $banner_message);
             } else {
                 return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
             }
