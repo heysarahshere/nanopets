@@ -166,6 +166,33 @@
         qtyInput.value = 0;
     }
 
+    function animateMeter(pet_id, amount, stat, max) {
+        let spanIdentifier = "#" + stat + "-meter-span-" + pet_id;
+        let meterIdentifier = "#" + stat + "-meter-" + pet_id;
+        let startWidth = $(spanIdentifier).css("width");
+        let percentage = amount / max * 100;
+
+        $(meterIdentifier).text(amount + '/' + max).fadeIn();
+        $(spanIdentifier).removeClass('progress-red progress-orange progress-yellow progress-green');
+        
+        var color = "#e00000";
+        if (percentage > 80) {
+            color = "#2fc217"
+        }
+        else if (percentage > 55) {
+            color = "#f9d000"
+        }
+        else if (percentage > 30) {
+            color = "#ff4d00"
+        }
+
+        $(spanIdentifier).css('background-color', color)
+
+        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
+        $(spanIdentifier).css("width", startWidth).animate({width: percentage + "%"}, 4500);
+
+    }
+
     function foodConfirmAjax(event, pet_id, item_id) {
         event.preventDefault();
         let qty = document.getElementById("qty" + pet_id + item_id).value;
@@ -199,26 +226,9 @@
                         toggleMonsterCardFaceFeed(pet_id);
                         switchMonsterCardFace(pet_id);
 
-                        // adjust hunger
-                        var hungerStartWidth = $("#hunger-meter-span-" + pet_id).css("width");
-                        $("#hunger-meter-" + pet_id).text(response.hunger + '/100').fadeIn();
-                        $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
-                        // $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        $("#hunger-meter-span-" + pet_id).css("width", hungerStartWidth).animate({width: response.hunger + "%"}, 4500);
-
-                        // adjust stamina
-                        var staminaStartWidth = $("#stamina-meter-span-" + pet_id).css("width");
-                        $("#stamina-meter-" + pet_id).text(response.stamina + '/100').fadeIn();
-                        $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
-                        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        $("#stamina-meter-span-" + pet_id).css("width", staminaStartWidth).animate({width: response.stamina + "%"}, 4500);
-
-                        // adjust health
-                        var healthStartWidth = $("#health-meter-span-" + pet_id).css("width");
-                        $("#health-meter-" + pet_id).text(response.health + '/100').fadeIn();
-                        $("#health-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
-                        // $("#health-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        $("#health-meter-span-" + pet_id).css("width", healthStartWidth).animate({width: response.health + "%"}, 4500);
+                        animateMeter(pet_id, response.health, "health", response.max_health);
+                        animateMeter(pet_id, response.hunger, "hunger", 100);
+                        animateMeter(pet_id, response.stamina, "stamina", response.max_stamina);
 
                         resetIncInput(pet_id, item_id);
 
