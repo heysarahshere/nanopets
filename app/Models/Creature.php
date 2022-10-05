@@ -44,4 +44,13 @@ class Creature extends Model
     {
         return $this->belongsTo('App\Models\User', 'seller_id', 'id');
     }
+
+    public function compatible($creature)
+    {
+        if ($this->dev_stage === 'adult' && $this->id != $creature->id && $this->gender != $creature->gender && $this->available == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
