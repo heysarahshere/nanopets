@@ -406,7 +406,7 @@
 
 .cupid-heart {
     position: absolute;
-    top:40%;
+    top: 40%;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -418,10 +418,20 @@
     color: rgba(255, 50, 112, 0.5);
 }
 
-.cupid-heart:hover  {
+.cupid-heart:hover {
     opacity: 1;
     transform: scale(6);
 }
 
+.hatch-btn, .hatch-btn:visited {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hatch-btn:hover {
+    color: rgb(222, 128, 19);
+}
 
 

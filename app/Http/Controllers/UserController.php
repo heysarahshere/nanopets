@@ -158,10 +158,10 @@ class UserController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $id = $user->id;
-            $pets = Creature::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
+            $eggs = Creature::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
             return view('user/incubators', [
-                'pets' => $pets,
+                'eggs' => $eggs,
                 'purchases' => $purchases,
                 'category' => "All",
                 'current' => 'eggs']);

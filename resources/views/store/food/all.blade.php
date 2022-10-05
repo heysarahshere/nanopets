@@ -71,7 +71,7 @@
         </div>
         <div class="container">
             <div class="row m-auto">
-                {{ $foods->links() }}
+                {{ $foods->links("pagination::bootstrap-4") }}
             </div>
         </div>
 

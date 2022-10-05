@@ -18,12 +18,7 @@
                                 </div>
                             </div>
                             <div class="store-img-container col-9 m-auto p-0">
-                                <div class="reveal-stats">
-                                    <button class="ombre-btn" data-toggle="modal"
-                                            data-target="#adoptModal{{$creature->id}}">
-                                        DETAILS
-                                    </button>
-                                </div>
+
                                 <img class="card-img-top" style="width: auto; height: 224px;"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $creature->species . "/" . $creature->dev_stage . "/" . $creature->element . ".png" )}}"
                                      alt="{{ $creature->name }} Image">
@@ -37,6 +32,9 @@
                                     chance at breeding a high tier creature.
                                 </p>
                             </div>
+
+                            <button type="button" class="btn btn-primary purchase-btn" style="width: 90%" data-toggle="modal"
+                                    data-target="#adoptModal{{$creature->id}}">Adopt</button>
                         </div>
                     </div>
                     @include('partials.modals.adopt-stat-modal')

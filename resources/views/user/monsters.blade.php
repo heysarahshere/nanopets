@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-{{Str::title($current)}}
+    {{Str::title($current)}}
 @endsection
 @section('content')
     @include('partials.banner-message')
@@ -10,11 +10,17 @@
         <div class="row">
             @foreach($pets as $pet)
                 <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
-                    @include('partials.monster-card-front')
-                    @include('partials.monster-card-back')
-                    @include('partials.monster-card-feed')
-                    @include('partials.monster-card-breed')
-                    @include('partials.monster-card-sell')
+
+                    @if ($pet->dev_stage != 'egg' && $pet->dev_stage != 'hatchling')
+                        @include('partials.creature.monster-card-front')
+                        @include('partials.creature.monster-card-back')
+                        @include('partials.creature.monster-card-feed')
+                        @include('partials.creature.monster-card-breed')
+                        @include('partials.creature.monster-card-sell')
+                    @else
+                        @include('partials.creature.egg-card-front')
+                        @include('partials.creature.egg-card-back')
+                    @endif
                 </div>
             @endforeach
         </div>

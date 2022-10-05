@@ -47,7 +47,7 @@ class CreatureController extends Controller
 
     public function getAdoptable()
     {
-        $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+        $creatures = Creature::where('for_sale', true)->where('dev_stage', '!=', 'egg')->orderBy('updated_at', 'desc')->paginate(12);
         return view('adopt/all', ['creatures' => $creatures, 'category' => 'all', 'current' => 'adopt']);
     }
 
@@ -199,11 +199,6 @@ class CreatureController extends Controller
             ]);
         }
 
-        //mainStat
-        //effectAmount
-        //bonusStat
-        //bonusEffectAmount
-
         // find fed creature and consumed item
         $creature = Creature::find($request->input('pet_id'));
         $item = Food::find($request->input('item_id'));
@@ -269,13 +264,31 @@ class CreatureController extends Controller
 
     }
 
-    public function getBreeding($id1, $id2){
+    public function getBreeding($id1, $id2)
+    {
 
         $primary = Creature::find($id1);
         $secondary = Creature::find($id2);
         return view('user/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
 
     }
+
+    public function postIncubateSingle(Request $request){
+        $this->validate($request, [
+            'pet_id' => 'required'
+        ]);
+        if (Auth::check()) {
+            $pet_id = $request->input('pet_id');
+            $user = Auth::user();
+            $newEgg = Creature::find($pet_id);
+            $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
+
+            return view('user/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
+        } else {
+            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
+        }
+    }
+
 
     /**
      * @param $statEffect

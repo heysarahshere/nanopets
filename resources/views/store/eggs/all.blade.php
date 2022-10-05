@@ -31,16 +31,12 @@
                             </div>
                             @if(Auth::check())
                                 <?php $user = Auth::user()?>
-                                @if( $user->balance >= $egg->cost )
                                     <form id="adoptCreature" name="adopt" method="POST" action="{{route('adopt-creature')}}"
                                           style="width: 90%; margin-right: 10%">
-                                        <button type="submit" class="btn btn-primary purchase-btn w-100">Adopt</button>
+                                        <button type="submit" class="btn btn-primary purchase-btn w-100" {{$user->balance >= $egg->cost ? '' : 'disabled'}}>Purchase</button>
                                         <input type="hidden" value="{{$egg->id}}" id="creature_id" name="creature_id">
                                         {{ csrf_field() }}
                                     </form>
-                                @else
-                                    <h2>Sorry, you don't have enough gold to buy this egg. </h2>
-                                @endif
                             @else
                                 <h2 class="m-auto text-center">You must sign in to adopt a creature.</h2>
                             @endif

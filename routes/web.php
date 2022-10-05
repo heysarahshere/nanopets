@@ -113,6 +113,11 @@ Route::post('/feed-ajax', [
     'as' => 'feed-ajax'
 ]);
 
+Route::post('/incubate', [
+    'uses' => 'App\Http\Controllers\CreatureController@postIncubateSingle',
+    'as' => 'incubate-single'
+]);
+
 
 Route::get('/breed/{id1}+{id2}', [
     'uses' => 'App\Http\Controllers\CreatureController@getBreeding',

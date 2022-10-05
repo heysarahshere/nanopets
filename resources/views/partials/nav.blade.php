@@ -17,7 +17,7 @@
             </form>
         @else
             <div class="col-12 text-right">
-                <a href="{{route('get-sign-in')}}">
+                <a href="{{route('get-sign-in')}}" style="text-decoration: none !important;">
                     <button class="btn btn-sm rev-ombre-btn">sign in</button>
                 </a>
                 <a href="{{route('get-sign-up')}}">
