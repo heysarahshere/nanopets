@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('dev_stage')->default("egg"); // 1 = egg, 2 = baby, 3 = adult
             $table->integer('cost')->nullable();
             $table->boolean('for_sale')->default(false);
+            $table->integer('seller_id')->nullable();
             $table->boolean('available')->default(true);
             $table->id();
             $table->timestamps();

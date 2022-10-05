@@ -164,7 +164,7 @@
 }
 
 .store-card .card-body {
-    height: 200px;
+    height: 175px;
     overflow-y: scroll;
     scrollbar-width: none;
 
@@ -226,4 +226,48 @@
     align-self: center;
 }
 
+.circle {
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+}
 
+.circle h2 {
+    color: #2fc217;
+}
+
+/* Chrome, Safari, Edge, Opera */
+#purchaseFood input::-webkit-outer-spin-button,
+#purchaseFood input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+#purchaseFood input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.left-span {
+    font-size: x-large;
+    color: #cec296;
+    display: block;
+    float:left;
+    margin-top: 2%;
+    cursor: pointer;
+}
+
+.right-span {
+    font-size: x-large;
+    color: #cec296;
+    display: block;
+    float:right;
+    margin-top: 2%;
+    cursor: pointer;
+}
+
+.left-span:hover,
+.right-span:hover {
+    color: white;
+}

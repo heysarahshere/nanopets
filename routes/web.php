@@ -61,30 +61,77 @@ Route::get('/mycreatures', [
     'as' => 'my-creatures'
 ]);
 
+Route::get('/mycreatures/adults', [
+    'uses' => 'App\Http\Controllers\UserController@getMyAdultCreatures',
+    'as' => 'my-creatures-adult'
+]);
+
+Route::get('/mycreatures/babies', [
+    'uses' => 'App\Http\Controllers\UserController@getMyBabyCreatures',
+    'as' => 'my-creatures-baby'
+]);
+
+Route::get('/mycreatures/incubator', [
+    'uses' => 'App\Http\Controllers\UserController@getMyIncubator',
+    'as' => 'my-incubator'
+]);
+
 Route::get('/{user}', [
     'uses' => 'App\Http\Controllers\UserController@getProfile',
     'as' => 'profile'
 ]);
 // ------------------------- End User
-// ------------------------- Creatures
+// --------------------------------------------------------------------------- Creatures
+
+Route::get('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
+    'as' => 'adoptable',
+]);
+
+Route::post('/mycreatures/new', [
+    'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
+    'as' => 'adopt-creature',
+]);
+
+Route::post('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@postCancelSellCreature',
+    'as' => 'cancel-sell-creature',
+]);
 
 Route::post('/mycreatures', [
     'uses' => 'App\Http\Controllers\CreatureController@postSellCreature',
     'as' => 'sell-creature',
 ]);
 
+Route::post('/name-change-ajax', [
+    'uses' => 'App\Http\Controllers\CreatureController@postNameChangeAjax',
+    'as' => 'name-change-ajax'
+]);
+
+Route::post('/feed-ajax', [
+    'uses' => 'App\Http\Controllers\CreatureController@postFeedAjax',
+    'as' => 'feed-ajax'
+]);
+
+
+Route::get('/breed/{id1}+{id2}', [
+    'uses' => 'App\Http\Controllers\CreatureController@getBreeding',
+    'as' => 'breed'
+]);
+
+
 // ajax routes
-Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
+//Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
 
-// ------------------------- End Creatures
-// ------------------------- Store
+// --------------------- End Creatures
 
-Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
+// -------------------------------------------------------------------------------------------------------------- Store
 
 Route::get('/store/featured', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFeatured',
     'as' => 'featured'
 ]);
+
 // --------------------------------------------------------------------------------------------- food
 Route::get('/store/foods', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFoods',
@@ -95,6 +142,14 @@ Route::get('/store/add-food', [
     'uses' => 'App\Http\Controllers\StoreController@getAddFood',
     'as' => 'add-food'
 ]);
+
+Route::post('/store/foods/all', [
+    'uses' => 'App\Http\Controllers\StoreController@postPurchaseFood',
+    'as' => 'purchase-food'
+]);
+
+
+// ---------------------- admin stuff
 
 Route::post('/store/foods', [
     'uses' => 'App\Http\Controllers\StoreController@postAddFood',
@@ -115,13 +170,16 @@ Route::post('/store/update/{id}', [
     'uses' => 'App\Http\Controllers\StoreController@postUpdateFood',
     'as' => 'post-update-food'
 ]);
-// ---------------------------------------- end food
-// --------------------------------------------------------------------------------------------- store
+// --------------------------------------------------------------------------------------------- eggs
 
 Route::get('/store/eggs', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreEggs',
     'as' => 'eggs'
 ]);
+
+//Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
+
+// --------------------------------------------------------------------------------------------- potions
 
 Route::get('/store/potions', [
     'uses' => 'App\Http\Controllers\StoreController@getStorePotions',
@@ -134,15 +192,3 @@ Route::get('/store/housing', [
 ]);
 // ------------------------- End Store
 
-// --------------------------------------------------------------------------------------------- adopt
-Route::get('/adopt/all', [
-    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
-    'as' => 'adoptable',
-]);
-
-Route::post('/adopt/all', [
-    'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
-    'as' => 'adopt-creature',
-]);
-
-// ---------------------------------------- end adopt

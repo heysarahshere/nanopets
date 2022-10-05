@@ -1,0 +1,53 @@
+.hover-name {
+    cursor: pointer;
+}
+
+/* my creatures page*/
+.monster-card-feed-option {
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: rgba(239, 83, 0, 0.62);
+}
+
+.monster-card-feed-option:hover {
+    border-width: 7px;
+    border-color: rgb(239, 83, 0);
+    cursor: pointer;
+}
+.monster-card-breed-option {
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: #c2174a;
+}
+
+.food-effect-amount {
+    margin: auto;
+    text-align: center;
+}
+
+.food-effect-amount p {
+    font-family: Funhouse;
+    font-size: small;
+}
+
+
+.left-span-food {
+    font-size: x-large;
+    color: rgba(28, 241, 0, 0.55);
+    display: block;
+    float:left;
+    cursor: pointer;
+}
+
+.right-span-food {
+    font-size: x-large;
+    color: rgba(28, 241, 0, 0.55);
+    display: block;
+    float:right;
+    cursor: pointer;
+}
+
+.left-span-food:hover,
+.right-span-food:hover {
+    color: rgb(28, 241, 0);
+}

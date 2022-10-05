@@ -28,6 +28,7 @@ class Creature extends Model
         'level',
         'dev_stage', // egg, hatchling, baby, or adult
         'owner_id',
+        'seller_id',
         'for_sale',
         'cost',
         'available'
@@ -36,6 +37,11 @@ class Creature extends Model
 
     public function owner()
     {
-        return $this->belongsTo('App\User', 'owner_id', 'id');
+        return $this->belongsTo('App\Models\User', 'owner_id', 'id');
+    }
+
+    public function seller()
+    {
+        return $this->belongsTo('App\Models\User', 'seller_id', 'id');
     }
 }

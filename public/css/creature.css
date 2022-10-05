@@ -15,7 +15,7 @@
 
 .air {
     background-image: linear-gradient(#70c5df, rgb(124, 50, 73));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -26,6 +26,7 @@
     border-color: rgb(124, 50, 73);
     border-width: 0px;
 }
+
 .air-ombre-btn h1 {
     color: white;
 }
@@ -34,7 +35,7 @@
 
 .earth {
     background-image: linear-gradient(#616161, rgb(133, 75, 27));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -45,6 +46,7 @@
     border-color: rgb(133, 75, 27);
     border-width: 0px;
 }
+
 .earth-ombre-btn h1 {
     color: white;
 }
@@ -53,7 +55,7 @@
 
 .ice {
     background-image: linear-gradient(#01e3f3, rgb(2, 54, 114));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -64,6 +66,7 @@
     border-color: rgb(2, 54, 114);
     border-width: 0px;
 }
+
 .ice-ombre-btn h1 {
     color: white;
 }
@@ -72,7 +75,7 @@
 
 .lava {
     background-image: linear-gradient(#363636, rgb(230, 73, 0));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -83,6 +86,7 @@
     border-color: rgb(208, 64, 9);
     border-width: 0px;
 }
+
 .lava-ombre-btn h1 {
     color: white;
 }
@@ -91,7 +95,7 @@
 
 .dark {
     background-image: linear-gradient(#363636, rgb(170, 170, 170));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -102,6 +106,7 @@
     border-color: rgb(170, 170, 170);
     border-width: 0px;
 }
+
 .dark-ombre-btn h1 {
     color: white;
 }
@@ -110,7 +115,7 @@
 
 .gem {
     background-image: linear-gradient(#1be3fd, rgb(18, 212, 0));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -121,6 +126,7 @@
     border-color: rgb(18, 212, 0);
     border-width: 0px;
 }
+
 .gem-ombre-btn h1 {
     color: white;
 }
@@ -130,7 +136,7 @@
 
 .fire {
     background-image: linear-gradient(#fcaa2f, rgb(208, 64, 9));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -141,6 +147,7 @@
     border-color: rgb(208, 64, 9);
     border-width: 0px;
 }
+
 .fire-ombre-btn h1 {
     color: white;
 }
@@ -149,7 +156,7 @@
 
 .celestial {
     background-image: linear-gradient(#b20c66, rgb(5, 88, 152));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -160,6 +167,7 @@
     border-color: rgb(5, 88, 152);
     border-width: 0px;
 }
+
 .celestial-ombre-btn h1 {
     color: white;
 }
@@ -168,7 +176,7 @@
 /* change this cause there's no star */
 .star {
     background-image: linear-gradient(#d62ffc, rgb(8, 78, 134));
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -176,9 +184,10 @@
     background-image: linear-gradient(to right, #d62ffc, rgb(8, 78, 134));
     border-radius: 24px;
     margin: 5%;
-    border-color:  rgb(8, 78, 134);
+    border-color: rgb(8, 78, 134);
     border-width: 0px;
 }
+
 .star-ombre-btn h1 {
     color: white;
 }
@@ -186,7 +195,7 @@
 /* ________________________ */
 .water {
     background-image: linear-gradient(rgb(91, 198, 255), #085fc4);
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -197,13 +206,15 @@
     border-color: #085fc4;
     border-width: 0px;
 }
+
 .water-ombre-btn h1 {
     color: white;
 }
+
 /* ________________________ */
 .lightning {
     background-image: linear-gradient(rgb(36, 152, 215), #c2aa00);
-    border-radius: 10%;
+    border-radius: 24px;
     margin: 5%;
 }
 
@@ -214,6 +225,7 @@
     border-color: #c2aa00;
     border-width: 0px;
 }
+
 .lightning-ombre-btn h1 {
     color: white;
 }
@@ -221,37 +233,39 @@
 
 /* ------------- stat types as class names for dynamic card background --------------- */
 
-.health {
+.health, .current_health {
     background-color: rgb(189, 0, 0);
     border-radius: 10%;
     margin: 5%;
 }
 
-.health-ombre-btn {
+.health-ombre-btn, .current_health-ombre-btn {
     background-color: rgb(189, 0, 0);
     border-radius: 24px;
     margin: 5%;
     border-color: rgb(189, 0, 0);
     border-width: 0px;
 }
+
 .health-ombre-btn h1 {
     color: white;
 }
 
 /* ________________________ */
 .magic {
-    background-color: #5B00BDFF;
+    background-color: #00bdb7;
     border-radius: 10%;
     margin: 5%;
 }
 
 .magic-ombre-btn {
-    background-color: #5B00BDFF;
+    background-color: #00bdb7;
     border-radius: 24px;
     margin: 5%;
-    border-color: #5B00BDFF;
+    border-color: #00bdb7;
     border-width: 0px;
 }
+
 .magic-ombre-btn h1 {
     color: white;
 }
@@ -270,24 +284,26 @@
     border-color: #277708;
     border-width: 0px;
 }
+
 .defense-ombre-btn h1 {
     color: white;
 }
 
 /* ________________________ */
 .strength {
-    background-color: #bd5805;
+    background-color: #3167f1;
     border-radius: 10%;
     margin: 5%;
 }
 
 .strength-ombre-btn {
-    background-color: #bd5805;
+    background-color: #3167f1;
     border-radius: 24px;
     margin: 5%;
-    border-color: #bd5805;
+    border-color: #3167f1;
     border-width: 0px;
 }
+
 .strength-ombre-btn h1 {
     color: white;
 }
@@ -306,26 +322,30 @@
     border-color: #c71394;
     border-width: 0px;
 }
+
 .mojo-ombre-btn h1 {
     color: white;
 }
+
 /* ________________________ */
-.stamina {
-    background-color: #1fc713;
+.stamina, .current_stamina {
+    background-color: #c7af13;
     border-radius: 10%;
     margin: 5%;
 }
 
-.stamina-ombre-btn {
-    background-color: #1fc713;
+.stamina-ombre-btn, .current_stamina-ombre-btn {
+    background-color: #c7af13;
     border-radius: 24px;
     margin: 5%;
-    border-color: #1fc713;
+    border-color: #c7af13;
     border-width: 0px;
 }
+
 .stamina-ombre-btn h1 {
     color: white;
 }
+
 /* ________________________ */
 .statChance {
     background-color: #1337c7;
@@ -340,9 +360,11 @@
     border-color: #1337c7;
     border-width: 0px;
 }
+
 .statChance-ombre-btn h1 {
     color: white;
 }
+
 /* ________________________ */
 .hunger {
     background-color: #dea106;
@@ -357,6 +379,7 @@
     border-color: #dea106;
     border-width: 0px;
 }
+
 .hunger-ombre-btn h1 {
     color: white;
 }
@@ -366,3 +389,38 @@
     background-image: linear-gradient(to right, #b20c66, rgb(5, 88, 152));
     width: 100%;
 }
+
+.cupid-border {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    border-radius: 10px;
+    border-color: #de0638;
+    border-width: 10px;
+    scale: 0.9;
+}
+
+.cupid-border:hover {
+    scale: 1;
+}
+
+
+.cupid-heart {
+    position: absolute;
+    top:40%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 48px;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    font-size: xxx-large;
+    color: rgba(255, 50, 112, 0.5);
+}
+
+.cupid-heart:hover  {
+    opacity: 1;
+    transform: scale(6);
+}
+
+

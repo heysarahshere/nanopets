@@ -13,18 +13,13 @@
                         <div class="card store-card" style="width: 100%;">
                             <div class="{{ $egg->element }}-ombre-btn">
                                 <div class="row justify-content-center align-items-center mt-auto pt-2">
-                                    <i class="fa-solid fa-coins pr-2 pb-2" style="color: #4d3c06;font-size: 30px"></i>
+                                    <i class="fa-solid fa-coins pr-2 pb-2" style="color: #ffc619;font-size: 30px"></i>
                                     <h2 class="text-center">
                                         {{ $egg->cost }}
                                     </h2>
                                 </div>
                             </div>
                             <div class="store-img-container">
-{{--                                <div class="reveal-stats" style="z-index: 9">--}}
-{{--                                    <button class="ombre-btn" data-toggle="modal" data-target="#eggModal{{$egg->id}}">--}}
-{{--                                        DETAILS--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
                                 <img class="card-img-top"
                                      style="width: 100%; height: auto; position:absolute; left: 0%; top: 10%"
                                      src="{{ Storage::disk('s3')->url("images/eggs/" . $egg->element . ".png") }}"

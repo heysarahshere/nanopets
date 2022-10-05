@@ -1,8 +1,6 @@
 @extends('layout.master')
 @section('title')
-    @unless(Auth::check())
-        {{Auth::user()->username}}
-    @endunless
+{{Str::title($current)}}
 @endsection
 @section('content')
     @include('partials.banner-message')
@@ -12,17 +10,16 @@
         <div class="row">
             @foreach($pets as $pet)
                 <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
-                @include('partials.monster-card-front')
-                @include('partials.monster-card-back')
-                @include('partials.monster-card-feed')
-                @include('partials.monster-card-breed')
-                @include('partials.monster-card-sell')
+                    @include('partials.monster-card-front')
+                    @include('partials.monster-card-back')
+                    @include('partials.monster-card-feed')
+                    @include('partials.monster-card-breed')
+                    @include('partials.monster-card-sell')
                 </div>
             @endforeach
         </div>
         <button class="btn btn-danger w-100 mt-4 large-breed-btn">BREED ></button>
     </div>
-
 
 @endsection
 
@@ -71,4 +68,61 @@
         }
     }
 
+    function changeName(id) {
+        let label = document.getElementById("nameLabel" + id);
+        let input = document.getElementById("nameInputDiv" + id);
+        if (label.classList.contains('hiddenFace')) {
+            input.classList.add('hiddenFace');
+            label.classList.remove('hiddenFace');
+        } else {
+            label.classList.add('hiddenFace');
+            input.classList.remove('hiddenFace');
+        }
+    }
+
+    function submitNameChangeAjax(event, id) {
+        event.preventDefault();
+        let name = document.getElementById("nameInput" + id).value;
+        if (name === '') {
+            $("#val-error" + id).text('Please enter a name!');
+        } else {
+            jQuery.ajax({
+                type: 'POST',
+                url: "{{ route('name-change-ajax') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    name: name,
+                    id: id
+                },
+                beforeSend: function (xhr, type) {
+                    $('#val-error' + id).hide();
+                    $("#success-message" + id).hide();
+                },
+                success: function (response) {
+                    if (response) {
+                        // alert(data.success);
+                        changeName(id);
+                        $("#success-message" + id).text('Name changed!');
+                        $("#nameLabel" + id).text(name);
+                        // location.reload();
+                    } else {
+                        $("#val-error" + id).text('Oops, something went wrong.');
+                    }
+                },
+                complete: function (data) {
+                    // $(".ajax-loader").hide();
+                },
+                error: function (response) {
+                    if (response.error) {
+                        $("#val-error" + id).text('Fail.');
+                        // location.reload();
+                    } else {
+                        $("#val-error" + id).text('Uh oh, something went wrong.');
+                    }
+                }
+            });
+        }
+    }
+
 </script>
+

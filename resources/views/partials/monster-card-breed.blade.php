@@ -1,24 +1,39 @@
-<div class="card monster-card py-0 hiddenFace feed-card" style="border-radius: 15px; width: 98%;" id="breed-{{$pet->id}}">
-    <h2 class="font-weight-light mx-3 mt-3 mb-1 text-center" style="color: #0a3c60">Who do you want to pair with <span style="color: #840e8d">{{$pet->name}}</span>?</h2>
+<div class="card py-0 hiddenFace feed-card" style="border-radius: 15px; width: 98%;"
+     id="breed-{{$pet->id}}">
+    <h2 class="font-weight-light mx-3 mt-3 mb-1 text-center" style="color: #0a3c60">Who do you want to pair with <span
+            style="color: #840e8d">{{$pet->name}}</span>?</h2>
     <div class="row">
-        <div class="row mb-3 mt-0 " style="overflow-x: scroll; max-width: 95%; margin-left: 5%; margin-right: 5%">
+        <div class="row mt-0 " style="overflow-x: scroll; max-width: 95%; margin-left: 5%; margin-right: 5%">
             <div class="container-fluid pb-3">
                 <div class="d-flex flex-row flex-nowrap">
-                    <div class="card card-body">
-                        <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url("/images/creatures/cat/adult/dark.png") }}">
-                        </div>
-                    </div>
-                    <div class="card card-body">
-                        <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url("/images/creatures/lizard/adult/gem.png") }}">
-                        </div>
-                    </div>
-                    <div class="card card-body">
-                        <div class="w-100">
-                            <img class="card-img-top" style="width: 100%; height: auto" src="{{ Storage::disk('s3')->url("/images/creatures/horse/adult/water.png") }}">
-                        </div>
-                    </div>
+                    @foreach($pets as $partner)
+                        @if ($partner->dev_stage === 'adult' && $partner->id != $pet->id && $partner->gender != $pet->gender && $partner->available == 1)
+                            {{-- breed confirmation front --}}
+                            <div class="card card-body cupid-border" id="breed_{{$pet->id}}_{{$partner->id}}"
+                                 onclick="toggleBreedConfirm('{{$pet->id}}','{{$partner->id}}')">
+                                <div>
+                                    <i class="fa-regular fa-heart cupid-heart"></i>
+                                    <img class="card-img-top"
+                                         style="width: auto; height: 100%; max-width: 280px;display:block"
+                                         src="{{ Storage::disk('s3')->url("/images/creatures/" . $partner->species . "/adult/" . $partner->element . ".png") }}">
+                                </div>
+                                <h2 style="color: black; text-align: center;">{{$partner->name}}</h2>
+                            </div>
+                            {{-- breed confirmation back --}}
+                            <div class="card card-body cupid-border hiddenFace" id="breedConfirm_{{$pet->id}}_{{$partner->id}}"
+                                >
+                                <div>
+                                    <i class="fa-regular fa-heart cupid-heart"></i>
+                                    <img class="card-img-top"
+                                         style="width: auto; height: 100%; max-width: 280px;display:block"
+                                         src="{{ Storage::disk('s3')->url("/images/creatures/" . $partner->species . "/adult/" . $partner->element . ".png") }}">
+                                </div>
+                                <h2 style="color: black; text-align: center;">Choose {{$partner->name}}?</h2>
+                                <a href="{{route('breed', ['id1' => $pet->id, 'id2' => $partner->id])}}" type="button" class="btn btn-sm btn-primary actions-btn">YES</a>
+                                <button class="btn btn-sm btn-danger cancel-actions-btn" onclick="toggleBreedConfirm('{{$pet->id}}','{{$partner->id}}')">NO</button>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 
@@ -30,3 +45,18 @@
     </div>
 </div>
 
+<script>
+
+    function toggleBreedConfirm(pet_id, partner_id) {
+        let front = document.getElementById("breed_" + pet_id + "_" + partner_id);
+        let back = document.getElementById("breedConfirm_" + pet_id + "_" + partner_id);
+        if (back.classList.contains('hiddenFace')) {
+            front.classList.add('hiddenFace');
+            back.classList.remove('hiddenFace');
+        } else {
+            back.classList.add('hiddenFace');
+            front.classList.remove('hiddenFace');
+        }
+
+    }
+</script>
