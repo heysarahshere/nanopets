@@ -31,7 +31,7 @@
                                             +{{$purchase->item->effectAmount}} {{$purchase->item->mainStat}}</p> &nbsp;
                                         @if (!empty($purchase->item->bonusStat))
                                             <p style="color: black;">
-                                                +{{$purchase->item->bonusEffectAmount}} {{$purchase->item->bonusStat}}</p>
+                                                +{{$purchase->item->bonusEffectAmount}} {{Str::contains($purchase->item->bonusStat, 'current_') ? str_replace("current_", "",$purchase->item->bonusStat) : ""}}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -71,7 +71,6 @@
                                                style="font-weight: bold; color:#ff1818;"></p>
                                             <input type="hidden" value="0" id="qty{{$pet->id}}{{$purchase->item->id}}"
                                                    name="qty{{$pet->id}}{{$purchase->item->id}}">
-                                            {{--                                        <input type="hidden" value="{{$purchase->item->id}}" id="item_id" name="item_id">--}}
                                         </div>
                                         <div class="row justify-content-center food-effect-amount">
                                             {{ csrf_field() }}
@@ -127,7 +126,8 @@
         let qtyLabel = document.getElementById("qtyLabel" + pet_id + item_id);
         let qtyInput = document.getElementById("qty" + pet_id + item_id);
         let qty = qtyLabel.innerHTML;
-        // let qty = document.getElementsByClassName("invQty" + item_id)[0].value();
+        let shownQtys = document.getElementsByClassName("invQty" + item_id);
+        var firstQty = shownQtys[0];
 
 
         if (qty === 0) {
@@ -140,15 +140,18 @@
             });
         }
 
-        if (operator === '-') {
-            if (qty > 1) {
-                qty--;
-            }
-        } else if (operator === '+') {
-            if (qty < qtyOwned) {
-                qty++;
+        if (firstQty.innerHTML !== '0') {
+            if (operator === '-') {
+                if (qty > 1) {
+                    qty--;
+                }
+            } else if (operator === '+') {
+                if (qty < qtyOwned) {
+                    qty++;
+                }
             }
         }
+
 
         qtyLabel.innerHTML = qty;
         qtyInput.value = qty;

@@ -45,46 +45,10 @@ class CreatureController extends Controller
 //        return response()->json($response);
 //    }
 
-    public function getMyAdultCreatures()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $id = $user->id;
-            $creatures = Food::where('owner_id', $id)->where('dev_stage', 'adult')->orderBy('updated_at', 'desc')->paginate(8);
-            return view('user/mycreatures', ['creatures' => $creatures, 'category' => "All", 'current' => 'adults']);
-        } else {
-            return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
-        }
-    }
-
-    public function getMyBabyCreatures()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $id = $user->id;
-            $creatures = Food::where('owner_id', $id)->where('dev_stage', 'baby')->orderBy('updated_at', 'desc')->paginate(8);
-            return view('user/mycreatures', ['creatures' => $creatures, 'category' => "All", 'current' => 'babies']);
-        } else {
-            return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
-        }
-    }
-
-    public function getMyIncubators()
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $id = $user->id;
-            $creatures = Food::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
-            return view('user/incubators', ['creatures' => $creatures, 'category' => "All", 'current' => 'eggs']);
-        } else {
-            return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
-        }
-    }
-
     public function getAdoptable()
     {
         $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-        return view('adopt/all', ['creatures' => $creatures, 'current' => 'all']);
+        return view('adopt/all', ['creatures' => $creatures, 'category' => 'all', 'current' => 'adopt']);
     }
 
     public function postAdoptCreature(Request $request)
@@ -302,6 +266,14 @@ class CreatureController extends Controller
             'secondStat' => $secondaryStatEffect,
             'newQty' => $newQty
         ]);
+
+    }
+
+    public function getBreeding($id1, $id2){
+
+        $primary = Creature::find($id1);
+        $secondary = Creature::find($id2);
+        return view('user/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
 
     }
 

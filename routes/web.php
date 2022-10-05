@@ -61,6 +61,21 @@ Route::get('/mycreatures', [
     'as' => 'my-creatures'
 ]);
 
+Route::get('/mycreatures/adults', [
+    'uses' => 'App\Http\Controllers\UserController@getMyAdultCreatures',
+    'as' => 'my-creatures-adult'
+]);
+
+Route::get('/mycreatures/babies', [
+    'uses' => 'App\Http\Controllers\UserController@getMyBabyCreatures',
+    'as' => 'my-creatures-baby'
+]);
+
+Route::get('/mycreatures/incubator', [
+    'uses' => 'App\Http\Controllers\UserController@getMyIncubator',
+    'as' => 'my-incubator'
+]);
+
 Route::get('/{user}', [
     'uses' => 'App\Http\Controllers\UserController@getProfile',
     'as' => 'profile'
@@ -98,6 +113,11 @@ Route::post('/feed-ajax', [
     'as' => 'feed-ajax'
 ]);
 
+
+Route::get('/breed/{id1}+{id2}', [
+    'uses' => 'App\Http\Controllers\CreatureController@getBreeding',
+    'as' => 'breed'
+]);
 
 
 // ajax routes

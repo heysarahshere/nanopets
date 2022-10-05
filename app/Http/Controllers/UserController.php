@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creature;
+use App\Models\Food;
 use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -104,7 +105,9 @@ class UserController extends Controller
             $purchases = Purchase::where('owner_id', $id)->get();
             return view('user/monsters', [
                 'pets' => $pets,
-                'purchases' => $purchases
+                'purchases' => $purchases,
+                'category' => "All",
+                'current' => 'all'
             ]);
         } else {
             return redirect()
@@ -114,6 +117,58 @@ class UserController extends Controller
 
     }
 
+    public function getMyAdultCreatures()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $id = $user->id;
+            $pets = Creature::where('owner_id', $id)->where('dev_stage', 'adult')->orderBy('updated_at', 'desc')->paginate(8);
+            $purchases = Purchase::where('owner_id', $id)->get();
+            return view('user/monsters', [
+                'pets' => $pets,
+                'purchases' => $purchases,
+                'category' => "All",
+                'current' => 'adults'
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
+        }
+    }
+
+    public function getMyBabyCreatures()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $id = $user->id;
+            $pets = Creature::where('owner_id', $id)->where('dev_stage', 'baby')->orderBy('updated_at', 'desc')->paginate(8);
+            $purchases = Purchase::where('owner_id', $id)->get();
+            return view('user/monsters', [
+                'pets' => $pets,
+                'purchases' => $purchases,
+                'category' => "All",
+                'current' => 'babies'
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
+        }
+    }
+
+    public function getMyIncubator()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $id = $user->id;
+            $pets = Creature::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
+            $purchases = Purchase::where('owner_id', $id)->get();
+            return view('user/incubators', [
+                'pets' => $pets,
+                'purchases' => $purchases,
+                'category' => "All",
+                'current' => 'eggs']);
+        } else {
+            return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
+        }
+    }
     // for future public profile use
     public function getCreatures($user)
     {

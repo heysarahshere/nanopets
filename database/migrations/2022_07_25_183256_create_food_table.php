@@ -29,6 +29,7 @@ return new class extends Migration
 
             $table->integer('owner_id')->nullable();
             $table->string('name');
+            $table->string('flavor')->default('sweet');
             $table->string('image');
             $table->string('type')->default("food"); // alternative would be potion - allows easy sorting
             $table->text('description');

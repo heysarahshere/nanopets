@@ -178,15 +178,11 @@
 .progress-orange ,
 .progress-yellow,
 .progress-green {
-    -webkit-transition: color 5s ease, background-color 5s ease;
-    -moz-transition: color 5s ease, background-color 5s ease;
-    -o-transition: color 5s ease, background-color 5s ease;
-    transition: color 5s ease, background-color 5s ease;
+    -webkit-transition: color 3s ease, background-color 3s ease;
+    -moz-transition: color 3s ease, background-color 3s ease;
+    -o-transition: color 3s ease, background-color 3s ease;
+    transition: color 3s ease, background-color 3s ease;
 }
-
-.animated-progress {
-}
-
 
 .monster-card {
     border-radius: 15px;

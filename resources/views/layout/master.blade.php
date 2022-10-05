@@ -33,7 +33,7 @@
     <link href="{{ asset('css/about.css') }}" rel="stylesheet">
     <link href="{{ asset('css/store.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/elemental.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/creature.css') }}" rel="stylesheet">
     <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 
     @yield('scripts')

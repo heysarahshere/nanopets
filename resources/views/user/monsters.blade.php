@@ -1,8 +1,6 @@
 @extends('layout.master')
 @section('title')
-    @unless(Auth::check())
-        {{Auth::user()->username}}
-    @endunless
+{{Str::title($current)}}
 @endsection
 @section('content')
     @include('partials.banner-message')

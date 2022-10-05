@@ -26,7 +26,7 @@
                             </div>
                             <form id="purchaseFood" name="purchaseFood" method="POST"
                                   action="{{route('purchase-food')}}">
-                                <div class="{{ $food->bonusStat }}">
+                                <div class="{{ $food->mainStat }}">
 
                                     <div class="card-body pb-0">
                                         <h2 class="card-title" style="font-size: larger">{{ $food->name }}</h2>

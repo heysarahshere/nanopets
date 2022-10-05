@@ -10,6 +10,7 @@ class Food extends Model
     use HasFactory;
 
     protected $fillable = [
+        'flavor',
         'name',
         'image',
         'type', // potion or food
