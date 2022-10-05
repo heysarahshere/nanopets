@@ -214,14 +214,14 @@ class CreatureController extends Controller
         $qty = $request->input('qty');
         $purchase = Purchase::where('owner_id', $user->id)->where('item_id', $request->input('item_id'))->first();
 
-        $newQty = 0;
-        if ($purchase->qty <= $qty) {
-            $purchase->delete();
-        } else {
+//        $newQty = 0;
+//        if ($purchase->qty <= $qty) {
+//            $purchase->delete();
+//        } else {
             $purchase->qty -= $qty;
             $purchase->save();
             $newQty = $purchase->qty;
-        }
+//        }
 
         // set effect amounts
         $mainStatEffect = $item->mainStat;
@@ -247,9 +247,9 @@ class CreatureController extends Controller
         }
 
         $hunger = $creature->hunger;                                           // max is 100 so no need to adjust for percentage
-        $stamina = $creature->stamina / $creature->max_stamina * 100;  // need percentage for bar
+        $stamina = round($creature->current_stamina / $creature->max_stamina * 100);  // need percentage for bar
         $max_stamina = $creature->max_stamina;                                 // for display purposes only
-        $health = $creature->health / $creature->max_health * 100;     // need percentage for bar
+        $health = round($creature->current_health / $creature->max_health * 100, 0);     // need percentage for bar
         $max_health = $creature->max_health;                                   // for display purposes only
 
 

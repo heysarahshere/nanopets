@@ -60,9 +60,9 @@
                                     @else
                                     progress-red
                                     @endif
-                                    " id="hunger-health-bar-{{$pet->id}}">
-                    <span style="width: {{$pet->current_health / $pet->max_health * 100}}%"></span>
-                    <div class="reveal-stats">{{$pet->current_health}}/{{ $pet->max_health}}</div>
+                                    " id="health-meter-bar-{{$pet->id}}">
+                    <span style="width: {{$pet->current_health / $pet->max_health * 100}}%" id="health-meter-span-{{$pet->id}}"></span>
+                    <div class="reveal-stats" id="health-meter-{{$pet->id}}">{{$pet->current_health}}/{{ $pet->max_health}}</div>
                 </div>
             </div>
             <div class="col-12 monster-slider">

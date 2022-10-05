@@ -46,28 +46,45 @@
                                          src="{{ Storage::disk('s3')->url($purchase->item->image) }}">
                                     <div class="circle"
                                          style="position: absolute; top: 5%; left: 10%; background-color: #840e8d">
-                                        <p class="invQty{{$purchase->item->id}} ml-3" style="font-family: Funhouse; color: white;">
+                                        <p class="invQty{{$purchase->item->id}} ml-3"
+                                           style="font-family: Funhouse; color: white;">
                                             {{$purchase->qty}}</p>
                                     </div>
-                                    <p style="color: black; text-align: center; font-size: large">How many {{$purchase->item->name}}s?</p>
+                                    <p style="color: black; text-align: center; font-size: large">How
+                                        many {{$purchase->item->name}}s?</p>
 
                                     <form id="feedCreatureForm">
-                                    <div>
-                                        <div class="row justify-content-center">
-                                            <i class="fa-solid fa-circle-minus left-span-food" onclick="incInput('-', {{$pet->id}}, {{$purchase->item->id}},{{$purchase->qty}})"></i>
-                                            <div style="width: 50px"><h2 class="text-center mt-auto mb-3" style="font-size: large; color: black"  id="qtyLabel{{$pet->id}}{{$purchase->item->id}}">1</h2></div>
-                                            <i class="fa-solid fa-circle-plus right-span-food" onclick="incInput('+', {{$pet->id}}, {{$purchase->item->id}},{{$purchase->qty}})"></i>
+                                        <div>
+                                            <div class="row justify-content-center">
+                                                <i class="fa-solid fa-circle-minus left-span-food"
+                                                   onclick="incInput('-', {{$pet->id}}, {{$purchase->item->id}},{{$purchase->qty}})"></i>
+                                                <div style="width: 50px"><h2 class="text-center mt-auto mb-3"
+                                                                             style="font-size: large; color: black"
+                                                                             id="qtyLabel{{$pet->id}}{{$purchase->item->id}}">
+                                                        0</h2></div>
+                                                <i class="fa-solid fa-circle-plus right-span-food"
+                                                   onclick="incInput('+', {{$pet->id}}, {{$purchase->item->id}},{{$purchase->qty}})"></i>
+                                            </div>
+                                            <p class="success" id="success-message{{$pet->id}}{{$purchase->item->id}}"
+                                               style="font-weight: bold; color:#00add4;"></p>
+                                            <p class="val-error" id="val-error{{$pet->id}}{{$purchase->item->id}}"
+                                               style="font-weight: bold; color:#ff1818;"></p>
+                                            <input type="hidden" value="0" id="qty{{$pet->id}}{{$purchase->item->id}}"
+                                                   name="qty{{$pet->id}}{{$purchase->item->id}}">
+                                            {{--                                        <input type="hidden" value="{{$purchase->item->id}}" id="item_id" name="item_id">--}}
                                         </div>
-                                        <p class="success" id="success-message{{$pet->id}}{{$purchase->item->id}}" style="font-weight: bold; color:#00add4;"></p>
-                                        <p class="val-error" id="val-error{{$pet->id}}{{$purchase->item->id}}" style="font-weight: bold; color:#ff1818;"></p>
-                                        <input type="hidden" value="1" id="qty{{$pet->id}}{{$purchase->item->id}}" name="qty{{$pet->id}}{{$purchase->item->id}}">
-{{--                                        <input type="hidden" value="{{$purchase->item->id}}" id="item_id" name="item_id">--}}
-                                    </div>
-                                    <div class="row justify-content-center food-effect-amount">
-                                        {{ csrf_field() }}
-                                        <button class="btn btn-sm purchase-btn" type="button" onclick="foodConfirmAjax(event, {{$pet->id}}, {{$purchase->item->id}})">FEED</button>
-                                        <button class="btn btn-sm cancel-actions-btn" type="button" onclick="foodQtyWindowSwitch({{$pet->id}}, {{$purchase->item->id}})">BACK</button>
-                                    </div>
+                                        <div class="row justify-content-center food-effect-amount">
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-sm purchase-btn feedBtn{{$purchase->item->id}}"
+                                                    type="button"
+                                                    onclick="foodConfirmAjax(event, {{$pet->id}}, {{$purchase->item->id}})"
+                                                    disabled>FEED
+                                            </button>
+                                            <button class="btn btn-sm cancel-actions-btn" type="button"
+                                                    onclick="foodQtyWindowSwitch({{$pet->id}}, {{$purchase->item->id}})">
+                                                BACK
+                                            </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -111,6 +128,18 @@
         let qtyInput = document.getElementById("qty" + pet_id + item_id);
         let qty = qtyLabel.innerHTML;
         // let qty = document.getElementsByClassName("invQty" + item_id)[0].value();
+
+
+        if (qty === 0) {
+            $('.feedBtn' + item_id).each(function () {
+                $(this).prop("disabled", true);
+            });
+        } else {
+            $('.feedBtn' + item_id).each(function () {
+                $(this).prop("disabled", false);
+            });
+        }
+
         if (operator === '-') {
             if (qty > 1) {
                 qty--;
@@ -120,8 +149,21 @@
                 qty++;
             }
         }
+
         qtyLabel.innerHTML = qty;
         qtyInput.value = qty;
+    }
+
+    function resetIncInput(pet_id, item_id) {
+        let qtyLabel = document.getElementById("qtyLabel" + pet_id + item_id);
+        let qtyInput = document.getElementById("qty" + pet_id + item_id);
+
+        $('.feedBtn' + item_id).each(function () {
+            $(this).prop("disabled", true);
+        });
+
+        qtyLabel.innerHTML = 0;
+        qtyInput.value = 0;
     }
 
     function foodConfirmAjax(event, pet_id, item_id) {
@@ -149,16 +191,9 @@
                         $("#success-message" + pet_id + item_id).text('Fed!');
 
                         // if still some of that item left, show enw amount
-                        // if (respose.newQty === '0') {
-                        $('.invQty' + item_id).each(function() {
+                        $('.invQty' + item_id).each(function () {
                             $(this).text(response.newQty);
                         });
-                            // otherwise, hide the item
-                        // } else {
-                        //     $('.food' + item_id).each(function(i, obj) {
-                        //         $('.food' + item_id).addClass('hiddenFace');
-                        //     });
-                        // }
 
                         foodQtyWindowSwitch(pet_id, item_id);
                         toggleMonsterCardFaceFeed(pet_id);
@@ -169,23 +204,24 @@
                         $("#hunger-meter-" + pet_id).text(response.hunger + '/100').fadeIn();
                         $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
                         // $("#hunger-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        $("#hunger-meter-span-" + pet_id).css("width", hungerStartWidth).animate({width: response.hunger+"%"}, 4500);
+                        $("#hunger-meter-span-" + pet_id).css("width", hungerStartWidth).animate({width: response.hunger + "%"}, 4500);
 
                         // adjust stamina
-                        // var staminaStartWidth = $("#stamina-meter-span-" + pet_id).css("width");
-                        // $("#stamina-meter-" + pet_id).text(response.stamina + '/100').fadeIn();
-                        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
-                        // // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-                        // $("#stamina-meter-span-" + pet_id).css("width", staminaStartWidth).animate({width: response.stamina+"%"}, 4500);
+                        var staminaStartWidth = $("#stamina-meter-span-" + pet_id).css("width");
+                        $("#stamina-meter-" + pet_id).text(response.stamina + '/100').fadeIn();
+                        $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
+                        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
+                        $("#stamina-meter-span-" + pet_id).css("width", staminaStartWidth).animate({width: response.stamina + "%"}, 4500);
 
+                        // adjust health
+                        var healthStartWidth = $("#health-meter-span-" + pet_id).css("width");
+                        $("#health-meter-" + pet_id).text(response.health + '/100').fadeIn();
+                        $("#health-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#c25317');
+                        // $("#health-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
+                        $("#health-meter-span-" + pet_id).css("width", healthStartWidth).animate({width: response.health + "%"}, 4500);
 
-                        // $("#hunger-meter-bar-" + pet_id).animate({
-                        //     color: "#2fc217"
-                        // }, 3500);
+                        resetIncInput(pet_id, item_id);
 
-
-                        // $("#hunger-meter-bar-" + pet_id)
-                        // $("#hunger-meter-span-" + pet_id).css("width", response.hunger + '%');
                     } else {
                         $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');
                     }
