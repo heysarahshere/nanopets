@@ -36,6 +36,11 @@
             </div>
             <div class="store-img-container mb-3">
                 <div class="monster-parent col-12">
+                    @unless ($pet->available())
+                    <span style="position: absolute; top: 5%">
+            <i class="fa-solid fa-heart pr-0" style="color: #ad084d"></i>
+                    </span>
+                    @endunless
                     <img class="monster-child"
                          src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
                          alt="{{ $pet->name }} Image">
@@ -61,8 +66,10 @@
                                     progress-red
                                     @endif
                                     " id="health-meter-bar-{{$pet->id}}">
-                    <span style="width: {{$pet->current_health / $pet->max_health * 100}}%" id="health-meter-span-{{$pet->id}}"></span>
-                    <div class="reveal-stats" id="health-meter-{{$pet->id}}">{{$pet->current_health}}/{{ $pet->max_health}}</div>
+                    <span style="width: {{$pet->current_health / $pet->max_health * 100}}%"
+                          id="health-meter-span-{{$pet->id}}"></span>
+                    <div class="reveal-stats" id="health-meter-{{$pet->id}}">{{$pet->current_health}}
+                        /{{ $pet->max_health}}</div>
                 </div>
             </div>
             <div class="col-12 monster-slider">
@@ -95,8 +102,10 @@
                                     progress-red
                                     @endif
                                     " id="stamina-meter-bar-{{$pet->id}}">
-                                        <span style="width: {{$pet->current_stamina / $pet->max_stamina * 100}}%" id="stamina-meter-span-{{$pet->id}}"></span>
-                    <div class="reveal-stats" id="stamina-meter-{{$pet->id}}">{{$pet->current_stamina}}/{{ $pet->max_stamina}}</div>
+                    <span style="width: {{$pet->current_stamina / $pet->max_stamina * 100}}%"
+                          id="stamina-meter-span-{{$pet->id}}"></span>
+                    <div class="reveal-stats" id="stamina-meter-{{$pet->id}}">{{$pet->current_stamina}}
+                        /{{ $pet->max_stamina}}</div>
                 </div>
             </div>
 

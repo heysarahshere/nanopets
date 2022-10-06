@@ -84,9 +84,9 @@ Route::get('/mycreatures/babies', [
     'as' => 'my-creatures-baby'
 ]);
 
-Route::get('/mycreatures/incubator', [
+Route::get('/mycreatures/incubators', [
     'uses' => 'App\Http\Controllers\UserController@getMyIncubator',
-    'as' => 'my-incubator'
+    'as' => 'my-incubators'
 ]);
 
 Route::post('/mycreatures/new', [
@@ -129,21 +129,16 @@ Route::post('/breed', [
     'uses' => 'App\Http\Controllers\CreatureController@postBreedingPage',
     'as' => 'breed'
 ]);
-
-
-// ajax routes
-//Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
-
 // --------------------- End Creatures
 
-// -------------------------------------------------------------------------------------------------------------- Store
 
+// -------------------------------------------------------------------------------------------------------------- Store
 Route::get('/store/featured', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFeatured',
     'as' => 'featured'
 ]);
 
-// --------------------------------------------------------------------------------------------- food
+// ------------------------ food
 Route::get('/store/foods', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFoods',
     'as' => 'foods'
@@ -181,7 +176,7 @@ Route::post('/store/update/{id}', [
     'uses' => 'App\Http\Controllers\StoreController@postUpdateFood',
     'as' => 'post-update-food'
 ]);
-// --------------------------------------------------------------------------------------------- eggs
+// ---------------------- eggs
 
 Route::get('/store/eggs', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreEggs',
@@ -190,7 +185,7 @@ Route::get('/store/eggs', [
 
 //Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
 
-// --------------------------------------------------------------------------------------------- potions
+// ------------------------ potions
 
 Route::get('/store/potions', [
     'uses' => 'App\Http\Controllers\StoreController@getStorePotions',
@@ -201,5 +196,5 @@ Route::get('/store/housing', [
     'uses' => 'App\Http\Controllers\StoreController@getHousingItems',
     'as' => 'housing',
 ]);
-// ------------------------- End Store
+// ----------------------------------------------------------------------------------------- End Store
 

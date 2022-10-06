@@ -390,6 +390,8 @@
     width: 100%;
 }
 
+/* ---------------------------- breeding --------------------------*/
+
 .cupid-border {
     cursor: pointer;
     transition: all .2s ease-in-out;
@@ -513,6 +515,30 @@
     line-height: 90px;
 }
 
+.pair-pink {
+    background-color: white;
+    border: 10px solid #BE1957;
+    border-radius: 10%;
+    min-height: 120px;
+}
+
+.pair-parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 120px;
+    border-radius: 15px;
+    border: 20px #0a3c60;
+}
+
+.pair-child {
+    position: absolute;
+    top: 0;
+    left: 6%;
+    height: 110px;
+    width: auto;
+}
+
 /* ----------------------------------------  breed progress bars -------------- */
 .blue-progress-breed {
     width: 50%;
@@ -542,10 +568,21 @@
     /*box-shadow: 3px 3px 3px #333333;*/
     transform: rotate(180deg);
 }
+.progress-pair-bar {
+    width: 50%;
+    margin-right: auto;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to right, rgb(241, 85, 144), rgb(154, 81, 222));
+    /*box-shadow: 3px 3px 3px #333333;*/
+    transform: rotate(180deg);
+}
 
 .pink-progress-breed span,
 .blue-progress-breed span,
-.purple-progress-breed span {
+.purple-progress-breed span,
+.progress-pair-bar span {
     height: 100%;
     display: block;
     width: 0;
@@ -553,6 +590,13 @@
     line-height: 30px;
     position: absolute;
     text-align: end;
+}
+
+.progress-pair-bar span {
+    background-color: #BE1957;
+    border-radius: 10px;
+    text-align: left;
+    transform: rotate(-180deg);
 }
 
 .pink-breed-bar span {
@@ -573,11 +617,16 @@
     background-color: #0060ce;
     border-radius: 10px;
 }
+.progress-pair-bar span {
+    background-color: #0060ce;
+    border-radius: 10px;
+}
 
 
 .pink-breed-bar,
 .blue-breed-bar,
-.purple-breed-bar {
+.purple-breed-bar,
+.progress-pair-bar {
     -webkit-transition: color 3s ease, background-color 3s ease;
     -moz-transition: color 3s ease, background-color 3s ease;
     -o-transition: color 3s ease, background-color 3s ease;

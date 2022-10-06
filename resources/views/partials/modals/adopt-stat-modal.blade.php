@@ -22,8 +22,7 @@
                         <div class="row"><h2 style="color: black">Type:&nbsp; </h2>
                             <h2 style="color: #da3a09">{{ $creature->element }}</h2></div>
                         <div class="row"><h2 style="color: black">Tier:&nbsp; </h2>
-                            <h2 style="color: {{ $creature->tier == 'Bronze' ? 'saddlebrown' :  $creature->tier}}">{{ $creature->tier }}</h2>
-                        </div>
+                            <h2 style="color: {{ $creature->tier == 'Bronze' ? 'saddlebrown' :  $creature->tier}}">{{ $creature->tier }}</h2></div>
                         <div class="row"><h2 style="color: black">Health:&nbsp; </h2>
                             <h2 style="color: #b90404">{{ $creature->max_health }}</h2></div>
                         <div class="row"><h2 style="color: black">Stamina:&nbsp; </h2>

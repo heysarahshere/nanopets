@@ -62,4 +62,9 @@ class Creature extends Model
             return false;
         }
     }
+
+    public function available()
+    {
+        return $this->available;
+    }
 }

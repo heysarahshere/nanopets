@@ -27,7 +27,8 @@
                 <i class="fa-solid fa-drumstick-bite"></i>
                 FEED
             </button>
-            <button type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3" onclick="toggleMonsterCardFaceBreed('{{$pet->id}}')" {{$pet->dev_stage === 'baby' ? "disabled" : ""}}>
+            <button type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3"
+                    onclick="toggleMonsterCardFaceBreed('{{$pet->id}}')" {{$pet->dev_stage === 'baby' ? "disabled" : ""}} {{$pet->available == '0' ? "disabled" : ""}}>
                 <i class="fa-solid fa-baby-carriage"></i>
                 BREED
             </button>
