@@ -480,14 +480,14 @@
     height: 30px;
     overflow: hidden;
     position: relative;
-    background-image: linear-gradient(to left, rgb(122, 49, 190), rgb(48, 137, 217));
+    background-image: linear-gradient(to left, rgb(154, 81, 222), rgb(76, 158, 232));
 }
 .purple-progress-breed {
      width: 50%;
      height: 30px;
      overflow: hidden;
      position: relative;
-     background-image: linear-gradient(to left, rgb(143, 71, 211), rgb(122, 49, 190));
+     background-image: linear-gradient(to left, rgb(180, 115, 241), rgb(154, 81, 222));
     transform: rotate(90deg);
  }
 .pink-progress-breed {
@@ -496,7 +496,7 @@
     height: 30px;
     overflow: hidden;
     position: relative;
-    background-image: linear-gradient(to right, rgb(213, 53, 113), rgb(122, 49, 190));
+    background-image: linear-gradient(to right, rgb(241, 85, 144), rgb(154, 81, 222));
     /*box-shadow: 3px 3px 3px #333333;*/
     transform: rotate(180deg);
 }
@@ -563,5 +563,8 @@
     padding: 0;
 }
 
+.future-egg-hidden {
+    visibility: hidden;
+}
 
 /* ---------------------------------------- end breed progress bars -------------- */

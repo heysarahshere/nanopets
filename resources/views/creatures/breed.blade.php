@@ -61,10 +61,9 @@
                         </div>
                     </div>
                     <div class="col-6 m-auto m-5">
-                        <h2 style="color: #ad084d; text-align: center">{{ $secondary->name }}</h2>
                         <div class="store-img-container breed-pink mb-3">
                             <div class="breed-parent col-12">
-                                <img class="breed-child"
+                                <img class="breed-child future-egg-hidden"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $secondary->species . "/" . $secondary->dev_stage . "/" . $secondary->element . ".png" )}}"
                                      alt="{{ $secondary->name }} Image">
                             </div>
