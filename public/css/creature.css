@@ -524,7 +524,7 @@
     background-color: rgba(89, 14, 159, 0.8);
     border-radius: 10px;
     text-align: left;
-    transform: rotate(-90deg);
+    transform: rotate(180deg);
 }
 
 .blue-breed-bar span {

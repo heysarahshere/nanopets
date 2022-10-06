@@ -57,7 +57,7 @@
 
                     <div class="col-12 purple-breed-gradient purple-breed-bar">
                         <div class="purple-progress-breed">
-                            <span style="width: 55%;" id="pink-span"></span>
+                            <span style="width: 55%; margin-left: auto !important;" id="pink-span"></span>
                         </div>
                     </div>
                     <div class="col-6 m-auto m-5">
