@@ -8,9 +8,9 @@
 
     <div class="container-monsters  pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row monster-card breed-main">
-            <div class="col-6">
-                <div class="col-12">
-                    <div class="blue-progress-breed blue-breed-gradient">
+            <div class="col-6 mt-5" style="height: 100%">
+                <div class="col-12 blue-breed-gradient">
+                    <div class="blue-progress-breed">
                         <span style="width: 2%" id="blue-span"></span>
                     </div>
                 </div>
@@ -24,9 +24,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="col-12">
-                    <div class="pink-progress-breed pink-breed-gradient">
+            <div class="col-6 mt-5" style="height: 100%">
+                <div class="col-12 pink-breed-gradient">
+                    <div class="pink-progress-breed">
                         <span style="width: 2%; margin-left: auto !important;" id="pink-span"></span>
                     </div>
                 </div>
