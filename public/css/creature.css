@@ -480,15 +480,15 @@
     height: 30px;
     overflow: hidden;
     position: relative;
-    background-image: linear-gradient(to left, rgba(89, 14, 159, 0.8), rgba(9, 101, 184, 0.8));
+    background-image: linear-gradient(to left, rgb(122, 49, 190), rgb(48, 137, 217));
 }
 .purple-progress-breed {
      width: 50%;
-     margin-left: auto;
      height: 30px;
      overflow: hidden;
      position: relative;
-     background-image: linear-gradient(to left, rgba(89, 14, 159, 0.8), rgba(9, 101, 184, 0.8));
+     background-image: linear-gradient(to left, rgb(143, 71, 211), rgb(122, 49, 190));
+    transform: rotate(90deg);
  }
 .pink-progress-breed {
     width: 50%;
@@ -496,7 +496,7 @@
     height: 30px;
     overflow: hidden;
     position: relative;
-    background-image: linear-gradient(to right, rgba(190, 25, 87, 0.8), rgba(89, 14, 159, 0.8));
+    background-image: linear-gradient(to right, rgb(213, 53, 113), rgb(122, 49, 190));
     /*box-shadow: 3px 3px 3px #333333;*/
     transform: rotate(180deg);
 }
@@ -521,7 +521,7 @@
 }
 
 .purple-breed-bar span {
-    background-color: rgb(89, 14, 159);
+    background-color: rgba(89, 14, 159, 0.8);
     border-radius: 10px;
     text-align: left;
     transform: rotate(-90deg);
@@ -552,6 +552,14 @@
 .pink-breed-gradient {
     position: absolute;
     top: 50%;
+    padding: 0;
+}
+
+
+.purple-breed-gradient {
+    position: absolute;
+    top: -19%;
+    left: 25%;
     padding: 0;
 }
 
