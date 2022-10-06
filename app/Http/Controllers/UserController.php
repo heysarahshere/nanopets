@@ -93,27 +93,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function getMyCreatures()
-    {
-        if (Auth::check()) {
-            $id = Auth::id();
-
-            $pets = Creature::where('owner_id', $id)->get();
-            $purchases = Purchase::where('owner_id', $id)->get();
-            return view('creatures/monsters', [
-                'pets' => $pets,
-                'purchases' => $purchases,
-                'category' => "All",
-                'current' => 'all'
-            ]);
-        } else {
-            return redirect()
-                ->route('home')
-                ->with('message', "You must sign in to see this page.");
-        }
-
-    }
-
     public function getMyAdultCreatures()
     {
         if (Auth::check()) {

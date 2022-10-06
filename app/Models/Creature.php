@@ -29,6 +29,8 @@ class Creature extends Model
         'dev_stage', // egg, hatchling, baby, or adult
         'owner_id',
         'seller_id',
+        'primary',
+        'partner_id',
         'for_sale',
         'cost',
         'available',
@@ -45,6 +47,12 @@ class Creature extends Model
     {
         return $this->belongsTo('App\Models\User', 'seller_id', 'id');
     }
+
+    public function partner()
+    {
+        return $this->hasOne('App\Models\Creature', 'partner_id', 'id');
+    }
+
 
     public function compatible($creature)
     {

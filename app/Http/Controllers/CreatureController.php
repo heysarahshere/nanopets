@@ -21,6 +21,27 @@ class CreatureController extends Controller
         return view('adopt/all', ['creatures' => $creatures, 'category' => 'all', 'current' => 'adopt']);
     }
 
+    public function getMyCreatures()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $id = $user->id;
+
+            $pets = Creature::where('owner_id', $id)->get();
+            $purchases = Purchase::where('owner_id', $id)->get();
+            return view('creatures/monsters', [
+                'pets' => $pets,
+                'purchases' => $purchases,
+                'category' => "All",
+                'current' => 'all'
+            ]);
+        } else {
+            return redirect()
+                ->route('home')
+                ->with('message', "You must sign in to see this page.");
+        }
+    }
+
     public function postAdoptCreature(Request $request)
     {
         if (Auth::check()) {
@@ -58,8 +79,7 @@ class CreatureController extends Controller
             $creature->save();
 
 
-            $pets = Creature::where('owner_id', $user_id)->get();
-            return redirect()->route('my-creatures', ['pets' => $pets])->with('banner-message', 'Congrats on the adoption!');
+            return redirect()->route('home')->with('banner-message', 'Congrats on the adoption!');
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
@@ -236,6 +256,18 @@ class CreatureController extends Controller
 
     }
 
+    public function getMyBreedingPairs(){
+        if (Auth::check()) {
+
+            $user = Auth::user();
+            $creatures = Creature::where('owner_id', $user->id)->where('available', false)->where('primary', true)->orderBy('updated_at', 'desc')->paginate(8);
+            return view('creatures/pairs', ['creatures' => $creatures, 'category' => 'all', 'current' => 'breed']);
+
+        } else {
+            return redirect()->back()->with('message', 'You must be logged in to do that.');
+        }
+    }
+
     public function postBreedingPage(Request $request)
     {
         $this->validate($request, [
@@ -244,13 +276,18 @@ class CreatureController extends Controller
         ]);
 
         $primary = Creature::find($request->input('id1'));
+        $secondary = Creature::find($request->input('id2'));
+
+        // set up pairing
         $primary->available = false;
         $primary->last_bred = Carbon::now();
+        $primary->partner_id = $secondary->id;
+        $primary->primary = true;
         $primary->save();
 
-        $secondary = Creature::find($request->input('id2'));
         $secondary->available = false;
         $secondary->last_bred = Carbon::now();
+        $secondary->partner_id = $primary->id;
         $secondary->save();
 
         return view('creatures/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);

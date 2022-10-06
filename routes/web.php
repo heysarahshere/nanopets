@@ -69,8 +69,8 @@ Route::get('/adopt/all', [
     'as' => 'adoptable',
 ]);
 
-Route::get('/mycreatures', [
-    'uses' => 'App\Http\Controllers\UserController@getMyCreatures',
+Route::get('/mycreatures/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getMyCreatures',
     'as' => 'my-creatures'
 ]);
 
@@ -92,6 +92,12 @@ Route::get('/mycreatures/incubator', [
 Route::post('/mycreatures/new', [
     'uses' => 'App\Http\Controllers\CreatureController@postAdoptCreature',
     'as' => 'adopt-creature',
+]);
+
+
+Route::get('/mycreatures/breeding', [
+    'uses' => 'App\Http\Controllers\CreatureController@getMyBreedingPairs',
+    'as' => 'breeding-pairs'
 ]);
 
 Route::post('/adopt/all', [
@@ -120,7 +126,7 @@ Route::post('/incubate', [
 ]);
 
 Route::post('/breed', [
-    'uses' => 'App\Http\Controllers\CreatureController@postBreed',
+    'uses' => 'App\Http\Controllers\CreatureController@postBreedingPage',
     'as' => 'breed'
 ]);
 
