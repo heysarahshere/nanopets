@@ -37,8 +37,6 @@
                                         <input type="hidden" value="{{$egg->id}}" id="creature_id" name="creature_id">
                                         {{ csrf_field() }}
                                     </form>
-                            @else
-                                <h2 class="m-auto text-center">You must sign in to adopt a creature.</h2>
                             @endif
                         </div>
                     </div>

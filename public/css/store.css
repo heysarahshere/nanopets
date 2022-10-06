@@ -67,12 +67,9 @@
     text-align: center;
     visibility: hidden;
     opacity: 0;
-    height: 0;
-    padding: 0;
 }
 
 .store-card:hover .reveal-stats {
-    height: auto;
     visibility: visible;
     opacity: 10;
     transition: opacity .5s ease;
@@ -273,6 +270,7 @@
 }
 
 .store-body i {
-    color: white;
+    color: rgba(52, 52, 52, 0.87);
+    font-size: x-large;
 }
 

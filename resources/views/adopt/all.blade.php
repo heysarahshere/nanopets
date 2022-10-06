@@ -18,7 +18,22 @@
                                 </div>
                             </div>
                             <div class="store-img-container col-9 m-auto p-0">
-
+                                <div class="reveal-stats">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            {{--                                            <span class="tooltiptext">Age: {{$creature->dev_stage}}</span>--}}
+                                            <i class="fa-solid fa-{{$creature->dev_stage == 'baby' ? 'baby' : 'person'}}"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            {{--                                            <span class="tooltiptext">Gender: {{$creature->gender}}</span>--}}
+                                            <i class="fa-solid fa-{{$creature->gender == 'male' ? 'mars' : 'venus'}}"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            {{--                                            <span class="tooltiptext">Type: {{$creature->element}}</span>--}}
+                                            <i class="fa-solid fa-fire"></i>
+                                        </div>
+                                    </div>
+                                </div>
                                 <img class="card-img-top mr-1" style="width: auto; height: 245px;"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $creature->species . "/" . $creature->dev_stage . "/" . $creature->element . ".png" )}}"
                                      alt="{{ $creature->name }} Image">
@@ -32,22 +47,6 @@
                                     type with a <span style="font-family: Funhouse;">{{$creature->potential}}%</span>
                                     chance at breeding a high tier creature.
                                 </p>
-                                <p><i class="fa-solid fa-chevron-down"></i></p>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-4">
-{{--                                            <span class="tooltiptext">Age: {{$creature->dev_stage}}</span>--}}
-                                        <i class="fa-solid fa-{{$creature->dev_stage == 'baby' ? 'baby' : 'person'}}"></i>
-                                    </div>
-                                    <div class="col-4">
-{{--                                            <span class="tooltiptext">Gender: {{$creature->gender}}</span>--}}
-                                        <i class="fa-solid fa-{{$creature->gender == 'male' ? 'mars' : 'venus'}}"></i>
-                                    </div>
-                                    <div class="col-4">
-{{--                                            <span class="tooltiptext">Type: {{$creature->element}}</span>--}}
-                                        <i class="fa-solid fa-fire"></i>
-                                    </div>
-                                </div>
                             </div>
 
                             <button type="button" class="btn btn-primary purchase-btn" style="width: 90%"
