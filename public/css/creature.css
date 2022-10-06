@@ -476,10 +476,16 @@
 .blue-breed-stat, .pink-breed-stat {
     /*border: 10px solid #BE1957;*/
     border-radius: 10%;
-    min-height: 325px;
+    min-height: 360px;
 }
 .blue-breed-stat p, .pink-breed-stat p {
     font-family: Funhouse;
+    color: white;
+    font-size: x-large;
+}
+
+.blue-breed-stat p span, .pink-breed-stat p span {
+    font-family: Helvetica;
     color: white;
 }
 
@@ -594,7 +600,7 @@
 
 .purple-breed-gradient {
     position: absolute;
-    top: -22%;
+    top: -29%;
     left: 0;
     padding: 0;
 }

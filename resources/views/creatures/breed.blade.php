@@ -9,7 +9,7 @@
     <div class="container-monsters mt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="monster-card breed-main pb-5">
 
-            <div class="row">
+            <div class="row m-2 mb-3">
                 <div class="col-6 mt-3" style="height: 100%">
                     <div class="col-12 blue-breed-gradient">
                         <div class="blue-progress-breed blue-breed-bar">
@@ -53,9 +53,10 @@
 
             <div class="row">
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
-                    <div class="col-12 m-auto m-5">
+                    <div class="col-12 m-auto">
                         <div class=" blue-breed-stat p-3">
-                            <p>{{$primary->max_health}}</p>
+                            <h2 style="color: white; text-align: center">STATS</h2>
+                            <p><span>health:</span>&nbsp;{{$primary->max_health}}</p>
                             <p>{{$primary->max_health}}</p>
                             <p>{{$primary->max_health}}</p>
                             <p>{{$primary->max_health}}</p>
@@ -82,9 +83,9 @@
                 </div>
 
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
-                    <div class="col-12 m-auto m-5">
+                    <div class="col-12 m-auto">
                         <div class=" pink-breed-stat p-3">
-
+                            <h2 style="color: white; text-align: center">STATS</h2>
                             <p>{{$secondary->max_health}}</p>
                             <p>{{$secondary->max_health}}</p>
                             <p>{{$secondary->max_health}}</p>
