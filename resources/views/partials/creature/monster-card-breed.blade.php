@@ -7,7 +7,7 @@
             <div class="container-fluid pb-3">
                 <div class="d-flex flex-row flex-nowrap">
                     @foreach($pets as $partner)
-{{--                        @if ($partner->dev_stage === 'adult' && $partner->id != $pet->id && $partner->gender != $pet->gender && $partner->available == 1)--}}
+                        {{--                        @if ($partner->dev_stage === 'adult' && $partner->id != $pet->id && $partner->gender != $pet->gender && $partner->available == 1)--}}
                         @if ($partner->compatible($pet))
                             {{-- breed confirmation front --}}
                             <div class="card card-body cupid-border" id="breed_{{$pet->id}}_{{$partner->id}}"
@@ -21,8 +21,8 @@
                                 <h2 style="color: black; text-align: center;">{{$partner->name}}</h2>
                             </div>
                             {{-- breed confirmation back --}}
-                            <div class="card card-body cupid-border hiddenFace" id="breedConfirm_{{$pet->id}}_{{$partner->id}}"
-                                >
+                            <div class="card card-body cupid-border hiddenFace"
+                                 id="breedConfirm_{{$pet->id}}_{{$partner->id}}" >
                                 <div>
                                     <img class="card-img-top m-auto"
                                          style="width: auto; height: 100%; max-width: 220px;display:block;"
@@ -31,13 +31,24 @@
                                 <h2 style="color: black; text-align: center;">
                                     Choose {{$partner->name}}?</h2>
                                 <div class="row">
-                                    <div class="col-6"> <a style="z-index: 99" href="{{route('breed', ['id1' => $pet->id, 'id2' => $partner->id])}}" type="button" class="btn btn-md btn-primary actions-btn w-100 m-0"><i class="fa-regular fa-heart" style="color: #ff4668"></i></a>
+                                    <div class="col-6">
+                                        <form id="breed-pair" method="post" action="{{route('breed')}}">
+                                            <input type="hidden" value="{{$pet->id}}" id="id1" name="id1">
+                                            <input type="hidden" value="{{$partner->id}}" id="id2" name="id2">
+                                            <button style="z-index: 99" type="submit" class="btn btn-md btn-primary actions-btn w-100 m-0">
+                                                <i class="fa-regular fa-heart" style="color: #ff4668"></i></button>
+                                            {{csrf_field()}}
+                                        </form>
                                     </div>
-                                    <div class="col-6"> <button style="z-index: 99" class="btn btn-md btn-danger cancel-actions-btn w-100 m-0" onclick="toggleBreedConfirm('{{$pet->id}}','{{$partner->id}}')"><i class="fa-regular fa-thumbs-down" style="color: #61a9ff"></i></button>
+                                    <div class="col-6">
+                                        <button style="z-index: 99"
+                                                class="btn btn-md btn-danger cancel-actions-btn w-100 m-0"
+                                                onclick="toggleBreedConfirm('{{$pet->id}}','{{$partner->id}}')"><i
+                                                class="fa-regular fa-thumbs-down" style="color: #61a9ff"></i></button>
                                     </div>
 
                                 </div>
-                           </div>
+                            </div>
                         @endif
                     @endforeach
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Creature;
 use App\Models\Food;
 use App\Models\Purchase;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -235,16 +236,29 @@ class CreatureController extends Controller
 
     }
 
-    public function getBreeding($id1, $id2)
+    public function postBreedingPage(Request $request)
     {
+        $this->validate($request, [
+            'id1' => 'required',
+            'id2' => 'required'
+        ]);
 
-        $primary = Creature::find($id1);
-        $secondary = Creature::find($id2);
+        $primary = Creature::find($request->input('id1'));
+        $primary->available = false;
+        $primary->last_bred = Carbon::now();
+        $primary->save();
+
+        $secondary = Creature::find($request->input('id2'));
+        $secondary->available = false;
+        $secondary->last_bred = Carbon::now();
+        $secondary->save();
+
         return view('creatures/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
 
     }
 
-    public function postIncubateSingle(Request $request){
+    public function postIncubateSingle(Request $request)
+    {
         $this->validate($request, [
             'pet_id' => 'required'
         ]);

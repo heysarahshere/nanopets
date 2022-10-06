@@ -119,9 +119,8 @@ Route::post('/incubate', [
     'as' => 'incubate-single'
 ]);
 
-
-Route::get('/breed/{id1}+{id2}', [
-    'uses' => 'App\Http\Controllers\CreatureController@getBreeding',
+Route::post('/breed', [
+    'uses' => 'App\Http\Controllers\CreatureController@postBreed',
     'as' => 'breed'
 ]);
 

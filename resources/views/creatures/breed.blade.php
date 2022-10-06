@@ -6,7 +6,7 @@
     @include('partials.banner-message')
     @include('partials.profile-nav')
 
-    <div class="container-monsters " style="padding-bottom: 20%; align-content: space-evenly;">
+    <div class="container-monsters mt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="monster-card breed-main pb-5">
 
             <div class="row">
