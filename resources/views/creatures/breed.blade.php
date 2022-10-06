@@ -52,21 +52,45 @@
             </div>
 
             <div class="row">
+                <div class="col-3 mt-5 m-auto" style="height: 100%">
+                    <div class="col-12 m-auto m-5">
+                        <div class=" blue-breed-stat p-3">
+                            <p>{{$primary->max_health}}</p>
+                            <p>{{$primary->max_health}}</p>
+                            <p>{{$primary->max_health}}</p>
+                            <p>{{$primary->max_health}}</p>
+                            <p>{{$primary->max_health}}</p>
+                            <p>{{$primary->max_health}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-6 mt-5 m-auto" style="height: 100%">
+                <div class="col-3 mt-5 m-auto" style="height: 100%">
 
                     <div class="col-12 purple-breed-gradient purple-breed-bar">
                         <div class="purple-progress-breed">
-                            <span style="width: 55%; margin-left: auto !important;" id="pink-span"></span>
+                            <span style="width: 55%; margin-left: auto !important;" id="purple-span"></span>
                         </div>
                     </div>
-                    <div class="col-6 m-auto m-5">
-                        <div class="store-img-container breed-pink mb-3">
-                            <div class="breed-parent col-12">
-                                <img class="breed-child future-egg-hidden"
-                                     src="{{ Storage::disk('s3')->url("images/creatures/" . $secondary->species . "/" . $secondary->dev_stage . "/" . $secondary->element . ".png" )}}"
-                                     alt="{{ $secondary->name }} Image">
+                    <div class="col-12 m-auto m-5">
+                        <div class="store-img-container breed-purple mb-3">
+                            <div class="breed-parent col-12" style="display: flex; justify-content: center; align-items: center;">
+                                  <h1 class="m-auto breed-question">?</h1>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3 mt-5 m-auto" style="height: 100%">
+                    <div class="col-12 m-auto m-5">
+                        <div class=" pink-breed-stat p-3">
+
+                            <p>{{$secondary->max_health}}</p>
+                            <p>{{$secondary->max_health}}</p>
+                            <p>{{$secondary->max_health}}</p>
+                            <p>{{$secondary->max_health}}</p>
+                            <p>{{$secondary->max_health}}</p>
+                            <p>{{$secondary->max_health}}</p>
                         </div>
                     </div>
                 </div>

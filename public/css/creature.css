@@ -473,6 +473,40 @@
     min-height: 325px;
 }
 
+.blue-breed-stat, .pink-breed-stat {
+    /*border: 10px solid #BE1957;*/
+    border-radius: 10%;
+    min-height: 325px;
+}
+.blue-breed-stat p, .pink-breed-stat p {
+    font-family: Funhouse;
+    color: white;
+}
+
+.blue-breed-stat {
+    background-color: #0965B8;
+}
+.pink-breed-stat {
+    background-color: #c52662;
+}
+
+.breed-purple {
+    background-color: white;
+    border: 10px solid rgba(89, 14, 159, 0.8);
+    border-radius: 10%;
+    min-height: 325px;
+}
+
+.breed-purple h1 {
+    font-size: 100px;
+}
+
+.breed-question {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+}
+
 /* ----------------------------------------  breed progress bars -------------- */
 .blue-progress-breed {
     width: 50%;
@@ -482,14 +516,16 @@
     position: relative;
     background-image: linear-gradient(to left, rgb(154, 81, 222), rgb(76, 158, 232));
 }
+
 .purple-progress-breed {
-     width: 50%;
-     height: 30px;
-     overflow: hidden;
-     position: relative;
-     background-image: linear-gradient(to left, rgb(180, 115, 241), rgb(154, 81, 222));
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to left, rgb(180, 115, 241), rgb(154, 81, 222));
     transform: rotate(90deg);
- }
+}
+
 .pink-progress-breed {
     width: 50%;
     margin-right: auto;
@@ -533,7 +569,7 @@
 }
 
 
-.pink-breed-bar ,
+.pink-breed-bar,
 .blue-breed-bar,
 .purple-breed-bar {
     -webkit-transition: color 3s ease, background-color 3s ease;
@@ -558,8 +594,8 @@
 
 .purple-breed-gradient {
     position: absolute;
-    top: -19%;
-    left: 25%;
+    top: -22%;
+    left: 0;
     padding: 0;
 }
 
