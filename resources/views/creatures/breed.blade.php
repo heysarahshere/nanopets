@@ -56,12 +56,14 @@
                     <div class="col-12 m-auto">
                         <div class=" blue-breed-stat p-3">
                             <h2 style="color: white; text-align: center">STATS</h2>
-                            <p><span>health:</span>&nbsp;{{$primary->max_health}}</p>
-                            <p>{{$primary->max_health}}</p>
-                            <p>{{$primary->max_health}}</p>
-                            <p>{{$primary->max_health}}</p>
-                            <p>{{$primary->max_health}}</p>
-                            <p>{{$primary->max_health}}</p>
+                            <p>Health: {{$primary->max_health}}</p>
+                            <p>Endurance: {{$primary->max_stamina}}</p>
+                            <p>Defense: {{$primary->defense}}</p>
+                            <p>Attack: {{$primary->strength}}</p>
+                            <p>Magic: {{$primary->magic}}</p>
+                            <p>Mojo: {{$primary->mojo}}</p>
+                            <p></p>
+                            <p>Gene dominance: {{$primary->potential}}%</p>
                         </div>
                     </div>
                 </div>
@@ -70,7 +72,7 @@
 
                     <div class="col-12 purple-breed-gradient purple-breed-bar">
                         <div class="purple-progress-breed">
-                            <span style="width: 55%; margin-left: auto !important;" id="purple-span"></span>
+                            <span style="width: 0%; margin-left: auto !important;" id="purple-span"></span>
                         </div>
                     </div>
                     <div class="col-12 m-auto m-5">
@@ -86,12 +88,14 @@
                     <div class="col-12 m-auto">
                         <div class=" pink-breed-stat p-3">
                             <h2 style="color: white; text-align: center">STATS</h2>
-                            <p>{{$secondary->max_health}}</p>
-                            <p>{{$secondary->max_health}}</p>
-                            <p>{{$secondary->max_health}}</p>
-                            <p>{{$secondary->max_health}}</p>
-                            <p>{{$secondary->max_health}}</p>
-                            <p>{{$secondary->max_health}}</p>
+                            <p>Health: {{$secondary->max_health}}</p>
+                            <p>Endurance: {{$secondary->max_stamina}}</p>
+                            <p>Defense: {{$secondary->defense}}</p>
+                            <p>Attack: {{$secondary->strength}}</p>
+                            <p>Magic: {{$secondary->magic}}</p>
+                            <p>Mojo: {{$secondary->mojo}}</p>
+                            <p></p>
+                            <p>Gene dominance: {{$secondary->potential}}%</p>
                         </div>
                     </div>
                 </div>

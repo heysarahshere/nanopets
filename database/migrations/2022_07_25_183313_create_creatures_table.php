@@ -45,7 +45,7 @@ return new class extends Migration
             // breeding
             $table->boolean('available')->default(true);
             $table->timestamp('last_bred')->nullable();
-            $table->integer('potential')->default(1);
+            $table->integer('potential')->default(20); // percentage of odds that creature will inherit its element/species?
 
             // for eggs/hatchlings
             $table->boolean('is_incubating')->default(false);

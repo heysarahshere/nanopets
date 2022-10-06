@@ -99,7 +99,7 @@
                         <h2 class="m-auto text-center">You must sign in to adopt a creature.</h2>
                     @endif
                     <button onclick="toggleAdoptCard('{{ $creature->id }}')"
-                            class="btn btn-danger cancel-actions-btn ">
+                            class="btn btn-danger cancel-actions-btn w-100">
                         Cancel
                     </button>
 

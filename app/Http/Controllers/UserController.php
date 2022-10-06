@@ -66,8 +66,6 @@ class UserController extends Controller
             $user = Auth::user();
             Auth::login($user);
 
-//            $request->session()->forget('sign-in-error');
-
             return redirect()
                 ->route('my-creatures')
                 ->with('message', "You're signed in.");
@@ -84,7 +82,6 @@ class UserController extends Controller
             ->route('home')
             ->with('message', "You've been signed out.");
     }
-
 
     public function getProfile()
     {
@@ -169,6 +166,7 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
         }
     }
+
     // for future public profile use
     public function getCreatures($user)
     {

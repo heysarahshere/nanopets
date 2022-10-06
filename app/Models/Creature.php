@@ -31,7 +31,8 @@ class Creature extends Model
         'seller_id',
         'for_sale',
         'cost',
-        'available'
+        'available',
+        'potential'
     ];
 
 
