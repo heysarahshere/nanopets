@@ -103,7 +103,7 @@ class UserController extends Controller
 
             $pets = Creature::where('owner_id', $id)->get();
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/monsters', [
+            return view('creatures/monsters', [
                 'pets' => $pets,
                 'purchases' => $purchases,
                 'category' => "All",
@@ -124,7 +124,7 @@ class UserController extends Controller
             $id = $user->id;
             $pets = Creature::where('owner_id', $id)->where('dev_stage', 'adult')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/monsters', [
+            return view('creatures/monsters', [
                 'pets' => $pets,
                 'purchases' => $purchases,
                 'category' => "All",
@@ -142,7 +142,7 @@ class UserController extends Controller
             $id = $user->id;
             $pets = Creature::where('owner_id', $id)->where('dev_stage', 'baby')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/monsters', [
+            return view('creatures/monsters', [
                 'pets' => $pets,
                 'purchases' => $purchases,
                 'category' => "All",
@@ -160,7 +160,7 @@ class UserController extends Controller
             $id = $user->id;
             $eggs = Creature::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/incubators', [
+            return view('creatures/incubators', [
                 'eggs' => $eggs,
                 'purchases' => $purchases,
                 'category' => "All",
@@ -175,7 +175,7 @@ class UserController extends Controller
         $owner = User::where('username', $user)->first();
 
         $pets = Creature::where('owner_id', $owner->id)->get();
-        return view('user/monsters', [
+        return view('creatures/monsters', [
             'pets' => $pets,
             'owner' => $owner
         ]);

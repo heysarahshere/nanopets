@@ -13,37 +13,6 @@ use Illuminate\Support\Str;
 
 class CreatureController extends Controller
 {
-    // breeding
-//    public function postFeedCreature(Request $request)
-//    {
-//        $request->validate([
-//            'creature_id' => 'required',
-//            'item_id' => 'required',
-//            'qty' => 'required'
-//        ]);
-//
-//        // find item
-//        $creature = Creature::find($request->creature_id);
-//
-//        // find creature
-//        $creature = Creature::find($request->creature_id);
-//
-//        // increment creature values
-//        // factor in qty
-//
-//        $creature->level += 2;
-//
-//        // save
-//        $creature->save();
-//
-//        // send updated creature back to view
-//        $user = Auth::user();
-//        $creatures = Creature::where('owner_id', $user->id)->where('dev_stage', 2)->orderby('id', 'asc');
-//
-//        $response['data'] = $creatures;
-//
-//        return response()->json($response);
-//    }
 
     public function getAdoptable()
     {
@@ -271,7 +240,7 @@ class CreatureController extends Controller
 
         $primary = Creature::find($id1);
         $secondary = Creature::find($id2);
-        return view('user/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
+        return view('creatures/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
 
     }
 
@@ -285,7 +254,7 @@ class CreatureController extends Controller
             $newEgg = Creature::find($pet_id);
             $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
 
-            return view('user/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
+            return view('creatures/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }

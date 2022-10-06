@@ -56,6 +56,19 @@ Route::post('/sign-out', [
     'as' => 'sign-out'
 ]);
 
+Route::get('/{user}', [
+    'uses' => 'App\Http\Controllers\UserController@getProfile',
+    'as' => 'profile'
+]);
+// ------------------------- End User
+
+// --------------------------------------------------------------------------- Creatures
+
+Route::get('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
+    'as' => 'adoptable',
+]);
+
 Route::get('/mycreatures', [
     'uses' => 'App\Http\Controllers\UserController@getMyCreatures',
     'as' => 'my-creatures'
@@ -74,18 +87,6 @@ Route::get('/mycreatures/babies', [
 Route::get('/mycreatures/incubator', [
     'uses' => 'App\Http\Controllers\UserController@getMyIncubator',
     'as' => 'my-incubator'
-]);
-
-Route::get('/{user}', [
-    'uses' => 'App\Http\Controllers\UserController@getProfile',
-    'as' => 'profile'
-]);
-// ------------------------- End User
-// --------------------------------------------------------------------------- Creatures
-
-Route::get('/adopt/all', [
-    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
-    'as' => 'adoptable',
 ]);
 
 Route::post('/mycreatures/new', [
