@@ -42,51 +42,7 @@
                 </div>
             </div>
             <div class="p-3 pt-5 text-center">
-                <h1 style="font-size: xx-large; color: black">{{$pet->dev_stage}} {{$pet->gender}}</h1>
-                <h1 style="font-size:  xx-large; color: black">
-                    {{Str::upper($pet->element)}} TYPE</h1>
-            </div>
-        </div>
-        <div class="col-5">
-            <div class="col-12 monster-slider">
-                <h2 class="pt-4">HEALTH</h2>
-                <div class="animated-progress
-                                    @if ($pet->current_health / $pet->max_health * 100 > 80)
-                                    progress-green
-                                    @elseif ($pet->current_health / $pet->max_health * 100 > 55)
-                                    progress-yellow
-                                    @elseif($pet->current_health / $pet->max_health * 100 > 30)
-                                    progress-orange
-                                    @else
-                                    progress-red
-                                    @endif
-                                    " id="health-meter-bar-{{$pet->id}}">
-                    <span style="width: {{$pet->current_health / $pet->max_health * 100}}%"
-                          id="health-meter-span-{{$pet->id}}"></span>
-                    <div class="reveal-stats" id="health-meter-{{$pet->id}}">{{$pet->current_health}}
-                        /{{ $pet->max_health}}</div>
-                </div>
-            </div>
-            <div class="col-12 monster-slider">
-                <h2 class="pt-4">PROGRESS</h2>
-                <div class="animated-progress
-                                    @if ($pet->hunger > 80)
-                                    progress-green
-                                    @elseif ($pet->hunger > 55)
-                                    progress-yellow
-                                    @elseif($pet->hunger > 30)
-                                    progress-orange
-                                    @else
-                                    progress-red
-                                    @endif
-                                    " id="hunger-meter-bar-{{$pet->id}}">
-                    <span style="width: {{$pet->hunger}}%" id="hunger-meter-span-{{$pet->id}}"></span>
-                    <div class="reveal-stats" id="hunger-meter-{{$pet->id}}">{{$pet->hunger}}/100</div>
-                </div>
-            </div>
-            <div class="col-12 monster-slider">
-                <h2 class="pt-4">TEMPERATURE</h2>
-                <div class="animated-progress
+                <div class="animated-progress mb-3
                                     @if ($pet->current_stamina / $pet->max_stamina * 100 > 80)
                                     progress-green
                                     @elseif ($pet->current_stamina / $pet->max_stamina * 100 > 55)
@@ -99,28 +55,66 @@
                                     " id="stamina-meter-bar-{{$pet->id}}">
                     <span style="width: {{$pet->current_stamina / $pet->max_stamina * 100}}%"
                           id="stamina-meter-span-{{$pet->id}}"></span>
-                    <div class="reveal-stats" id="stamina-meter-{{$pet->id}}">{{$pet->current_stamina}}
+                    <div class="reveal-stats" id="stamina-meter-{{$pet->id}}">
+                        TEMPERATURE:&nbsp;{{$pet->current_stamina}}
                         /{{ $pet->max_stamina}}</div>
                 </div>
+                <div class="animated-progress
+                                    @if ($pet->hunger > 80)
+                                    progress-green
+                                    @elseif ($pet->hunger > 55)
+                                    progress-yellow
+                                    @elseif($pet->hunger > 30)
+                                    progress-orange
+                                    @else
+                                    progress-red
+                                    @endif
+                                    " id="hunger-meter-bar-{{$pet->id}}">
+                    <span style="width: {{$pet->hunger}}%" id="hunger-meter-span-{{$pet->id}}"></span>
+                    <div class="reveal-stats" id="hunger-meter-{{$pet->id}}">PROGRESS:&nbsp;{{$pet->hunger}}/100</div>
+                </div>
             </div>
+        </div>
+        <div class="col-5 my-3">
+            <form method="POST" action="{{route('incubate-single')}}" id="hatchEgg{{$pet->id}}">
+                <input type="hidden" value="{{$pet->id}}" id="pet_id" name="pet_id">
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3 hatch-btn">
+                    <i class="fa-solid fa-egg"></i>&nbsp;HATCH
+                </button>
+                <button type="button"
+                        class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3">
+                    <i class="fa-solid fa-hammer"></i>
+                    DESTROY
+                </button>
+                <button type="button" class="btn btn-primary monster-card-btn card-sell-btn w-100 mb-3"
+                        onclick="toggleEggCardFaceSell('{{$pet->id}}')">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    SELL
+                </button>
+            </form>
 
         </div>
 
-        <button type="button" class="btn btn-primary actions-btn w-100 mb-3"
-                onclick="switchEggCardFace('{{$pet->id}}')">
-            ACTIONS >
-        </button>
+        <a href="{{route('my-incubators')}}" type="button" class="btn btn-primary actions-btn w-100 mb-3" disabled>
+            INCUBATOR
+        </a>
 
     </div>
 </div>
 
 
 <script>
-    function switchEggCardFace(id) {
-        let front = document.getElementById("front-" + id);
-        let back = document.getElementById("back-" + id);
-        front.classList.toggle('hiddenFace');
-        back.classList.toggle('hiddenFace');
-    }
 
+    function toggleEggCardFaceSell(id) {
+        let back = document.getElementById("front-" + id);
+        let sell = document.getElementById("sell-" + id);
+        if (back.classList.contains('hiddenFace')) {
+            sell.classList.add('hiddenFace');
+            back.classList.remove('hiddenFace');
+        } else {
+            back.classList.add('hiddenFace');
+            sell.classList.remove('hiddenFace');
+        }
+    }
 </script>

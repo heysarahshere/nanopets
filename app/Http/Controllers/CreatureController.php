@@ -320,6 +320,10 @@ class CreatureController extends Controller
      */
     public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
     {
+        if ($creature->{$statEffect} == 'stamina' || $creature->{$statEffect} == 'health' ) {
+            $creature->{$statEffect} = 'current_' . $creature->{$statEffect};
+        }
+
         if (Str::contains($creature->{$statEffect}, 'current_')) {
             // take second part of stat name,
             // for example: if stat effect is current_health

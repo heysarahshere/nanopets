@@ -5,7 +5,7 @@
                 <div class="row justify-content-center align-items-center mt-auto pt-2">
                     <i class="fa-solid fa-khanda pr-2 pb-2" style="font-size: 30px; color: rgba(0,0,0,0.51)"
                        onclick="changeName('{{$pet->id}}')"></i>
-                    <h2 class="text-center hover-name" style="color: black" onclick="changeName('{{$pet->id}}')"
+                    <h2 class="text-center hover-name" style="color: black;" onclick="changeName('{{$pet->id}}')"
                         id="nameLabel{{$pet->id}}">
                         {{Str::limit($pet->name, 12)}}
                     </h2>

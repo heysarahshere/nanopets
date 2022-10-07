@@ -222,7 +222,7 @@ class FoodTableSeeder extends Seeder
                 'name' => "Stamina Potion",
                 'image' => "/images/potions/stamina.png",
                 'description' => "A nap in a bottle!",
-                'mainStat' => "stamina",
+                'mainStat' => "current_stamina",
                 'effectAmount' => rand(300, 500),
                 'cost' => 500,
                 'type' => "potion",
