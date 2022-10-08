@@ -256,7 +256,8 @@ class CreatureController extends Controller
 
     }
 
-    public function getMyBreedingPairs(){
+    public function getMyBreedingPairs()
+    {
         if (Auth::check()) {
 
             $user = Auth::user();
@@ -278,66 +279,83 @@ class CreatureController extends Controller
         $primary = Creature::find($request->input('id1'));
         $secondary = Creature::find($request->input('id2'));
 
-        // set up pairing
-        $primary->available = false;
-        $primary->last_bred = Carbon::now();
-        $primary->partner_id = $secondary->id;
-        $primary->primary = true;
-        $primary->save();
+        if ($primary->available) {
+            // set up pairing
+            $primary->available = false;
+            $primary->last_bred = Carbon::now();
+            $primary->partner_id = $secondary->id;
+            $primary->primary = true;
+            $primary->save();
 
-        $secondary->available = false;
-        $secondary->last_bred = Carbon::now();
-        $secondary->partner_id = $primary->id;
-        $secondary->save();
+            $secondary->available = false;
+            $secondary->last_bred = Carbon::now();
+            $secondary->partner_id = $primary->id;
+            $secondary->save();
 
-        return view('creatures/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
-
-    }
-
-    public function postIncubateSingle(Request $request)
-    {
-        $this->validate($request, [
-            'pet_id' => 'required'
-        ]);
-        if (Auth::check()) {
-            $pet_id = $request->input('pet_id');
-            $user = Auth::user();
-            $newEgg = Creature::find($pet_id);
-            $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
-
-            return view('creatures/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
+            return view('creatures/breed', ['primary' => $primary, 'secondary' => $secondary]);
+        } else if () {
         } else {
-            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
+            return redirect()->route('breeding-pairs');
         }
     }
+}
+
+public
+function getBreedingPage(Request $request)
+{
+
+    $primary = Creature::find($request->input('id1'));
+    $secondary = Creature::find($request->input('id2'));
+
+    return view('creatures/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
+}
+
+public
+function postIncubateSingle(Request $request)
+{
+    $this->validate($request, [
+        'pet_id' => 'required'
+    ]);
+    if (Auth::check()) {
+        $pet_id = $request->input('pet_id');
+        $user = Auth::user();
+        $newEgg = Creature::find($pet_id);
+        $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
+
+        return view('creatures/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
+    } else {
+        return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
+    }
+}
 
 
-    /**
-     * @param $statEffect
-     * @param $creature
-     * @param float|int $statEffectAmount
-     * @return void
-     */
-    public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
-    {
-        if ($creature->{$statEffect} == 'stamina' || $creature->{$statEffect} == 'health' ) {
-            $creature->{$statEffect} = 'current_' . $creature->{$statEffect};
-        }
+/**
+ * @param $statEffect
+ * @param $creature
+ * @param float|int $statEffectAmount
+ * @return void
+ */
+public
+function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
+{
+    if ($creature->{$statEffect} == 'stamina' || $creature->{$statEffect} == 'health') {
+        $creature->{$statEffect} = 'current_' . $creature->{$statEffect};
+    }
 
-        if (Str::contains($creature->{$statEffect}, 'current_')) {
-            // take second part of stat name,
-            // for example: if stat effect is current_health
-            // take 'health' and prefix with 'max_'
-            $stat = explode("_", $creature->{$statEffect});
-            // if current health plus health from food is greater than max, set to max instead
-            if ($creature->{$statEffect} + $statEffectAmount >= $creature->{"max_" . $stat[1]}) {
-                $creature->{$statEffect} = $creature->{"max_" . $stat[1]};
-            } else {
-                $creature->{$statEffect} += $statEffectAmount;
-            }
-            // otherwise, assume this is a stat like magic where there is no ceiling
+    if (Str::contains($creature->{$statEffect}, 'current_')) {
+        // take second part of stat name,
+        // for example: if stat effect is current_health
+        // take 'health' and prefix with 'max_'
+        $stat = explode("_", $creature->{$statEffect});
+        // if current health plus health from food is greater than max, set to max instead
+        if ($creature->{$statEffect} + $statEffectAmount >= $creature->{"max_" . $stat[1]}) {
+            $creature->{$statEffect} = $creature->{"max_" . $stat[1]};
         } else {
             $creature->{$statEffect} += $statEffectAmount;
         }
+        // otherwise, assume this is a stat like magic where there is no ceiling
+    } else {
+        $creature->{$statEffect} += $statEffectAmount;
     }
+}
 }

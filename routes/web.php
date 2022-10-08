@@ -100,6 +100,11 @@ Route::get('/mycreatures/breeding', [
     'as' => 'breeding-pairs'
 ]);
 
+Route::get('/mycreatures/breeding-progress', [
+    'uses' => 'App\Http\Controllers\CreatureController@getBreedingPage',
+    'as' => 'get-breeding-pair'
+]);
+
 Route::post('/adopt/all', [
     'uses' => 'App\Http\Controllers\CreatureController@postCancelSellCreature',
     'as' => 'cancel-sell-creature',
