@@ -62,8 +62,13 @@
         }
     }
 
-    function toggleMonsterCardFaceSell(id) {
-        let back = document.getElementById("back-" + id);
+    function toggleMonsterCardFaceSell(id, origin) {
+        // origin is optional
+        var back = document.getElementById("back-" + id);
+        if (origin === 'egg') {
+            back = document.getElementById("front-" + id);
+        }
+
         let sell = document.getElementById("sell-" + id);
         if (back.classList.contains('hiddenFace')) {
             sell.classList.add('hiddenFace');

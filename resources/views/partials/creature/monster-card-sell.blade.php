@@ -23,8 +23,8 @@
             <button type="sumit" class="btn btn-primary actions-btn w-100 mb-1">
                 YES
             </button>
-            <button class="btn btn-danger cancel-actions-btn w-100 mb-3"
-                    onclick="toggleMonsterCardFaceSell('{{$pet->id}}')">
+            <button type="button" class="btn btn-danger cancel-actions-btn w-100 mb-3"
+                    onclick="toggleMonsterCardFaceSell('{{$pet->id}}', 'egg')">
                 NO
             </button>
             <input type="hidden" value="{{$pet->id}}" id="creature_id" name="creature_id">

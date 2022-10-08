@@ -144,7 +144,6 @@ class StoreController extends Controller
         return view('store/food/edit-food', ['food' => $food]);
     }
 
-
     public function postPurchaseFood(Request $request)
     {
         $request->validate([

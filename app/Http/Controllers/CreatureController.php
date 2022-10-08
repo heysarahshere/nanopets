@@ -79,7 +79,7 @@ class CreatureController extends Controller
             $creature->save();
 
 
-            return redirect()->route('home')->with('banner-message', 'Congrats on the adoption!');
+            return redirect()->back()->with('banner-message', 'Congrats on the adoption!');
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
