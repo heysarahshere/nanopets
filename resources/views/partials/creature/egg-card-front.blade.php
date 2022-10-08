@@ -38,12 +38,12 @@
                 <div class="monster-parent col-12">
                     @unless ($pet->incubating())
                         <span style="position: absolute; top: 5%">
-                            <i class="fa-solid fa-circle-exclamation pr-0"
-                               style="color: #ce4e08; font-size: xx-large"></i>
-                            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                                    title="Tooltip on top">
-                              Egg will expire in 3 days if not incubated.
-                            </button>
+                                <span data-toggle="tooltip" data-placement="top"
+                                      title="Egg will expire in 3 days if not incubated.">
+                                      <i class="fa-solid fa-circle-exclamation pr-0"
+                                         style="color: #ce4e08; font-size: xx-large"></i>
+                                </span>
+
                     </span>
                     @endunless
                     <img class="monster-child"
