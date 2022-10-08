@@ -14,8 +14,6 @@ class Creature extends Model
         'tier',
         'species',
         'element',
-        'gender',
-        'description',
         'max_health',
         'current_health',
         'max_stamina',
@@ -27,14 +25,19 @@ class Creature extends Model
         'defense',
         'level',
         'dev_stage', // egg, hatchling, baby, or adult
+        // --------  for sales
         'owner_id',
         'seller_id',
-        'primary',
-        'partner_id',
         'for_sale',
         'cost',
+        'description',
+        'primary',
+        // --------  for eggs/breeding
+        'gender',
+        'partner_id',
         'available',
-        'potential'
+        'potential',
+        'is_incubating'
     ];
 
 
@@ -66,5 +69,10 @@ class Creature extends Model
     public function available()
     {
         return $this->available;
+    }
+
+    public function incubating()
+    {
+        return $this->is_incubating;
     }
 }

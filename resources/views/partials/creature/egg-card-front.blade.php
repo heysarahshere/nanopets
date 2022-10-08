@@ -36,6 +36,16 @@
             </div>
             <div class="store-img-container mb-3">
                 <div class="monster-parent col-12">
+                    @unless ($pet->incubating())
+                        <span style="position: absolute; top: 5%">
+                            <i class="fa-solid fa-circle-exclamation pr-0"
+                               style="color: #ce4e08; font-size: xx-large"></i>
+                            <button type="button" class="btn btn-secondary" data-toggle="egg-tooltip" data-placement="top"
+                                    title="Tooltip on top">
+                              Egg will expire in 3 days if not incubated.
+                            </button>
+                    </span>
+                    @endunless
                     <img class="monster-child"
                          src="{{ Storage::disk('s3')->url("/images/eggs/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
                          alt="{{ $pet->name }} Image">
@@ -43,35 +53,37 @@
             </div>
             <div class="p-3 pt-5 text-center">
                 <div class="animated-progress mb-3
-                                    @if ($pet->current_stamina / $pet->max_stamina * 100 > 80)
+                                    @if ($pet->progress > 80)
                                     progress-green
-                                    @elseif ($pet->current_stamina / $pet->max_stamina * 100 > 55)
+                                    @elseif ($pet->progress > 55)
                                     progress-yellow
-                                    @elseif($pet->current_stamina / $pet->max_stamina * 100 > 30)
+                                    @elseif($pet->progress > 30)
                                     progress-orange
                                     @else
                                     progress-red
                                     @endif
                                     " id="stamina-meter-bar-{{$pet->id}}">
-                    <span style="width: {{$pet->current_stamina / $pet->max_stamina * 100}}%"
+                    <span style="width: {{$pet->progress}}%"
                           id="stamina-meter-span-{{$pet->id}}"></span>
                     <div class="reveal-stats" id="stamina-meter-{{$pet->id}}">
-                        TEMPERATURE:&nbsp;{{$pet->current_stamina}}
-                        /{{ $pet->max_stamina}}</div>
+                        PROGRESS:&nbsp;{{$pet->progress}}%
+                    </div>
                 </div>
                 <div class="animated-progress
-                                    @if ($pet->hunger > 80)
+                                    @if ($pet->temperature > 80)
                                     progress-green
-                                    @elseif ($pet->hunger > 55)
+                                    @elseif ($pet->temperature > 55)
                                     progress-yellow
-                                    @elseif($pet->hunger > 30)
+                                    @elseif($pet->temperature > 30)
                                     progress-orange
                                     @else
                                     progress-red
                                     @endif
-                                    " id="hunger-meter-bar-{{$pet->id}}">
-                    <span style="width: {{$pet->hunger}}%" id="hunger-meter-span-{{$pet->id}}"></span>
-                    <div class="reveal-stats" id="hunger-meter-{{$pet->id}}">PROGRESS:&nbsp;{{$pet->hunger}}/100</div>
+                                    " id="temperature-meter-bar-{{$pet->id}}">
+                    <span style="width: {{$pet->temperature}}%" id="temperature-meter-span-{{$pet->id}}"></span>
+                    <div class="reveal-stats" id="temperature-meter-{{$pet->id}}">TEMP:&nbsp;{{$pet->temperature}}
+                        degrees
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,4 +129,5 @@
             sell.classList.remove('hiddenFace');
         }
     }
+    
 </script>
