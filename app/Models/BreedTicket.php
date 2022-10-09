@@ -19,18 +19,18 @@ class BreedTicket extends Model
         'open' // true by default, ticket closes after breeding complete
     ];
 
-    public function female()
+    public function mommy()
     {
-        return $this->hasOne('App\Models\Creature', 'female_id', 'id');
+        return $this->belongsTo('App\Models\Creature', 'female_id', 'id');
     }
 
-    public function male()
+    public function daddy()
     {
-        return $this->hasOne('App\Models\Creature', 'male_id', 'id');
+        return $this->belongsTo('App\Models\Creature', 'male_id', 'id');
     }
 
     public function baby()
     {
-        return $this->hasOne('App\Models\Creature', 'baby_id', 'id');
+        return $this->belongsTo('App\Models\Creature', 'baby_id', 'id');
     }
 }

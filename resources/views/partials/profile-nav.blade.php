@@ -15,7 +15,7 @@
 {{--        <a href="{{route('my-incubator')}}">--}}
 {{--            <button class="btn btn-lg store-nav-btn m-4 {{$current == "eggs" ? "active" : ""}}">incubator</button>--}}
 {{--        </a>--}}
-        <a href="{{route('breeding-pairs')}}">
+        <a href="{{route('list-breeding-pairs')}}">
             <button class="btn btn-lg store-nav-btn m-4 {{$current == "breed" ? "active" : ""}}">breeding</button>
         </a>
 

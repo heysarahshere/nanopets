@@ -257,13 +257,13 @@ class CreatureController extends Controller
 
     }
 
-    public function getMyBreedingPairs()
+    public function getListBreedingPairs()
     {
         if (Auth::check()) {
 
             $user = Auth::user();
-            $breed_instances = BreedTicket::where('owner_id', $user->id)->where('available', false)->where('primary', true)->orderBy('updated_at', 'desc')->paginate(8);
-            return view('creatures/pairs', ['creatures' => $creatures, 'category' => 'all', 'current' => 'breed']);
+            $breed_instances = BreedTicket::where('owner_id', $user->id)->orderBy('updated_at', 'desc')->paginate(8);
+            return view('creatures/pairs', ['breed_instances' => $breed_instances, 'category' => 'all', 'current' => 'breed']);
 
         } else {
             return redirect()->back()->with('message', 'You must be logged in to do that.');
@@ -307,18 +307,20 @@ class CreatureController extends Controller
                 $secondary->available = false;
                 $secondary->save();
 
-                return redirect()->route('get-breeding-pair', ['breed_id' => $breed_ticket->id]);
+                $breed_instance = BreedTicket::find($breed_ticket->id);
+
+                return redirect()->route('get-breeding-pair', ['id' => $breed_ticket->id]);
             } else {
-                return redirect()->route('breeding-pairs');
+                return redirect()->route('list-breeding-pairs');
             }
         }else
             return redirect()->back()->with('error', 'Your session ahs expired. Please login again.');
 
     }
 
-    public function getBreedingPage($breed_id)
+    public function getBreedingPair($id)
     {
-        $breed_instance = BreedTicket::find($breed_id);
+        $breed_instance = BreedTicket::find($id);
         return view('creatures/breed', ['$breed_instance' => $breed_instance, 'category' => 'all', 'current' => 'breed']);
     }
 
