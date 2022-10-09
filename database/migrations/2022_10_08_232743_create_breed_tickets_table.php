@@ -16,6 +16,13 @@ return new class extends Migration
         Schema::create('breed_tickets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->timestamp('breed_start_time')->nullable();
+            $table->timestamp('breed_end_time')->nullable();
+            $table->integer('owner_id');
+            $table->integer('male_id');
+            $table->integer('female_id');
+            $table->integer('baby_id')->nullable();
+            $table->boolean('open')->default(true);
         });
     }
 

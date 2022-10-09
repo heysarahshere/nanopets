@@ -31,10 +31,8 @@ class Creature extends Model
         'for_sale',
         'cost',
         'description',
-        'primary',
         // --------  for eggs/breeding
         'gender',
-        'partner_id',
         'available',
         'potential',
         'is_incubating'

@@ -17,12 +17,12 @@
                         </div>
                     </div>
                     <div class="col-6 mr-auto m-5">
-                        <h2 style="color: #0060ce; text-align: center">{{ $primary->name }}</h2>
+                        <h2 style="color: #0060ce; text-align: center">{{ $breed_instance->male->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
                             <div class="breed-parent col-12">
                                 <img class="breed-child"
-                                     src="{{ Storage::disk('s3')->url("images/creatures/" . $primary->species . "/" . $primary->dev_stage . "/" . $primary->element . ".png" )}}"
-                                     alt="{{ $primary->name }} Image">
+                                     src="{{ Storage::disk('s3')->url("images/creatures/" . $breed_instance->male->species . "/" . $breed_instance->male->dev_stage . "/" . $breed_instance->male->element . ".png" )}}"
+                                     alt="{{ $breed_instance->male->name }} Image">
                             </div>
                         </div>
                     </div>
@@ -37,12 +37,12 @@
                         </div>
                     </div>
                     <div class="col-6 ml-auto m-5">
-                        <h2 style="color: #ad084d; text-align: center">{{ $secondary->name }}</h2>
+                        <h2 style="color: #ad084d; text-align: center">{{ $breed_instance->female->name }}</h2>
                         <div class="store-img-container breed-pink mb-3">
                             <div class="breed-parent col-12">
                                 <img class="breed-child"
-                                     src="{{ Storage::disk('s3')->url("images/creatures/" . $secondary->species . "/" . $secondary->dev_stage . "/" . $secondary->element . ".png" )}}"
-                                     alt="{{ $secondary->name }} Image">
+                                     src="{{ Storage::disk('s3')->url("images/creatures/" . $breed_instance->female->species . "/" . $breed_instance->female->dev_stage . "/" . $breed_instance->female->element . ".png" )}}"
+                                     alt="{{ $breed_instance->female->name }} Image">
                             </div>
                         </div>
                     </div>
@@ -56,14 +56,14 @@
                     <div class="col-12 m-auto">
                         <div class=" blue-breed-stat p-3">
                             <h2 style="color: white; text-align: center">STATS</h2>
-                            <p>Health: {{$primary->max_health}}</p>
-                            <p>Endurance: {{$primary->max_stamina}}</p>
-                            <p>Defense: {{$primary->defense}}</p>
-                            <p>Attack: {{$primary->strength}}</p>
-                            <p>Magic: {{$primary->magic}}</p>
-                            <p>Mojo: {{$primary->mojo}}</p>
+                            <p>Health: {{$breed_instance->male->max_health}}</p>
+                            <p>Endurance: {{$breed_instance->male->max_stamina}}</p>
+                            <p>Defense: {{$breed_instance->male->defense}}</p>
+                            <p>Attack: {{$breed_instance->male->strength}}</p>
+                            <p>Magic: {{$breed_instance->male->magic}}</p>
+                            <p>Mojo: {{$breed_instance->male->mojo}}</p>
                             <p></p>
-                            <p>Gene dominance: {{$primary->potential}}%</p>
+                            <p>Gene dominance: {{$breed_instance->male->potential}}%</p>
                         </div>
                     </div>
                 </div>
@@ -88,14 +88,14 @@
                     <div class="col-12 m-auto">
                         <div class=" pink-breed-stat p-3">
                             <h2 style="color: white; text-align: center">STATS</h2>
-                            <p>Health: {{$secondary->max_health}}</p>
-                            <p>Endurance: {{$secondary->max_stamina}}</p>
-                            <p>Defense: {{$secondary->defense}}</p>
-                            <p>Attack: {{$secondary->strength}}</p>
-                            <p>Magic: {{$secondary->magic}}</p>
-                            <p>Mojo: {{$secondary->mojo}}</p>
+                            <p>Health: {{$breed_instance->female->max_health}}</p>
+                            <p>Endurance: {{$breed_instance->female->max_stamina}}</p>
+                            <p>Defense: {{$breed_instance->female->defense}}</p>
+                            <p>Attack: {{$breed_instance->female->strength}}</p>
+                            <p>Magic: {{$breed_instance->female->magic}}</p>
+                            <p>Mojo: {{$breed_instance->female->mojo}}</p>
                             <p></p>
-                            <p>Gene dominance: {{$secondary->potential}}%</p>
+                            <p>Gene dominance: {{$breed_instance->female->potential}}%</p>
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
 {{--<div class="row">--}}
 
 {{--    <div class="col-lg-2 col-sm-4 pb-5">--}}
-{{--        <h2 class="card-title">{{ $primary->name }}</h2>--}}
+{{--        <h2 class="card-title">{{ $breed_instance->male->name }}</h2>--}}
 {{--        <div class="card store-card" style="width: 100%;">--}}
 {{--            <div class="store-img-container">--}}
 {{--                <div class="store-img-container">--}}

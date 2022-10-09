@@ -11,7 +11,7 @@
 
 
             <div class="row m-2 my-3" style="height: 100%">
-                @foreach($creatures as $creature)
+                @foreach($breed_instances as $breed_instance)
                     <div class="col-5">
                         <div class="row m-5" style="background-color: white; border-radius: 10px">
 
