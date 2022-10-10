@@ -108,6 +108,14 @@ class CreatureController extends Controller
                     'seller_id' => $user_id
                 ]);
 
+                // see if creature was breeding
+                $gender = $creature->gender == 'male' ? 'male_id' : 'female_id';
+                $breed_ticket = BreedTicket::where($gender, $creature->id)->first();
+                if (!is_null($breed_ticket) && $breed_ticket->open) {
+                    $this->cancelBreeding($breed_ticket);
+                }
+
+
                 $creature->save();
 
                 $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
@@ -139,7 +147,7 @@ class CreatureController extends Controller
                     'for_sale' => false,
                     'cost' => null,
                     'owner_id' => $user_id,
-                    'seller_id' => null
+                    'seller_id' => null,
                 ]);
 
                 $creature->save();
@@ -262,7 +270,7 @@ class CreatureController extends Controller
         if (Auth::check()) {
 
             $user = Auth::user();
-            $breed_instances = BreedTicket::where('owner_id', $user->id)->orderBy('updated_at', 'desc')->paginate(8);
+            $breed_instances = BreedTicket::where('owner_id', $user->id)->where('open', true)->orderBy('updated_at', 'desc')->paginate(8);
             return view('creatures/pairs', ['breed_instances' => $breed_instances, 'category' => 'all', 'current' => 'breed']);
 
         } else {
@@ -309,7 +317,10 @@ class CreatureController extends Controller
 
                 $breed_instance = BreedTicket::find($breed_ticket->id);
 
-                return redirect()->route('get-breeding-pair', ['id' => $breed_ticket->id]);
+                // we want to return a redirect to a route to handle showing this view eventually
+//                return redirect()->route('get-breeding-pair', ['id' => $breed_ticket->id]);
+
+                return view('creatures/breed', ['breed_instance' => $breed_instance, 'category' => 'all', 'current' => 'breed']);
             } else {
                 return redirect()->route('list-breeding-pairs');
             }
@@ -348,8 +359,7 @@ class CreatureController extends Controller
      * @param float|int $statEffectAmount
      * @return void
      */
-    public
-    function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
+    public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
     {
         if ($creature->{$statEffect} == 'stamina' || $creature->{$statEffect} == 'health') {
             $creature->{$statEffect} = 'current_' . $creature->{$statEffect};
@@ -370,5 +380,25 @@ class CreatureController extends Controller
         } else {
             $creature->{$statEffect} += $statEffectAmount;
         }
+    }
+
+    /**
+     * @param $breed_ticket
+     * @return void
+     */
+    public function cancelBreeding($breed_ticket): void
+    {
+        $male = Creature::find($breed_ticket->male_id);
+        $female = Creature::find($breed_ticket->female_id);
+
+        $male->available = true;
+        $male->save();
+
+        $female->available = true;
+        $female->save();
+
+        $breed_ticket->breed_end_time = Carbon::now();
+        $breed_ticket->open = false;
+        $breed_ticket->save();
     }
 }

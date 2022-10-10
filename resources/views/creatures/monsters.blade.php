@@ -8,23 +8,38 @@
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row">
-            @foreach($pets as $pet)
-                <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
+            @if (count($pets) > 0)
+                @foreach($pets as $pet)
+                    <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
 
-                    @if ($pet->dev_stage != 'egg' && $pet->dev_stage != 'hatchling')
-                        @include('partials.creature.monster-card-front')
-                        @include('partials.creature.monster-card-back')
-                        @include('partials.creature.monster-card-feed')
-                        @include('partials.creature.monster-card-breed')
-                        @include('partials.creature.monster-card-sell')
-                    @else
-                        @include('partials.creature.egg-card-front')
-                        @include('partials.creature.monster-card-sell')
-                    @endif
+                        @if ($pet->dev_stage != 'egg' && $pet->dev_stage != 'hatchling')
+                            @include('partials.creature.monster-card-front')
+                            @include('partials.creature.monster-card-back')
+                            @include('partials.creature.monster-card-feed')
+                            @include('partials.creature.monster-card-breed')
+                            @include('partials.creature.monster-card-sell')
+                        @else
+                            @include('partials.creature.egg-card-front')
+                            @include('partials.creature.monster-card-sell')
+                        @endif
+                    </div>
+                @endforeach
+                <button class="btn btn-danger w-100 mt-4 large-breed-btn">BREED ></button>
+            @else
+                <div class="text-center col-12">
+                    <h2 style="font-family: Readzone; color: #ad084d">Uh oh, you don't have any creatures.</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{{route('adoptable')}}" class="btn btn-lg btn-primary ombre-btn m-auto" style="width: 90%">ADOPT A CREATURE</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{{route('eggs')}}" class="btn btn-lg btn-primary ombre-btn m-auto" style="width: 90%">PURCHASE AN EGG</a>
+                        </div>
+                    </div>
                 </div>
-            @endforeach
+            @endif
         </div>
-        <button class="btn btn-danger w-100 mt-4 large-breed-btn">BREED ></button>
     </div>
 
 @endsection
