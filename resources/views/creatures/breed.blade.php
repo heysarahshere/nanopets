@@ -53,7 +53,7 @@
                 <div class="col-6 mt-3" style="height: 100%">
                     <div class="col-12 blue-breed-gradient">
                         <div class="blue-progress-breed blue-breed-bar">
-                            <span style="width: 25%" id="blue-span"></span>
+                            <span style="width: {{$breed_instance->progress}}%" id="blue-span"></span>
                         </div>
                     </div>
                     <div class="col-6 mr-auto m-5">
@@ -73,7 +73,7 @@
 
                     <div class="col-12 pink-breed-gradient pink-breed-bar">
                         <div class="pink-progress-breed">
-                            <span style="width: 25%; margin-left: auto !important;" id="pink-span"></span>
+                            <span style="width: {{$breed_instance->progress}}%; margin-left: auto !important;" id="pink-span"></span>
                         </div>
                     </div>
                     <div class="col-6 ml-auto m-5">

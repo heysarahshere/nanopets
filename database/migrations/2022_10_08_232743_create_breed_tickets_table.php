@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('owner_id');
             $table->integer('male_id');
             $table->integer('female_id');
+            $table->integer('progress')->default(0); // max 100 as this will be percent
             $table->integer('baby_id')->nullable();
             $table->boolean('open')->default(true);
         });

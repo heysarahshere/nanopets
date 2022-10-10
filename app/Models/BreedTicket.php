@@ -16,7 +16,8 @@ class BreedTicket extends Model
         'male_id',
         'female_id',
         'baby_id', // nullable as no baby at first
-        'open' // true by default, ticket closes after breeding complete
+        'open', // true by default, ticket closes after breeding complete
+        'progress'
     ];
 
     public function mommy()
