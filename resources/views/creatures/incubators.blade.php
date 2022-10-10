@@ -1,10 +1,10 @@
 @extends('layout.master')
 @section('title')
-Egg Incubators
+    Egg Incubators
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.profile-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.profile-nav')
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row">

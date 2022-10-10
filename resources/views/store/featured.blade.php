@@ -3,7 +3,7 @@
     Featured
 @endsection
 @section('content')
-    @include('partials.store-nav')
+    @include('partials.navigation.store-nav')
 
     <div class="my-5">
         <div class="container featured-jumbo p-5 mb-5">
@@ -13,8 +13,10 @@
                         <div class="col-7">
                             <h1 style="color: #DB0F00">Special Offer</h1>
                             <h2>Big, juicy burger!</h2>
-                            <p>Meat type undisclosed, guaranteed to boost the stamina and hunger of any carnivore - buy one, get one free!
-                                </p><p>Please buy it. It's starting to smell.</p>
+                            <p>Meat type undisclosed, guaranteed to boost the stamina and hunger of any carnivore - buy
+                                one, get one free!
+                            </p>
+                            <p>Please buy it. It's starting to smell.</p>
                             <div class="row align-items-baseline mt-5 ml-3">
                                 <button class="btn rev-ombre-btn">PURCHASE</button>
                                 <button class="btn ombre-btn">DETAILS</button>
@@ -34,7 +36,8 @@
                             <img class="card-img-top p-1"
                                  src="{{ asset('/images/eggs/mystic.png') }}"
                                  alt="Burger Image" style="width: 100%">
-                            <p style="color: #0099da"><span style="font-weight: bold">Aerie Egg:</span> Contains any species of Air elemental</p>
+                            <p style="color: #0099da"><span style="font-weight: bold">Aerie Egg:</span> Contains any
+                                species of Air elemental</p>
                             <button class="btn rev-ombre-btn" style="background-color: #00b7d2;">DETAILS</button>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
     Housing Items
 @endsection
 @section('content')
-    @include('partials.store-nav')
+    @include('partials.navigation.store-nav')
 
     <div>
         <div class="container store-body text-center pt-4">
@@ -29,7 +29,6 @@
                             </div>
                         </div>
                     </div>
-
 
                 @endforeach
             </div>

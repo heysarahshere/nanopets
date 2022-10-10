@@ -316,15 +316,16 @@ class CreatureController extends Controller
                 $secondary->save();
 
                 $breed_instance = BreedTicket::find($breed_ticket->id);
+                $alternatives = Creature::where('owner_id', $user->id)->where('available', true)->where('dev_stage', 'adult')->get();
 
                 // we want to return a redirect to a route to handle showing this view eventually
 //                return redirect()->route('get-breeding-pair', ['id' => $breed_ticket->id]);
 
-                return view('creatures/breed', ['breed_instance' => $breed_instance, 'category' => 'all', 'current' => 'breed']);
+                return view('creatures/breed', ['breed_instance' => $breed_instance, 'alternatives' => $alternatives, 'category' => 'none', 'current' => 'breed']);
             } else {
                 return redirect()->route('list-breeding-pairs');
             }
-        }else
+        } else
             return redirect()->back()->with('error', 'Your session ahs expired. Please login again.');
 
     }
@@ -335,9 +336,11 @@ class CreatureController extends Controller
             $user = Auth::user();
 
             $breed_instance = BreedTicket::find($id);
+            $alternatives = Creature::where('owner_id', $user->id)->where('available', true)->where('dev_stage', 'adult')->get();
+
             if ($breed_instance->owner_id == $user->id) {
                 if (!is_null($breed_instance)) {
-                    return view('/creatures/breed')->with(['breed_instance' => $breed_instance, 'category' => 'all', 'current' => 'breed progress']);
+                    return view('/creatures/breed')->with(['breed_instance' => $breed_instance, 'alternatives' => $alternatives, 'category' => 'none', 'current' => 'breed progress']);
                 } else {
                     return redirect()->back()->with('message', 'Sorry, that breeding ticket was closed or no longer exists.');
                 }
@@ -349,7 +352,7 @@ class CreatureController extends Controller
             return redirect()->back()->with('message', 'Oops, please login before trying that again.');
         }
 
-   }
+    }
 
     public function postIncubateSingle(Request $request)
     {

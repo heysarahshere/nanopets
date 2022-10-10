@@ -3,8 +3,8 @@
     {{Str::title($current)}}
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.profile-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.profile-nav')
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="row">
@@ -31,10 +31,12 @@
                     <hr>
                     <div class="row">
                         <div class="col-6">
-                            <a href="{{route('adoptable')}}" class="btn btn-lg btn-primary ombre-btn m-auto" style="width: 90%">ADOPT A CREATURE</a>
+                            <a href="{{route('adoptable')}}" class="btn btn-lg btn-primary ombre-btn m-auto"
+                               style="width: 90%">ADOPT A CREATURE</a>
                         </div>
                         <div class="col-6">
-                            <a href="{{route('eggs')}}" class="btn btn-lg btn-primary ombre-btn m-auto" style="width: 90%">PURCHASE AN EGG</a>
+                            <a href="{{route('eggs')}}" class="btn btn-lg btn-primary ombre-btn m-auto"
+                               style="width: 90%">PURCHASE AN EGG</a>
                         </div>
                     </div>
                 </div>

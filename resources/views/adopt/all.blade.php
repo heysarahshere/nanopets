@@ -3,8 +3,8 @@
     Adopt a Creature
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.store-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.store-nav')
     <div>
         <div class="container store-body text-center pt-4">
             <div class="row justify-content-center align-items-center m-auto">

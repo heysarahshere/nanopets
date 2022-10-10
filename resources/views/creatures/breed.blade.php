@@ -3,8 +3,48 @@
     {{Str::title($current)}}
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.profile-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.profile-nav')
+
+    <div class="soft-ombre-banner">
+        <div class="container-monsters">
+            <div class="col-6">
+                <h1 style="color: white; text-align: center"> Make a hybrid! </h1>
+            </div>
+            <div class="col-6 banner-img-container">
+                <img class="banner-img" src="{{ asset("images/monster_4b.png" )}}" alt="Monster Image">
+            </div>
+
+        </div>
+    </div>
+
+    {{--  scrollable row of creatures  --}}
+    <div class="container-monsters">
+        <h1 class="text-center">Select creatures</h1>
+        <div class="card py-0 feed-card" style="border-radius: 15px; width: 98%;">
+            <div class="row">
+                <div class="row mt-0 " style="overflow-x: scroll; max-width: 95%; margin-left: 5%; margin-right: 5%">
+                    <div class="container-fluid py-2">
+                        <div class="d-flex flex-row flex-nowrap">
+                            @foreach($alternatives as $alternative)
+                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}">
+                                        <div>
+                                            <i class="fa-regular fa-heart cupid-heart"></i>
+                                            <img class="card-img-top"
+                                                 style="width: auto; height: 100%; max-width: 250px;display:block"
+                                                 src="{{ Storage::disk('s3')->url("/images/creatures/" . $alternative->species . "/adult/" . $alternative->element . ".png") }}">
+                                        </div>
+                                        <h2 style="color: black; text-align: center;">{{$alternative->name}}</h2>
+                                    </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  end scrollable row of creatures  --}}
 
     <div class="container-monsters mt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="monster-card breed-main pb-5">
@@ -77,8 +117,9 @@
                     </div>
                     <div class="col-12 m-auto m-5">
                         <div class="store-img-container breed-purple mb-3">
-                            <div class="breed-parent col-12" style="display: flex; justify-content: center; align-items: center;">
-                                  <h1 class="m-auto breed-question">?</h1>
+                            <div class="breed-parent col-12"
+                                 style="display: flex; justify-content: center; align-items: center;">
+                                <h1 class="m-auto breed-question">?</h1>
                             </div>
                         </div>
                     </div>

@@ -658,4 +658,48 @@
     visibility: hidden;
 }
 
+.soft-ombre-banner {
+    background-image: linear-gradient(to right, rgba(22, 139, 225, 0.85), rgba(229, 48, 75, 0.85));
+    height: 60px;
+    width: 100%;
+    position: relative;
+    margin: 5% 0 5% 0;
+}
+
+.banner-img-container {
+    position: relative;
+    height: 180px;
+}
+
+.banner-img {
+    position: absolute;
+    top: -70%;
+    right: -50%;
+    height: 100%;
+    width: auto;
+}
+
+
+.pink-border,
+.blue-border {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    border-radius: 10%;
+    border-width: 10px;
+    scale: 0.9;
+}
+
+.pink-border:hover,
+.blue-border:hover {
+    scale: 1;
+}
+
+.blue-border {
+    border-color: #0965B8;
+}
+.pink-border {
+    border-color: #BE1957;
+}
+
+
 /* ---------------------------------------- end breed progress bars -------------- */

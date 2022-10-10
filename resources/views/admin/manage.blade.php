@@ -5,9 +5,9 @@
 @section('content')
 
     <header>
-        @include('partials.nav')
-        @include('partials.errors')
-        @include('partials.message')
+        @include('partials.navigation.nav')
+        @include('partials.info.errors')
+        @include('partials.info.message')
     </header>
     <div class="wrapper">
 
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-row ml-1">
                             <div class="col-md-4 mb-3">
-                                <select class="form-control form-control-lg" id="age"  name="age">
+                                <select class="form-control form-control-lg" id="age" name="age">
                                     <option selected disabled value="">Age...</option>
                                     <option>Young</option>
                                     <option>Adult</option>
@@ -119,13 +119,15 @@
                                 <input type="checkbox" name="trained" id="trained" value="true"> Trained
                             </label>
                             <label class="btn btn-light  m-1">
-                                <input type="checkbox" name="noviceOwnerOk" id="noviceOwnerOk" value="true"> Novice Owner OK
+                                <input type="checkbox" name="noviceOwnerOk" id="noviceOwnerOk" value="true"> Novice
+                                Owner OK
                             </label>
                             <label class="btn btn-light  m-1">
                                 <input type="checkbox" name="energetic" id="energetic" value="true"> Energetic
                             </label>
                             <label class="btn btn-light  m-1">
-                                <input type="checkbox" name="goodWithKids" id="goodWithKids" value="true"> Good with Kids
+                                <input type="checkbox" name="goodWithKids" id="goodWithKids" value="true"> Good with
+                                Kids
                             </label>
                             <label class="btn btn-light  m-1">
                                 <input type="checkbox" name="escapeArtist" id="escapeArtist" value="true"> Escape-Artist
@@ -163,45 +165,54 @@
                     <div class="upload-pet col-sm-12 col-xl-5 p-2 pt-3">
                         <div class="row">
                             <div class="col-sm-9" style="justify-content: center; margin: 0 auto;">
-                                <img style="max-height: 100%" id="output" src="{{ Storage::disk('s3')->url('empty_dog.jpg') }}">
+                                <img style="max-height: 100%" id="output"
+                                     src="{{ Storage::disk('s3')->url('empty_dog.jpg') }}">
                             </div>
                         </div>
                         <div class="card-body">
 
                             <label class="btn btn-light  m-1">
-                                <input type="checkbox" name="add_image1" id="add_image1" value="true" onclick="showUploader(1)"> Add Image 1
+                                <input type="checkbox" name="add_image1" id="add_image1" value="true"
+                                       onclick="showUploader(1)"> Add Image 1
                             </label>
-                            <div style="display: none" id="upload1"  class="custom-file col-md-12 col-lg-12 pb-2">
-                                <input type="file" class="custom-file-input" id="image1" name="image1" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                            <div style="display: none" id="upload1" class="custom-file col-md-12 col-lg-12 pb-2">
+                                <input type="file" class="custom-file-input" id="image1" name="image1" accept="image/*"
+                                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 <label class="custom-file-label" for="image1">Choose image 1...</label>
                             </div>
 
                             <label class="btn btn-light  m-1">
-                                <input type="checkbox" name="add_image2" id="add_image2" value="true" onclick="showUploader(2)"> Add Image 2
+                                <input type="checkbox" name="add_image2" id="add_image2" value="true"
+                                       onclick="showUploader(2)"> Add Image 2
                             </label>
-                            <div style="display: none"  id="upload2" class="custom-file col-md-12 col-lg-12 pb-2">
-                                <input type="file" class="custom-file-input2" id="image2" name="image2" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                            <div style="display: none" id="upload2" class="custom-file col-md-12 col-lg-12 pb-2">
+                                <input type="file" class="custom-file-input2" id="image2" name="image2" accept="image/*"
+                                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 <label class="custom-file-label" for="image2">Choose image 2...</label>
                             </div>
 
                             <label class="btn btn-light  m-1">
-                                <input type="checkbox" name="add_image3" id="add_image3" value="true"  onclick="showUploader(3)"> Add Image 3
+                                <input type="checkbox" name="add_image3" id="add_image3" value="true"
+                                       onclick="showUploader(3)"> Add Image 3
                             </label>
                             <div style="display: none" id="upload3" class="custom-file col-md-12 col-lg-12 pb-2">
-                                <input type="file" class="custom-file-input3" id="image3" name="image3" accept="image/*" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                <input type="file" class="custom-file-input3" id="image3" name="image3" accept="image/*"
+                                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 <label class="custom-file-label" for="image3">Choose image 3...</label>
                             </div>
 
 
                             <p>Fur Length:</p>
                             <div class="slidecontainer mt-1">
-                                <input class="slider" type="range" id="furInput" name="furInput" min="0" max="2" value="0"
+                                <input class="slider" type="range" id="furInput" name="furInput" min="0" max="2"
+                                       value="0"
                                        oninput="setFurLevel(this.value)">
                                 <output id="furLevel" name="furLevel" for="furInput"></output>
                             </div>
                             <p>Shed Level:</p>
                             <div class="slidecontainer mt-1">
-                                <input class="slider" type="range" id="shedInput" name="shedInput" min="0" max="4" value="0"
+                                <input class="slider" type="range" id="shedInput" name="shedInput" min="0" max="4"
+                                       value="0"
                                        oninput="setShedLevel(this.value)">
                                 <output id="shedLevel" name="shedLevel" for="shedInput"></output>
                             </div>
@@ -211,7 +222,8 @@
 
                 <div class="form-group pt-3 ml-5">
                     <button type="submit" class="btn btn-light ombre">Post Pet</button>
-                    <button type="reset" class="btn btn-light rev-ombre"><a href="{{route('add-pet')}}">Clear</a></button>
+                    <button type="reset" class="btn btn-light rev-ombre"><a href="{{route('add-pet')}}">Clear</a>
+                    </button>
                 </div>
                 {{ csrf_field() }}
             </form>
@@ -221,7 +233,7 @@
     <script type="text/javascript">
 
         // image preview script
-        document.querySelector('.custom-file-input').addEventListener('change',function(e){
+        document.querySelector('.custom-file-input').addEventListener('change', function (e) {
             var fileName = document.getElementById("profile_image").files[0].name;
             var nextSibling = e.target.nextElementSibling;
             nextSibling.innerText = fileName;

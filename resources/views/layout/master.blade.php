@@ -42,9 +42,9 @@
 <main role="main">
 
     <header>
-        @include('partials.nav')
-        @include('partials.message')
-        @include('partials.errors')
+        @include('partials.navigation.nav')
+        @include('partials.info.message')
+        @include('partials.info.errors')
     </header>
 
     @yield('content')

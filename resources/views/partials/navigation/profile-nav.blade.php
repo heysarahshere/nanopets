@@ -22,4 +22,4 @@
     </div>
 </div>
 
-<div class="store-banner mt-2"><h2>ALL</h2></div>
+<div class="store-banner mt-2"><h2>{{$category == 'none' ? "" : $category}}</h2></div>

@@ -3,8 +3,8 @@
     {{Str::title($current)}}
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.profile-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.profile-nav')
 
     <div class="container-monsters mt-5" style="padding-bottom: 20%; align-content: space-evenly;">
         <div class="monster-card pb-5">
@@ -12,9 +12,9 @@
 
             <div class="row m-2 my-3" style="height: 100%;">
                 @foreach($breed_instances as $breed_instance)
-                        <div class="col-5">
+                    <div class="col-5">
 
-                            <a href="{{route('get-breeding-pair', ['id' => $breed_instance->id])}}">
+                        <a href="{{route('get-breeding-pair', ['id' => $breed_instance->id])}}">
                             <div class="row m-5" style="background-color: white; border-radius: 10px">
 
                                 <div class="col-5">
@@ -27,7 +27,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <i class="fa-solid fa-plus my-auto mx-2" style="font-size: 50px; color: #840e8d; text-decoration: none"></i>
+                                <i class="fa-solid fa-plus my-auto mx-2"
+                                   style="font-size: 50px; color: #840e8d; text-decoration: none"></i>
                                 <div class="col-5">
                                     <h2 style="color: #ad084d; text-align: center">{{ $breed_instance->mommy->name }}</h2>
                                     <div class="pair-pink mb-3">
@@ -44,8 +45,8 @@
                                     <span style="width: 15%"></span>
                                 </div>
                             </div>
-                            </a>
-                        </div>
+                        </a>
+                    </div>
 
                 @endforeach
             </div>

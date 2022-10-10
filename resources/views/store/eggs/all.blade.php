@@ -3,7 +3,7 @@
     Eggs
 @endsection
 @section('content')
-    @include('partials.store-nav')
+    @include('partials.navigation.store-nav')
     <div>
         <div class="container store-body text-center pt-4">
 
@@ -31,16 +31,19 @@
                             </div>
                             @if(Auth::check())
                                 <?php $user = Auth::user()?>
-                                    <form id="adoptCreature" name="adopt" method="POST" action="{{route('adopt-creature')}}"
-                                          style="width: 90%; margin-right: 10%">
-                                        <button type="submit" class="btn btn-primary purchase-btn w-100" {{$user->balance >= $egg->cost ? '' : 'disabled'}}>Purchase</button>
-                                        <input type="hidden" value="{{$egg->id}}" id="creature_id" name="creature_id">
-                                        {{ csrf_field() }}
-                                    </form>
+                                <form id="adoptCreature" name="adopt" method="POST" action="{{route('adopt-creature')}}"
+                                      style="width: 90%; margin-right: 10%">
+                                    <button type="submit"
+                                            class="btn btn-primary purchase-btn w-100" {{$user->balance >= $egg->cost ? '' : 'disabled'}}>
+                                        Purchase
+                                    </button>
+                                    <input type="hidden" value="{{$egg->id}}" id="creature_id" name="creature_id">
+                                    {{ csrf_field() }}
+                                </form>
                             @endif
                         </div>
                     </div>
-{{--                    @include('partials.modals.egg-stat-modal')--}}
+                    {{--                    @include('partials.modals.egg-stat-modal')--}}
                 @endforeach
                 <div class="container">
                     <div class="row m-auto">
