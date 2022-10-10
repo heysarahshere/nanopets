@@ -125,7 +125,7 @@ Route::post('/breed', [
 ]);
 
 // get used to see current progress of one couple
-Route::get('/breeding-progress/{id}', [
+Route::get('/mycreatures/breeding/{id}', [
     'uses' => 'App\Http\Controllers\CreatureController@getBreedingPair',
     'as' => 'get-breeding-pair'
 ]);

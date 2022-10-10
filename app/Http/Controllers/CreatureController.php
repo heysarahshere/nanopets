@@ -331,9 +331,25 @@ class CreatureController extends Controller
 
     public function getBreedingPair($id)
     {
-        $breed_instance = BreedTicket::find($id);
-        return view('creatures/breed', ['$breed_instance' => $breed_instance, 'category' => 'all', 'current' => 'breed']);
-    }
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $breed_instance = BreedTicket::find($id);
+            if ($breed_instance->owner_id == $user->id) {
+                if (!is_null($breed_instance)) {
+                    return view('/creatures/breed')->with(['breed_instance' => $breed_instance, 'category' => 'all', 'current' => 'breed progress']);
+                } else {
+                    return redirect()->back()->with('message', 'Sorry, that breeding ticket was closed or no longer exists.');
+                }
+            } else {
+                return redirect()->back()->with('message', 'You can only see progress of your own creatures.');
+            }
+
+        } else {
+            return redirect()->back()->with('message', 'Oops, please login before trying that again.');
+        }
+
+   }
 
     public function postIncubateSingle(Request $request)
     {

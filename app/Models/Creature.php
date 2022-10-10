@@ -49,6 +49,15 @@ class Creature extends Model
         return $this->belongsTo('App\Models\User', 'seller_id', 'id');
     }
 
+    public function breed_ticket()
+    {
+        if ($this->gender == 'male') {
+            return $this->hasOne('App\Models\BreedTicket', 'male_id', 'id');
+        } else {
+            return $this->hasOne('App\Models\BreedTicket', 'female_id', 'id');
+        }
+    }
+
     public function partner()
     {
         return $this->hasOne('App\Models\Creature', 'partner_id', 'id');
@@ -57,7 +66,7 @@ class Creature extends Model
 
     public function compatible($creature)
     {
-        if ($this->dev_stage === 'adult' && $this->id != $creature->id && $this->gender != $creature->gender && $this->available == 1) {
+        if ($this->dev_stage == 'adult' && $this->id != $creature->id && $this->gender != $creature->gender && $this->available == 1) {
             return true;
         } else {
             return false;
