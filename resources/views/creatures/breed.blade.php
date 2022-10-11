@@ -27,16 +27,16 @@
                     <div class="container-fluid py-2">
                         <div class="d-flex flex-row flex-nowrap">
                             @foreach($alternatives as $alternative)
-                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}"
+                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}"
                                         onclick="swapMale(event, '{{$alternative->id}}')">
 
                                         <div>
                                             <i class="fa-regular fa-heart cupid-heart"></i>
-                                            <img class="card-img-top"
+                                            <img class="card-img-top" id="littleCardImage_{{$alternative->id}}"
                                                  style="width: auto; height: 100%; max-width: 250px;display:block"
                                                  src="{{ Storage::disk('s3')->url("/images/creatures/" . $alternative->species . "/adult/" . $alternative->element . ".png") }}">
                                         </div>
-                                        <h2 style="color: black; text-align: center;">{{$alternative->name}}</h2>
+                                        <h2 id="littleCardName_{{$alternative->id}}" style="color: black; text-align: center;">{{$alternative->name}}</h2>
                                     </div>
                             @endforeach
                         </div>
@@ -59,10 +59,10 @@
                         </div>
                     </div>
                     <div class="col-6 mr-auto m-5">
-                        <h2 style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
+                        <h2 id="bigCardName_{{$alternative->id}}" style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
                             <div class="breed-parent col-12">
-                                <img class="breed-child"
+                                <img class="breed-child" id="bigCardImage_{{$alternative->id}}"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $breed_instance->daddy->species . "/" . $breed_instance->daddy->dev_stage . "/" . $breed_instance->daddy->element . ".png" )}}"
                                      alt="{{ $breed_instance->daddy->name }} Image">
                             </div>
@@ -164,10 +164,28 @@
         event.preventDefault();
 
         // find clicked card by its id
+        //let littleCard = document.getElementById("breed_" + id);
+        let littleCardName = document.getElementById("littleCardName_" + id);
+        let littleCardNameText = document.getElementById("littleCardName_" + id).innerHTML;
+
+        let bigCardName = document.getElementById("bigCardName_" + id);
+        let bigCardNameText = document.getElementById("bigCardName_" + id).innerHTML;
+
+        littleCardName.innerHTML = bigCardNameText;
+        bigCardName.innerHTML = littleCardNameText;
+
         // find the male element card
 
         // save src from little card
         // save src from big card
+        let littleCardImage = document.getElementById("littleCardImage_" + id);
+        let littleCardNameSrc = document.getElementById("littleCardImage_" + id).src;
+
+        let bigCardImage = document.getElementById("bigCardImage_" + id);
+        let bigCardImageSrc = document.getElementById("bigCardImage_" + id).src;
+
+        littleCardImage.src = bigCardImageSrc;
+        bigCardImage.src = littleCardImageSrc;
 
         // save name from little card
         // save name from bigger card
