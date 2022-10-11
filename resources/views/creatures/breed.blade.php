@@ -27,16 +27,16 @@
                     <div class="container-fluid py-2">
                         <div class="d-flex flex-row flex-nowrap">
                             @foreach($alternatives as $alternative)
-                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}"
-                                        onclick="swapMale(event, '{{$alternative->id}}')">
+                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}"
+                                        onclick="swapCreature(event, '{{$alternative->id}}', '{{Str::title($alternative->gender)}}')">
 
                                         <div>
                                             <i class="fa-regular fa-heart cupid-heart"></i>
-                                            <img class="card-img-top" id="littleCardImage_{{$alternative->id}}"
+                                            <img class="card-img-top" id="littleCardImage_{{$alternative->id}}_{{Str::title($alternative->gender)}}"
                                                  style="width: auto; height: 100%; max-width: 250px;display:block"
                                                  src="{{ Storage::disk('s3')->url("/images/creatures/" . $alternative->species . "/adult/" . $alternative->element . ".png") }}">
                                         </div>
-                                        <h2 id="littleCardName_{{$alternative->id}}" style="color: black; text-align: center;">{{$alternative->name}}</h2>
+                                        <h2 id="littleCardName_{{$alternative->id}}_{{Str::title($alternative->gender)}}" style="color: black; text-align: center;">{{$alternative->name}}</h2>
                                     </div>
                             @endforeach
                         </div>
@@ -59,10 +59,10 @@
                         </div>
                     </div>
                     <div class="col-6 mr-auto m-5">
-                        <h2 id="bigCardName_{{$alternative->id}}" style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
+                        <h2 id="bigCardName_Male" style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
                             <div class="breed-parent col-12">
-                                <img class="breed-child" id="bigCardImage"
+                                <img class="breed-child" id="bigCardImage_Male"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $breed_instance->daddy->species . "/" . $breed_instance->daddy->dev_stage . "/" . $breed_instance->daddy->element . ".png" )}}"
                                      alt="{{ $breed_instance->daddy->name }} Image">
                             </div>
@@ -79,10 +79,10 @@
                         </div>
                     </div>
                     <div class="col-6 ml-auto m-5">
-                        <h2 style="color: #ad084d; text-align: center">{{ $breed_instance->mommy->name }}</h2>
+                        <h2 id="bigCardName_Female" style="color: #ad084d; text-align: center">{{ $breed_instance->mommy->name }}</h2>
                         <div class="store-img-container breed-pink mb-3">
                             <div class="breed-parent col-12">
-                                <img class="breed-child"
+                                <img class="breed-child" id="bigCardImage_Female"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $breed_instance->mommy->species . "/" . $breed_instance->mommy->dev_stage . "/" . $breed_instance->mommy->element . ".png" )}}"
                                      alt="{{ $breed_instance->mommy->name }} Image">
                             </div>
@@ -157,48 +157,33 @@
 @endsection
 
 <script>
-    function swapFemale(ev) {
-        ev.preventDefault();
-    }
-    function swapMale(event, id) {
+    function swapCreature(event, id, gender) {
         event.preventDefault();
 
-        // find clicked card by its id
-        //let littleCard = document.getElementById("breed_" + id);
-        let littleCardName = document.getElementById("littleCardName_" + id);
-        let littleCardNameText = document.getElementById("littleCardName_" + id).innerHTML;
+        // get name info from little card
+        let littleCardName = document.getElementById("littleCardName_" + id + "_" + gender);
+        let littleCardNameText = document.getElementById("littleCardName_" + id + "_" + gender).innerHTML;
 
-        let bigCardName = document.getElementById("bigCardName_" + id);
-        let bigCardNameText = document.getElementById("bigCardName_" + id).innerHTML;
+        // get name info from big card
+        let bigCardName = document.getElementById("bigCardName_" + gender);
+        let bigCardNameText = document.getElementById("bigCardName_" + gender).innerHTML;
 
+        // get image info from little img
+        let littleCardImage = document.getElementById("littleCardImage_" + id + "_" + gender);
+        let littleCardImageSrc = document.getElementById("littleCardImage_" + id + "_" + gender).src;
+
+        // get image info from big img
+        let bigCardImage = document.getElementById("bigCardImage_" + gender);
+        let bigCardImageSrc = document.getElementById("bigCardImage_" + gender).src;
+
+
+        // swap big and little names
         littleCardName.innerHTML = bigCardNameText;
         bigCardName.innerHTML = littleCardNameText;
 
-        // find the male element card
-
-        // save src from little card
-        // save src from big card
-        let littleCardImage = document.getElementById("littleCardImage_" + id);
-        let bigCardImage = document.getElementById("bigCardImage");
-
-
-        let littleCardImageSrc = document.getElementById("littleCardImage_" + id).src;
-        let bigCardImageSrc = document.getElementById("bigCardImage").src;
-
+        // swap big and little images
         littleCardImage.src = bigCardImageSrc;
         bigCardImage.src = littleCardImageSrc;
-
-        // save name from little card
-        // save name from bigger card
-
-        // do the swap
-
-
-        //set their details as each other's
-
-        // set text
-
-        // set src
 
     }
 
