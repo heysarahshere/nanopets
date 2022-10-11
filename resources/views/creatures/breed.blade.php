@@ -27,7 +27,9 @@
                     <div class="container-fluid py-2">
                         <div class="d-flex flex-row flex-nowrap">
                             @foreach($alternatives as $alternative)
-                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}">
+                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}" 
+                                        onclick="swapMale('{{$alternative->id}}')">
+
                                         <div>
                                             <i class="fa-regular fa-heart cupid-heart"></i>
                                             <img class="card-img-top"
@@ -158,8 +160,9 @@
     function swapFemale(ev) {
         ev.preventDefault();
     }
-    function swapMale(ev) {
+    function swapMale(ev,id) {
         ev.preventDefault();
+        
     }
 
 </script>
