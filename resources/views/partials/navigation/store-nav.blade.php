@@ -37,71 +37,62 @@
 
 <div class="container store-search-bar">
     <div class="row">
-        <div class="col-4 m-auto p-2">
+        <div class="col-3 m-auto p-2">
             <div class="dropdown">
-                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown trigger
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="width: 80%">
+                    Age:
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dLabel">
-                    <li><a class="dropdown-item" href="#">Bronze</a></li>
-                    <li><a class="dropdown-item" href="#">Silver</a></li>
-                    <li><a class="dropdown-item" href="#">Gold</a></li>
-                    <li><a class="dropdown-item" href="#">Platinum</a></li>
-                    <li><a class="dropdown-item" href="#">Diamond</a></li>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Egg</button>
+                    <button class="dropdown-item" type="button">Baby</button>
+                    <button class="dropdown-item" type="button">Adult</button>
                 </div>
             </div>
-            {{--            <div class="dropdown">--}}
-            {{--                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">--}}
-            {{--                    Tier:--}}
-            {{--                </button>--}}
-            {{--                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">--}}
-            {{--                    <li><a class="dropdown-item" href="#">Bronze</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Silver</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Gold</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Platinum</a></li>--}}
-            {{--                    <li><a class="dropdown-item" href="#">Diamond</a></li>--}}
-            {{--                </ul>--}}
-            {{--            </div>--}}
+        </div>        <div class="col-3 m-auto p-2">
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="width: 80%">
+                    Tier:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Bronze</button>
+                    <button class="dropdown-item" type="button">Silver</button>
+                    <button class="dropdown-item" type="button">Gold</button>
+                    <button class="dropdown-item" type="button">Platinum</button>
+                    <button class="dropdown-item" type="button">Diamond</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 m-auto p-2">
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="width: 80%">
+                    Element:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Fire</button>
+                    <button class="dropdown-item" type="button">Water</button>
+                    <button class="dropdown-item" type="button">Earth</button>
+                    <button class="dropdown-item" type="button">Air</button>
+                    <button class="dropdown-item" type="button">Other</button>
+                </div>
+            </div>
             {{--            <div class="btn-group m-auto">--}}
             {{--                <button class="btn btn-light btn-sm dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown"--}}
             {{--                        aria-expanded="false">--}}
-            {{--                    Tier:--}}
+            {{--                    Element:--}}
             {{--                </button>--}}
             {{--                <ul class="dropdown-menu">--}}
-            {{--                    <li>Bronze</li>--}}
-            {{--                    <li>Silver</li>--}}
-            {{--                    <li>Gold</li>--}}
-            {{--                    <li>Platinum</li>--}}
-            {{--                    <li>Diamond</li>--}}
+            {{--                    <li>Fire</li>--}}
+            {{--                    <li>Water</li>--}}
+            {{--                    <li>Earth</li>--}}
+            {{--                    <li>Air</li>--}}
+            {{--                    <li>Other</li>--}}
             {{--                </ul>--}}
             {{--            </div>--}}
         </div>
-        <div class="col-4 m-auto p-2">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Action</button>
-                    <button class="dropdown-item" type="button">Another action</button>
-                    <button class="dropdown-item" type="button">Something else here</button>
-                </div>
-            </div>
-{{--            <div class="btn-group m-auto">--}}
-{{--                <button class="btn btn-light btn-sm dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown"--}}
-{{--                        aria-expanded="false">--}}
-{{--                    Element:--}}
-{{--                </button>--}}
-{{--                <ul class="dropdown-menu">--}}
-{{--                    <li>Fire</li>--}}
-{{--                    <li>Water</li>--}}
-{{--                    <li>Earth</li>--}}
-{{--                    <li>Air</li>--}}
-{{--                    <li>Other</li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-        </div>
-        <div class="col-4 m-auto p-2">
+        <div class="col-3 m-auto p-2">
             <form class="d-flex">
                 <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Search</button>

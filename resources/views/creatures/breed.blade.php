@@ -154,6 +154,16 @@
 
 @endsection
 
+<script>
+    function swapFemale(ev) {
+        ev.preventDefault();
+    }
+    function swapMale(ev) {
+        ev.preventDefault();
+    }
+
+</script>
+
 {{-- row for creature select? --}}
 {{--<div class="row">--}}
 
