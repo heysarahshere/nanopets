@@ -62,7 +62,7 @@
                         <h2 id="bigCardName_{{$alternative->id}}" style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
                             <div class="breed-parent col-12">
-                                <img class="breed-child" id="bigCardImage_{{$alternative->id}}"
+                                <img class="breed-child" id="bigCardImage"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $breed_instance->daddy->species . "/" . $breed_instance->daddy->dev_stage . "/" . $breed_instance->daddy->element . ".png" )}}"
                                      alt="{{ $breed_instance->daddy->name }} Image">
                             </div>
@@ -179,10 +179,11 @@
         // save src from little card
         // save src from big card
         let littleCardImage = document.getElementById("littleCardImage_" + id);
-        let littleCardNameSrc = document.getElementById("littleCardImage_" + id).src;
+        let bigCardImage = document.getElementById("bigCardImage");
 
-        let bigCardImage = document.getElementById("bigCardImage_" + id);
-        let bigCardImageSrc = document.getElementById("bigCardImage_" + id).src;
+
+        let littleCardImageSrc = document.getElementById("littleCardImage_" + id).src;
+        let bigCardImageSrc = document.getElementById("bigCardImage").src;
 
         littleCardImage.src = bigCardImageSrc;
         bigCardImage.src = littleCardImageSrc;
