@@ -37,65 +37,38 @@
 
 <div class="container store-search-bar">
     <div class="row">
-        <div class="col-3 m-auto p-2">
-            <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="width: 80%">
-                    Age:
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Egg</button>
-                    <button class="dropdown-item" type="button">Baby</button>
-                    <button class="dropdown-item" type="button">Adult</button>
-                </div>
-            </div>
-        </div>        <div class="col-3 m-auto p-2">
-            <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="width: 80%">
-                    Tier:
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Bronze</button>
-                    <button class="dropdown-item" type="button">Silver</button>
-                    <button class="dropdown-item" type="button">Gold</button>
-                    <button class="dropdown-item" type="button">Platinum</button>
-                    <button class="dropdown-item" type="button">Diamond</button>
-                </div>
-            </div>
+        <div class="col-2 m-auto p-2">
+            <select class="form-control">
+                <option selected>Age...</option>
+                <option>Egg</option>
+                <option>Baby</option>
+                <option>Adult</option>
+            </select>
         </div>
-        <div class="col-3 m-auto p-2">
-            <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="width: 80%">
-                    Element:
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Fire</button>
-                    <button class="dropdown-item" type="button">Water</button>
-                    <button class="dropdown-item" type="button">Earth</button>
-                    <button class="dropdown-item" type="button">Air</button>
-                    <button class="dropdown-item" type="button">Other</button>
-                </div>
-            </div>
-            {{--            <div class="btn-group m-auto">--}}
-            {{--                <button class="btn btn-light btn-sm dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown"--}}
-            {{--                        aria-expanded="false">--}}
-            {{--                    Element:--}}
-            {{--                </button>--}}
-            {{--                <ul class="dropdown-menu">--}}
-            {{--                    <li>Fire</li>--}}
-            {{--                    <li>Water</li>--}}
-            {{--                    <li>Earth</li>--}}
-            {{--                    <li>Air</li>--}}
-            {{--                    <li>Other</li>--}}
-            {{--                </ul>--}}
-            {{--            </div>--}}
+        <div class="col-2 m-auto p-2">
+            <select class="form-control">
+                <option selected>Tier...</option>
+                <option>Bronze</option>
+                <option>Silver</option>
+                <option>Gold</option>
+                <option>Platinum</option>
+                <option>Diamond</option>
+            </select>
         </div>
-        <div class="col-3 m-auto p-2">
+        <div class="col-2 m-auto p-2">
+            <select class="form-control">
+                <option selected>Element...</option>
+                <option>Fire</option>
+                <option>Water</option>
+                <option>Earth</option>
+                <option>Air</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div class="col-6 m-auto p-2">
             <form class="d-flex">
                 <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
+                <button class="btn btn-outline-light" type="submit">Filter</button>
             </form>
         </div>
     </div>
