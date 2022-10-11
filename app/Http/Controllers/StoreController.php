@@ -24,7 +24,7 @@ class StoreController extends Controller
     {
         $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
         $potions = Food::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
-        $eggs = Creature::where('dev_stage', 1)->orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Creature::where('dev_stage', 'egg')->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/featured', [
             'foods' => $foods,
             'potions' => $potions,

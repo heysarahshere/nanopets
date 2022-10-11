@@ -274,3 +274,17 @@
     font-size: x-large;
 }
 
+.store-featured .store-img-container {
+    height: 290px;
+}
+
+.store-featured .card-img-top {
+    height: 100%;
+    width: auto;
+}
+
+[class$="-container-button"]{
+    cursor: pointer;
+    /*transition: all .5s ease;*/
+}
+
