@@ -27,8 +27,8 @@
                     <div class="container-fluid py-2">
                         <div class="d-flex flex-row flex-nowrap">
                             @foreach($alternatives as $alternative)
-                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}" 
-                                        onclick="swapMale('{{$alternative->id}}')">
+                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}"
+                                        onclick="swapMale(event, '{{$alternative->id}}')">
 
                                         <div>
                                             <i class="fa-regular fa-heart cupid-heart"></i>
@@ -160,41 +160,28 @@
     function swapFemale(ev) {
         ev.preventDefault();
     }
-    function swapMale(ev,id) {
-        ev.preventDefault();
-        
+    function swapMale(event, id) {
+        event.preventDefault();
+
+        // find clicked card by its id
+        // find the male element card
+
+        // save src from little card
+        // save src from big card
+
+        // save name from little card
+        // save name from bigger card
+
+        // do the swap
+
+
+        //set their details as each other's
+
+        // set text
+
+        // set src
+
     }
 
 </script>
 
-{{-- row for creature select? --}}
-{{--<div class="row">--}}
-
-{{--    <div class="col-lg-2 col-sm-4 pb-5">--}}
-{{--        <h2 class="card-title">{{ $breed_instance->daddy->name }}</h2>--}}
-{{--        <div class="card store-card" style="width: 100%;">--}}
-{{--            <div class="store-img-container">--}}
-{{--                <div class="store-img-container">--}}
-{{--                    <img class="card-img-top"--}}
-{{--                         src="{{ Storage::disk('s3')->url("images/creatures/" . $primary->species . "/" . $primary->dev_stage . "/" . $primary->element . ".png" )}}"--}}
-{{--                         alt="{{ $primary->name }} Image">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-{{--    <div class="col-lg-2 col-sm-4 pb-5">--}}
-{{--        <h2 class="card-title">{{ $secondary->name }}</h2>--}}
-{{--        <div class="card store-card" style="width: 100%;">--}}
-{{--            <div class="store-img-container">--}}
-{{--                <div class="store-img-container">--}}
-{{--                    <img class="card-img-top"--}}
-{{--                         src="{{ Storage::disk('s3')->url("images/creatures/" . $secondary->species . "/" . $secondary->dev_stage . "/" . $secondary->element . ".png" )}}"--}}
-{{--                         alt="{{ $secondary->name }} Image">--}}
-{{--                </div>--}}
-
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-{{--</div>--}}
