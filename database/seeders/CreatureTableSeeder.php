@@ -371,6 +371,58 @@ class CreatureTableSeeder extends Seeder
                 'seller_id' => 1
             ]
         );
+
+        Creature::create(
+            [
+                'name'=>'Mud Pie',
+                'tier'=>'Silver',
+                'species'=>'bird',
+                'element'=>'earth',
+                'gender'=>'male',
+                'description'=>'a little dirty',
+                'potential'=>rand(40, 70),
+                'max_health'=> 2000,
+                'current_health'=>rand(250, 2000),
+                'max_stamina'=> 1700,
+                'current_stamina'=>rand(250, 1700),
+                'hunger'=>rand(25, 100),
+                'mojo'=>rand(10, 50),
+                'magic'=>rand(250, 2000),
+                'strength'=>rand(250, 2000),
+                'defense'=>rand(250, 1000),
+                'level'=>rand(1, 30),
+                'dev_stage' => "adult",
+                'for_sale' => true,
+                'cost' => 1000,
+                'seller_id' => 1
+            ]
+        );
+
+        Creature::create(
+            [
+                'name'=>'Merman',
+                'tier'=>'Silver',
+                'species'=>'bird',
+                'element'=>'water',
+                'gender'=>'female',
+                'description'=>'a scaley, finned bird',
+                'potential'=>rand(40, 70),
+                'max_health'=> 2000,
+                'current_health'=>rand(250, 2000),
+                'max_stamina'=> 1700,
+                'current_stamina'=>rand(250, 1700),
+                'hunger'=>rand(25, 100),
+                'mojo'=>rand(10, 50),
+                'magic'=>rand(250, 2000),
+                'strength'=>rand(250, 2000),
+                'defense'=>rand(250, 1000),
+                'level'=>rand(1, 30),
+                'dev_stage' => "adult",
+                'for_sale' => true,
+                'cost' => 1400,
+                'seller_id' => 2
+            ]
+        );
         Creature::create(
             [
                 'name'=>'Oppa',

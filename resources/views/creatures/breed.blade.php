@@ -4,7 +4,6 @@
 @endsection
 @section('content')
     @include('partials.info.banner-message')
-    @include('partials.navigation.profile-nav')
 
     <div class="soft-ombre-banner">
         <div class="container-monsters">
@@ -27,17 +26,33 @@
                     <div class="container-fluid py-2">
                         <div class="d-flex flex-row flex-nowrap">
                             @foreach($alternatives as $alternative)
-                                    <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border" id="breed_{{$alternative->id}}_{{$alternative->gender}}"
-                                        onclick="swapCreature(event, '{{$alternative->id}}', '{{Str::title($alternative->gender)}}')">
+                                <div class="card card-body {{$alternative->gender == 'male' ? 'blue' : 'pink'}}-border"
+                                     id="breed_{{$alternative->id}}_{{$alternative->gender}}"
+                                     onclick="swapCreature(event, '{{$alternative->id}}', '{{Str::title($alternative->gender)}}')">
 
-                                        <div>
-                                            <i class="fa-regular fa-heart cupid-heart"></i>
-                                            <img class="card-img-top" id="littleCardImage_{{$alternative->id}}_{{Str::title($alternative->gender)}}"
-                                                 style="width: auto; height: 100%; max-width: 250px;display:block"
-                                                 src="{{ Storage::disk('s3')->url("/images/creatures/" . $alternative->species . "/adult/" . $alternative->element . ".png") }}">
-                                        </div>
-                                        <h2 id="littleCardName_{{$alternative->id}}_{{Str::title($alternative->gender)}}" style="color: black; text-align: center;">{{$alternative->name}}</h2>
+                                    <div>
+                                        <i class="fa-regular fa-heart cupid-heart"></i>
+                                        <img class="card-img-top"
+                                             id="littleCardImage_{{$alternative->id}}_{{Str::title($alternative->gender)}}"
+                                             style="width: auto; height: 100%; max-width: 250px;display:block"
+                                             src="{{ Storage::disk('s3')->url("/images/creatures/" . $alternative->species . "/adult/" . $alternative->element . ".png") }}">
                                     </div>
+                                    <h2 id="littleCardName_{{$alternative->id}}_{{Str::title($alternative->gender)}}"
+                                        style="color: black; text-align: center;">{{$alternative->name}}</h2>
+                                </div>
+                                <input type="hidden" value="{{$alternative->max_health}}"
+                                       id="alt_health_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->max_stamina}}"
+                                       id="alt_stamina_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->defense}}"
+                                       id="alt_defense_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->strength}}"
+                                       id="alt_strength_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->magic}}"
+                                       id="alt_magic_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->mojo}}" id="alt_mojo_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->potential}}"
+                                       id="alt_potential_{{$alternative->id}}">
                             @endforeach
                         </div>
                     </div>
@@ -49,7 +64,7 @@
     {{--  end scrollable row of creatures  --}}
 
     <div class="container-monsters mt-5" style="padding-bottom: 20%; align-content: space-evenly;">
-        <div class="monster-card breed-main pb-5">
+        <div class="monster-card breed-main pb-5 mb-3">
 
             <div class="row m-2 mb-3">
                 <div class="col-6 mt-3" style="height: 100%">
@@ -59,7 +74,8 @@
                         </div>
                     </div>
                     <div class="col-6 mr-auto m-5">
-                        <h2 id="bigCardName_Male" style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
+                        <h2 id="bigCardName_Male"
+                            style="color: #0060ce; text-align: center">{{ $breed_instance->daddy->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
                             <div class="breed-parent col-12">
                                 <img class="breed-child" id="bigCardImage_Male"
@@ -75,11 +91,13 @@
 
                     <div class="col-12 pink-breed-gradient pink-breed-bar">
                         <div class="pink-progress-breed">
-                            <span style="width: {{$breed_instance->progress}}%; margin-left: auto !important;" id="pink-span"></span>
+                            <span style="width: {{$breed_instance->progress}}%; margin-left: auto !important;"
+                                  id="pink-span"></span>
                         </div>
                     </div>
                     <div class="col-6 ml-auto m-5">
-                        <h2 id="bigCardName_Female" style="color: #ad084d; text-align: center">{{ $breed_instance->mommy->name }}</h2>
+                        <h2 id="bigCardName_Female"
+                            style="color: #ad084d; text-align: center">{{ $breed_instance->mommy->name }}</h2>
                         <div class="store-img-container breed-pink mb-3">
                             <div class="breed-parent col-12">
                                 <img class="breed-child" id="bigCardImage_Female"
@@ -98,14 +116,29 @@
                     <div class="col-12 m-auto">
                         <div class=" blue-breed-stat p-3">
                             <h2 style="color: white; text-align: center">STATS</h2>
-                            <p>Health: {{$breed_instance->daddy->max_health}}</p>
-                            <p>Endurance: {{$breed_instance->daddy->max_stamina}}</p>
-                            <p>Defense: {{$breed_instance->daddy->defense}}</p>
-                            <p>Attack: {{$breed_instance->daddy->strength}}</p>
-                            <p>Magic: {{$breed_instance->daddy->magic}}</p>
-                            <p>Mojo: {{$breed_instance->daddy->mojo}}</p>
+                            <div class="row m-auto">
+                                <p>Health: </p>&nbsp;<p id="health_p_Male">{{$breed_instance->daddy->max_health}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Endurance: </p>&nbsp;<p
+                                    id="stamina_p_Male">{{$breed_instance->daddy->max_stamina}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Defense: </p>&nbsp;<p id="defense_p_Male">{{$breed_instance->daddy->defense}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Attack: </p>&nbsp;<p id="strength_p_Male">{{$breed_instance->daddy->strength}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Magic: </p>&nbsp;<p id="magic_p_Male">{{$breed_instance->daddy->magic}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Mojo: </p>&nbsp;<p id="mojo_p_Male">{{$breed_instance->daddy->mojo}}</p></div>
                             <p></p>
-                            <p>Gene dominance: {{$breed_instance->daddy->potential}}%</p>
+                            <div class="row m-auto">
+                                <p>Gene dominance: </p>&nbsp;<p
+                                    id="potential_p_Male">{{$breed_instance->daddy->potential}}%</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -129,16 +162,31 @@
 
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
                     <div class="col-12 m-auto">
-                        <div class=" pink-breed-stat p-3">
+                        <div class="pink-breed-stat p-3">
                             <h2 style="color: white; text-align: center">STATS</h2>
-                            <p>Health: {{$breed_instance->mommy->max_health}}</p>
-                            <p>Endurance: {{$breed_instance->mommy->max_stamina}}</p>
-                            <p>Defense: {{$breed_instance->mommy->defense}}</p>
-                            <p>Attack: {{$breed_instance->mommy->strength}}</p>
-                            <p>Magic: {{$breed_instance->mommy->magic}}</p>
-                            <p>Mojo: {{$breed_instance->mommy->mojo}}</p>
+                            <div class="row m-auto">
+                                <p>Health: </p>&nbsp;<p id="health_p_Female">{{$breed_instance->mommy->max_health}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Endurance: </p>&nbsp;<p
+                                    id="stamina_p_Female">{{$breed_instance->mommy->max_stamina}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Defense: </p>&nbsp;<p id="defense_p_Female">{{$breed_instance->mommy->defense}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Attack: </p>&nbsp;<p id="strength_p_Female">{{$breed_instance->mommy->strength}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Magic: </p>&nbsp;<p id="magic_p_Female">{{$breed_instance->mommy->magic}}</p>
+                            </div>
+                            <div class="row m-auto">
+                                <p>Mojo: </p>&nbsp;<p id="mojo_p_Female">{{$breed_instance->mommy->mojo}}</p></div>
                             <p></p>
-                            <p>Gene dominance: {{$breed_instance->mommy->potential}}%</p>
+                            <div class="row m-auto">
+                                <p>Gene dominance: </p>&nbsp;<p
+                                    id="potential_p_Female">{{$breed_instance->mommy->potential}}%</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,11 +195,9 @@
             </div>
         </div>
 
+        <button class="btn btn-danger w-100 mt-4 large-breed-start-btn">START <span class="text-right ml-auto">></span></button>
     </div>
-
     </div>
-
-    <button class="btn btn-danger w-100 mt-4 large-breed-btn">BREED</button>
     </div>
 
 @endsection
@@ -168,6 +214,44 @@
         let bigCardName = document.getElementById("bigCardName_" + gender);
         let bigCardNameText = document.getElementById("bigCardName_" + gender).innerHTML;
 
+        // ---------------------------------------------- get stats
+        // stat fields from big
+        let bigHealth = document.getElementById("health_p_" + gender);
+        let bigStamina = document.getElementById("stamina_p_" + gender);
+        let bigDefense = document.getElementById("defense_p_" + gender);
+        let bigStrength = document.getElementById("strength_p_" + gender);
+        let bigMagic = document.getElementById("magic_p_" + gender);
+        let bigMojo = document.getElementById("mojo_p_" + gender);
+        let bigPotential = document.getElementById("potential_p_" + gender);
+
+        // stat field values from big
+        let bigHealthValue = document.getElementById("health_p_" + gender).innerHTML;
+        let bigStaminaValue = document.getElementById("stamina_p_" + gender).innerHTML;
+        let bigDefenseValue = document.getElementById("defense_p_" + gender).innerHTML;
+        let bigStrengthValue = document.getElementById("strength_p_" + gender).innerHTML;
+        let bigMagicValue = document.getElementById("magic_p_" + gender).innerHTML;
+        let bigMojoValue = document.getElementById("mojo_p_" + gender).innerHTML;
+        let bigPotentialValue = document.getElementById("potential_p_" + gender).innerHTML;
+
+        // stat fields from little
+        let littleHealth = document.getElementById("alt_health_" + id);
+        let littleStamina = document.getElementById("alt_stamina_" + id);
+        let littleDefense = document.getElementById("alt_defense_" + id);
+        let littleStrength = document.getElementById("alt_strength_" + id);
+        let littleMagic = document.getElementById("alt_magic_" + id);
+        let littleMojo = document.getElementById("alt_mojo_" + id);
+        let littlePotential = document.getElementById("alt_potential_" + id);
+
+        // stat field values from little
+        let littleHealthValue = document.getElementById("alt_health_" + id).value;
+        let littleStaminaValue = document.getElementById("alt_stamina_" + id).value;
+        let littleDefenseValue = document.getElementById("alt_defense_" + id).value;
+        let littleStrengthValue = document.getElementById("alt_strength_" + id).value;
+        let littleMagicValue = document.getElementById("alt_magic_" + id).value;
+        let littleMojoValue = document.getElementById("alt_mojo_" + id).value;
+        let littlePotentialValue = document.getElementById("alt_potential_" + id).value;
+        // ---------------------------------------------- end stats
+
         // get image info from little img
         let littleCardImage = document.getElementById("littleCardImage_" + id + "_" + gender);
         let littleCardImageSrc = document.getElementById("littleCardImage_" + id + "_" + gender).src;
@@ -176,6 +260,7 @@
         let bigCardImage = document.getElementById("bigCardImage_" + gender);
         let bigCardImageSrc = document.getElementById("bigCardImage_" + gender).src;
 
+        // ----------------  start swap
 
         // swap big and little names
         littleCardName.innerHTML = bigCardNameText;
@@ -185,6 +270,23 @@
         littleCardImage.src = bigCardImageSrc;
         bigCardImage.src = littleCardImageSrc;
 
+        // set big stats to little stat values
+        bigHealth.innerHTML = littleHealthValue;
+        bigStamina.innerHTML = littleStaminaValue;
+        bigDefense.innerHTML = littleDefenseValue;
+        bigStrength.innerHTML = littleStrengthValue;
+        bigMagic.innerHTML = littleMagicValue;
+        bigMojo.innerHTML = littleMojoValue;
+        bigPotential.innerHTML = littlePotentialValue;
+
+        // set little stats to big stat values
+        littleHealth.value = bigHealthValue;
+        littleStamina.value = bigStaminaValue;
+        littleDefense.value = bigDefenseValue;
+        littleStrength.value = bigStrengthValue;
+        littleMagic.value = bigMagicValue;
+        littleMojo.value = bigMojoValue;
+        littlePotential.value = bigPotentialValue;
     }
 
 </script>

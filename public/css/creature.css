@@ -708,5 +708,19 @@
     border-color: #BE1957;
 }
 
+.large-breed-start-btn {
+    font-family: Funhouse;
+    background-image: linear-gradient(to right, #b00546, #005baf);
+    border-width: medium;
+    border-radius: 25px;
+    font-size: xxx-large;
+    color: white;
+    text-align: center;
+    height: 150px;
+}
+
+.large-breed-start-btn:hover {
+    background-image: linear-gradient(to right, #e32a6d, #2a91ee);
+}
 
 /* ---------------------------------------- end breed progress bars -------------- */
