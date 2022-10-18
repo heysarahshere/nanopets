@@ -34,4 +34,5 @@ class BreedTicket extends Model
     {
         return $this->belongsTo('App\Models\Creature', 'baby_id', 'id');
     }
+
 }

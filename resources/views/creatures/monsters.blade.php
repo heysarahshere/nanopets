@@ -7,7 +7,7 @@
     @include('partials.navigation.profile-nav')
 
     <div class="container-monsters pt-5" style="padding-bottom: 20%; align-content: space-evenly;">
-        <div class="row">
+        <div class="row justify-content-center">
             @if (count($pets) > 0)
                 @foreach($pets as $pet)
                     <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
@@ -27,7 +27,7 @@
                 <button class="btn btn-danger w-100 mt-4 large-breed-btn">BREED ></button>
             @else
                 <div class="text-center col-12">
-                    <h2 style="font-family: Readzone; color: #ad084d">Uh oh, you don't have any creatures.</h2>
+                    <h2 style="font-family: Readzone; color: #ad084d">Looking a little empty over here...</h2>
                     <hr>
                     <div class="row">
                         <div class="col-6">

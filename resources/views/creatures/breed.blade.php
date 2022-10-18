@@ -40,19 +40,14 @@
                                     <h2 id="littleCardName_{{$alternative->id}}_{{Str::title($alternative->gender)}}"
                                         style="color: black; text-align: center;">{{$alternative->name}}</h2>
                                 </div>
-                                <input type="hidden" value="{{$alternative->max_health}}"
-                                       id="alt_health_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->max_stamina}}"
-                                       id="alt_stamina_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->defense}}"
-                                       id="alt_defense_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->strength}}"
-                                       id="alt_strength_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->magic}}"
-                                       id="alt_magic_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->max_health}}" id="alt_health_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->max_stamina}}" id="alt_stamina_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->defense}}" id="alt_defense_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->strength}}" id="alt_strength_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->magic}}" id="alt_magic_{{$alternative->id}}">
                                 <input type="hidden" value="{{$alternative->mojo}}" id="alt_mojo_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->potential}}"
-                                       id="alt_potential_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->potential}}" id="alt_potential_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->id}}" id="creature_id_{{$alternative->id}}">
                             @endforeach
                         </div>
                     </div>
@@ -139,6 +134,8 @@
                                 <p>Gene dominance: </p>&nbsp;<p
                                     id="potential_p_Male">{{$breed_instance->daddy->potential}}%</p>
                             </div>
+
+                            <input type="hidden" value="{{$breed_instance->daddy->id}}" id="creature_id_Male">
                         </div>
                     </div>
                 </div>
@@ -185,8 +182,9 @@
                             <p></p>
                             <div class="row m-auto">
                                 <p>Gene dominance: </p>&nbsp;<p
-                                    id="potential_p_Female">{{$breed_instance->mommy->potential}}%</p>
+                                    id="potential_p_Female">{{$breed_instance->mommy->potential}}</p></p>%<p>
                             </div>
+                            <input type="hidden" value="{{$breed_instance->mommy->id}}" id="creature_id_Female">
                         </div>
                     </div>
                 </div>
@@ -195,7 +193,8 @@
             </div>
         </div>
 
-        <button class="btn btn-danger w-100 mt-4 large-breed-start-btn">START <span class="text-right ml-auto">></span></button>
+        <button class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{$breed_instance->started ? '' : 'disabled'}}>START <span class="text-right ml-auto">></span>
+        </button>
     </div>
     </div>
     </div>
@@ -205,6 +204,12 @@
 <script>
     function swapCreature(event, id, gender) {
         event.preventDefault();
+
+        // get ids from hidden input fields
+        let littleID = document.getElementById("creature_id_" + id);
+        let littleIDValue = document.getElementById("creature_id_" + id).value;
+        let bigID = document.getElementById("creature_id_" + gender);
+        let bigIDValue = document.getElementById("creature_id_" + gender).value;
 
         // get name info from little card
         let littleCardName = document.getElementById("littleCardName_" + id + "_" + gender);
