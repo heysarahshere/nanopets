@@ -130,6 +130,12 @@ Route::get('/mycreatures/breeding/{id}', [
     'as' => 'get-breeding-pair'
 ]);
 
+// ajax route for breeding
+Route::post('/breed-ajax', [
+    'uses' => 'App\Http\Controllers\CreatureController@postBreedAjax',
+    'as' => 'breed-ajax'
+]);
+
 // use to see list of all currently breeding pairs
 Route::get('/mycreatures/breeding', [
     'uses' => 'App\Http\Controllers\CreatureController@getListBreedingPairs',

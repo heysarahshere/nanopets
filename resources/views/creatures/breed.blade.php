@@ -40,13 +40,19 @@
                                     <h2 id="littleCardName_{{$alternative->id}}_{{Str::title($alternative->gender)}}"
                                         style="color: black; text-align: center;">{{$alternative->name}}</h2>
                                 </div>
-                                <input type="hidden" value="{{$alternative->max_health}}" id="alt_health_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->max_stamina}}" id="alt_stamina_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->defense}}" id="alt_defense_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->strength}}" id="alt_strength_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->magic}}" id="alt_magic_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->max_health}}"
+                                       id="alt_health_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->max_stamina}}"
+                                       id="alt_stamina_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->defense}}"
+                                       id="alt_defense_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->strength}}"
+                                       id="alt_strength_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->magic}}"
+                                       id="alt_magic_{{$alternative->id}}">
                                 <input type="hidden" value="{{$alternative->mojo}}" id="alt_mojo_{{$alternative->id}}">
-                                <input type="hidden" value="{{$alternative->potential}}" id="alt_potential_{{$alternative->id}}">
+                                <input type="hidden" value="{{$alternative->potential}}"
+                                       id="alt_potential_{{$alternative->id}}">
                                 <input type="hidden" value="{{$alternative->id}}" id="creature_id_{{$alternative->id}}">
                             @endforeach
                         </div>
@@ -182,7 +188,7 @@
                             <p></p>
                             <div class="row m-auto">
                                 <p>Gene dominance: </p>&nbsp;<p
-                                    id="potential_p_Female">{{$breed_instance->mommy->potential}}</p></p>%<p>
+                                    id="potential_p_Female">{{$breed_instance->mommy->potential}}%</p></p><p>
                             </div>
                             <input type="hidden" value="{{$breed_instance->mommy->id}}" id="creature_id_Female">
                         </div>
@@ -193,7 +199,8 @@
             </div>
         </div>
 
-        <button class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{$breed_instance->started ? '' : 'disabled'}}>START <span class="text-right ml-auto">></span>
+        <button class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{$breed_instance->started ? 'disabled' : ''}}>
+            START <span class="text-right ml-auto" onclick="startBreed(event)">></span>
         </button>
     </div>
     </div>
@@ -292,6 +299,67 @@
         littleMagic.value = bigMagicValue;
         littleMojo.value = bigMojoValue;
         littlePotential.value = bigPotentialValue;
+    }
+
+    function startBreed(event) {
+        event.preventDefault();
+
+        // get ids from the hidden inputs in mom and dad slots
+        // let qty = document.getElementById("qty" + pet_id + item_id).value;
+
+        // shouldn't need form validation here, i think..
+
+
+        jQuery.ajax({
+            type: 'POST',
+            url: "{{ route('breed-ajax') }}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                pet_id: pet_id,
+                item_id: item_id,
+                qty: qty
+            },
+            beforeSend: function (xhr, type) {
+                $('#val-error' + pet_id + item_id).hide();
+                $("#success-message" + pet_id + item_id).hide();
+            },
+            success: function (response) {
+                if (response) {
+                    // alert(data.success);
+                    $("#success-message" + pet_id + item_id).text('Fed!');
+
+                    // if still some of that item left, show enw amount
+                    $('.invQty' + item_id).each(function () {
+                        $(this).text(response.newQty);
+                    });
+
+
+                    foodQtyWindowSwitch(pet_id, item_id);
+                    toggleMonsterCardFaceFeed(pet_id);
+                    switchMonsterCardFace(pet_id);
+
+                    animateMeter(pet_id, response.health, "health", response.max_health);
+                    animateMeter(pet_id, response.hunger, "hunger", 100);
+                    animateMeter(pet_id, response.stamina, "stamina", response.max_stamina);
+
+                    resetIncInput(pet_id, item_id, response.newQty);
+
+                } else {
+                    $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');
+                }
+            },
+            complete: function (data) {
+                // $(".ajax-loader").hide();
+            },
+            error: function (response) {
+                if (response.error) {
+                    $("#val-error" + pet_id + item_id).text('Fail.');
+                    // location.reload();
+                } else {
+                    $("#val-error" + pet_id + item_id).text('Uh oh, something went wrong.');
+                }
+            }
+        });
     }
 
 </script>

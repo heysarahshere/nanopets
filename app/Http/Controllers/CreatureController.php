@@ -354,6 +354,57 @@ class CreatureController extends Controller
 
     }
 
+    public function postBreedAjax(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'creature_id_Male' => 'required',
+            'creature_id_Female' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all()
+            ]);
+        }
+
+        // get user
+        $user = Auth::user();
+
+        // find parents
+        $mom = Creature::find($request->input('creature_id_Male'));
+        $dad = Creature::find($request->input('creature_id_Female'));
+
+        // make new baby from parent's stats
+
+        // for now, send default egg
+        $egg = new Creature([
+            'name'=>'new egg',
+            'species'=>'bird',
+            'element'=>'ice',
+            'description'=>'new egg baby from parents',
+            'potential'=>rand(10, 50),
+            'max_health'=> 3000,
+            'current_health'=>rand(250, 3000),
+            'max_stamina'=> 1500,
+            'current_stamina'=>rand(250, 1500),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'dev_stage' => "egg",
+            'owner_id'=> $user->id,
+        ]);
+
+        $egg->save();
+
+        return response()->json([
+            'success' => 'Creature fed!',
+            'egg_element' => $egg->element,
+        ]);
+    }
+
     public function postIncubateSingle(Request $request)
     {
         $this->validate($request, [
