@@ -15,4 +15,23 @@
             @endforeach
         </div>
     </div>
+    <div class="container-monsters" id="incubating stats">
+        <H2 class="text-center">Galaxy Egg</H2>
+        <div class="row justify-content-center">
+            <div class="col-12 mx-3">
+                <div class="row">
+                    <H2>health:</H2>
+                    <H2 id="baby_health" style="margin-left: auto">0</H2>
+                </div>
+                <div class="row">
+                    <H2>strength:</H2>
+                    <H2 id="baby_strength" style="margin-left: auto">0</H2>
+                </div>
+                <div class="row">
+                    <H2>stamina:</H2>
+                    <H2 id="baby_stamina" style="margin-left: auto">0</H2>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
