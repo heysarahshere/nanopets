@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('type')->default("food"); // alternative would be potion - allows easy sorting
             $table->text('description');
             $table->string('mainStat')->default("hunger");
-            $table->string('bonusStat')->default("stamina");
+            $table->string('bonusStat')->default("current_stamina");
             $table->integer('effectAmount')->default(rand(0,55));
             $table->integer('bonusEffectAmount')->default(rand(0,25));
 

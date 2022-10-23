@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BreedTicket;
 use App\Models\Creature;
 use App\Models\Food;
 use App\Models\Purchase;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -13,42 +15,32 @@ use Illuminate\Support\Str;
 
 class CreatureController extends Controller
 {
-    // breeding
-//    public function postFeedCreature(Request $request)
-//    {
-//        $request->validate([
-//            'creature_id' => 'required',
-//            'item_id' => 'required',
-//            'qty' => 'required'
-//        ]);
-//
-//        // find item
-//        $creature = Creature::find($request->creature_id);
-//
-//        // find creature
-//        $creature = Creature::find($request->creature_id);
-//
-//        // increment creature values
-//        // factor in qty
-//
-//        $creature->level += 2;
-//
-//        // save
-//        $creature->save();
-//
-//        // send updated creature back to view
-//        $user = Auth::user();
-//        $creatures = Creature::where('owner_id', $user->id)->where('dev_stage', 2)->orderby('id', 'asc');
-//
-//        $response['data'] = $creatures;
-//
-//        return response()->json($response);
-//    }
 
     public function getAdoptable()
     {
-        $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
+        $creatures = Creature::where('for_sale', true)->where('dev_stage', '!=', 'egg')->orderBy('updated_at', 'desc')->paginate(12);
         return view('adopt/all', ['creatures' => $creatures, 'category' => 'all', 'current' => 'adopt']);
+    }
+
+    public function getMyCreatures()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $id = $user->id;
+
+            $pets = Creature::where('owner_id', $id)->get();
+            $purchases = Purchase::where('owner_id', $id)->get();
+            return view('creatures/monsters', [
+                'pets' => $pets,
+                'purchases' => $purchases,
+                'category' => "All",
+                'current' => 'all'
+            ]);
+        } else {
+            return redirect()
+                ->route('home')
+                ->with('message', "You must sign in to see this page.");
+        }
     }
 
     public function postAdoptCreature(Request $request)
@@ -88,8 +80,7 @@ class CreatureController extends Controller
             $creature->save();
 
 
-            $pets = Creature::where('owner_id', $user_id)->get();
-            return redirect()->route('my-creatures', ['pets' => $pets])->with('banner-message', 'Congrats on the adoption!');
+            return redirect()->back()->with('banner-message', 'Congrats on the adoption!');
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
         }
@@ -116,6 +107,14 @@ class CreatureController extends Controller
                     'owner_id' => null,
                     'seller_id' => $user_id
                 ]);
+
+                // see if creature was breeding
+                $gender = $creature->gender == 'male' ? 'male_id' : 'female_id';
+                $breed_ticket = BreedTicket::where($gender, $creature->id)->first();
+                if (!is_null($breed_ticket) && $breed_ticket->open) {
+                    $this->cancelBreeding($breed_ticket);
+                }
+
 
                 $creature->save();
 
@@ -148,13 +147,15 @@ class CreatureController extends Controller
                     'for_sale' => false,
                     'cost' => null,
                     'owner_id' => $user_id,
-                    'seller_id' => null
+                    'seller_id' => null,
                 ]);
 
                 $creature->save();
 
+                $banner_message = $creature->dev_stage == 'egg' ? 'You have successfully listed an egg for sale.' : 'An adoption has been successfully cancelled.';
+
                 $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', 'An adoption has been successfully cancelled.');
+                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', $banner_message);
             } else {
                 return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
             }
@@ -198,11 +199,6 @@ class CreatureController extends Controller
                 'error' => $validator->errors()->all()
             ]);
         }
-
-        //mainStat
-        //effectAmount
-        //bonusStat
-        //bonusEffectAmount
 
         // find fed creature and consumed item
         $creature = Creature::find($request->input('pet_id'));
@@ -269,13 +265,163 @@ class CreatureController extends Controller
 
     }
 
-    public function getBreeding($id1, $id2){
+    public function getListBreedingPairs()
+    {
+        if (Auth::check()) {
 
-        $primary = Creature::find($id1);
-        $secondary = Creature::find($id2);
-        return view('user/breed', ['primary' => $primary, 'secondary' => $secondary, 'category' => 'all', 'current' => 'breed']);
+            $user = Auth::user();
+            $breed_instances = BreedTicket::where('owner_id', $user->id)->where('open', true)->orderBy('updated_at', 'desc')->paginate(8);
+            return view('creatures/pairs', ['breed_instances' => $breed_instances, 'category' => 'all', 'current' => 'breed']);
+
+        } else {
+            return redirect()->back()->with('message', 'You must be logged in to do that.');
+        }
+    }
+
+    public function postBreedingPage(Request $request)
+    {
+        $this->validate($request, [
+            'id1' => 'required',
+            'id2' => 'required'
+        ]);
+
+        if (Auth::check()) {
+
+            $user = Auth::user();
+            $primary = Creature::find($request->input('id1'));
+            $secondary = Creature::find($request->input('id2'));
+            $female_id = $primary->id;
+            $male_id = $secondary->id;
+            // make one-liners
+            if ($primary->gender == 'male') {
+                $female_id = $secondary->id;
+                $male_id = $primary->id;
+            }
+
+            if ($primary->available && $secondary->available) {
+                $breed_ticket = new BreedTicket([
+                    'breed_start_time' => Carbon::now(),
+                    'owner_id' => $user->id,
+                    'male_id' => $male_id,
+                    'female_id' => $female_id
+                ]);
+
+                $breed_ticket->save();
+
+                // set up pairing
+                $primary->available = false;
+                $primary->save();
+
+                $secondary->available = false;
+                $secondary->save();
+
+                $breed_instance = BreedTicket::find($breed_ticket->id);
+                $alternatives = Creature::where('owner_id', $user->id)->where('available', true)->where('dev_stage', 'adult')->get();
+
+                // we want to return a redirect to a route to handle showing this view eventually
+//                return redirect()->route('get-breeding-pair', ['id' => $breed_ticket->id]);
+
+                return view('creatures/breed', ['breed_instance' => $breed_instance, 'alternatives' => $alternatives, 'category' => 'none', 'current' => 'breed']);
+            } else {
+                return redirect()->route('list-breeding-pairs');
+            }
+        } else
+            return redirect()->back()->with('error', 'Your session ahs expired. Please login again.');
 
     }
+
+    public function getBreedingPair($id)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $breed_instance = BreedTicket::find($id);
+            $alternatives = Creature::where('owner_id', $user->id)->where('available', true)->where('dev_stage', 'adult')->get();
+
+            if ($breed_instance->owner_id == $user->id) {
+                if (!is_null($breed_instance)) {
+                    return view('/creatures/breed')->with(['breed_instance' => $breed_instance, 'alternatives' => $alternatives, 'category' => 'none', 'current' => 'breed progress']);
+                } else {
+                    return redirect()->back()->with('message', 'Sorry, that breeding ticket was closed or no longer exists.');
+                }
+            } else {
+                return redirect()->back()->with('message', 'You can only see progress of your own creatures.');
+            }
+
+        } else {
+            return redirect()->back()->with('message', 'Oops, please login before trying that again.');
+        }
+
+    }
+
+    public function postBreedAjax(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'creature_id_Male' => 'required',
+            'creature_id_Female' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()->all()
+            ]);
+        }
+
+        // get user
+        $user = Auth::user();
+
+        // find parents
+        $mom = Creature::find($request->input('creature_id_Male'));
+        $dad = Creature::find($request->input('creature_id_Female'));
+
+        // make new baby from parent's stats
+
+        // for now, send default egg
+        $egg = new Creature([
+            'name'=>'new egg',
+            'species'=>'bird',
+            'element'=>'ice',
+            'description'=>'new egg baby from parents',
+            'potential'=>rand(10, 50),
+            'max_health'=> 3000,
+            'current_health'=>rand(250, 3000),
+            'max_stamina'=> 1500,
+            'current_stamina'=>rand(250, 1500),
+            'hunger'=>rand(25, 100),
+            'mojo'=>rand(10, 50),
+            'magic'=>rand(250, 2000),
+            'strength'=>rand(250, 2000),
+            'defense'=>rand(250, 1000),
+            'level'=>rand(1, 30),
+            'dev_stage' => "egg",
+            'owner_id'=> $user->id,
+        ]);
+
+        $egg->save();
+
+        return response()->json([
+            'success' => 'Creature fed!',
+            'egg_element' => $egg->element,
+        ]);
+    }
+
+    public function postIncubateSingle(Request $request)
+    {
+        $this->validate($request, [
+            'pet_id' => 'required'
+        ]);
+        if (Auth::check()) {
+            $pet_id = $request->input('pet_id');
+            $user = Auth::user();
+            $newEgg = Creature::find($pet_id);
+            $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
+
+            return view('creatures/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
+        } else {
+            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
+        }
+    }
+
 
     /**
      * @param $statEffect
@@ -285,6 +431,10 @@ class CreatureController extends Controller
      */
     public function setStatEffect($statEffect, $creature, float|int $statEffectAmount): void
     {
+        if ($creature->{$statEffect} == 'stamina' || $creature->{$statEffect} == 'health') {
+            $creature->{$statEffect} = 'current_' . $creature->{$statEffect};
+        }
+
         if (Str::contains($creature->{$statEffect}, 'current_')) {
             // take second part of stat name,
             // for example: if stat effect is current_health
@@ -300,5 +450,25 @@ class CreatureController extends Controller
         } else {
             $creature->{$statEffect} += $statEffectAmount;
         }
+    }
+
+    /**
+     * @param $breed_ticket
+     * @return void
+     */
+    public function cancelBreeding($breed_ticket): void
+    {
+        $male = Creature::find($breed_ticket->male_id);
+        $female = Creature::find($breed_ticket->female_id);
+
+        $male->available = true;
+        $male->save();
+
+        $female->available = true;
+        $female->save();
+
+        $breed_ticket->breed_end_time = Carbon::now();
+        $breed_ticket->open = false;
+        $breed_ticket->save();
     }
 }

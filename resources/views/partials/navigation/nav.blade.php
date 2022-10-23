@@ -8,7 +8,7 @@
             <a class="nav-link nav-account pl-2" href="{{route('featured')}}">
                 <p style="font-family: Funhouse; font-size: large; color: #ffc072">{{number_format($user->balance,2)}}</p>
             </a>
-            <a class="nav-link nav-account" href="{{ route('my-creatures')}}">
+            <a class="nav-link nav-account" href="{{ route('home')}}">
                 <p class="nav-account">My Creatures</p>
             </a>
             {{--            <a class="nav-link nav-account" href="#">settings</a>--}}
@@ -17,7 +17,7 @@
             </form>
         @else
             <div class="col-12 text-right">
-                <a href="{{route('get-sign-in')}}">
+                <a href="{{route('get-sign-in')}}" style="text-decoration: none !important;">
                     <button class="btn btn-sm rev-ombre-btn">sign in</button>
                 </a>
                 <a href="{{route('get-sign-up')}}">

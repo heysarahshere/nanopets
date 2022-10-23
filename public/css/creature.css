@@ -390,6 +390,15 @@
     width: 100%;
 }
 
+/* ---------------------------- main pages --------------------------*/
+
+.container-monsters a:hover {
+    text-decoration: none;
+}
+
+/* ---------------------------- end main pages --------------------------*/
+/* ---------------------------- breeding --------------------------*/
+
 .cupid-border {
     cursor: pointer;
     transition: all .2s ease-in-out;
@@ -406,7 +415,7 @@
 
 .cupid-heart {
     position: absolute;
-    top:40%;
+    top: 40%;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -418,9 +427,307 @@
     color: rgba(255, 50, 112, 0.5);
 }
 
-.cupid-heart:hover  {
+.cupid-heart:hover {
     opacity: 1;
     transform: scale(6);
 }
 
+.hatch-btn, .hatch-btn:visited {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
 
+.hatch-btn:hover {
+    color: rgb(222, 128, 19);
+}
+
+.breed-main {
+    border-radius: 15px;
+    width: 98%;
+    min-height: 600px;
+    background-color: white;
+}
+
+.breed-parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 300px;
+    border-radius: 15px;
+    border: 20px #0a3c60;
+}
+
+.breed-child {
+    position: absolute;
+    top: 0;
+    left: -5%;
+    height: 250px;
+    width: auto;
+}
+
+.breed-blue {
+    background-color: white;
+    border: 10px solid #0965B8;
+    border-radius: 10%;
+    min-height: 325px;
+}
+
+
+.breed-pink {
+    background-color: white;
+    border: 10px solid #BE1957;
+    border-radius: 10%;
+    min-height: 325px;
+}
+
+.blue-breed-stat, .pink-breed-stat {
+    /*border: 10px solid #BE1957;*/
+    border-radius: 10%;
+    min-height: 360px;
+}
+.blue-breed-stat p, .pink-breed-stat p {
+    font-family: Funhouse;
+    color: white;
+    font-size: x-large;
+}
+
+.blue-breed-stat p span, .pink-breed-stat p span {
+    font-family: Helvetica;
+    color: white;
+}
+
+.blue-breed-stat {
+    background-color: #0965B8;
+}
+.pink-breed-stat {
+    background-color: #c52662;
+}
+
+.breed-purple {
+    background-color: white;
+    border: 10px solid rgba(89, 14, 159, 0.8);
+    border-radius: 10%;
+    min-height: 325px;
+}
+
+.breed-purple h1 {
+    font-size: 100px;
+}
+
+.breed-question {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+}
+
+.pair-pink {
+    background-color: white;
+    border: 10px solid #BE1957;
+    border-radius: 10%;
+    min-height: 120px;
+}
+
+.pair-parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 120px;
+    border-radius: 15px;
+    border: 20px #0a3c60;
+}
+
+.pair-child {
+    position: absolute;
+    top: 0;
+    left: 6%;
+    height: 110px;
+    width: auto;
+}
+
+.egg-stats{
+    background-color:rgb(218, 67, 192) ;
+    margin: 5%;
+    border: 24px solid rgb(218, 67, 192);
+    border-radius: 24px;
+}
+/* ----------------------------------------  breed progress bars -------------- */
+.blue-progress-breed {
+    width: 50%;
+    margin-left: auto;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to left, rgb(154, 81, 222), rgb(76, 158, 232));
+}
+
+.purple-progress-breed {
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to left, rgb(180, 115, 241), rgb(154, 81, 222));
+    transform: rotate(90deg);
+}
+
+.pink-progress-breed {
+    width: 50%;
+    margin-right: auto;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to right, rgb(241, 85, 144), rgb(154, 81, 222));
+    /*box-shadow: 3px 3px 3px #333333;*/
+    transform: rotate(180deg);
+}
+.progress-pair-bar {
+    width: 50%;
+    margin-right: auto;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to right, rgb(241, 85, 144), rgb(154, 81, 222));
+    /*box-shadow: 3px 3px 3px #333333;*/
+    transform: rotate(180deg);
+}
+
+.pink-progress-breed span,
+.blue-progress-breed span,
+.purple-progress-breed span,
+.progress-pair-bar span {
+    height: 100%;
+    display: block;
+    width: 0;
+    color: rgb(255, 251, 251);
+    line-height: 30px;
+    position: absolute;
+    text-align: end;
+}
+
+.progress-pair-bar span {
+    background-color: #BE1957;
+    border-radius: 10px;
+    text-align: left;
+    transform: rotate(-180deg);
+}
+
+.pink-breed-bar span {
+    background-color: #BE1957;
+    border-radius: 10px;
+    text-align: left;
+    transform: rotate(-180deg);
+}
+
+.purple-breed-bar span {
+    background-color: rgba(89, 14, 159, 0.8);
+    border-radius: 10px;
+    text-align: left;
+    transform: rotate(180deg);
+}
+
+.blue-breed-bar span {
+    background-color: #0060ce;
+    border-radius: 10px;
+}
+.progress-pair-bar span {
+    background-color: #0060ce;
+    border-radius: 10px;
+}
+
+
+.pink-breed-bar,
+.blue-breed-bar,
+.purple-breed-bar,
+.progress-pair-bar {
+    -webkit-transition: color 3s ease, background-color 3s ease;
+    -moz-transition: color 3s ease, background-color 3s ease;
+    -o-transition: color 3s ease, background-color 3s ease;
+    transition: color 3s ease, background-color 3s ease;
+}
+
+.blue-breed-gradient {
+    position: absolute;
+    top: 50%;
+    padding: 0;
+}
+
+
+.pink-breed-gradient {
+    position: absolute;
+    top: 50%;
+    padding: 0;
+}
+
+
+.purple-breed-gradient {
+    position: absolute;
+    top: -29%;
+    left: 0;
+    padding: 0;
+}
+
+.future-egg-hidden {
+    visibility: hidden;
+}
+
+.soft-ombre-banner {
+    background-image: linear-gradient(to right, rgba(22, 139, 225, 0.85), rgba(229, 48, 75, 0.85));
+    height: 60px;
+    width: 100%;
+    position: relative;
+    margin: 5% 0 5% 0;
+}
+
+.banner-img-container {
+    position: relative;
+    height: 180px;
+}
+
+.banner-img {
+    position: absolute;
+    top: -70%;
+    right: -50%;
+    height: 100%;
+    width: auto;
+}
+
+
+.pink-border,
+.blue-border {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    border-radius: 10%;
+    border-width: 10px;
+    scale: 0.9;
+}
+
+.pink-border:hover,
+.blue-border:hover {
+    scale: 1;
+}
+
+.blue-border {
+    border-color: #0965B8;
+}
+.pink-border {
+    border-color: #BE1957;
+}
+
+.large-breed-start-btn {
+    font-family: Funhouse;
+    background-image: linear-gradient(to right, #b00546, #005baf);
+    border-width: medium;
+    border-radius: 25px;
+    border-color: rgba(255, 255, 255, 0);
+    font-size: xxx-large;
+    color: white;
+    text-align: center;
+    height: 150px;
+}
+
+.large-breed-start-btn:hover {
+    background-image: linear-gradient(to right, #e32a6d, #2a91ee);
+}
+
+/* ---------------------------------------- end breed progress bars -------------- */

@@ -67,12 +67,9 @@
     text-align: center;
     visibility: hidden;
     opacity: 0;
-    height: 0;
-    padding: 0;
 }
 
 .store-card:hover .reveal-stats {
-    height: auto;
     visibility: visible;
     opacity: 10;
     transition: opacity .5s ease;
@@ -271,3 +268,23 @@
 .right-span:hover {
     color: white;
 }
+
+.store-body i {
+    color: rgba(52, 52, 52, 0.87);
+    font-size: x-large;
+}
+
+.store-featured .store-img-container {
+    height: 290px;
+}
+
+.store-featured .card-img-top {
+    height: 100%;
+    width: auto;
+}
+
+[class$="-container-button"]{
+    cursor: pointer;
+    /*transition: all .5s ease;*/
+}
+

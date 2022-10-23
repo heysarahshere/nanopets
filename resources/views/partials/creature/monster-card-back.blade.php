@@ -23,15 +23,26 @@
         </div>
         <div class="col-5 my-3">
 
-            <button type="button" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3" onclick="toggleMonsterCardFaceFeed('{{$pet->id}}')">
+            <button type="button" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3"
+                    onclick="toggleMonsterCardFaceFeed('{{$pet->id}}')">
                 <i class="fa-solid fa-drumstick-bite"></i>
                 FEED
             </button>
-            <button type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3" onclick="toggleMonsterCardFaceBreed('{{$pet->id}}')" {{$pet->dev_stage === 'baby' ? "disabled" : ""}}>
-                <i class="fa-solid fa-baby-carriage"></i>
-                BREED
-            </button>
-            <button type="button" class="btn btn-primary monster-card-btn card-sell-btn w-100 mb-3" onclick="toggleMonsterCardFaceSell('{{$pet->id}}')">
+            @if ($pet->available)
+                <button type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3"
+                        onclick="toggleMonsterCardFaceBreed('{{$pet->id}}')" {{$pet->dev_stage === 'baby' ? "disabled" : ""}}>
+                    <i class="fa-solid fa-baby-carriage"></i>
+                    BREED
+                </button>
+            @else
+                <a href="{{route('get-breeding-pair', ['id' => $pet->breed_ticket->id])}}" type="button" class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3"
+                         {{$pet->dev_stage === 'baby' ? "disabled" : ""}} {{$pet->available == '0' ? "disabled" : ""}}>
+                    <i class="fa-solid fa-baby-carriage"></i>
+                    VIEW PROGRESS
+                </a>
+            @endif
+            <button type="button" class="btn btn-primary monster-card-btn card-sell-btn w-100 mb-3"
+                    onclick="toggleMonsterCardFaceSell('{{$pet->id}}')">
                 <i class="fa-solid fa-sack-dollar"></i>
                 SELL
             </button>

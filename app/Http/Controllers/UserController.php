@@ -66,8 +66,6 @@ class UserController extends Controller
             $user = Auth::user();
             Auth::login($user);
 
-//            $request->session()->forget('sign-in-error');
-
             return redirect()
                 ->route('my-creatures')
                 ->with('message', "You're signed in.");
@@ -85,7 +83,6 @@ class UserController extends Controller
             ->with('message', "You've been signed out.");
     }
 
-
     public function getProfile()
     {
         $id = Auth::id();
@@ -96,27 +93,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function getMyCreatures()
-    {
-        if (Auth::check()) {
-            $id = Auth::id();
-
-            $pets = Creature::where('owner_id', $id)->get();
-            $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/monsters', [
-                'pets' => $pets,
-                'purchases' => $purchases,
-                'category' => "All",
-                'current' => 'all'
-            ]);
-        } else {
-            return redirect()
-                ->route('home')
-                ->with('message', "You must sign in to see this page.");
-        }
-
-    }
-
     public function getMyAdultCreatures()
     {
         if (Auth::check()) {
@@ -124,7 +100,7 @@ class UserController extends Controller
             $id = $user->id;
             $pets = Creature::where('owner_id', $id)->where('dev_stage', 'adult')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/monsters', [
+            return view('creatures/monsters', [
                 'pets' => $pets,
                 'purchases' => $purchases,
                 'category' => "All",
@@ -142,7 +118,7 @@ class UserController extends Controller
             $id = $user->id;
             $pets = Creature::where('owner_id', $id)->where('dev_stage', 'baby')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/monsters', [
+            return view('creatures/monsters', [
                 'pets' => $pets,
                 'purchases' => $purchases,
                 'category' => "All",
@@ -158,10 +134,10 @@ class UserController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $id = $user->id;
-            $pets = Creature::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
+            $eggs = Creature::where('owner_id', $id)->where('dev_stage', 'egg')->orWhere('dev_stage', 'hatchling')->orderBy('updated_at', 'desc')->paginate(8);
             $purchases = Purchase::where('owner_id', $id)->get();
-            return view('user/incubators', [
-                'pets' => $pets,
+            return view('creatures/incubators', [
+                'eggs' => $eggs,
                 'purchases' => $purchases,
                 'category' => "All",
                 'current' => 'eggs']);
@@ -169,13 +145,14 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Oops, you need to be logged in to do that.');
         }
     }
+
     // for future public profile use
     public function getCreatures($user)
     {
         $owner = User::where('username', $user)->first();
 
         $pets = Creature::where('owner_id', $owner->id)->get();
-        return view('user/monsters', [
+        return view('creatures/monsters', [
             'pets' => $pets,
             'owner' => $owner
         ]);

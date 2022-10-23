@@ -3,8 +3,8 @@
     Food Stuffs
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.store-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.store-nav')
 
     <div>
         <div class="container store-body text-center pt-4">
@@ -33,9 +33,13 @@
                                         <p class="card-text">{{ $food->description }}</p>
                                     </div>
                                     <div class="row justify-content-center">
-                                        <i class="fa-solid fa-circle-minus left-span" onclick="incInput('-', {{$food->id}})"></i>
-                                        <div style="width: 65px"><h2 class="text-center mt-auto mb-3" style="font-size: xx-large"  id="qtyLabel{{$food->id}}">1</h2></div>
-                                        <i class="fa-solid fa-circle-plus right-span" onclick="incInput('+', {{$food->id}})"></i>
+                                        <i class="fa-solid fa-circle-minus left-span"
+                                           onclick="incInput('-', {{$food->id}})"></i>
+                                        <div style="width: 65px"><h2 class="text-center mt-auto mb-3"
+                                                                     style="font-size: xx-large"
+                                                                     id="qtyLabel{{$food->id}}">1</h2></div>
+                                        <i class="fa-solid fa-circle-plus right-span"
+                                           onclick="incInput('+', {{$food->id}})"></i>
                                     </div>
                                     <input type="hidden" value="1" id="qty{{$food->id}}" name="qty">
                                     <input type="hidden" value="{{$food->id}}" id="food_id" name="food_id">
@@ -71,7 +75,7 @@
         </div>
         <div class="container">
             <div class="row m-auto">
-                {{ $foods->links() }}
+                {{ $foods->links("pagination::bootstrap-4") }}
             </div>
         </div>
 

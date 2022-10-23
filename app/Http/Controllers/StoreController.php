@@ -24,7 +24,7 @@ class StoreController extends Controller
     {
         $foods = Food::where('type', 'food')->orderBy('updated_at', 'desc')->paginate(8);
         $potions = Food::where('type', 'potion')->orderBy('updated_at', 'desc')->paginate(8);
-        $eggs = Creature::where('dev_stage', 1)->orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Creature::where('dev_stage', 'egg')->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/featured', [
             'foods' => $foods,
             'potions' => $potions,
@@ -144,7 +144,6 @@ class StoreController extends Controller
         return view('store/food/edit-food', ['food' => $food]);
     }
 
-
     public function postPurchaseFood(Request $request)
     {
         $request->validate([
@@ -210,7 +209,7 @@ class StoreController extends Controller
 
     public function getStoreEggs()
     {
-        $eggs = Egg::orderBy('updated_at', 'desc')->paginate(8);
+        $eggs = Creature::where('dev_stage', 'egg')->where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(8);
         return view('store/eggs/all', ['eggs' => $eggs, 'category' => "CREATURE EGGS", 'current' => 'eggs']);
     }
 

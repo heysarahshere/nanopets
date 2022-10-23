@@ -3,8 +3,8 @@
     Adopt a Creature
 @endsection
 @section('content')
-    @include('partials.banner-message')
-    @include('partials.store-nav')
+    @include('partials.info.banner-message')
+    @include('partials.navigation.store-nav')
     <div>
         <div class="container store-body text-center pt-4">
             <div class="row justify-content-center align-items-center m-auto">
@@ -19,17 +19,28 @@
                             </div>
                             <div class="store-img-container col-9 m-auto p-0">
                                 <div class="reveal-stats">
-                                    <button class="ombre-btn" data-toggle="modal"
-                                            data-target="#adoptModal{{$creature->id}}">
-                                        DETAILS
-                                    </button>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            {{--                                            <span class="tooltiptext">Age: {{$creature->dev_stage}}</span>--}}
+                                            <i class="fa-solid fa-{{$creature->dev_stage == 'baby' ? 'baby' : 'person'}}"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            {{--                                            <span class="tooltiptext">Gender: {{$creature->gender}}</span>--}}
+                                            <i class="fa-solid fa-{{$creature->gender == 'male' ? 'mars' : 'venus'}}"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            {{--                                            <span class="tooltiptext">Type: {{$creature->element}}</span>--}}
+                                            <i class="fa-solid fa-fire"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <img class="card-img-top" style="width: auto; height: 224px;"
+                                <img class="card-img-top mr-1" style="width: auto; height: 245px;"
                                      src="{{ Storage::disk('s3')->url("images/creatures/" . $creature->species . "/" . $creature->dev_stage . "/" . $creature->element . ".png" )}}"
                                      alt="{{ $creature->name }} Image">
                             </div>
                             <div class="card-body pb-2 {{$creature->element}}">
-                                <h2 class="card-title">{{ $creature->name }} {{$creature->dev_stage}}</h2>
+                                <h2 class="card-title">{{ $creature->name }}</h2>
+
                                 <p class="card-text">
                                     This {{$creature->gender}} {{$creature->species}} is a level <span
                                         style="font-family: Funhouse;">{{$creature->level}}</span> {{$creature->element}}
@@ -37,15 +48,20 @@
                                     chance at breeding a high tier creature.
                                 </p>
                             </div>
+
+                            <button type="button" class="btn btn-primary purchase-btn" style="width: 90%"
+                                    data-toggle="modal"
+                                    data-target="#adoptModal{{$creature->id}}">DETAILS
+                            </button>
                         </div>
                     </div>
                     @include('partials.modals.adopt-stat-modal')
                 @endforeach
-                    <div class="container">
-                        <div class="row m-auto">
-                            {{ $creatures->links("pagination::bootstrap-4") }}
-                        </div>
+                <div class="container">
+                    <div class="row m-auto">
+                        {{ $creatures->links("pagination::bootstrap-4") }}
                     </div>
+                </div>
             </div>
         </div>
     </div>

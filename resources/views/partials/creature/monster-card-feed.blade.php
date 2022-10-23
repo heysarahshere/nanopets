@@ -50,7 +50,7 @@
                                            style="font-family: Funhouse; color: white;">
                                             {{$purchase->qty}}</p>
                                     </div>
-                                    <p style="color: black; text-align: center; font-size: large">How
+                                    <p style="color: black; text-align: center; font-size: large" id="qtyMessage{{$pet->id}}{{$purchase->item->id}}">How
                                         many {{$purchase->item->name}}s?</p>
 
                                     <form id="feedCreatureForm">
@@ -146,7 +146,7 @@
                     qty--;
                 }
             } else if (operator === '+') {
-                if (qty < qtyOwned) {
+                if (qty < firstQty.innerHTML) {
                     qty++;
                 }
             }
@@ -160,12 +160,15 @@
     function resetIncInput(pet_id, item_id) {
         let qtyLabel = document.getElementById("qtyLabel" + pet_id + item_id);
         let qtyInput = document.getElementById("qty" + pet_id + item_id);
+        // let qtyMessage = document.getElementById("qtyMessage" + pet_id + item_id);
+
 
         $('.feedBtn' + item_id).each(function () {
             $(this).prop("disabled", true);
         });
 
-        qtyLabel.innerHTML = 0;
+        // qtyMessage.innerHTML = 'How many ' + item_name + 's?';
+        qtyLabel.innerHTML = '0';
         qtyInput.value = 0;
     }
 
@@ -191,8 +194,7 @@
 
         $(spanIdentifier).css('background-color', color)
 
-        // $("#stamina-meter-span-" + pet_id).removeClass('progress-red progress-orange progress-yellow progress-green').css('background-color', '#2fc217').fadeIn(5000);
-        $(spanIdentifier).css("width", startWidth).animate({width: percentage + "%"}, 4500);
+       $(spanIdentifier).css("width", startWidth).animate({width: percentage + "%"}, 4500);
 
     }
 
@@ -201,6 +203,8 @@
         let qty = document.getElementById("qty" + pet_id + item_id).value;
         if (qty === '') {
             $("#val-error" + pet_id + item_id).text('Please enter a quantity.');
+        } else if (qty === '0') {
+            document.getElementById("qtyMessage" + pet_id + item_id).text('Oops, you ran out of that!');
         } else {
             jQuery.ajax({
                 type: 'POST',
@@ -225,6 +229,7 @@
                             $(this).text(response.newQty);
                         });
 
+
                         foodQtyWindowSwitch(pet_id, item_id);
                         toggleMonsterCardFaceFeed(pet_id);
                         switchMonsterCardFace(pet_id);
@@ -233,7 +238,7 @@
                         animateMeter(pet_id, response.hunger, "hunger", 100);
                         animateMeter(pet_id, response.stamina, "stamina", response.max_stamina);
 
-                        resetIncInput(pet_id, item_id);
+                        resetIncInput(pet_id, item_id, response.newQty);
 
                     } else {
                         $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');

@@ -56,8 +56,21 @@ Route::post('/sign-out', [
     'as' => 'sign-out'
 ]);
 
-Route::get('/mycreatures', [
-    'uses' => 'App\Http\Controllers\UserController@getMyCreatures',
+Route::get('/{user}', [
+    'uses' => 'App\Http\Controllers\UserController@getProfile',
+    'as' => 'profile'
+]);
+// ------------------------- End User
+
+// --------------------------------------------------------------------------- Creatures
+
+Route::get('/adopt/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
+    'as' => 'adoptable',
+]);
+
+Route::get('/mycreatures/all', [
+    'uses' => 'App\Http\Controllers\CreatureController@getMyCreatures',
     'as' => 'my-creatures'
 ]);
 
@@ -71,21 +84,9 @@ Route::get('/mycreatures/babies', [
     'as' => 'my-creatures-baby'
 ]);
 
-Route::get('/mycreatures/incubator', [
+Route::get('/mycreatures/incubators', [
     'uses' => 'App\Http\Controllers\UserController@getMyIncubator',
-    'as' => 'my-incubator'
-]);
-
-Route::get('/{user}', [
-    'uses' => 'App\Http\Controllers\UserController@getProfile',
-    'as' => 'profile'
-]);
-// ------------------------- End User
-// --------------------------------------------------------------------------- Creatures
-
-Route::get('/adopt/all', [
-    'uses' => 'App\Http\Controllers\CreatureController@getAdoptable',
-    'as' => 'adoptable',
+    'as' => 'my-incubators'
 ]);
 
 Route::post('/mycreatures/new', [
@@ -113,26 +114,44 @@ Route::post('/feed-ajax', [
     'as' => 'feed-ajax'
 ]);
 
+Route::post('/incubate', [
+    'uses' => 'App\Http\Controllers\CreatureController@postIncubateSingle',
+    'as' => 'incubate-single'
+]);
 
-Route::get('/breed/{id1}+{id2}', [
-    'uses' => 'App\Http\Controllers\CreatureController@getBreeding',
+Route::post('/breed', [
+    'uses' => 'App\Http\Controllers\CreatureController@postBreedingPage',
     'as' => 'breed'
 ]);
 
+// get used to see current progress of one couple
+Route::get('/mycreatures/breeding/{id}', [
+    'uses' => 'App\Http\Controllers\CreatureController@getBreedingPair',
+    'as' => 'get-breeding-pair'
+]);
 
-// ajax routes
-//Route::get('/postFeedCreature', [CreatureController::class, 'postFeedCreature']);
+// ajax route for breeding
+Route::post('/breed-ajax', [
+    'uses' => 'App\Http\Controllers\CreatureController@postBreedAjax',
+    'as' => 'breed-ajax'
+]);
+
+// use to see list of all currently breeding pairs
+Route::get('/mycreatures/breeding', [
+    'uses' => 'App\Http\Controllers\CreatureController@getListBreedingPairs',
+    'as' => 'list-breeding-pairs'
+]);
 
 // --------------------- End Creatures
 
-// -------------------------------------------------------------------------------------------------------------- Store
 
+// -------------------------------------------------------------------------------------------------------------- Store
 Route::get('/store/featured', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFeatured',
     'as' => 'featured'
 ]);
 
-// --------------------------------------------------------------------------------------------- food
+// ------------------------ food
 Route::get('/store/foods', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreFoods',
     'as' => 'foods'
@@ -170,7 +189,7 @@ Route::post('/store/update/{id}', [
     'uses' => 'App\Http\Controllers\StoreController@postUpdateFood',
     'as' => 'post-update-food'
 ]);
-// --------------------------------------------------------------------------------------------- eggs
+// ---------------------- eggs
 
 Route::get('/store/eggs', [
     'uses' => 'App\Http\Controllers\StoreController@getStoreEggs',
@@ -179,7 +198,7 @@ Route::get('/store/eggs', [
 
 //Route::get('/eggs', 'StoreController@getEggs'); // for ajax request
 
-// --------------------------------------------------------------------------------------------- potions
+// ------------------------ potions
 
 Route::get('/store/potions', [
     'uses' => 'App\Http\Controllers\StoreController@getStorePotions',
@@ -190,5 +209,5 @@ Route::get('/store/housing', [
     'uses' => 'App\Http\Controllers\StoreController@getHousingItems',
     'as' => 'housing',
 ]);
-// ------------------------- End Store
+// ----------------------------------------------------------------------------------------- End Store
 

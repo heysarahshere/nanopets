@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
             'email' => "jarseph@aol.com",
             'password' => bcrypt('p@ss123'),
             'admin' => false,
-            'balance' => 7500
+            'balance' => 7500000
         ]);
 
         User::create([

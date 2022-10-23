@@ -305,6 +305,12 @@
     color: rgb(176, 0, 106);
 }
 
+.card-breed-btn:disabled {
+    background-color: rgb(105, 105, 105);
+    border-color: rgb(136, 43, 100);
+    color: rgb(136, 43, 100);
+}
+
 .large-breed-btn {
     border-width: medium;
     border-radius: 20px;

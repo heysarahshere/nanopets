@@ -10,12 +10,21 @@
                  alt="{{ $pet->name }} Image">
         </div>
         <form id="sellCreature" name="adopt" method="POST" action="{{route('sell-creature')}}" style="width: 90%">
-            <input style="margin-left: 5%" class="form-control w-100 mb-2" type="number" id="cost" name="cost" step="1.00" placeholder="Please enter a sell price." required>
+            <div class="input-group mb-3" style="margin-left: 5%">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa-solid fa-coins"></i></span>
+                </div>
+
+                <input class="form-control" type="number" id="cost" name="cost" step="1.00"
+                       placeholder="Please enter a sell price."
+                       aria-label="Default" aria-describedby="inputGroup-sizing-default" required>
+            </div>
+
             <button type="sumit" class="btn btn-primary actions-btn w-100 mb-1">
                 YES
             </button>
-            <button class="btn btn-danger cancel-actions-btn w-100 mb-3"
-                    onclick="toggleMonsterCardFaceSell('{{$pet->id}}')">
+            <button type="button" class="btn btn-danger cancel-actions-btn w-100 mb-3"
+                    onclick="toggleMonsterCardFaceSell('{{$pet->id}}', 'egg')">
                 NO
             </button>
             <input type="hidden" value="{{$pet->id}}" id="creature_id" name="creature_id">

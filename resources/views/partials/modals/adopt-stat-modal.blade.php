@@ -4,12 +4,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title text-center" id="adoptModalLabel">{{ $creature->name }}</h2>
+                <h2 class="modal-title text-center" id="adoptModalLabel">{{ Str::limit($creature->name, 12) }}</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <p style="font-weight: bold; text-align: center"> Seller: {{$creature->seller->username}}</p>
             {{--  modal body--}}
             {{--     bosy one (buying info)        --}}
             <div class="modal-body" id="creature-detail-{{$creature->id}}">
@@ -23,7 +22,7 @@
                         <div class="row"><h2 style="color: black">Type:&nbsp; </h2>
                             <h2 style="color: #da3a09">{{ $creature->element }}</h2></div>
                         <div class="row"><h2 style="color: black">Tier:&nbsp; </h2>
-                            <h2 style="color: #b4da09">{{ $creature->tier }}</h2></div>
+                            <h2 style="color: {{ $creature->tier == 'Bronze' ? 'saddlebrown' :  $creature->tier}}">{{ $creature->tier }}</h2></div>
                         <div class="row"><h2 style="color: black">Health:&nbsp; </h2>
                             <h2 style="color: #b90404">{{ $creature->max_health }}</h2></div>
                         <div class="row"><h2 style="color: black">Stamina:&nbsp; </h2>
@@ -38,7 +37,9 @@
                             <h2 style="color: #ff24a6">{{ $creature->mojo }}</h2></div>
                         <div class="row"><h2 style="color: black">High Tier Potential:&nbsp; </h2>
                             <h2 style="color: #cb8e0a">{{ $creature->potential }}%</h2></div>
+                        <h2 style="color: black">Sold by {{$creature->seller->username}}</h2>
                     </div>
+
                 </div>
 
                 <div class="modal-footer">
@@ -48,7 +49,7 @@
                     @if(Auth::check())
                         <?php $user = Auth::user()?>
                         @if ( $user->id == $creature->seller_id )
-                                <h2 class="text-center mr-5">You listed this creature for adoption.</h2>
+                            <h2 class="text-center mr-5">You listed this creature for adoption.</h2>
                             <form id="cancelSale" name="cancelAdopt" method="POST"
                                   action="{{route('cancel-sell-creature')}}" style="width: 90%; margin-right: 10%">
                                 <button type="submit" class="btn btn-danger cancel-actions-btn w-100">Cancel Sale
@@ -62,8 +63,9 @@
                                 Adopt {{ $creature->name }}</button>
                         @endif
                     @else
-                        <a href="{{route('get-sign-in')}}">
-                            <button class="btn btn-sm rev-ombre-btn">sign in to adopt {{$creature->name}}</button>
+                        <a href="{{route('get-sign-in')}}" style="width: 100%">
+                            <button class="btn btn-sm rev-ombre-btn" style="width: 100%">sign in to
+                                adopt {{$creature->name}}</button>
                         </a>
                     @endif
                 </div>
