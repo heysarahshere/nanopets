@@ -162,7 +162,7 @@
                             <div class="breed-parent col-12"
                                 style="display: flex; justify-content: center; align-items: center;">
                                 <h1 class="m-auto breed-question" id="babyMysteryPicture">?</h1>
-                                <img class="breed-child" id="babyCardImage"
+                                <img class="breed-child hiddenFace" id="babyCardImage"
                                     src="{{ Storage::disk('s3')->url('images/eggs/fire.png') }}"
                                     alt="{{ $breed_instance->mommy->name }} Image">
                             </div>
@@ -207,7 +207,7 @@
 
             </div>
 
-            <div class="container egg-stats" id="egg-stats">
+            <div class="container egg-stats hiddenFace" id="egg-stats">
                 <H2 class="text-center">Galaxy Egg</H2>
                 <div class="row justify-content-center">
                     <div class="col-5 mx-3">
@@ -242,8 +242,8 @@
             </div>
         </div>
 
-        <button class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{ $breed_instance->started ? 'disabled' : '' }}>
-            START <span class="text-right ml-auto" onclick="startBreed(event)">></span>
+        <button onclick="startBreed(event)" class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{ $breed_instance->started ? 'disabled' : '' }}>
+            START <span class="text-right ml-auto">></span>
         </button>
     </div>
     </div>
@@ -349,15 +349,15 @@
         // get ids from the hidden inputs in mom and dad slots
         // let qty = document.getElementById("qty" + pet_id + item_id).value;
 
-        let babyMysteryPicture = getElementById("babyMysteryPicture");
-        let babyCardImage = getElementById("babyCardImage");
-        let egg_stats = getElementById("egg-stats");
-        let baby_health = getElementById("baby_health");
-        let baby_strength = getElementById("baby_strength");
-        let baby_stamina = getElementById("baby_stamina");
-        let baby_defense = getElementById("baby_defense");
-        let baby_magic = getElementById("baby_magic");
-        let baby_tier = getElementById("baby_tier");
+        let babyMysteryPicture = document.getElementById("babyMysteryPicture");
+        let babyCardImage = document.getElementById("babyCardImage");
+        let egg_stats = document.getElementById("egg-stats");
+        let baby_health = document.getElementById("baby_health");
+        let baby_strength = document.getElementById("baby_strength");
+        let baby_stamina = document.getElementById("baby_stamina");
+        let baby_defense = document.getElementById("baby_defense");
+        let baby_magic = document.getElementById("baby_magic");
+        let baby_tier = document.getElementById("baby_tier");
         
         // shouldn't need form validation here, i think..
 
@@ -367,9 +367,6 @@
             url: "{{ route('breed-ajax') }}",
             data: {
                 "_token": "{{ csrf_token() }}",
-                pet_id: pet_id,
-                item_id: item_id,
-                qty: qty
             },
             beforeSend: function(xhr, type) {
                 // $('#val-error' + pet_id + item_id).hide();
@@ -377,25 +374,12 @@
             },
             success: function(response) {
                 if (response) {
-                    // alert(data.success);
-                    $("#success-message" + pet_id + item_id).text('Fed!');
-
-                    // if still some of that item left, show enw amount
-                    $('.invQty' + item_id).each(function() {
-                        $(this).text(response.newQty);
-                    });
-
-
-                    foodQtyWindowSwitch(pet_id, item_id);
-                    toggleMonsterCardFaceFeed(pet_id);
-                    switchMonsterCardFace(pet_id);
-
-                    animateMeter(pet_id, response.health, "health", response.max_health);
-                    animateMeter(pet_id, response.hunger, "hunger", 100);
-                    animateMeter(pet_id, response.stamina, "stamina", response.max_stamina);
-
-                    resetIncInput(pet_id, item_id, response.newQty);
-
+                    //hide the questin mark thing 
+                    babyMysteryPicture.classList.add('hiddenFace');
+                    babyCardImage.classList.remove('hiddenFace');
+                    //show the egg image
+                    //show the stat div for the child
+                    //hid the start button/show the two new buttons
                 } else {
                     $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');
                 }
