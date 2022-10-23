@@ -546,6 +546,12 @@
     width: auto;
 }
 
+.egg-stats{
+    background-color:rgb(218, 67, 192) ;
+    margin: 5%;
+    border: 24px solid rgb(218, 67, 192);
+    border-radius: 24px;
+}
 /* ----------------------------------------  breed progress bars -------------- */
 .blue-progress-breed {
     width: 50%;
