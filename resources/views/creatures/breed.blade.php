@@ -343,11 +343,12 @@
         littlePotential.value = bigPotentialValue;
     }
 
-    function startBreed(event) {
+    async function startBreed(event) {
         event.preventDefault();
 
         // get ids from the hidden inputs in mom and dad slots
-        // let qty = document.getElementById("qty" + pet_id + item_id).value;
+        let mom_id = document.getElementById("creature_id_Female").value;
+        let dad_id = document.getElementById("creature_id_Male").value;
 
         let babyMysteryPicture = document.getElementById("babyMysteryPicture");
         let babyCardImage = document.getElementById("babyCardImage");
@@ -358,36 +359,45 @@
         let baby_defense = document.getElementById("baby_defense");
         let baby_magic = document.getElementById("baby_magic");
         let baby_tier = document.getElementById("baby_tier");
-        
+
+
         // shouldn't need form validation here, i think..
 
+        $("#blue-span").css("width", 0).animate({width: "100%"}, 4500);
+        $("#pink-span").css("width", 0).animate({width: "100%"}, 4500);
+        await new Promise(resolve => setTimeout(resolve, 4500));
+        $("#purple-span").css("width", 0).animate({width: "100%"}, 4500);
+        await new Promise(resolve => setTimeout(resolve, 4000));
 
         jQuery.ajax({
             type: 'POST',
             url: "{{ route('breed-ajax') }}",
             data: {
                 "_token": "{{ csrf_token() }}",
+                "creature_id_Male": dad_id,
+                "creature_id_Female": mom_id,
             },
-            beforeSend: function(xhr, type) {
-                // $('#val-error' + pet_id + item_id).hide();
-                // $("#success-message" + pet_id + item_id).hide();
+            beforeSend: function (xhr, type) {
             },
-            success: function(response) {
+            success: function (response) {
                 if (response) {
-                    //hide the questin mark thing 
+
+                    //hide the question mark thing
                     babyMysteryPicture.classList.add('hiddenFace');
-                    babyCardImage.classList.remove('hiddenFace');
+                    // set the egg image
+                    babyCardImage.src = "https://nanopets.s3.us-west-2.amazonaws.com/images/eggs/" + response.egg_element + ".png"
                     //show the egg image
+                    babyCardImage.classList.remove('hiddenFace');
                     //show the stat div for the child
                     //hid the start button/show the two new buttons
                 } else {
                     $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');
                 }
             },
-            complete: function(data) {
+            complete: function (data) {
                 // $(".ajax-loader").hide();
             },
-            error: function(response) {
+            error: function (response) {
                 if (response.error) {
                     $("#val-error" + pet_id + item_id).text('Fail.');
                     // location.reload();
@@ -397,4 +407,5 @@
             }
         });
     }
+
 </script>

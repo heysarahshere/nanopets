@@ -619,22 +619,22 @@
 }
 
 .pink-breed-bar span {
-    background-color: #BE1957;
-    border-radius: 10px;
+    background-image: linear-gradient(to left, #BE1957, rgba(89, 14, 159, 0.8));
+    /*border-radius: 10px;*/
     text-align: left;
     transform: rotate(-180deg);
 }
 
 .purple-breed-bar span {
     background-color: rgba(89, 14, 159, 0.8);
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     text-align: left;
     transform: rotate(180deg);
 }
 
 .blue-breed-bar span {
-    background-color: #0060ce;
-    border-radius: 10px;
+    background-image: linear-gradient(to right, #0060ce, rgba(89, 14, 159, 0.8));
+    /*border-radius: 10px;*/
 }
 .progress-pair-bar span {
     background-color: #0060ce;
@@ -655,6 +655,7 @@
 .blue-breed-gradient {
     position: absolute;
     top: 50%;
+    left: 0;
     padding: 0;
 }
 
@@ -662,13 +663,14 @@
 .pink-breed-gradient {
     position: absolute;
     top: 50%;
+    left: 0;
     padding: 0;
 }
 
 
 .purple-breed-gradient {
     position: absolute;
-    top: -29%;
+    top: -25%;
     left: 0;
     padding: 0;
 }

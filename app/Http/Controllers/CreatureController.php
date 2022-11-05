@@ -380,7 +380,7 @@ class CreatureController extends Controller
         $egg = new Creature([
             'name'=>'new egg',
             'species'=>'bird',
-            'element'=>'ice',
+            'element'=>'dark',
             'description'=>'new egg baby from parents',
             'potential'=>rand(10, 50),
             'max_health'=> 3000,
@@ -400,7 +400,7 @@ class CreatureController extends Controller
         $egg->save();
 
         return response()->json([
-            'success' => 'Creature fed!',
+            'success' => 'Creature bred!',
             'egg_element' => $egg->element,
         ]);
     }
