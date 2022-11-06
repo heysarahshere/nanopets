@@ -26,36 +26,37 @@
                     <div class="container-fluid py-2">
                         <div class="d-flex flex-row flex-nowrap">
                             @foreach ($alternatives as $alternative)
-                                <div class="card card-body {{ $alternative->gender == 'male' ? 'blue' : 'pink' }}-border"
+                                <div
+                                    class="card card-body {{ $alternative->gender == 'male' ? 'blue' : 'pink' }}-border"
                                     id="breed_{{ $alternative->id }}_{{ $alternative->gender }}"
                                     onclick="swapCreature(event, '{{ $alternative->id }}', '{{ Str::title($alternative->gender) }}')">
 
                                     <div>
                                         <i class="fa-regular fa-heart cupid-heart"></i>
                                         <img class="card-img-top"
-                                            id="littleCardImage_{{ $alternative->id }}_{{ Str::title($alternative->gender) }}"
-                                            style="width: auto; height: 100%; max-width: 250px;display:block"
-                                            src="{{ Storage::disk('s3')->url('/images/creatures/' . $alternative->species . '/adult/' . $alternative->element . '.png') }}">
+                                             id="littleCardImage_{{ $alternative->id }}_{{ Str::title($alternative->gender) }}"
+                                             style="width: auto; height: 100%; max-width: 250px;display:block"
+                                             src="{{ Storage::disk('s3')->url('/images/creatures/' . $alternative->species . '/adult/' . $alternative->element . '.png') }}">
                                     </div>
                                     <h2 id="littleCardName_{{ $alternative->id }}_{{ Str::title($alternative->gender) }}"
                                         style="color: black; text-align: center;">{{ $alternative->name }}</h2>
                                 </div>
                                 <input type="hidden" value="{{ $alternative->max_health }}"
-                                    id="alt_health_{{ $alternative->id }}">
+                                       id="alt_health_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->max_stamina }}"
-                                    id="alt_stamina_{{ $alternative->id }}">
+                                       id="alt_stamina_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->defense }}"
-                                    id="alt_defense_{{ $alternative->id }}">
+                                       id="alt_defense_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->strength }}"
-                                    id="alt_strength_{{ $alternative->id }}">
+                                       id="alt_strength_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->magic }}"
-                                    id="alt_magic_{{ $alternative->id }}">
+                                       id="alt_magic_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->mojo }}"
-                                    id="alt_mojo_{{ $alternative->id }}">
+                                       id="alt_mojo_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->potential }}"
-                                    id="alt_potential_{{ $alternative->id }}">
+                                       id="alt_potential_{{ $alternative->id }}">
                                 <input type="hidden" value="{{ $alternative->id }}"
-                                    id="creature_id_{{ $alternative->id }}">
+                                       id="creature_id_{{ $alternative->id }}">
                             @endforeach
                         </div>
                     </div>
@@ -71,19 +72,19 @@
 
             <div class="row m-2 mb-3">
                 <div class="col-6 mt-3" style="height: 100%">
-                    <div class="col-12 blue-breed-gradient"  style="z-index: 1">
+                    <div class="col-12 blue-breed-gradient" style="z-index: 1">
                         <div class="blue-progress-breed blue-breed-bar">
                             <span style="width: {{ $breed_instance->progress }}%" id="blue-span"></span>
                         </div>
                     </div>
-                    <div class="col-6 mr-auto m-5"  style="z-index: 2">
+                    <div class="col-6 mr-auto m-5" style="z-index: 2">
                         <h2 id="bigCardName_Male" style="color: #0060ce; text-align: center">
                             {{ $breed_instance->daddy->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
                             <div class="breed-parent col-12">
                                 <img class="breed-child" id="bigCardImage_Male"
-                                    src="{{ Storage::disk('s3')->url('images/creatures/' . $breed_instance->daddy->species . '/' . $breed_instance->daddy->dev_stage . '/' . $breed_instance->daddy->element . '.png') }}"
-                                    alt="{{ $breed_instance->daddy->name }} Image">
+                                     src="{{ Storage::disk('s3')->url('images/creatures/' . $breed_instance->daddy->species . '/' . $breed_instance->daddy->dev_stage . '/' . $breed_instance->daddy->element . '.png') }}"
+                                     alt="{{ $breed_instance->daddy->name }} Image">
                             </div>
                         </div>
                     </div>
@@ -92,20 +93,20 @@
 
                 <div class="col-6 mt-3" style="height: 100%">
 
-                    <div class="col-12 pink-breed-gradient pink-breed-bar"  style="z-index: 1">
+                    <div class="col-12 pink-breed-gradient pink-breed-bar" style="z-index: 1">
                         <div class="pink-progress-breed">
                             <span style="width: {{ $breed_instance->progress }}%; margin-left: auto !important;"
-                                id="pink-span"></span>
+                                  id="pink-span"></span>
                         </div>
                     </div>
                     <div class="col-6 ml-auto m-5" style="z-index: 2">
-                        <h2 id="bigCardName_Female" style="color: #ad084d; text-align: center" >
+                        <h2 id="bigCardName_Female" style="color: #ad084d; text-align: center">
                             {{ $breed_instance->mommy->name }}</h2>
                         <div class="store-img-container breed-pink mb-3">
                             <div class="breed-parent col-12">
                                 <img class="breed-child" id="bigCardImage_Female"
-                                    src="{{ Storage::disk('s3')->url('images/creatures/' . $breed_instance->mommy->species . '/' . $breed_instance->mommy->dev_stage . '/' . $breed_instance->mommy->element . '.png') }}"
-                                    alt="{{ $breed_instance->mommy->name }} Image">
+                                     src="{{ Storage::disk('s3')->url('images/creatures/' . $breed_instance->mommy->species . '/' . $breed_instance->mommy->dev_stage . '/' . $breed_instance->mommy->element . '.png') }}"
+                                     alt="{{ $breed_instance->mommy->name }} Image">
                             </div>
                         </div>
                     </div>
@@ -150,19 +151,19 @@
 
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
 
-                    <div class="col-12 purple-breed-gradient purple-breed-bar"  style="z-index: 0">
+                    <div class="col-12 purple-breed-gradient purple-breed-bar" style="z-index: 0">
                         <div class="purple-progress-breed">
                             <span style="width: 0%; margin-left: auto !important;" id="purple-span"></span>
                         </div>
                     </div>
                     <div class="col-12 m-auto m-5">
-                        <div class="store-img-container breed-purple mb-3"  style="z-index: 2">
+                        <div class="store-img-container breed-purple mb-3" style="z-index: 2">
                             <div class="breed-parent col-12"
-                                style="display: flex; justify-content: center; align-items: center;">
+                                 style="display: flex; justify-content: center; align-items: center;">
                                 <h1 class="m-auto breed-question" id="babyMysteryPicture">?</h1>
                                 <img class="breed-child hiddenFace" id="babyCardImage"
-                                    src="{{ Storage::disk('s3')->url('images/eggs/fire.png') }}"
-                                    alt="{{ $breed_instance->mommy->name }} Image">
+                                     src="{{ Storage::disk('s3')->url('images/eggs/fire.png') }}"
+                                     alt="{{ $breed_instance->mommy->name }} Image">
                             </div>
                         </div>
                     </div>
@@ -172,17 +173,20 @@
                     <div class="col-12 m-auto">
                         <div class="pink-breed-stat p-3">
                             <div class="row m-auto">
-                                <p>Health: </p>&nbsp;<p id="health_p_Female">{{ $breed_instance->mommy->max_health }}</p>
+                                <p>Health: </p>&nbsp;<p
+                                    id="health_p_Female">{{ $breed_instance->mommy->max_health }}</p>
                             </div>
                             <div class="row m-auto">
-                                <p>Endurance: </p>&nbsp;<p id="stamina_p_Female">{{ $breed_instance->mommy->max_stamina }}
+                                <p>Endurance: </p>&nbsp;<p
+                                    id="stamina_p_Female">{{ $breed_instance->mommy->max_stamina }}
                                 </p>
                             </div>
                             <div class="row m-auto">
                                 <p>Defense: </p>&nbsp;<p id="defense_p_Female">{{ $breed_instance->mommy->defense }}</p>
                             </div>
                             <div class="row m-auto">
-                                <p>Attack: </p>&nbsp;<p id="strength_p_Female">{{ $breed_instance->mommy->strength }}</p>
+                                <p>Attack: </p>&nbsp;<p
+                                    id="strength_p_Female">{{ $breed_instance->mommy->strength }}</p>
                             </div>
                             <div class="row m-auto">
                                 <p>Magic: </p>&nbsp;<p id="magic_p_Female">{{ $breed_instance->mommy->magic }}</p>
@@ -239,7 +243,8 @@
             </div>
         </div>
 
-        <button id="start_button" onclick="startBreed(event)" class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{ $breed_instance->started ? 'disabled' : '' }}>
+        <button id="start_button" onclick="startBreed(event)"
+                class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{ $breed_instance->started ? 'disabled' : '' }}>
             START <span class="text-right ml-auto">></span>
         </button>
 
@@ -263,6 +268,10 @@
         let littleIDValue = document.getElementById("creature_id_" + id).value;
         let bigID = document.getElementById("creature_id_" + gender);
         let bigIDValue = document.getElementById("creature_id_" + gender).value;
+
+        // swap IDs
+        littleID.value = bigIDValue;
+        bigID.value = littleIDValue;
 
         // get name info from little card
         let littleCardName = document.getElementById("littleCardName_" + id + "_" + gender);
@@ -372,7 +381,6 @@
         let congrats_banner = document.getElementById("congrats-banner");
 
 
-
         // hide creature select row and start button
         select_creatures_row.classList.add('hiddenFace');
         start_button.disabled = true;
@@ -408,10 +416,8 @@
                     babyCardImage.src = "https://nanopets.s3.us-west-2.amazonaws.com/images/eggs/" + response.egg_element + ".png"
                     //show the egg image
                     babyCardImage.classList.remove('hiddenFace');
-                    //show the stat div for the child
-                    //hid the start button/show the two new buttons
                 } else {
-                    $("#val-error" + pet_id + item_id).text('Oops, something went wrong.');
+                    $("#val-error").text('Oops, something went wrong.');
                 }
             },
             complete: function (data) {
@@ -419,10 +425,10 @@
             },
             error: function (response) {
                 if (response.error) {
-                    $("#val-error" + pet_id + item_id).text('Fail.');
+                    $("#val-error").text('Fail.');
                     // location.reload();
                 } else {
-                    $("#val-error" + pet_id + item_id).text('Uh oh, something went wrong.');
+                    $("#val-error").text('Uh oh, something went wrong.');
                 }
             }
         });

@@ -9,6 +9,7 @@ use App\Models\Purchase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -375,24 +376,54 @@ class CreatureController extends Controller
         $dad = Creature::find($request->input('creature_id_Female'));
 
         // make new baby from parent's stats
+        $speciesArray = [
+            $mom->species,
+            $dad->species,
+        ];
+
+        $elementArray = [
+            $mom->element,
+            $dad->element,
+        ];
+
+        // check for hybrids to add to array
+        if (in_array('fire', $elementArray) && in_array('earth', $elementArray)) {
+                $elementArray[] = 'lava';
+        } else if (in_array('fire', $elementArray) && in_array('water', $elementArray)) {
+                $elementArray[] = 'gem';
+        } else if (in_array('water', $elementArray) && in_array('air', $elementArray)) {
+                $elementArray[] = 'ice';
+        } else if (in_array('earth', $elementArray) && in_array('air', $elementArray)) {
+                $elementArray[] = 'lightning';
+        } else if (in_array('lava', $elementArray) && in_array('ice', $elementArray)) {
+                $elementArray[] = 'dark';
+        } else if (in_array('lightning', $elementArray) && in_array('gem', $elementArray)) {
+                $elementArray[] = 'celestial';
+        }
+
+        // factor in gene dominance
+        // choose a value between mom and dad, but lean more toward the parent with higher dominance
+
+        $max_health = rand(10, 500);
+        $max_stamina = rand(10, 500);
 
         // for now, send default egg
         $egg = new Creature([
             'name'=>'new egg',
-            'species'=>'bird',
-            'element'=>'dark',
+            'species'=> $speciesArray[array_rand($speciesArray)],
+            'element'=> $elementArray[array_rand($elementArray)],
             'description'=>'new egg baby from parents',
             'potential'=>rand(10, 50),
-            'max_health'=> 3000,
-            'current_health'=>rand(250, 3000),
-            'max_stamina'=> 1500,
-            'current_stamina'=>rand(250, 1500),
-            'hunger'=>rand(25, 100),
-            'mojo'=>rand(10, 50),
-            'magic'=>rand(250, 2000),
-            'strength'=>rand(250, 2000),
-            'defense'=>rand(250, 1000),
-            'level'=>rand(1, 30),
+            'max_health'=> $max_health,
+            'current_health'=> $max_health,
+            'max_stamina'=> $max_stamina,
+            'current_stamina'=> $max_stamina,
+            'hunger'=> 100,
+            'mojo'=> 0,
+            'magic'=> rand(250, 2000),
+            'strength'=> rand(250, 2000),
+            'defense'=> rand(250, 1000),
+            'level'=> 1,
             'dev_stage' => "egg",
             'owner_id'=> $user->id,
         ]);
