@@ -418,7 +418,7 @@ class CreatureController extends Controller
 
             return view('creatures/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
         } else {
-            return redirect()->back()->with('error', 'Uh oh, you must sign in to do that.');
+            return redirect()->back()->with('error', 'Uh oh, you must signed in to do that.');
         }
     }
 

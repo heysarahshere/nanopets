@@ -6,19 +6,19 @@
     @include('partials.info.banner-message')
 
     <div class="soft-ombre-banner">
-        <div class="container-monsters">
+        <div class="container-monsters" id="hybrid-banner">
             <div class="col-6">
                 <h1 style="color: white; text-align: center"> Make a hybrid! </h1>
             </div>
             <div class="col-6 banner-img-container">
                 <img class="banner-img" src="{{ asset('images/monster_4b.png') }}" alt="Monster Image">
             </div>
-
         </div>
+        <div class="text-center hiddenFace" id="congrats-banner"><h1 style="color: white">CONGRATULATIONS!</h1></div>
     </div>
 
     {{--  scrollable row of creatures  --}}
-    <div class="container-monsters">
+    <div class="container-monsters" id="select-creatures-row">
         <h1 class="text-center">Select creatures</h1>
         <div class="card py-0 feed-card" style="border-radius: 15px; width: 98%;">
             <div class="row">
@@ -71,12 +71,12 @@
 
             <div class="row m-2 mb-3">
                 <div class="col-6 mt-3" style="height: 100%">
-                    <div class="col-12 blue-breed-gradient">
+                    <div class="col-12 blue-breed-gradient"  style="z-index: 1">
                         <div class="blue-progress-breed blue-breed-bar">
                             <span style="width: {{ $breed_instance->progress }}%" id="blue-span"></span>
                         </div>
                     </div>
-                    <div class="col-6 mr-auto m-5">
+                    <div class="col-6 mr-auto m-5"  style="z-index: 2">
                         <h2 id="bigCardName_Male" style="color: #0060ce; text-align: center">
                             {{ $breed_instance->daddy->name }}</h2>
                         <div class="store-img-container breed-blue mb-3">
@@ -92,14 +92,14 @@
 
                 <div class="col-6 mt-3" style="height: 100%">
 
-                    <div class="col-12 pink-breed-gradient pink-breed-bar">
+                    <div class="col-12 pink-breed-gradient pink-breed-bar"  style="z-index: 1">
                         <div class="pink-progress-breed">
                             <span style="width: {{ $breed_instance->progress }}%; margin-left: auto !important;"
                                 id="pink-span"></span>
                         </div>
                     </div>
-                    <div class="col-6 ml-auto m-5">
-                        <h2 id="bigCardName_Female" style="color: #ad084d; text-align: center">
+                    <div class="col-6 ml-auto m-5" style="z-index: 2">
+                        <h2 id="bigCardName_Female" style="color: #ad084d; text-align: center" >
                             {{ $breed_instance->mommy->name }}</h2>
                         <div class="store-img-container breed-pink mb-3">
                             <div class="breed-parent col-12">
@@ -111,14 +111,12 @@
                     </div>
                 </div>
 
-
             </div>
 
             <div class="row">
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
                     <div class="col-12 m-auto">
                         <div class=" blue-breed-stat p-3">
-                            <h2 style="color: white; text-align: center">STATS</h2>
                             <div class="row m-auto">
                                 <p>Health: </p>&nbsp;<p id="health_p_Male">{{ $breed_instance->daddy->max_health }}</p>
                             </div>
@@ -152,13 +150,13 @@
 
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
 
-                    <div class="col-12 purple-breed-gradient purple-breed-bar">
+                    <div class="col-12 purple-breed-gradient purple-breed-bar"  style="z-index: 0">
                         <div class="purple-progress-breed">
                             <span style="width: 0%; margin-left: auto !important;" id="purple-span"></span>
                         </div>
                     </div>
                     <div class="col-12 m-auto m-5">
-                        <div class="store-img-container breed-purple mb-3">
+                        <div class="store-img-container breed-purple mb-3"  style="z-index: 2">
                             <div class="breed-parent col-12"
                                 style="display: flex; justify-content: center; align-items: center;">
                                 <h1 class="m-auto breed-question" id="babyMysteryPicture">?</h1>
@@ -173,7 +171,6 @@
                 <div class="col-3 mt-5 m-auto" style="height: 100%">
                     <div class="col-12 m-auto">
                         <div class="pink-breed-stat p-3">
-                            <h2 style="color: white; text-align: center">STATS</h2>
                             <div class="row m-auto">
                                 <p>Health: </p>&nbsp;<p id="health_p_Female">{{ $breed_instance->mommy->max_health }}</p>
                             </div>
@@ -242,8 +239,15 @@
             </div>
         </div>
 
-        <button onclick="startBreed(event)" class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{ $breed_instance->started ? 'disabled' : '' }}>
+        <button id="start_button" onclick="startBreed(event)" class="btn btn-danger w-100 mt-4 large-breed-start-btn" {{ $breed_instance->started ? 'disabled' : '' }}>
             START <span class="text-right ml-auto">></span>
+        </button>
+
+        <button id="incubate_button" class="btn btn-danger w-100 mt-4 large-incubate-btn hiddenFace">
+            INCUBATE
+        </button>
+        <button id="sell_button" class="btn btn-danger w-100 mt-4 large-sell-btn hiddenFace">
+            SELL
         </button>
     </div>
     </div>
@@ -360,14 +364,30 @@
         let baby_magic = document.getElementById("baby_magic");
         let baby_tier = document.getElementById("baby_tier");
 
+        // get select creatures row to hide
+        let select_creatures_row = document.getElementById("select-creatures-row");
+        let incubate_button = document.getElementById("incubate_button");
+        let sell_button = document.getElementById("sell_button");
+        let hybrid_banner = document.getElementById("hybrid-banner");
+        let congrats_banner = document.getElementById("congrats-banner");
 
-        // shouldn't need form validation here, i think..
+
+
+        // hide creature select row and start button
+        select_creatures_row.classList.add('hiddenFace');
+        start_button.disabled = true;
 
         $("#blue-span").css("width", 0).animate({width: "100%"}, 4500);
         $("#pink-span").css("width", 0).animate({width: "100%"}, 4500);
         await new Promise(resolve => setTimeout(resolve, 4500));
         $("#purple-span").css("width", 0).animate({width: "100%"}, 4500);
         await new Promise(resolve => setTimeout(resolve, 4000));
+
+        start_button.classList.add('hiddenFace');
+        incubate_button.classList.remove('hiddenFace');
+        sell_button.classList.remove('hiddenFace');
+        hybrid_banner.classList.add('hiddenFace');
+        congrats_banner.classList.remove('hiddenFace');
 
         jQuery.ajax({
             type: 'POST',
