@@ -94,7 +94,7 @@
                 <button type="submit" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3 hatch-btn">
                     <i class="fa-solid fa-egg"></i>&nbsp;HATCH
                 </button>
-                <button type="button"
+                <button type="button" onclick="toggleEggCardFaceDestroy('{{$pet->id}}')"
                         class="btn btn-primary monster-card-btn card-breed-btn w-100 mb-3">
                     <i class="fa-solid fa-hammer"></i>
                     DESTROY
@@ -119,14 +119,25 @@
 <script>
 
     function toggleEggCardFaceSell(id) {
-        let back = document.getElementById("front-" + id);
+        let front = document.getElementById("front-" + id);
         let sell = document.getElementById("sell-" + id);
-        if (back.classList.contains('hiddenFace')) {
+        if (front.classList.contains('hiddenFace')) {
             sell.classList.add('hiddenFace');
-            back.classList.remove('hiddenFace');
+            front.classList.remove('hiddenFace');
         } else {
-            back.classList.add('hiddenFace');
+            front.classList.add('hiddenFace');
             sell.classList.remove('hiddenFace');
+        }
+    }
+    function toggleEggCardFaceDestroy(id) {
+        let front = document.getElementById("front-" + id);
+        let destroy = document.getElementById("destroy-" + id);
+        if (front.classList.contains('hiddenFace')) {
+            destroy.classList.add('hiddenFace');
+            front.classList.remove('hiddenFace');
+        } else {
+            front.classList.add('hiddenFace');
+            destroy.classList.remove('hiddenFace');
         }
     }
 

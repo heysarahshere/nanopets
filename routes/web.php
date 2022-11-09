@@ -114,6 +114,11 @@ Route::post('/feed-ajax', [
     'as' => 'feed-ajax'
 ]);
 
+Route::post('/destroy', [
+    'uses' => 'App\Http\Controllers\CreatureController@postDeleteCreature',
+    'as' => 'destroy-creature'
+]);
+
 Route::post('/incubate', [
     'uses' => 'App\Http\Controllers\CreatureController@postIncubateSingle',
     'as' => 'incubate-single'
@@ -166,6 +171,7 @@ Route::post('/store/foods/all', [
     'uses' => 'App\Http\Controllers\StoreController@postPurchaseFood',
     'as' => 'purchase-food'
 ]);
+
 
 
 // ---------------------- admin stuff

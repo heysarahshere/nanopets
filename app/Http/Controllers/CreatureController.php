@@ -355,7 +355,8 @@ class CreatureController extends Controller
 
     }
 
-    public function postBreedAjax(Request $request) {
+    public function postBreedAjax(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'creature_id_Male' => 'required',
@@ -388,17 +389,17 @@ class CreatureController extends Controller
 
         // check for hybrids to add to array
         if (in_array('fire', $elementArray) && in_array('earth', $elementArray)) {
-                $elementArray[] = 'lava';
+            $elementArray[] = 'lava';
         } else if (in_array('fire', $elementArray) && in_array('water', $elementArray)) {
-                $elementArray[] = 'gem';
+            $elementArray[] = 'gem';
         } else if (in_array('water', $elementArray) && in_array('air', $elementArray)) {
-                $elementArray[] = 'ice';
+            $elementArray[] = 'ice';
         } else if (in_array('earth', $elementArray) && in_array('air', $elementArray)) {
-                $elementArray[] = 'lightning';
+            $elementArray[] = 'lightning';
         } else if (in_array('lava', $elementArray) && in_array('ice', $elementArray)) {
-                $elementArray[] = 'dark';
+            $elementArray[] = 'dark';
         } else if (in_array('lightning', $elementArray) && in_array('gem', $elementArray)) {
-                $elementArray[] = 'celestial';
+            $elementArray[] = 'celestial';
         }
 
         // factor in gene dominance
@@ -409,23 +410,23 @@ class CreatureController extends Controller
 
         // for now, send default egg
         $egg = new Creature([
-            'name'=>'new egg',
-            'species'=> $speciesArray[array_rand($speciesArray)],
-            'element'=> $elementArray[array_rand($elementArray)],
-            'description'=>'new egg baby from parents',
-            'potential'=>rand(10, 50),
-            'max_health'=> $max_health,
-            'current_health'=> $max_health,
-            'max_stamina'=> $max_stamina,
-            'current_stamina'=> $max_stamina,
-            'hunger'=> 100,
-            'mojo'=> 0,
-            'magic'=> rand(250, 2000),
-            'strength'=> rand(250, 2000),
-            'defense'=> rand(250, 1000),
-            'level'=> 1,
+            'name' => 'new egg',
+            'species' => $speciesArray[array_rand($speciesArray)],
+            'element' => $elementArray[array_rand($elementArray)],
+            'description' => 'new egg baby from parents',
+            'potential' => rand(10, 50),
+            'max_health' => $max_health,
+            'current_health' => $max_health,
+            'max_stamina' => $max_stamina,
+            'current_stamina' => $max_stamina,
+            'hunger' => 100,
+            'mojo' => 0,
+            'magic' => rand(250, 2000),
+            'strength' => rand(250, 2000),
+            'defense' => rand(250, 1000),
+            'level' => 1,
             'dev_stage' => "egg",
-            'owner_id'=> $user->id,
+            'owner_id' => $user->id,
         ]);
 
         $egg->save();
@@ -481,6 +482,25 @@ class CreatureController extends Controller
         } else {
             $creature->{$statEffect} += $statEffectAmount;
         }
+    }
+
+    public function postDeleteCreature(Request $request)
+    {
+        if (Auth::check()) {
+
+            $creature = Creature::find($request->input('pet_id'));
+            $creature->delete();
+
+            // add kibble or ingredient to account
+
+            return redirect()
+                ->route('my-creatures')
+                ->with('message', "Creature destroyed.");
+
+        } else {
+            return redirect()->back()->with('error', 'Uh oh, you must signed in to do that.');
+        }
+
     }
 
     /**

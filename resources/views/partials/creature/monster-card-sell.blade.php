@@ -5,9 +5,16 @@
     <div class="row">
 
         <div class="col-5 m-auto p-0">
-            <img style="width: 100%; height: auto"
-                 src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
-                 alt="{{ $pet->name }} Image">
+
+            @if ($pet->dev_stage != 'egg')
+                <img style="width: 100%; height: auto"
+                     src="{{ Storage::disk('s3')->url("/images/creatures/" . $pet->species . "/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
+                     alt="{{ $pet->name }} Image">
+            @else
+                <img style="width: 100%; height: auto"
+                     src="{{ Storage::disk('s3')->url("/images/eggs/" . $pet->dev_stage . "/" . $pet->element . ".png") }}"
+                     alt="{{ $pet->name }} Image">
+            @endif
         </div>
         <form id="sellCreature" name="adopt" method="POST" action="{{route('sell-creature')}}" style="width: 90%">
             <div class="input-group mb-3" style="margin-left: 5%">

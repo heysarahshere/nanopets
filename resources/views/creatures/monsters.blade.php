@@ -12,15 +12,16 @@
                 @foreach($pets as $pet)
                     <div class="col-lg-6 col-sm-10 monster-card-front mb-5">
 
+                        @include('partials.creature.monster-card-sell')
+
                         @if ($pet->dev_stage != 'egg' && $pet->dev_stage != 'hatchling')
                             @include('partials.creature.monster-card-front')
                             @include('partials.creature.monster-card-back')
                             @include('partials.creature.monster-card-feed')
                             @include('partials.creature.monster-card-breed')
-                            @include('partials.creature.monster-card-sell')
                         @else
                             @include('partials.creature.egg-card-front')
-                            @include('partials.creature.monster-card-sell')
+                            @include('partials.creature.monster-card-destroy')
                         @endif
                     </div>
                 @endforeach

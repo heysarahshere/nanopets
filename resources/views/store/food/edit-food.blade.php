@@ -194,19 +194,6 @@
 
         document.addEventListener("load", function(){
 
-            // //Get select object
-            // var objSelect = document.getElementById("mainStat");
-            // setSelectedValue(objSelect, );
-            //
-            // function setSelectedValue(selectObj, valueToSet) {
-            //     for (var i = 0; i < selectObj.options.length; i++) {
-            //         if (selectObj.options[i].text== valueToSet) {
-            //             selectObj.options[i].selected = true;
-            //             return;
-            //         }
-            //     }
-            // }
-
             document.getElementById("healthInputLevel").value = document.getElementById("healthInput").value;
             document.getElementById("magicInputLevel").value = document.getElementById("healthInput").value;
             document.getElementById("strengthInputLevel").value = document.getElementById("healthInput").value;
