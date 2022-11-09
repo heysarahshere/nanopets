@@ -116,11 +116,9 @@ class CreatureController extends Controller
                     $this->cancelBreeding($breed_ticket);
                 }
 
-
                 $creature->save();
 
-                $creatures = Creature::where('for_sale', true)->orderBy('updated_at', 'desc')->paginate(12);
-                return redirect()->route('adoptable', ['creatures' => $creatures, 'current' => 'all'])->with('banner-message', 'You successfully listed a creature for adoption.');
+                return redirect()->back()->with('banner-message', 'You successfully listed a creature for adoption.');
             } else {
                 return redirect()->back()->with('error', 'Hmm, that creature is not registered to you.');
             }
@@ -379,6 +377,10 @@ class CreatureController extends Controller
         $mom = Creature::find($request->input('creature_id_Male'));
         $dad = Creature::find($request->input('creature_id_Female'));
 
+        // remove breeding status from parents, reduce stamina and health
+        $breed_ticket = BreedTicket::find($request->input('breed_ticket_id'));
+        $this->cancelBreeding($breed_ticket);
+
         // make new baby from parent's stats
         $speciesArray = [
             $mom->species,
@@ -423,11 +425,14 @@ class CreatureController extends Controller
         $strength = rand($dominant_parent->strength + $dominant_parent->potential, $nondominant_parent->strength);
         $defense = rand($dominant_parent->defense + $dominant_parent->potential, $nondominant_parent->defense);
 
+        $new_egg_element = $elementArray[array_rand($elementArray)];
+        $new_egg_species = $speciesArray[array_rand($speciesArray)];
+
         // for now, send default egg
         $egg = new Creature([
-            'name' => 'new egg',
-            'species' => $speciesArray[array_rand($speciesArray)],
-            'element' => $elementArray[array_rand($elementArray)],
+            'name' => $new_egg_element . ' egg',
+            'species' => $new_egg_species,
+            'element' => $new_egg_element,
             'description' => 'Parents: ' . $mom->name . " and " . $dad->name . ". Born " . Carbon::now()->format('d-m-Y') . ".",
             'potential' => rand(10, 50),
             'max_health' => $max_health,
@@ -446,9 +451,6 @@ class CreatureController extends Controller
 
         $egg->save();
 
-        // remove breeding status from parents, but reduce stamina and health
-        $breed_ticket = BreedTicket::find($request->input('$breed_ticket_id'));
-        $this->cancelBreeding($breed_ticket);
 
         // update last bred date
 
