@@ -249,9 +249,14 @@
             START <span class="text-right ml-auto">></span>
         </button>
 
-        <button id="incubate_button" class="btn btn-danger w-100 mt-4 large-incubate-btn hiddenFace">
-            INCUBATE
-        </button>
+        <form id="incubate_egg" method="post" action="{{route("incubate-single")}}">
+            <input type="hidden" value="" id="new_egg_id">
+            <button type="submit" id="incubate_button" class="btn btn-danger w-100 mt-4 large-incubate-btn hiddenFace">
+                INCUBATE
+            </button>
+            {{csrf_field()}}
+        </form>
+
         <button id="sell_button" class="btn btn-danger w-100 mt-4 large-sell-btn hiddenFace">
             SELL
         </button>
@@ -363,6 +368,7 @@
         // get ids from the hidden inputs in mom and dad slots
         let mom_id = document.getElementById("creature_id_Female").value;
         let dad_id = document.getElementById("creature_id_Male").value;
+        let new_egg_id = document.getElementById("new_egg_id");
         let breed_ticket_id = document.getElementById("breed_ticket_id").value;
 
         let babyMysteryPicture = document.getElementById("babyMysteryPicture");
@@ -421,6 +427,7 @@
                     sell_button.classList.remove('hiddenFace');
                     hybrid_banner.classList.add('hiddenFace');
                     congrats_banner.classList.remove('hiddenFace');
+                    new_egg_id.value = response.new_egg_id;
                 } else {
                     $("#val-error").text('Oops, something went wrong.');
                 }

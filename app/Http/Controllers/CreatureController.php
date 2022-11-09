@@ -457,6 +457,7 @@ class CreatureController extends Controller
         return response()->json([
             'success' => 'Creature bred!',
             'egg_element' => $egg->element,
+            'new_egg_id' => $egg->id
         ]);
     }
 
