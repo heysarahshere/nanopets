@@ -360,7 +360,8 @@ class CreatureController extends Controller
 
         $validator = Validator::make($request->all(), [
             'creature_id_Male' => 'required',
-            'creature_id_Female' => 'required'
+            'creature_id_Female' => 'required',
+            'breed_ticket_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -368,6 +369,8 @@ class CreatureController extends Controller
                 'error' => $validator->errors()->all()
             ]);
         }
+
+        // check last bred date ?
 
         // get user
         $user = Auth::user();
@@ -387,6 +390,7 @@ class CreatureController extends Controller
             $dad->element,
         ];
 
+        // factor in gene dominance
         // check for hybrids to add to array
         if (in_array('fire', $elementArray) && in_array('earth', $elementArray)) {
             $elementArray[] = 'lava';
@@ -402,18 +406,29 @@ class CreatureController extends Controller
             $elementArray[] = 'celestial';
         }
 
-        // factor in gene dominance
         // choose a value between mom and dad, but lean more toward the parent with higher dominance
 
-        $max_health = rand(10, 500);
-        $max_stamina = rand(10, 500);
+
+        $dominant_parent = $mom;
+        $nondominant_parent = $dad;
+
+        if ($dad->potential > $mom->potential) {
+            $dominant_parent = $dad;
+            $nondominant_parent = $mom;
+        }
+
+        $max_health = rand($dominant_parent->max_health + $dominant_parent->potential, $nondominant_parent->max_health);
+        $max_stamina = rand($dominant_parent->max_stamina + $dominant_parent->potential, $nondominant_parent->max_stamina);
+        $magic = rand($dominant_parent->magic + $dominant_parent->potential, $nondominant_parent->magic);
+        $strength = rand($dominant_parent->strength + $dominant_parent->potential, $nondominant_parent->strength);
+        $defense = rand($dominant_parent->defense + $dominant_parent->potential, $nondominant_parent->defense);
 
         // for now, send default egg
         $egg = new Creature([
             'name' => 'new egg',
             'species' => $speciesArray[array_rand($speciesArray)],
             'element' => $elementArray[array_rand($elementArray)],
-            'description' => 'new egg baby from parents',
+            'description' => 'Parents: ' . $mom->name . " and " . $dad->name . ". Born " . Carbon::now()->format('d-m-Y') . ".",
             'potential' => rand(10, 50),
             'max_health' => $max_health,
             'current_health' => $max_health,
@@ -421,15 +436,21 @@ class CreatureController extends Controller
             'current_stamina' => $max_stamina,
             'hunger' => 100,
             'mojo' => 0,
-            'magic' => rand(250, 2000),
-            'strength' => rand(250, 2000),
-            'defense' => rand(250, 1000),
+            'magic' => $magic,
+            'strength' => $strength,
+            'defense' => $defense,
             'level' => 1,
             'dev_stage' => "egg",
             'owner_id' => $user->id,
         ]);
 
         $egg->save();
+
+        // remove breeding status from parents, but reduce stamina and health
+        $breed_ticket = BreedTicket::find($request->input('$breed_ticket_id'));
+        $this->cancelBreeding($breed_ticket);
+
+        // update last bred date
 
         return response()->json([
             'success' => 'Creature bred!',
@@ -452,6 +473,25 @@ class CreatureController extends Controller
         } else {
             return redirect()->back()->with('error', 'Uh oh, you must signed in to do that.');
         }
+    }
+
+    public function postDeleteCreature(Request $request)
+    {
+        if (Auth::check()) {
+
+            $creature = Creature::find($request->input('pet_id'));
+            $creature->delete();
+
+            // add kibble or ingredient to account
+
+            return redirect()
+                ->route('my-creatures')
+                ->with('message', "Creature destroyed.");
+
+        } else {
+            return redirect()->back()->with('error', 'Uh oh, you must signed in to do that.');
+        }
+
     }
 
 
@@ -484,24 +524,6 @@ class CreatureController extends Controller
         }
     }
 
-    public function postDeleteCreature(Request $request)
-    {
-        if (Auth::check()) {
-
-            $creature = Creature::find($request->input('pet_id'));
-            $creature->delete();
-
-            // add kibble or ingredient to account
-
-            return redirect()
-                ->route('my-creatures')
-                ->with('message', "Creature destroyed.");
-
-        } else {
-            return redirect()->back()->with('error', 'Uh oh, you must signed in to do that.');
-        }
-
-    }
 
     /**
      * @param $breed_ticket

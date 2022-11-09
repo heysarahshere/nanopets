@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-body pb-2 {{ $egg->element }}">
                                 <h2 class="card-title">{{ $egg->name }}</h2>
-                                <p class="card-text">{{ $egg->description }}</p>
+                                <p class="card-text" style="font-family: HeyComic">{{ $egg->description }}</p>
                             </div>
                             @if(Auth::check())
                                 <?php $user = Auth::user()?>

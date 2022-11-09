@@ -20,8 +20,10 @@
                             @include('partials.creature.monster-card-feed')
                             @include('partials.creature.monster-card-breed')
                         @else
-                            @include('partials.creature.egg-card-front')
-                            @include('partials.creature.monster-card-destroy')
+                            @if (!$pet->is_incubating)
+                                @include('partials.creature.egg-card-front')
+                                @include('partials.creature.monster-card-destroy')
+                            @endif
                         @endif
                     </div>
                 @endforeach

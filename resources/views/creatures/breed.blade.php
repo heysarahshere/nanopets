@@ -139,7 +139,7 @@
                             </div>
                             <p></p>
                             <div class="row m-auto">
-                                <p>Gene dominance: </p>&nbsp;<p id="potential_p_Male">
+                                <p>Dominance: </p>&nbsp;<p id="potential_p_Male">
                                     {{ $breed_instance->daddy->potential }}</p>
                                 <p>%</p>
                             </div>
@@ -156,6 +156,7 @@
                             <span style="width: 0%; margin-left: auto !important;" id="purple-span"></span>
                         </div>
                     </div>
+                    <input type="hidden" value="{{ $breed_instance->id }}" id="breed_ticket_id">
                     <div class="col-12 m-auto m-5">
                         <div class="store-img-container breed-purple mb-3" style="z-index: 2">
                             <div class="breed-parent col-12"
@@ -196,7 +197,7 @@
                             </div>
                             <p></p>
                             <div class="row m-auto">
-                                <p>Gene dominance: </p>&nbsp;<p id="potential_p_Female">
+                                <p>Dominance: </p>&nbsp;<p id="potential_p_Female">
                                     {{ $breed_instance->mommy->potential }}</p>
                                 <p>%</p>
                             </div>
@@ -362,6 +363,7 @@
         // get ids from the hidden inputs in mom and dad slots
         let mom_id = document.getElementById("creature_id_Female").value;
         let dad_id = document.getElementById("creature_id_Male").value;
+        let breed_ticket_id = document.getElementById("breed_ticket_id").value;
 
         let babyMysteryPicture = document.getElementById("babyMysteryPicture");
         let babyCardImage = document.getElementById("babyCardImage");
@@ -377,6 +379,7 @@
         let select_creatures_row = document.getElementById("select-creatures-row");
         let incubate_button = document.getElementById("incubate_button");
         let sell_button = document.getElementById("sell_button");
+        let start_button = document.getElementById("start_button");
         let hybrid_banner = document.getElementById("hybrid-banner");
         let congrats_banner = document.getElementById("congrats-banner");
 
@@ -391,11 +394,6 @@
         $("#purple-span").css("width", 0).animate({width: "100%"}, 4500);
         await new Promise(resolve => setTimeout(resolve, 4000));
 
-        start_button.classList.add('hiddenFace');
-        incubate_button.classList.remove('hiddenFace');
-        sell_button.classList.remove('hiddenFace');
-        hybrid_banner.classList.add('hiddenFace');
-        congrats_banner.classList.remove('hiddenFace');
 
         jQuery.ajax({
             type: 'POST',
@@ -404,6 +402,7 @@
                 "_token": "{{ csrf_token() }}",
                 "creature_id_Male": dad_id,
                 "creature_id_Female": mom_id,
+                "breed_ticket_id": breed_ticket_id,
             },
             beforeSend: function (xhr, type) {
             },
@@ -416,6 +415,12 @@
                     babyCardImage.src = "https://nanopets.s3.us-west-2.amazonaws.com/images/eggs/" + response.egg_element + ".png"
                     //show the egg image
                     babyCardImage.classList.remove('hiddenFace');
+
+                    start_button.classList.add('hiddenFace');
+                    incubate_button.classList.remove('hiddenFace');
+                    sell_button.classList.remove('hiddenFace');
+                    hybrid_banner.classList.add('hiddenFace');
+                    congrats_banner.classList.remove('hiddenFace');
                 } else {
                     $("#val-error").text('Oops, something went wrong.');
                 }
