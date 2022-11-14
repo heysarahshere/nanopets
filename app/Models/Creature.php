@@ -31,11 +31,10 @@ class Creature extends Model
         'for_sale',
         'cost',
         'description',
-        // --------  for eggs/breeding
+        // --------  for breeding
         'gender',
         'available',
         'potential',
-        'is_incubating'
     ];
 
 
@@ -56,6 +55,11 @@ class Creature extends Model
         } else {
             return $this->hasOne('App\Models\BreedTicket', 'female_id', 'id');
         }
+    }
+
+    public function incubation_record()
+    {
+        return $this->hasOne('App\Models\IncubationChart', 'creature_id', 'id');
     }
 
     public function partner()

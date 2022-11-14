@@ -27,6 +27,7 @@ class User extends Authenticatable
         'admin',
         'balance',
         'gifted',
+        'kibble_ingredients',
     ];
 
     /**

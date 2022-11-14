@@ -205,42 +205,6 @@
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-
-            <div class="container egg-stats hiddenFace" id="egg-stats">
-                <H2 class="text-center">Galaxy Egg</H2>
-                <div class="row justify-content-center">
-                    <div class="col-5 mx-3">
-                        <div class="row">
-                            <H2>health:</H2>
-                            <H2 id="baby_health" style="margin-left: auto">0</H2>
-                        </div>
-                        <div class="row">
-                            <H2>strength:</H2>
-                            <H2 id="baby_strength" style="margin-left: auto">0</H2>
-                        </div>
-                        <div class="row">
-                            <H2>stamina:</H2>
-                            <H2 id="baby_stamina" style="margin-left: auto">0</H2>
-                        </div>
-                    </div>
-                    <div class="col-5 mx-3">
-                        <div class="row">
-                            <H2>defense:</H2>
-                            <H2 id="baby_defense" style="margin-left: auto">0</H2>
-                        </div>
-                        <div class="row">
-                            <H2>magic:</H2>
-                            <H2 id="baby_magic" style="margin-left: auto">0</H2>
-                        </div>
-                        <div class="row">
-                            <H2>tier:</H2>
-                            <H2 id="baby_tier" style="margin-left: auto">0</H2>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -250,7 +214,7 @@
         </button>
 
         <form id="incubate_egg" method="post" action="{{route("incubate-single")}}">
-            <input type="hidden" value="" id="new_egg_id">
+            <input type="hidden" value="" id="egg_id">
             <button type="submit" id="incubate_button" class="btn btn-danger w-100 mt-4 large-incubate-btn hiddenFace">
                 INCUBATE
             </button>
@@ -373,13 +337,15 @@
 
         let babyMysteryPicture = document.getElementById("babyMysteryPicture");
         let babyCardImage = document.getElementById("babyCardImage");
-        let egg_stats = document.getElementById("egg-stats");
-        let baby_health = document.getElementById("baby_health");
-        let baby_strength = document.getElementById("baby_strength");
-        let baby_stamina = document.getElementById("baby_stamina");
-        let baby_defense = document.getElementById("baby_defense");
-        let baby_magic = document.getElementById("baby_magic");
-        let baby_tier = document.getElementById("baby_tier");
+
+        // won't know these until hatching.. maybe?
+        // let egg_stats = document.getElementById("egg-stats");
+        // let baby_health = document.getElementById("baby_health");
+        // let baby_strength = document.getElementById("baby_strength");
+        // let baby_stamina = document.getElementById("baby_stamina");
+        // let baby_defense = document.getElementById("baby_defense");
+        // let baby_magic = document.getElementById("baby_magic");
+        // let baby_tier = document.getElementById("baby_tier");
 
         // get select creatures row to hide
         let select_creatures_row = document.getElementById("select-creatures-row");

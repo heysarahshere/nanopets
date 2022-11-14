@@ -51,13 +51,10 @@
                 @endforeach
             </div>
             <div class="row">
-                <div class="col-6">
-                    <a href="{{route('my-creatures')}}" class="btn ombre-btn w-100 m-4">Breed another pair</a>
-                </div>
-                <div class="col-6">
-                    <button href="{{route('my-incubators')}}" class="btn rev-ombre-btn w-100 m-4 ">View Incubators
-                    </button>
-                </div>
+                    <a style="display: inline-flex; align-items: center; justify-content: center;" href="{{route('my-creatures')}}"
+                       type="button" class="btn btn-primary w-100 large-sell-btn my-2">Breed another pair</a>
+                <a style="display: inline-flex; align-items: center; justify-content: center;" href="{{route('my-incubators')}}"
+                   type="button" class="btn btn-primary w-100 large-incubate-btn my-2">View Incubators</a>
             </div>
         </div>
 

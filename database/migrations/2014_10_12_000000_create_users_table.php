@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('admin')->default(false);
             $table->boolean('gifted')->default(false);
             $table->bigInteger('balance')->default(0);
+            $table->integer('kibble_ingredients')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

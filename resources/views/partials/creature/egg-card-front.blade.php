@@ -89,7 +89,7 @@
         </div>
         <div class="col-5 my-3">
             <form method="POST" action="{{route('incubate-single')}}" id="hatchEgg{{$pet->id}}">
-                <input type="hidden" value="{{$pet->id}}" id="pet_id" name="pet_id">
+                <input type="hidden" value="{{$pet->id}}" id="egg_id" name="egg_id">
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary monster-card-btn card-feed-btn w-100 mb-3 hatch-btn">
                     <i class="fa-solid fa-egg"></i>&nbsp;HATCH

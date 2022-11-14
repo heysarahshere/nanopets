@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BreedTicket;
 use App\Models\Creature;
 use App\Models\Food;
+use App\Models\IncubationChart;
 use App\Models\Purchase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 class CreatureController extends Controller
 {
@@ -329,30 +331,6 @@ class CreatureController extends Controller
 
     }
 
-    public function getBreedingPair($id)
-    {
-        if (Auth::check()) {
-            $user = Auth::user();
-
-            $breed_instance = BreedTicket::find($id);
-            $alternatives = Creature::where('owner_id', $user->id)->where('available', true)->where('dev_stage', 'adult')->get();
-
-            if ($breed_instance->owner_id == $user->id) {
-                if (!is_null($breed_instance)) {
-                    return view('/creatures/breed')->with(['breed_instance' => $breed_instance, 'alternatives' => $alternatives, 'category' => 'none', 'current' => 'breed progress']);
-                } else {
-                    return redirect()->back()->with('message', 'Sorry, that breeding ticket was closed or no longer exists.');
-                }
-            } else {
-                return redirect()->back()->with('message', 'You can only see progress of your own creatures.');
-            }
-
-        } else {
-            return redirect()->back()->with('message', 'Oops, please login before trying that again.');
-        }
-
-    }
-
     public function postBreedAjax(Request $request)
     {
 
@@ -410,7 +388,6 @@ class CreatureController extends Controller
 
         // choose a value between mom and dad, but lean more toward the parent with higher dominance
 
-
         $dominant_parent = $mom;
         $nondominant_parent = $dad;
 
@@ -451,6 +428,22 @@ class CreatureController extends Controller
 
         $egg->save();
 
+        $temp = 50;
+
+        if ($egg->element == 'water' || $egg->element == 'ice' || $egg->element == 'earth' || $egg->element == 'dark') {
+            $temp = 10;
+        } else if($egg->element == 'fire' || $egg->element == 'lava' || $egg->element == 'gem' || $egg->element == 'celestial')  {
+            $temp = 90;
+        }
+
+        $incubation_record = new IncubationChart([
+            'creature_id' => $egg->id,
+            'temperature' => $temp,
+            'progress' => 0,
+        ]);
+
+        $incubation_record->save();
+
 
         // update last bred date
 
@@ -461,16 +454,46 @@ class CreatureController extends Controller
         ]);
     }
 
+    public function getBreedingPair($id)
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $breed_instance = BreedTicket::find($id);
+            $alternatives = Creature::where('owner_id', $user->id)->where('available', true)->where('dev_stage', 'adult')->get();
+
+            if ($breed_instance->owner_id == $user->id) {
+                if (!is_null($breed_instance)) {
+                    return view('/creatures/breed')->with(['breed_instance' => $breed_instance, 'alternatives' => $alternatives, 'category' => 'none', 'current' => 'breed progress']);
+                } else {
+                    return redirect()->back()->with('message', 'Sorry, that breeding ticket was closed or no longer exists.');
+                }
+            } else {
+                return redirect()->back()->with('message', 'You can only see progress of your own creatures.');
+            }
+
+        } else {
+            return redirect()->back()->with('message', 'Oops, please login before trying that again.');
+        }
+
+    }
+
     public function postIncubateSingle(Request $request)
     {
         $this->validate($request, [
-            'pet_id' => 'required'
+            'egg_id' => 'required'
         ]);
         if (Auth::check()) {
-            $pet_id = $request->input('pet_id');
+            $egg_id = $request->input('egg_id');
             $user = Auth::user();
-            $newEgg = Creature::find($pet_id);
-            $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
+            $newEgg = Creature::find($egg_id);
+
+            $eggs = Creature::whereHas('incubation_record', function (Builder $query) {
+                $query->where('is_incubating', '==', 'true');
+            })->get();
+
+//            $eggs = Creature::where('owner_id', $user->id)->where('is_incubating', true)->get();
+
 
             return view('creatures/incubators', ['eggs' => $eggs, 'newEgg' => $newEgg, 'category' => 'incubator', 'current' => 'eggs']);
         } else {
@@ -482,10 +505,16 @@ class CreatureController extends Controller
     {
         if (Auth::check()) {
 
+            $user = Auth::user();
             $creature = Creature::find($request->input('pet_id'));
-            $creature->delete();
+            if ($creature->owner_id == $user->id) {
+                $creature->delete();
+            } else {
+                return redirect()->back()->with('error', 'Oops, you can only destroy your own creatures.');
+            }
 
             // add kibble or ingredient to account
+            $user->kibble_ingredients += 1;
 
             return redirect()
                 ->route('my-creatures')

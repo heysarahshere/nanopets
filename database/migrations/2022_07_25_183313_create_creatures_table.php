@@ -46,13 +46,6 @@ return new class extends Migration
             $table->boolean('available')->default(true);
             $table->integer('potential')->default(20); // percentage of odds that creature will inherit its element/species?
 
-            // for eggs/hatchlings
-            $table->boolean('is_incubating')->default(false);
-            $table->integer('temperature')->default(30); // max 100
-            $table->integer('progress')->default(0); // percentage until hatched (becomes hatchling around 90%) - max 100
-            $table->timestamp('hatched')->nullable();
-            $table->timestamp('out_of_incubator_since')->nullable(); // so we know when the egg has been out of incubation too long
-
             $table->id();
             $table->timestamps();
         });
